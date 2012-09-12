@@ -1,0 +1,31 @@
+2011-05-07 15:24:18,472 [8] INFO  - Closing
+2011-05-07 15:24:18,486 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 15:25:34,147 [8] INFO  - Closing
+2011-05-07 15:25:34,166 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 15:25:44,921 [4] INFO  - checking mappings queue
+2011-05-07 15:25:44,964 [4] INFO  - processing one-to-many association mappings
+2011-05-07 15:38:14,171 [16] INFO  - Closing
+2011-05-07 15:38:14,177 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 15:46:56,225 [11] INFO  - Closing
+2011-05-07 15:46:56,240 [11] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 16:56:03,299 [11] INFO  - Closing
+2011-05-07 16:56:03,311 [11] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 16:58:39,222 [16] INFO  - Closing
+2011-05-07 16:58:39,234 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 17:00:19,322 [16] INFO  - Closing
+2011-05-07 17:00:19,334 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 17:16:31,619 [14] INFO  - Closing
+2011-05-07 17:16:31,632 [14] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 20:41:27,905 [8] INFO  - Closing
+2011-05-07 20:41:27,918 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 20:43:17,875 [11] INFO  - Closing
+2011-05-07 20:43:17,898 [11] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 20:49:51,246 [14] INFO  - Closing
+2011-05-07 20:49:51,259 [14] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 22:43:00,147 [15] INFO  - Closing
+2011-05-07 22:43:00,163 [15] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 22:43:10,291 [8] INFO  - checking mappings queue
+2011-05-07 22:43:10,305 [8] INFO  - processing one-to-many association mappings
+2011-05-07 22:43:42,523 [15] INFO  - Closing
+2011-05-07 22:43:42,528 [15] DEBUG - Disposing of ConnectionProvider.
+2011-05-07 22:44:48,089 [15] INFO  - checking mappings queue

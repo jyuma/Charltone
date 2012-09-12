@@ -1,0 +1,1273 @@
+﻿
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+#commentshint
+{
+   position: relative;
+   cursor:pointer;
+   top: 35px; 
+   color: #cea96d;
+   font-size: .82em;
+   padding-right: 5px;
+}
+
+#funfactshint
+{
+   position: relative;
+   cursor:pointer;
+   top: 35px; 
+   color: #cea96d;
+   font-size: .82em;
+   padding-right: 5px;
+}
+
+.funfactstooltip
+{
+	margin:8px;
+	padding:1px;
+	border:1px solid #cea96d;
+	background-color:#fff;
+	position: absolute;
+	z-index: 2;
+}
+.commentstooltip
+{
+	margin:8px;
+	padding:1px;
+	border:1px solid #cea96d;
+	background-color:#fff;
+	position: absolute;
+	z-index: 2;
+}
+#adminlogonbanner
+{
+    color: #fff;
+    position: relative;
+    top: 20px;
+    margin-left: 22px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+#adminlogonpasswordlabel
+{
+    position: relative;
+    color: #fff;
+    margin-left: 25px;
+    margin-right: 15px;
+    margin-top: 33px;
+    float: left;
+}
+#adminlogonpassword
+{
+    color: #fff;
+    position: relative;
+    margin-right: 15px;
+    margin-top: 30px;
+    float: left;
+}
+#adminpasswordvalidation
+{
+    position: relative;
+    margin-left: 20px;
+    margin-top: 30px;
+    clear: both;
+}
+#adminlogon
+{
+    position: relative;
+    background: url('/Content/Images/tools_large.jpg');
+    width: 900px;
+    height: 675px;
+    clear: both;
+}
+#adminlinehorizontal
+{
+    position: relative;
+    top: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    width: 850px;
+}
+.fieldset
+{
+    color: #fff;
+    position: relative;
+	border-color: #cea96d;
+}
+.legend
+{
+    color: #fff;
+    position: relative;
+}
+#listaddnew
+{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+#file
+{
+    /*width: 30em;*/
+}
+#uploadphoto
+{
+    margin-top: 10px;
+    position: relative;
+    color: #fff;
+    float: left;
+}
+#editphotos
+{
+    position: relative;
+    background: url('/Content/Images/tools_large_4.jpg');
+    width: 900px;
+    height: 1000px;
+}
+#editphotoscontent
+{
+    position: relative;
+    top: 20px;
+    left: 25px;
+    width: 800px;
+}
+#editphotosheader
+{
+    clear: both;
+    color: #fff;
+    font-size: large;
+    margin-bottom: 10px;
+}
+#editphotosmodel 
+{
+    float: left;
+    margin-right: 10px;
+}
+#editphotoslinehorizontal
+{
+    position: relative;
+    width: 850px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#editphotosmodeldesc
+{
+    font-style:italic;
+}
+#editphotosdetail
+{
+    position: relative;
+    clear: both;
+}
+#editphotosmanage
+{
+    position: relative;
+    left: 20px;
+    width: 350px;
+    float: left;
+}
+#editphotosdefault
+{
+    position: relative;
+    float: left;
+	margin-top: 35px;
+}
+#editphotosdefaultimg
+{
+    border-style: solid;
+	border-width: 0.17em;
+    border-color: #cea96d;
+    height: 520px;
+    width: 400px;
+}
+#editphotossave
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+#editphotoslinks
+{
+    clear: both;
+    position: relative;
+    top: 10px;
+    margin-bottom: 25px;
+}
+#editphotosupload
+{
+    position: relative;
+    width: 800px;
+    color: #fff;
+}
+#uploadaphoto
+{
+    clear: both;
+    margin-bottom: 5px;
+}
+#editphotodefaultthumbnail
+{
+    margin-bottom: 10px;
+    position: relative;
+}
+#editphotosthumbnail
+{
+    margin-top: 8px;
+    width: 400px;
+    position: relative;
+}
+.editlink
+{
+   font-size: 1.2em;
+}
+.thumbnail
+{
+    width: 90px;
+    height: 90px;
+    border-style: solid;
+    border-color: #cea96d;
+    margin-bottom: 2px;
+}
+.savebutton
+{
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
+#addphoto
+{
+    float: left;
+    clear:right;
+	margin-top: 50px;
+}
+#addinstrument
+{
+    background: url('/Content/Images/tools_large.jpg');
+    clear: both;
+    width: 900px;
+    height: 2470px;
+}
+#deleteinstrument
+{
+    background: url('/Content/Images/tools_large_3.jpg');
+    clear: both;
+    width: 900px;
+    height: 2550px;
+}
+#deleteconfirm
+{
+    position: relative;
+    clear: both;
+    top: 20px;
+    font-size: 1.5em;
+    color: #AC3219;
+}
+#editinstrument
+{
+    background: url('/Content/Images/tools_large.jpg');
+    width: 900px;
+    height: 2520px;
+}
+.editinstrcontainer
+{
+    position: relative;
+    left: 25px;
+}
+.editinstrbuttons
+{
+    position: relative;
+    margin-bottom: 20px;
+}
+.editinstrinfo
+{
+    position: relative;
+    margin-top: 40px;
+    color: #fff;
+    float: left;
+}
+.editinstrphotoimg
+{
+	border-style: solid;
+    border-color: #cea96d;
+    margin-top: 35px;
+    margin-left: 50px;
+    height: 240px;
+    width: 180px;
+}
+.linehorizontal
+{
+    color: #cea96d;
+    clear: both;
+    border-top-style:dotted;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+.linevertical
+{
+    color: #cea96d;
+    border-top: none;
+    border-bottom: none;
+    border-left: dotted;
+    border-right: none;
+}
+.viewdetailslink
+{
+    font-size:1em;
+    color: #7DA5D8;
+    width: 250px;
+}
+#logo
+{
+    float: left;
+    background: url('/Content/charltoneLogo.png');
+    width:214px;
+    height:74px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+#instrlistview
+{
+    position: relative;
+    clear: both;
+    background: url('/Content/Images/tools_large_2_dark.jpg');
+    /*background-color: #cea96d;*/
+    width: 900px;
+}
+#instrlistheader
+{
+    position: relative;
+    margin-bottom: 20px;
+    font-size: small;
+    clear: both;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
+    color: #fff;
+}
+#instrlistviewcontent
+{
+    top: 20px;
+    position: relative;
+    margin-left: 33px;
+}
+#instrlistlinehorizontal
+{
+   position: relative;
+   width: 835px;
+   margin-bottom: 20px;
+}
+#listdetail
+{
+    width: 875px;
+}
+.listinfomodel
+{
+    position: relative;
+    color: #fff;
+    padding: 3 0 3 0;
+    width: 250px;
+    font-size: 1.3em;
+}
+#orderinglistlinehorizontal
+{
+   position: relative;
+   width: 835px;
+   margin-bottom: 20px;
+   margin-top: 15px;
+}
+#orderinglistviewcontent
+{
+    top: 20px;
+    position: relative;
+    margin-left: 33px;
+    color: #fff;
+}
+#orderinglistviewheader
+{
+    width: 830px;
+}
+#orderinglistinfomodel
+{
+    position: relative;
+    color: #fff;
+    padding: 3 0 3 0;
+    width: 300px;
+    font-size: 1.3em;
+}
+.orderingitemtable
+{
+    width: 840px;
+    border-style:none;
+    padding-bottom: 3px;
+}
+#orderingphoto
+{
+    border-style: solid;
+    border-width: 0.16em;
+    border-color: #cea96d;
+    width: 150px;
+    height: 200px;
+}
+.orderingtablecelllabel
+{
+    border-style:none;
+    font-style: italic;
+    vertical-align: text-top;
+    padding: 0 0 0 0;
+    padding-bottom: 5px;
+    width: 95px;
+}
+#orderingtablecellphoto
+{
+    border-style:none;
+    padding: 0 0 0 0;
+    width: 175px;
+}
+#orderingtablecelllabelmodel
+{
+    border-style:none;
+    padding: 0 0 0 0;
+    font-style: italic;
+    vertical-align: text-top;
+    width: 45px;
+}
+.orderingtablecell
+{
+    border-style:none;
+    padding: 0 0 0 0;
+    padding-bottom: 5px;
+    vertical-align: text-top;
+    width: 700px;  
+}
+#orderingphotoupload
+{
+    position: relative;
+    margin-left: 30px;
+    color: #fff;
+}
+#orderingphotouploadlabel
+{
+    position: relative;
+    margin-left: 30px;
+    color: #fff;
+    clear:both;
+}
+#editordering
+{
+    background: url('/Content/Images/tools_large.jpg');
+    width: 900px;
+    height: 620px;
+}
+#editorfieldorderingmodel
+{
+    width: 2em;
+}
+#listinfopostedmessage
+{
+    color: Red;
+}
+.listinfodetail
+{
+    color: #fff;
+    font-size: 1em;
+    padding: 3 0 3 0;
+}
+#listinfodetail
+{
+    color: #fff;
+}
+#listdefaultphoto
+{
+    border-style: solid;
+    border-width: 0.16em;
+    border-color: #cea96d;
+    width: 260px;
+    height: 320px;
+    margin-bottom: 3px;
+}
+.left 
+{
+  margin-right: 53px;
+}
+.right 
+{
+  margin-left: 0px;
+}
+.left_wrapper 
+{
+  width: 285px;
+  float: left;
+  position: relative;
+  z-index: 0;
+  margin-bottom: 10px;
+}
+.middle_wrapper 
+{
+  width: 285px;
+  float: left;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+.right_wrapper 
+{
+  width: 285px;
+  float: left;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+body
+{
+    background-color: #272722;
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+a:link
+{
+    color: #034af3;
+    text-decoration: underline;
+}
+a:visited
+{
+    color: #505abc;
+}
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+a:active
+{
+    color: #12eb87;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
+    color:#fff;
+    padding: 15px 0 0 15px; 
+}
+
+h6
+{
+    padding: 0 0 0 0; 
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+}
+
+#header
+{
+    position: relative;
+    height: 20px;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+/*   Gallery attributes - begin */
+
+#sold
+{
+    position: relative;
+    margin-top: 10px;
+    clear: both;
+	color: Red;
+	font-size: 1.6em;
+	width: 20px;
+}
+#notforsale
+{
+    position: relative;
+    margin-top: 10px;
+    clear: both;
+	color: Blue;
+	font-size: 1.6em;
+}
+#inprogress
+{    
+    position: relative;
+    margin-top: 15px;
+    clear: both;
+	color: Blue;
+	font-size: 1.6em;
+}
+.mainphoto
+{
+	border-style: solid;
+	border-width: 0.17em;
+    border-color: #cea96d;
+    height: 420px;
+    width: 320px;
+}
+#instrumentdetail
+{
+    background: url('/Content/Images/tools_large_2_dark.jpg') right no-repeat;
+    position: relative;
+    width: 900px;
+    height: 675px;
+}
+#instrumentdetailcontent
+{
+    margin-left: 30px;
+}
+#instrdetaillinehoriztop
+{
+   position: relative;
+   margin-top: 12px;
+   width: 830px;
+   height: 1px;
+}
+#instrdetailheader
+{
+    position: relative;
+    color: #fff;
+    clear: both;
+}
+#instrdetailmodel 
+{
+    margin-top: 15px;
+    font-size: 1.6em;
+    float: left;
+    color: #cea96d;
+}
+#instrumentdetailprice
+{
+    font-size: 1.2em;
+    clear: both;
+}
+#instrumentinfo
+{
+    position: relative;
+    margin-bottom: 20px;
+    width: 900px;
+    float: left;
+}
+#instrdetailinfoheader
+{
+    position: relative;
+    left: 22px;
+    font-size: 1.3em;
+    color: #cea96d;
+}
+#instrdetailmainphoto
+{
+    position: relative;
+    top: 15px;
+    margin-bottom: 10px;
+    float: left;
+}
+#instrdetaillinevertical
+{
+   position: relative;
+   margin-top: 20px;
+   margin-left: 25px;
+   float: left;
+   height: 415px;
+}
+#instrdetailinfo
+{
+    position: relative;
+    float: left;
+    top: 20px;
+	color: #fff;
+}
+#instrdetailinfolist
+{
+    list-style: none;
+    font-size: 1.17em;
+    font-family: Arial;
+    padding-left: 25px;
+}
+#instrdetailbacktolist
+{
+    position: relative;
+    text-align: right;
+    width: 828px;
+    font-size: 1.5em;
+}
+#backtolistlink
+{
+   position: relative;
+   top: 35px; 
+   font-size: .82em;
+   font-style: normal;
+   text-decoration: none;
+   color: #7DA5D8;
+}
+#instrdetaillinehorizbottom
+{
+   position: relative;
+   margin-top: 40px;
+   width: 830px;
+   height: 1px;
+}
+#instrdetailthumbnail 
+{
+    width: 920px;
+	clear: both;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border-width:.17em;
+	border-left: none;
+	border-right: none;
+	border-color: #433F3F;
+}
+#homepage
+{
+    position: relative;
+    width: 900px;
+    height: 675px;
+    background: url('/Content/Images/tools_large.jpg') right no-repeat;
+}
+#homedetail
+{
+    position: relative;
+    top: 40px;
+    margin-left: 30px;
+    margin-right: 15px;
+}
+#homebanner
+{
+    position: relative;
+    font-size: 1.5em;
+    color: #cea96d;
+}
+#homemessage
+{
+    position: relative;
+    top: 10px;
+    font-size: 1.1em;
+    color: #fff;
+}
+#homepageimg
+{
+    position: relative;
+    width: 830px;
+    height: 520px;
+    margin-left: 30px;
+    margin-top: 73px;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: #cea96d;
+}
+#aboutpage
+{
+    position: relative;
+    width: 900px;
+    height: 675px;
+    background: url('/Content/Images/tools_large_2_dark.jpg') right no-repeat;
+}
+#aboutbanner
+{
+    position: relative;
+    font-size: 2.2em;
+    margin-left: 30px;
+    top: 50px;
+    margin-bottom: 40px;
+    color: #cea96d;
+}
+#aboutmain
+{
+    position: relative;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 80px;
+    color: #fff;
+    clear: both;
+}
+#aboutlinehorizontal
+{
+    position: relative;
+    top: 50px;
+    margin-left: 30px;
+    margin-bottom: 60px;
+    width: 835px;
+}
+.aboutheader
+{
+    position: relative;
+    clear: both;
+    font-size: 2em;
+    color: #cea96d;
+}
+.aboutmessage
+{
+    position: relative;
+    clear: both;
+    font-size: 1.2em;
+    color: #fff;
+}
+#menubackground
+{
+    background: url('/Content/Images/tools.jpg') right no-repeat;
+    height: 90px;
+    width: 900px;
+    /*margin-left: 150px;*/
+}
+#main
+{
+    /*padding: 100px 150px 15px 150px;*/
+    width: 100%;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+}
+
+#footer
+{
+    color: #999;
+    /*padding: 10px 0;*/
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    /*border-bottom: 1px #5C87B2 solid;*/
+    /*padding: 0 0 2px;*/
+    position: relative;
+    margin: 0;
+    text-align: right;
+    font-size: 1.3em;
+    background-color: transparent;
+    
+}
+
+ul#menu li
+{
+    display: inline;
+    list-style: none;
+    /*color: #7DA5D8;*/
+    background-color:transparent;
+}
+
+ul#menu li#greeting
+{
+    /*padding: 10px 20px;*/
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a
+{
+    padding: 10px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1.4em;
+    /*background-color: #272722;*/
+    background-color:transparent;
+    color: #fff;
+}
+
+ul#menu li a:hover
+{
+    /*background-color: #272722;*/
+    background-color:transparent;
+    text-decoration: none;
+    color: #7DA5D8;
+}
+
+ul#menu li a:active
+{
+    /*background-color: #272722;*/
+    background-color:transparent;
+    text-decoration: none;
+    color: #7DA5D8;
+}
+
+ul#menu li.selected a
+{
+    color: #7DA5D8;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input[type="text"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+input[type="password"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+  height: 100%;
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table td 
+{
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+}
+
+table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #272722;
+  color: #fff;
+  border: solid 1px #e8eef4;   
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    position:relative;
+    float: right;
+    margin-top:40px;
+    margin-right: 13px;
+    display:inline;
+    padding:0 13px 5px 0;
+    text-transform:uppercase;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+}
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color:White;
+}
+
+#logindisplay a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+
+.display-label,
+.editor-label
+{
+    margin: 0.5em, 0;
+    margin-bottom: .3em;
+}
+
+.display-field,
+.editor-field
+{
+    margin-bottom: 1em;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+textarea#Model,
+textarea#Top,
+textarea#BackAndSides,
+textarea#Binding,
+textarea#Body, 
+textarea#Neck,
+textarea#Faceplate,
+textarea#Fingerboard,
+textarea#FretMarkers,
+textarea#EdgeDots,
+textarea#Bridge,
+textarea#Finish,
+textarea#Tuners,
+textarea#PickGuard,
+textarea#Pickup,
+textarea#CaseDetail,
+textarea#FunFacts,
+textarea#Strings,
+textarea#TypicalPrice
+{
+    position: relative;
+    clear:both;
+    width: 600px;
+    height: 50px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 1.1em;
+}
+textarea#Comments
+{
+    position: relative;
+    clear:both;
+    width: 600px;
+    height: 100px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 1.1em;
+}
+textarea#ContactMessage
+{
+    position: relative;
+    width: 350px;
+    height: 80px;
+    border: 3px solid #cccccc;
+    padding: 10 0 0 0; 
+    font-family: Tahoma, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+#contact
+{
+    position: relative;
+    background: url('/Content/Images/faceplates_gradient.jpg') right no-repeat;
+    width: 900px;
+    height: 575px;
+}
+#contactmain
+{
+    margin-top: 40px;
+    margin-left: 30px;
+    clear: both;
+    float: left;
+    width: 650px;
+    color: #fff;
+}
+#contactlinehorizontal
+{
+    margin-bottom: 10px;
+    width: 650px;
+}
+#contactinfo
+{
+    position:relative;
+    top: 10px;
+    float:left;
+    color: #fff;
+    width: 400px;
+}
+#contactheader
+{
+    position: relative;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+#getintouchheader
+{
+    position: relative;
+    font-size: 1.4em;
+    color: #fff;
+    bottom: 20px;
+    margin-top: 30px;   
+}
+#contactlinevertical
+{
+    position: relative;
+    width: 10px;
+    height: 300px;
+    margin-bottom: 10px;
+    float: left;
+}
+#getintouch
+{
+    margin-left: 40px;
+    color: #fff;
+    width: 180px;
+    float: left;
+}
+#getintouchemail
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#getintouchcountry
+{
+    margin-top: 20px;
+}
+#contactguitarimg
+{
+    position: relative;
+    top: 80px;
+    height: 350px;
+    width: 170px;
+    float: left;
+    margin-left: 20px;
+    background: url('/Content/Images/torres_small.png') right no-repeat;
+}
+#contactemailconfirm
+{
+    color: #fff;
+    font-size: 1.4em;
+}
+#contactsend
+{
+    margin-top: 10px;
+    position: relative;
+    float: left;
+}

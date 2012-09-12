@@ -1,0 +1,31 @@
+﻿@using Charltone.Extensions
+@model Charltone.ViewModels.Admin.AdminLogOnViewModel
+           
+@{
+    ViewBag.Title = "Admin LogOn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) 
+{
+    <div id="adminlogon">
+        <div>
+            <label id="adminlogonbanner">Administrator Log On</label>
+        </div>
+        <div class="linehorizontal" id="adminlinehorizontal"></div>
+        <div id="adminlogonpasswordlabel" >
+            @Html.LabelFor(m => m.Password)
+        </div>
+        <div id="adminlogonpassword" class="editor-field">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+            <input type="submit" value="Login" />
+        </div>
+        <div id="adminpasswordvalidation">
+            @Html.ValidationSummary(true, "Login was unsuccessful.")
+        </div>
+    </div>
+}

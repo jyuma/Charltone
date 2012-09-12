@@ -1,0 +1,82 @@
+2011-04-23 11:35:31,666 [11] INFO  - Closing
+2011-04-23 11:35:31,679 [11] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 11:50:48,981 [9] ERROR - query did not return a unique result: 32
+2011-04-23 11:50:48,992 [4] ERROR - query did not return a unique result: 32
+2011-04-23 11:50:49,020 [11] ERROR - query did not return a unique result: 32
+2011-04-23 11:51:22,438 [9] ERROR - query did not return a unique result: 32
+2011-04-23 11:51:22,680 [4] ERROR - query did not return a unique result: 32
+2011-04-23 11:52:05,223 [4] INFO  - Closing
+2011-04-23 11:52:05,230 [4] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 11:52:15,592 [8] INFO  - checking mappings queue
+2011-04-23 11:52:15,607 [8] INFO  - processing one-to-many association mappings
+2011-04-23 12:08:39,667 [14] INFO  - Closing
+2011-04-23 12:08:39,671 [14] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 12:08:50,503 [14] INFO  - checking mappings queue
+2011-04-23 12:13:07,345 [16] INFO  - Closing
+2011-04-23 12:13:07,353 [16] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 12:13:17,106 [16] INFO  - checking mappings queue
+2011-04-23 12:18:52,723 [15] INFO  - Closing
+2011-04-23 12:18:52,728 [15] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 12:39:10,558 [12] INFO  - checking mappings queue
+2011-04-23 12:42:07,516 [13] INFO  - Closing
+2011-04-23 12:42:07,520 [13] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 13:27:37,337 [25] INFO  - Closing
+2011-04-23 13:27:37,351 [25] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 14:05:09,070 [8] INFO  - Closing
+2011-04-23 14:05:09,117 [8] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 14:18:10,033 [11] INFO  - checking mappings queue
+2011-04-23 14:18:10,047 [11] INFO  - processing one-to-many association mappings
+2011-04-23 14:18:10,051 [11] INFO  - processing one-to-one association property references
+2011-04-23 14:18:10,054 [11] INFO  - processing foreign key constraints
+2011-04-23 14:18:10,061 [11] INFO  - processing filters (second pass)
+2011-04-23 14:30:09,904 [11] INFO  - Closing
+2011-04-23 14:30:09,914 [11] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 14:30:33,056 [11] INFO  - checking mappings queue
+2011-04-23 14:30:33,072 [11] INFO  - processing one-to-many association mappings
+2011-04-23 14:30:33,077 [11] INFO  - processing one-to-one association property references
+2011-04-23 14:31:08,056 [7] INFO  - Closing
+2011-04-23 14:31:08,061 [7] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 14:32:15,238 [11] INFO  - checking mappings queue
+2011-04-23 14:33:34,738 [11] INFO  - Closing
+2011-04-23 14:33:34,743 [11] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 14:34:19,896 [9] INFO  - checking mappings queue
+2011-04-23 15:44:58,428 [18] INFO  - Closing
+2011-04-23 15:44:58,442 [18] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 16:36:33,389 [15] INFO  - checking mappings queue
+2011-04-23 16:45:59,804 [7] INFO  - Closing
+2011-04-23 16:45:59,815 [7] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 16:52:46,648 [11] INFO  - Closing
+2011-04-23 16:52:46,682 [11] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 16:57:55,266 [7] INFO  - Closing
+2011-04-23 16:57:55,300 [7] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:02:20,907 [8] INFO  - Closing
+2011-04-23 17:02:20,920 [8] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:02:31,623 [10] INFO  - checking mappings queue
+2011-04-23 17:07:03,438 [8] INFO  - Closing
+2011-04-23 17:07:03,445 [8] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:07:14,984 [10] INFO  - checking mappings queue
+2011-04-23 17:26:29,477 [8] INFO  - Closing
+2011-04-23 17:26:29,482 [8] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:33:58,628 [9] INFO  - checking mappings queue
+2011-04-23 17:33:58,643 [9] INFO  - processing one-to-many association mappings
+2011-04-23 17:33:58,648 [9] INFO  - processing one-to-one association property references
+2011-04-23 17:35:11,828 [12] INFO  - Closing
+2011-04-23 17:35:11,835 [12] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:38:47,637 [9] INFO  - Closing
+2011-04-23 17:38:47,652 [9] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:39:00,041 [11] INFO  - checking mappings queue
+2011-04-23 17:39:00,055 [11] INFO  - processing one-to-many association mappings
+2011-04-23 17:48:07,616 [9] INFO  - Closing
+2011-04-23 17:48:07,621 [9] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 17:48:18,707 [15] INFO  - checking mappings queue
+2011-04-23 21:04:44,897 [24] INFO  - Closing
+2011-04-23 21:04:44,937 [24] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 21:13:40,465 [13] INFO  - checking mappings queue
+2011-04-23 21:13:40,479 [13] INFO  - processing one-to-many association mappings
+2011-04-23 21:13:40,484 [13] INFO  - processing one-to-one association property references
+2011-04-23 21:13:40,488 [13] INFO  - processing foreign key constraints
+2011-04-23 21:13:40,495 [13] INFO  - processing filters (second pass)
+2011-04-23 21:25:11,288 [12] INFO  - Closing
+2011-04-23 21:25:11,292 [12] DEBUG - Disposing of ConnectionProvider.
+2011-04-23 23:08:01,217 [19] INFO  - Closing
+2011-04-23 23:08:01,230 [19] DEBUG - Disposing of ConnectionProvider.

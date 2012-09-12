@@ -1,0 +1,256 @@
+2011-05-11 00:15:11,406 [23] INFO  - Closing
+2011-05-11 00:15:11,454 [23] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 21:30:07,255 [4] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentTypeId'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-11 21:30:07,291 [4] ERROR - Invalid column name 'InstrumentTypeId'.
+2011-05-11 21:30:07,362 [4] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentTypeId'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-11 21:30:07,367 [4] ERROR - Invalid column name 'InstrumentTypeId'.
+2011-05-11 21:33:19,965 [4] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentTypeId'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-11 21:33:19,981 [4] ERROR - Invalid column name 'InstrumentTypeId'.
+2011-05-11 21:33:20,053 [4] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentTypeId'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-11 21:33:20,058 [4] ERROR - Invalid column name 'InstrumentTypeId'.
+2011-05-11 21:35:01,124 [10] INFO  - Closing
+2011-05-11 21:35:01,129 [10] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 21:37:38,127 [4] INFO  - Closing
+2011-05-11 21:37:38,140 [4] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 21:47:01,271 [10] INFO  - checking mappings queue
+2011-05-11 21:47:01,285 [10] INFO  - processing one-to-many association mappings
+2011-05-11 21:47:01,301 [10] ERROR - An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+NHibernate.MappingException: An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+2011-05-11 22:07:57,627 [16] ERROR - An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+NHibernate.MappingException: An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+2011-05-11 22:09:10,475 [14] INFO  - checking mappings queue
+2011-05-11 22:09:10,498 [14] ERROR - An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+NHibernate.MappingException: An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+2011-05-11 22:10:10,531 [14] INFO  - checking mappings queue
+2011-05-11 22:31:08,274 [12] INFO  - Closing
+2011-05-11 22:31:08,280 [12] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:31:48,169 [13] INFO  - checking mappings queue
+2011-05-11 22:35:15,497 [9] INFO  - Closing
+2011-05-11 22:35:15,505 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:36:41,036 [16] INFO  - Closing
+2011-05-11 22:36:41,048 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:39:17,473 [9] INFO  - Closing
+2011-05-11 22:39:17,485 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:39:29,541 [4] INFO  - checking mappings queue
+2011-05-11 22:39:29,555 [4] INFO  - processing one-to-many association mappings
+2011-05-11 22:39:29,564 [4] INFO  - processing one-to-one association property references
+2011-05-11 22:52:33,953 [13] INFO  - Closing
+2011-05-11 22:52:33,961 [13] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:52:45,169 [10] INFO  - checking mappings queue
+2011-05-11 22:52:45,190 [10] INFO  - processing one-to-many association mappings
+2011-05-11 22:52:45,199 [10] INFO  - processing one-to-one association property references
+2011-05-11 22:52:45,208 [10] INFO  - processing foreign key constraints
+2011-05-11 22:52:45,219 [10] DEBUG - resolving reference to class: Charltone.InstrumentType
+2011-05-11 22:52:45,230 [10] DEBUG - resolving reference to class: Charltone.Classification
+2011-05-11 22:52:45,238 [10] DEBUG - resolving reference to class: Charltone.SubClassification
+2011-05-11 22:54:43,312 [11] INFO  - Closing
+2011-05-11 22:54:43,318 [11] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:55:17,721 [10] INFO  - checking mappings queue
+2011-05-11 22:55:17,736 [10] INFO  - processing one-to-many association mappings
+2011-05-11 22:55:44,884 [10] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-11 22:55:44,902 [10] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 22:55:44,917 [10] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-11 22:55:44,932 [10] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 22:56:21,808 [10] INFO  - Closing
+2011-05-11 22:56:21,814 [10] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:57:06,975 [10] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-11 22:57:06,989 [10] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 22:57:07,000 [10] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-11 22:57:07,006 [10] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 22:57:23,913 [4] INFO  - Closing
+2011-05-11 22:57:23,914 [4] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 22:58:58,330 [9] INFO  - Closing
+2011-05-11 22:58:58,341 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:07:32,497 [7] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-11 23:07:32,514 [7] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 23:07:32,631 [7] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'InstrumentType_Id'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-11 23:07:32,642 [7] ERROR - Invalid column name 'InstrumentType_Id'.
+2011-05-11 23:09:32,622 [9] INFO  - Closing
+2011-05-11 23:09:32,625 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:09:46,137 [9] INFO  - checking mappings queue
+2011-05-11 23:09:46,153 [9] INFO  - processing one-to-many association mappings
+2011-05-11 23:12:28,562 [4] INFO  - Closing
+2011-05-11 23:12:28,567 [4] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:14:13,574 [4] INFO  - Closing
+2011-05-11 23:14:13,584 [4] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:14:24,199 [4] INFO  - checking mappings queue
+2011-05-11 23:15:02,957 [13] INFO  - Closing
+2011-05-11 23:15:02,960 [13] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:20:36,483 [8] INFO  - Closing
+2011-05-11 23:20:36,500 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:20:51,495 [4] INFO  - checking mappings queue
+2011-05-11 23:20:51,510 [4] INFO  - processing one-to-many association mappings
+2011-05-11 23:20:51,515 [4] INFO  - processing one-to-one association property references
+2011-05-11 23:24:53,925 [14] INFO  - Closing
+2011-05-11 23:24:53,929 [14] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:25:59,165 [9] INFO  - checking mappings queue
+2011-05-11 23:26:35,758 [13] INFO  - Closing
+2011-05-11 23:26:35,763 [13] DEBUG - Disposing of ConnectionProvider.
+2011-05-11 23:26:46,046 [13] INFO  - checking mappings queue
+2011-05-11 23:34:31,523 [9] INFO  - Closing
+2011-05-11 23:34:31,528 [9] DEBUG - Disposing of ConnectionProvider.

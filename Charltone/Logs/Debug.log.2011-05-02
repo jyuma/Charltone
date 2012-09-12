@@ -1,0 +1,120 @@
+2011-05-02 17:16:40,472 [8] INFO  - checking mappings queue
+2011-05-02 18:23:49,498 [16] INFO  - Closing
+2011-05-02 18:23:49,504 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 18:27:20,179 [16] INFO  - Closing
+2011-05-02 18:27:20,196 [16] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 18:49:22,625 [8] INFO  - Closing
+2011-05-02 18:49:22,636 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 18:55:10,658 [17] INFO  - checking mappings queue
+2011-05-02 18:56:00,779 [15] INFO  - Closing
+2011-05-02 18:56:00,786 [15] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 18:57:12,107 [17] INFO  - checking mappings queue
+2011-05-02 19:00:45,910 [15] INFO  - Closing
+2011-05-02 19:00:45,919 [15] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:00:58,192 [15] INFO  - checking mappings queue
+2011-05-02 19:01:06,906 [15] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'OrderSeq'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-02 19:01:06,924 [15] ERROR - Invalid column name 'OrderSeq'.
+2011-05-02 19:01:07,006 [15] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'OrderSeq'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-02 19:01:07,013 [15] ERROR - Invalid column name 'OrderSeq'.
+2011-05-02 19:01:51,376 [8] INFO  - Closing
+2011-05-02 19:01:51,387 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:02:03,351 [8] INFO  - checking mappings queue
+2011-05-02 19:02:11,895 [8] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'OrderSeq'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1313
+2011-05-02 19:02:11,901 [8] ERROR - Invalid column name 'OrderSeq'.
+2011-05-02 19:02:11,969 [8] WARN  - System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'OrderSeq'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) in d:\CSharp\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:line 247
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1337
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 401
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 236
+   at NHibernate.Loader.Loader.LoadEntity(ISessionImplementor session, Object id, IType identifierType, Object optionalObject, String optionalEntityName, Object optionalIdentifier, IEntityPersister persister) in d:\CSharp\NH\nhibernate\src\NHibernate\Loader\Loader.cs:line 1392
+2011-05-02 19:02:11,973 [8] ERROR - Invalid column name 'OrderSeq'.
+2011-05-02 19:04:33,797 [10] INFO  - Closing
+2011-05-02 19:04:33,803 [10] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:05:11,575 [14] INFO  - Closing
+2011-05-02 19:05:11,598 [14] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:07:23,098 [17] INFO  - Closing
+2011-05-02 19:07:23,112 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:07:34,650 [8] INFO  - checking mappings queue
+2011-05-02 19:12:11,013 [17] INFO  - Closing
+2011-05-02 19:12:11,022 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 19:12:22,411 [17] INFO  - checking mappings queue
+2011-05-02 19:12:22,428 [17] INFO  - processing one-to-many association mappings
+2011-05-02 19:12:22,434 [17] INFO  - processing one-to-one association property references
+2011-05-02 19:12:22,441 [17] INFO  - processing foreign key constraints
+2011-05-02 19:12:22,449 [17] DEBUG - resolving reference to class: Charltone.Classification
+2011-05-02 19:12:22,456 [17] DEBUG - resolving reference to class: Charltone.SubClassification
+2011-05-02 19:12:22,460 [17] DEBUG - resolving reference to class: Charltone.Classification
+2011-05-02 19:12:22,465 [17] INFO  - processing filters (second pass)
+2011-05-02 19:15:56,488 [17] INFO  - Closing
+2011-05-02 19:15:56,495 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 20:31:36,010 [19] INFO  - Closing
+2011-05-02 20:31:36,044 [19] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 20:42:35,237 [17] INFO  - Closing
+2011-05-02 20:42:35,249 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 21:13:45,163 [13] INFO  - Closing
+2011-05-02 21:13:45,175 [13] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 21:39:12,637 [31] INFO  - Closing
+2011-05-02 21:39:12,650 [31] DEBUG - Disposing of ConnectionProvider.
+2011-05-02 22:05:14,361 [17] INFO  - Closing
+2011-05-02 22:05:14,388 [17] DEBUG - Disposing of ConnectionProvider.

@@ -1,0 +1,39 @@
+2011-05-10 19:38:11,602 [8] INFO  - checking mappings queue
+2011-05-10 19:38:11,617 [8] INFO  - processing one-to-many association mappings
+2011-05-10 19:38:11,618 [8] INFO  - processing one-to-one association property references
+2011-05-10 19:38:11,619 [8] INFO  - processing foreign key constraints
+2011-05-10 19:38:11,624 [8] DEBUG - resolving reference to class: Charltone.Classification
+2011-05-10 19:38:11,629 [8] DEBUG - resolving reference to class: Charltone.SubClassification
+2011-05-10 19:38:11,629 [8] DEBUG - resolving reference to class: Charltone.Availability
+2011-05-10 19:38:11,630 [8] INFO  - processing filters (second pass)
+2011-05-10 19:40:55,991 [8] INFO  - Closing
+2011-05-10 19:40:55,999 [8] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:01:05,675 [9] INFO  - Closing
+2011-05-10 22:01:05,686 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:05:27,040 [13] INFO  - checking mappings queue
+2011-05-10 22:05:27,054 [13] INFO  - processing one-to-many association mappings
+2011-05-10 22:08:10,101 [15] INFO  - Closing
+2011-05-10 22:08:10,106 [15] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:08:22,589 [11] INFO  - checking mappings queue
+2011-05-10 22:08:49,251 [17] INFO  - Closing
+2011-05-10 22:08:49,256 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:08:59,381 [15] INFO  - checking mappings queue
+2011-05-10 22:18:51,096 [12] INFO  - Closing
+2011-05-10 22:18:51,101 [12] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:28:14,276 [9] INFO  - Closing
+2011-05-10 22:28:14,289 [9] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:28:26,070 [17] INFO  - checking mappings queue
+2011-05-10 22:28:26,084 [17] INFO  - processing one-to-many association mappings
+2011-05-10 22:29:57,161 [17] INFO  - Closing
+2011-05-10 22:29:57,165 [17] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 22:58:29,978 [21] INFO  - Closing
+2011-05-10 22:58:29,993 [21] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 23:01:32,593 [11] INFO  - Closing
+2011-05-10 23:01:32,606 [11] DEBUG - Disposing of ConnectionProvider.
+2011-05-10 23:01:43,033 [21] INFO  - checking mappings queue
+2011-05-10 23:01:43,057 [21] ERROR - An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+NHibernate.MappingException: An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+2011-05-10 23:02:26,663 [21] ERROR - An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+NHibernate.MappingException: An association from the table Instrument refers to an unmapped class: Charltone.InstrumentType
+2011-05-10 23:07:29,133 [16] INFO  - Closing
+2011-05-10 23:07:29,145 [16] DEBUG - Disposing of ConnectionProvider.

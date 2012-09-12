@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "About Charltone";
+}
+
+<div id="aboutpage">
+    @using (Html.BeginForm())
+    {
+        <div class="linehorizontal" id="aboutlinehorizontal"></div>
+            <div id="aboutmain">
+            <div class="aboutheader">
+                The Name
+            </div>
+            <br />
+            <div class="aboutmessage">
+                My name is Kevin G. Charlton and I create handcrafted guitars in my home-based shop in a small town about 80 km East of Calgary, Alberta.
+            </div>
+            <br />
+            <br />
+            <div class="aboutheader">
+                The Company Name
+            </div>
+            <br />
+            <div class="aboutmessage">
+                The name Charltone came from "Charlton" combined with “tone” (in the tradition of Silvertone, Guyatone, Magnatone etc).   It seemed like a natural combination of words.
+            </div>
+            <br />
+            <br />
+            <div class="aboutheader">
+                Origins
+            </div>
+            <br />
+            <div class="aboutmessage">
+                My introduction to guitar building came in May 1999 through a prominent luthier in Calgary, Alberta. This happened somewhat later in life than perhaps most people find their calling. After about 5 years of occasional instruction and independent learning, I made the jump to full time, solo building.  Starting with nylon string guitar construction, I then expanded to steel string and electric guitars.
+            </div>
+            <br />
+            <br />
+            <div class="aboutheader">
+                Materials
+            </div>
+            <br />
+            <div class="aboutmessage">
+                My wood comes from all over, much of it salvaged. This seems to be my niche – building guitars from whatever wood comes to me, supplemented by store-bought wood from “normal” channels.  This fact, along with my very traditional, deliberate building style and French polish finish, are what I feel set my guitars apart from those of other builders.  Inevitably each instrument will be unique, with its own story told by where the wood in it came from.
+            </div>
+        </div>
+        <div class="linehorizontal" id="aboutlinehorizontal"></div>
+    }
+</div> 

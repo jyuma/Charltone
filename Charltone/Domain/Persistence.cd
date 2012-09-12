@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Charltone.Domain.Instrument">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAEAAAAAAAgQBAGAAAAAAAAgAAEgAABAAAAA=</HashCode>
+      <FileName>Domain\Instrument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.EntityBase">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\EntityBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.UserInfo">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\UserInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.Classification">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Classification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.SubClassification">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\SubClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.AdminUser">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\AdminUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.InstrumentType">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Domain\InstrumentType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.Photo" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Photo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Charltone.Domain.ItemStatus" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\ItemStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
