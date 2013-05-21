@@ -217,6 +217,7 @@
     <Content Include="Content\favicon.png" />
     <Content Include="Content\charltoneLogo.png" />
     <Content Include="Content\Images\faceplates_gradient.jpg" />
+    <Content Include="Content\Images\home_page.jpg" />
     <Content Include="Content\Images\tools.jpg" />
     <Content Include="Content\Images\tools_large.jpg" />
     <Content Include="Content\Images\tools_large_2.jpg" />
@@ -301,7 +302,9 @@
     <Content Include="Views\Ordering\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\charltone.com.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\test.charltone.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
