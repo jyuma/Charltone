@@ -7,22 +7,65 @@
     ViewBag.Title = "Charltone Instruments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div id="instrlistview" style="height: @Model.BackgroundImageHeight">
+
+<script type="text/javascript">
+    var instrumentList = @Html.Raw(Json.Encode(Model.InstrumentInfo));
+    $(document).ready(function () {
+        createImageDisplayDialog();
+        $("#dialog-image-form").hide();
+
+        function displayImageDialog(imageId) {
+            var url = "/Photo/GetPhotoJson";
+            $.post(url, { "id": imageId },
+                function (data) {
+                    var html = '<a id="lnk-dlgimage_' + imageId + '" href="javascript:;"><img id="listdialogimg_' + imageId + '" class="listdialogimg" src="data:image/jpg;base64,' + data + '" /></a>';
+                    $("#dialog-image-form").html(html);
+                    $("#lnk-dlgimage_" + imageId).click(function () {
+                        $("#dialog-image-form").html('');
+                        $.unblockUI();
+                    });
+                });
+            $.blockUI({
+                message: $("#dialog-image-form"),
+                backgroundColor: '#000',
+                color: '#000',
+                css: { top: 0 } 
+            });
+        }
+        
+        $(instrumentList).each(function(index, value) {
+            $("#img_" + value.DefaultPhotoId).click(function () {
+                displayImageDialog(value.DefaultPhotoId);
+            });
+        });
+
+        function createImageDisplayDialog() {
+            var html = "<div id='dialog-image-form'></div>";
+            $("#dialog-wrapper").append(html);
+        }
+    });
+
+</script>
+
+<div id="instrlistview" style="height: @Model.BackgroundImageHeight">
     <div id="instrlistviewcontent">
         <div id="instrlistheader">
             @Model.Banner
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
-            <div class="editlink" id="listaddnew">
-                @Html.ActionLinkAuthorized("Add", "Create")
-            </div>
+        <div class="editlink" id="listaddnew">
+            @Html.ActionLinkAuthorized("Add", "Create")
+        </div>
         @{
             int i = 0;
             string id_class_wrapper = "";
             string id_class = "";
-
+            string lnk_image_id;
+            
             foreach (var info in Model.InstrumentInfo)
             {
+                lnk_image_id = "img_" + info.DefaultPhotoId;
+                
                 switch (i++ % 3)
                 {
                     case 0:
@@ -41,7 +84,12 @@
                 <div id="listdetail">
                     <div class=@id_class_wrapper>
                         <div class=@id_class>
-                            <img id="listdefaultphoto" src=@Url.Action("GetPhoto", "Photo", new { id = info.DefaultPhotoId }) alt="" />
+                            <div class ="listinfostatus">
+                                @info.InstrumentStatusPrice
+                            </div>
+                            <a id=@lnk_image_id href="javascript:;">
+                                <img id=@info.DefaultPhotoId class="listdefaultphoto" src=@Url.Action("GetPhoto", "Photo", new { id = info.DefaultPhotoId }) alt="" />
+                            </a>
                             <div class="listinfomodel">
                                 @info.Model
                                 <label id="listinfopostedmessage">

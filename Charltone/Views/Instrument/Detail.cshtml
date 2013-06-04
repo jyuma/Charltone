@@ -6,9 +6,35 @@
     ViewBag.Title = "Instrument Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script type="text/javascript">
+
+    var photoIds = @Html.Raw(Json.Encode(Model.PhotoIds));
+    var funFacts = @Html.Raw(Json.Encode(Model.FunFacts));
+    var comments = @Html.Raw(Json.Encode(Model.Comments));
+    var defaultPhotoId = @Html.Raw(Json.Encode(Model.DefaultPhotoId));
+    
     $(document).ready(function () 
     {
+        $("#currentphoto").loupe();
+        $(photoIds).each(function (index, value) {
+            $("#lnk-show-image_" + value).click(function () {
+                showImage(value);
+            });
+        });
+                
+        function showImage(photoId) {
+            var img = $(".loupe").find("img");
+            
+            
+            var url = "/Photo/GetPhotoJson";
+            $.post(url, { "id": photoId },
+                function (data) {
+                    $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
+                    img.attr('src', 'data:image/jpg;base64,' + data + '');
+                });
+        }
+        
         var changeFunFactsToolTipPos = function (event) 
         {
             var tooltipX = event.pageX - 8;
@@ -19,8 +45,8 @@
         var showFunFactsToolTip = function (event) 
         {
             $('div.funfactstooltip').remove();
-            $('<div class="funfactstooltip">@Model.FunFacts</div>')
-            .appendTo('body');
+            $('<div class="funfactstooltip">' + funFacts + '</div>')
+                .appendTo('body');
             changeFunFactsToolTipPos(event);
         };
 
@@ -30,12 +56,11 @@
         };
 
         $("a#funfactshint'").bind(
-        {
-            mousemove: changeFunFactsToolTipPos,
-            mouseenter: showFunFactsToolTip,
-            mouseleave: hideFunFactsToolTip
-        });
-
+            {
+                mousemove: changeFunFactsToolTipPos,
+                mouseenter: showFunFactsToolTip,
+                mouseleave: hideFunFactsToolTip
+            });
 
         var changeCommentsToolTipPos = function (event) {
             var tooltipX = event.pageX - 8;
@@ -45,8 +70,8 @@
 
         var showCommentsToolTip = function (event) {
             $('div.commentstooltip').remove();
-            $('<div class="commentstooltip">@Model.Comments</div>')
-            .appendTo('body');
+            $('<div class="commentstooltip">' + comments + '</div>')
+                .appendTo('body');
             changeCommentsToolTipPos(event);
         };
 
@@ -55,11 +80,14 @@
         };
 
         $("a#commentshint'").bind(
-        {
-            mousemove: changeCommentsToolTipPos,
-            mouseenter: showCommentsToolTip,
-            mouseleave: hideCommentsToolTip
-        });
+            {
+                mousemove: changeCommentsToolTipPos,
+                mouseenter: showCommentsToolTip,
+                mouseleave: hideCommentsToolTip
+            });
+        alert('hi');
+
+
     });
 </script>
 
@@ -86,13 +114,12 @@
                 {
                     <a id="funfactshint"></a>
                 }
-                <!--<a id="backtolistlink" href="/Instrument/Index">Back to list</a>  -->
-                <a id="backtolistlink" href="javascript;" onclick="history.go(-1)">Back to list</a>
+                <a id="backtolistlink" href="/Instrument/Index" onClick="history.back();return false;">Back to list</a>
             </div>
 
             @{
                 string class_id = "";
-    
+                
                 if (Model.InstrumentStatus == "Sold")
                 {
                     class_id = "sold";
@@ -125,9 +152,9 @@
         <div id="instrumentinfo">
 
             <div id="instrdetailmainphoto">
-                <img class="mainphoto" id="mainphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
+                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
             </div>
-
+ @*           <script>$("#currentphoto").loupe();</script>*@
             <div class="linevertical" id="instrdetaillinevertical"></div>
 
             <div id="instrdetailinfo">
@@ -252,9 +279,10 @@
         <div class="linehorizontal" id="instrdetaillinehorizbottom"></div>
 
         <div id="instrdetailthumbnail">
-            @foreach (var p in Model.Photos)
-            {   
-                <a href="javascript:showPic(@p.Id);"> <img class="thumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = p.Id }) alt=""/></a>  
+            @foreach (var pId in Model.PhotoIds)
+            {
+                var @lnkImageid = "lnk-show-image_" + @pId;
+                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = pId }) alt=""/></a>
             }
         </div>
     </div>

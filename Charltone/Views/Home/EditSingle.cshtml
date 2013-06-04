@@ -1,0 +1,28 @@
+﻿@using Charltone.ViewModels.Home;
+@model HomePageImageEditSingleViewModel
+
+@{
+    ViewBag.Title = "Edit Home Page Image";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="homepage">
+    <div id="homedetail">
+        <div id="homeeditbanner">
+            Change Home Page Image
+        </div>
+        <div id="homeedituploadimage">
+            @using (Html.BeginForm("UpdateHomePageImage/" + @Model.ImageId, "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div id="editphotosupload">
+                    <div id="uploadaphoto">Upload an image <a class="homepagelink" href="/Home/Index">Back to Home</a></div>
+                    <input type="file" name="file" id="file" />
+                    <input type="submit" value="Upload"/>
+                </div>
+                <div>
+                    <img id="homepageimg" src=@Url.Action("GetHomePageImage", "Photo", new { id = @Model.ImageId }) alt="" />
+                </div>
+            }
+            </div>
+    </div>
+</div>

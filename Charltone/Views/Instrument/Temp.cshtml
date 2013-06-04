@@ -1,0 +1,184 @@
+﻿<link href="/Content/css/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="/Content/js/jquery-ui-1.9.1.custom.js"></script>
+<script src="/Content/js/ui/jquery.ui.dialog.js"></script>
+<script src="/Content/js/ui/jquery.ui.core.js"></script>
+
+<script type="text/javascript">
+    var isIpad = navigator.userAgent.match(/iPad/i) != null;
+    
+    $(document).ready(function () {
+        
+        createSignInForm();
+        createRegisterForm();
+        $("#signin-form").hide();
+        $("#register-form").hide();
+
+        function showSignInDialog() {
+            $("#signin-form").dialog({
+                modal: true,
+                open: function () { $(".ui-dialog-titlebar").hide(); },
+                width: 'auto',
+                height: 'auto',
+                resizable: false
+            });
+            $("button").button();
+            $("button").removeClass("ui-widget");
+            $("#signin-form").closest(".ui-dialog")
+                .removeClass("ui-widget")
+                .removeClass("ui-widget-content")
+                .removeClass("ui-dialog-content")
+                .addClass("ui-dialog-custom");
+            $("#validation-container-signin").hide();
+
+            $("#chkRememberMe").attr('checked', 'checked');
+            var username = @Html.Raw(Json.Encode(Model.Username));
+            
+            if (username != null) {
+                $("#txtUsername").val(username);
+                $("#txtPassword").focus();
+            } else {
+                $("#txtUsername").focus();
+            }
+            $('#signin-form').keyup(function (e) {
+                if (e.keyCode == 13) {
+                    signIn();
+                }
+            });
+        }
+        
+        function showRegisterDialog() {
+            $("#register-form").dialog({
+                modal: true,
+                open: function () { $(".ui-dialog-titlebar").hide(); },
+                width: 'auto',
+                height: 'auto',
+                resizable: false
+            });
+            $("button").button();
+            $("button").removeClass("ui-widget");
+            $("#register-form").closest(".ui-dialog")
+                .removeClass("ui-widget")
+                .removeClass("ui-widget-content")
+                .removeClass("ui-dialog-content")
+                .addClass("ui-dialog-custom");
+            $("#validation-container-register").hide();
+            $("#txtUsername").focus();
+            
+            $('#register-form').keyup(function (e) {
+                if (e.keyCode == 13) {
+                    registerUser();
+                }
+            });
+        }
+        
+        function signIn() {
+            var username = $("#txtUsername").val();
+            var password = $("#txtPassword").val();
+            var rememberme = $("#chkRememberMe").is(':checked');
+            var model = { Password: password, RememberMe: rememberme, Username: username };
+            
+            $("#validation-container-signin").html("");
+            
+            $.post("/Home/Login/", model, function (data) {
+                if (data.success) {
+                    $("#signin-form").dialog('close');
+                    window.location.reload(true);
+                } else {
+                    if (data.messages.length > 0) {
+                        $("#validation-container-signin").show();
+                        $("#validation-container-signin").html("");
+                        var html = "<ul>";
+                        for (var i = 0; i < data.messages.length; i++) {
+                            html = html + "<li>" + data.messages[i] + "</li>";
+                        }
+                        html = html + "</ul>";
+                        $("#validation-container-signin").append(html);
+                    }
+                }
+            });
+        }
+        
+        function registerUser() {
+            var username = $("#txtRegisterUsername").val();
+            var email = $("#txtEmail").val();
+            var password = $("#txtRegisterPassword").val();
+            var confirmpassword = $("#txtConfirmPassword").val();
+            var model = { Password: password, ConfirmPassword: confirmpassword, EmailAddress: email, Username: username };
+            $("#validation-container-register").html("");
+
+            $.post("/Home/Register/", model, function (data) {
+                if (data.success) {
+                    if (data.EmailError.length > 0) {
+                        alert("The user has been successfully registered but there was an error sending the cofirmation email.\n\n" + data.EmailError);
+                    }
+                    $("#register-form").dialog('close');
+                    location.href = "/Home/";
+                } else {
+                    if (data.messages.length > 0) {
+                        $("#validation-container-register").show();
+                        $("#validation-container-register").html("");
+                        var html = "<ul>";
+                        for (var i = 0; i < data.messages.length; i++) {
+                            html = html + "<li>" + data.messages[i] + "</li>";
+                        }
+                        html = html + "</ul>";
+                        $("#validation-container-register").append(html);
+                    }
+                }
+            });
+        }
+        
+        function createSignInForm() {
+            var wrapper = $("#dialog-wrapper");
+            var html = "<div class='dialog' id='signin-form' ><div id='signin-register'><button id='btnRegisterUser' type='button'>Register</button></div>";
+            html = html + "<div class='dialog-header'><h2>Sign in</h2></div><div id='login-credentials'><div class='username'><div class='login-label'>Username</div>";
+            html = html + "<div class='login-input'><input type='text' id='txtUsername' class='textbox-username' maxlength=20/></div></div><div class='password'><div class='login-label'>Password</div>";
+            html = html + "<div class='login-input'><input type='password' id='txtPassword' class='textbox-password' maxlength=20/></div></div></div>";
+            html = html + "<div id='signin-cancel-button-container'><span id='signing-button'><button id='btnSignIn' type='button'>Sign In</button></span> <span id='cancel-button'><button id='btnCancelSignin' type='button'>Cancel</button></span></div>";
+            if (!isIpad) {
+                html = html + "<div id='remember-me'><input id='chkRememberMe' type='checkbox'>Remember Me</input></div>";
+            }
+            html = html + "<div id='validation-container-signin' class='validation-container'></div></div>";
+            
+            wrapper.append(html);
+            
+            $("#btnCancelSignin").click(function () {
+                $("#validation-container-signin").html("");
+                $("#signin-form").dialog('close');
+            });
+            
+            $("#btnRegisterUser").click(function () {
+                $("#signin-form").dialog('close');
+                showRegisterDialog();
+            });
+            
+            $("#btnSignIn").click(function () {
+                signIn();
+            });
+
+            $("#signin-clicked").click(function () {
+                showSignInDialog();
+            });
+        }
+
+        function createRegisterForm() {
+            var wrapper = $("#dialog-wrapper");
+            var html = "<div class='dialog' id='register-form' ><div class='dialog-header'><h2>Register</h2></div>";
+            html = html + "<div id='register-credentials'><div class='username'><div class='register-label'>Username</div><div class='login-input'><input type='text' id='txtRegisterUsername' class='textbox-username' maxlength=20/></div></div>";
+            html = html + "<div class='email'><div class='register-label'>Email</div><div class='login-input'><input type='text' id='txtEmail' class='textbox-email' maxlength=100/></div></div>";
+            html = html + "<div class='password'><div class='register-label'>Password</div><div class='login-input'><input type='password' id='txtRegisterPassword' class='textbox-password' maxlength=20/></div></div>";
+            html = html + "<div class='password'><div class='register-label'>Confirm Password</div><div class='login-input'><input type='password' id='txtConfirmPassword' class='textbox-password' maxlength=20/></div></div></div>";
+            html = html + "<div id='register-cancel-button-container'><span><button id='btnRegister' type='button'>Register</button></span> <span><button id='btnCancelRegister' type='button'>Cancel</button></span></div>";
+            html = html + "<div id='validation-container-register' class='validation-container'></div></div>";
+            wrapper.append(html);
+
+            $("#btnCancelRegister").click(function () {
+                $("#register-form").dialog('close');
+            });
+            $("#btnRegister").click(function () {
+                registerUser();
+            });
+        }
+    });
+
+</script>

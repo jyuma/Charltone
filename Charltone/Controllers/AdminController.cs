@@ -1,73 +1,87 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Web;
 using System.Web.Mvc;
-using Castle.Core.Logging;
-using Charltone.Domain;
-using Charltone.Services;
-using NHibernate;
-using Charltone.ViewModels.Admin;
+using System.Web.Security;
+using Charltone.Repositories;
 
 namespace Charltone.Controllers
 {
     [HandleError]
     public class AdminController : Controller
     {
+        private readonly IAdminRepository _adminRepository;
 
-        private readonly ISession _session;
-
-        public AdminController(ISession session)
+        public AdminController(IAdminRepository adminRepository)
 		{
-			_session = session;
+            _adminRepository = adminRepository;
 		}
 
-        public virtual IFormsAuthenticationService FormsService { get; set; }
-
-        public virtual ILogger Logger { get; set; }
-
-        public virtual ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult Index(AdminLogOnViewModel model, string returnUrl)
+        public ActionResult Login(string password)
         {
-            model.UserName = "Administrator";
-            if (ModelState.IsValid)
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             {
-                if (ValidateUser(model.UserName, model.Password))
+                var msg = ValidateAdminLogin(password);
+
+                if (msg == null)
                 {
-                    FormsService.SignIn(model.UserName, model.Password);
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    return RedirectToAction("Index", "Home");
+                    CreateLoginAuthenticationTicket("Admin");
+                    return Json(new {success = true});
                 }
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                return Json(new {success = false, messages = msg});
             }
-
-            //--- if we got this far, something failed, redisplay form
-            return View(model);
         }
 
-        private bool ValidateUser(string userName, string password)
+        private List<string> ValidateAdminLogin(string password)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
+            var msgs = new List<string>();
 
-            return (_session.QueryOver<AdminUser>().Where(x => x.AdminPassword == password).RowCount() == 1);
+            // check for empty password
+            if (password == null)
+                msgs.Add("Password is required.");
+            else if (password.Length == 0)
+                msgs.Add("Password is required.");
+
+            if (msgs.Count > 0) return msgs;
+
+            // if all fields have been entered correctly, check the credentials
+            var admin = _adminRepository.AttemptToLoginAdmin(password);
+            if (admin == null)
+                msgs.Add("Incorrect password.");
+
+            return msgs.Count > 0 ? msgs : null;
         }
 
+        private void CreateLoginAuthenticationTicket(string username)
+        {
+            var cookieTimeoutMinutes = Convert.ToInt32(ConfigurationManager.AppSettings["CookieTimeoutMinutes"]);
+            var ticket = new FormsAuthenticationTicket(1, username, DateTime.Now,
+                                                       DateTime.Now.AddMinutes(cookieTimeoutMinutes), false, username);
+            var enticket = FormsAuthentication.Encrypt(ticket);
+            var cname = FormsAuthentication.FormsCookieName;
+
+            Response.Cookies.Add(new HttpCookie(cname, enticket));
+        }
 
         // **************************************
-        // URL: /Account/LogOff
+        // URL: /Admin/LogOff
         // **************************************
+
+        private void ClearAdminCookie()
+        {
+            var cookie = Request.Cookies["Admin"];
+            if (cookie == null) return;
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+        }
 
         public ActionResult LogOff()
         {
-            FormsService.SignOut();
-
-            return RedirectToAction("Index", "Home");
+            FormsAuthentication.SignOut();
+            ClearAdminCookie();
+            return Json(new { success = true });
         }
     }
 }

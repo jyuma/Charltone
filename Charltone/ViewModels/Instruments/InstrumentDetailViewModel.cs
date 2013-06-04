@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Charltone.Domain;
-using Charltone.Extensions;
 
 namespace Charltone.ViewModels.Instruments
 {
@@ -95,5 +94,6 @@ namespace Charltone.ViewModels.Instruments
         public int DefaultPhotoId { get; set; }
         public string Price { get; set; }
         public List<Photo> Photos { get; set; }
+        public IList<int> PhotoIds { get; set; }
     }
 }

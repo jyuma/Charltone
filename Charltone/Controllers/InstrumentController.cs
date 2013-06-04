@@ -206,11 +206,10 @@ namespace Charltone.Controllers
         private InstrumentDetailViewModel LoadInstrumentDetailViewModel(Instrument instrument)
         {
             var vm = new InstrumentDetailViewModel(instrument);
-            var photos = _photos.GetList(instrument.Id);
-            var photolist = photos.ToList();
+            var photoIds = _photos.GetIdList(instrument.Id);
 
             vm.DefaultPhotoId = _photos.GetDefaultId(instrument.Id);
-            vm.Photos = photolist;
+            vm.PhotoIds = photoIds;
 
             return vm;
         }

@@ -1,5 +1,4 @@
-﻿
-using Charltone.Domain;
+﻿using Charltone.Domain;
 
 namespace Charltone.ViewModels.Instruments
 {
@@ -35,7 +34,9 @@ namespace Charltone.ViewModels.Instruments
             Model = instrument.Model + ' ' + instrument.Sn;
             if (instrument.Product != null)
             {
-                InstrumentStatus = instrument.Product.ProductStatus.StatusDesc;
+                InstrumentStatusPrice = (instrument.Product.ProductStatus.Id == Constants.ProductStatusTypeId.ProductStatusIdAvailable
+                    ? instrument.Product.DisplayPrice
+                    : instrument.Product.ProductStatus.StatusDesc);
                 NotPostedMessage = instrument.Product.IsPosted ? "" : "NOT POSTED";
             }
             DefaultPhotoId = photoid;
@@ -45,7 +46,8 @@ namespace Charltone.ViewModels.Instruments
         public string Classification;
         public string SubClassification;
         public string Model;
-        public string InstrumentStatus;
+        public string InstrumentStatusPrice;
+        public string Price;
         public int DefaultPhotoId;
         public string NotPostedMessage;
     }

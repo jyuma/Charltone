@@ -4,6 +4,204 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
+.homepagethumbnail
+{
+    width: 160px;
+    height: 100px;
+    border-width: .1em;
+    border-style: solid;
+    border-color: #cea96d;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+#homepagethumbnail
+{
+    margin-top: 8px;
+    width: 600px;
+    position: relative;
+}
+#txtPassword {
+    width: 180px;
+}
+.validation-container {
+    position: relative;
+    color: red;
+    padding: 0;
+    margin-left: 10px;
+    border-style: none;
+    clear: both;
+}
+.validation-container li {
+    display:list-item;
+    font-size: 1.2em;
+    padding: 0;
+}
+#admin-login-form {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    color: #fff;
+    font-size: .8em;
+    font-family: Helvetica;
+    background: url('/Content/Images/tools_large_2_sm.jpg');
+}
+#lnk-admin-login {
+    color: #63411D;
+    font-size: 1.9em;
+    text-decoration: none;
+    top: 2px;
+}
+#admin-login-credentials {
+    position: relative;
+    margin-left: 10px;
+    width: 300px;
+    height: 25px;
+    float: left;
+}
+#admin-login-cancel-button-container {
+    position: relative;
+    width: 270px;
+    margin-left: 55px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    clear: both;
+    float: left;
+    font-family: inherit;
+}
+.dialog-header h2{
+    font-size: 1.9em;
+    color: #cea96d;
+}
+.ui-dialog-custom  {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    background: url('/Content/Images/dialog gradient.jpg');
+    color: #FFFFFF;
+    border: 1px solid #aaaaaa;
+}
+.ui-image-dialog-custom  {
+    position: relative;
+    background: #1C0F02;
+
+}
+.login-input {
+    width: 100px;
+    padding-bottom: 2px;
+    float: left;
+}
+.login-label {
+    padding-top: 3px;
+    width: 100px;
+    font-size: 1.4em;
+    padding-bottom: 2px;
+    float: left;
+}
+
+#dialog-image-form {
+    position: relative;
+}
+.ui-block-dialog {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane {
+    font-size: 0.8em;
+    padding: 0px 0px 0px 0px; 
+}
+.ui-widget {
+    font-size: 0.8em;
+}
+.ui-dialog-custom  {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    color: #FFFFFF;
+    border: 1px solid #aaaaaa;
+}
+button {
+    width: 75px;
+    height: 30px;
+    font-size: .75em;
+    font-weight: 200;
+}
+
+    #slides {
+        margin-top: 60px;
+        margin-left: 35px;
+        display: none;
+        width: 830px;
+        height: 620px;
+        clear: both;
+        float: left;
+    }
+
+    #slides .slidesjs-navigation {
+      margin-top:5px;
+    }
+
+    #slides .slidesjs-previous {
+      margin-left: 300px;
+      float: left;
+    }
+
+    #slides .slidesjs-next {
+      margin-right: 280px;
+      float: right;
+    }
+
+    .slidesjs-pagination {
+      margin: 6px 0 0;
+      float: left;
+      list-style: none;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 13px;
+      height: 0;
+      padding-top: 13px;
+      background-image: url(img/pagination.png);
+      background-position: 0 0;
+      float: left;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: 0 -13px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: 0 -26px
+    }
+
+    #slides a:link,
+    #slides a:visited {
+        color: #cea96d;
+    }
+
+    #slides a:hover,
+    #slides a:active {
+      color: #9e2020
+    }
+
+    .navbar {
+      overflow: hidden
+    }
+
+
+
+#sitecounter {
+    position: relative;
+    top: 15px; 
+    color: #cea96d;
+    font-size: .52em;
+}
 #commentshint
 {
    position: relative;
@@ -366,9 +564,17 @@ to use a different color start by replacing all instances of
 {
     position: relative;
     color: #fff;
-    padding: 3 0 3 0;
+    padding: 0;
     width: 250px;
     font-size: 1.3em;
+}
+.listinfostatus
+{
+    position: relative;
+    color: #fff;
+    padding: 0;
+    width: 250px;
+    font-size: 1.15em;
 }
 #orderinglistlinehorizontal
 {
@@ -478,7 +684,7 @@ to use a different color start by replacing all instances of
 {
     color: #fff;
 }
-#listdefaultphoto
+.listdefaultphoto
 {
     border-style: solid;
     border-width: 0.16em;
@@ -487,6 +693,15 @@ to use a different color start by replacing all instances of
     height: 320px;
     margin-bottom: 3px;
 }
+.listdialogimg {
+    border-style: solid;
+    border-width: 0.16em;
+    border-color: #cea96d;
+    width: 460px;
+    height: 600px;
+    margin-bottom: 3px; 
+}
+
 .left 
 {
   margin-right: 53px;
@@ -799,6 +1014,17 @@ page width. Or, you can specify an exact pixel width. */
     font-size: 1.5em;
     color: #cea96d;
 }
+#homeeditbanner
+{
+    position: relative;
+    font-size: 1.5em;
+    color: #fff;
+}
+#homeedituploadimage
+{
+    position: relative;
+    margin-top: 20px;
+}
 #homemessage
 {
     position: relative;
@@ -806,16 +1032,30 @@ page width. Or, you can specify an exact pixel width. */
     font-size: 1.1em;
     color: #fff;
 }
-#homepageimg
+.homepagelink
+{
+    position: relative;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: #fff;
+}
+.homepageimg
 {
     position: relative;
     width: 830px;
     height: 520px;
+    /*border-style: solid;
+    border-width: 0.2em;
+    border-color: #cea96d;*/
+}
+#homepageimage
+{
+    position: relative;
+    /*width: 830px;
+    height: 600px;*/
     margin-left: 30px;
-    margin-top: 73px;
-    border-style: solid;
-    border-width: 0.1em;
-    border-color: #cea96d;
+    margin-top: 60px;
 }
 #aboutpage
 {
