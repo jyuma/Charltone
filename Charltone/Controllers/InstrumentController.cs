@@ -1,95 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using Charltone.Domain;
-using Charltone.ViewModels.Instruments;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
+using Charltone.UI.ViewModels.Instruments;
 using System.Linq;
+using System.Web.Mvc;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
-    using System.Web.Mvc;
-    using Repositories;
-
     public class InstrumentController : Controller
     {
         private readonly IProductRepository _products;
-        private readonly IInstrumentRepository _instruments;
         private readonly IPhotoRepository _photos;
-        private readonly ITypeRepository _types;
-        private readonly IRepository<Product> _repository;
+        private readonly IInstrumentTypeRepository _types;
+        private readonly IProductRepository _productRepository;
 
-        public InstrumentController(IProductRepository products, IInstrumentRepository instruments, ITypeRepository types, IPhotoRepository photos, IRepository<Product> repository)
+        public InstrumentController(IProductRepository products, IInstrumentTypeRepository types, IPhotoRepository photos, IProductRepository productRepository)
         {
             _products = products;
-            _instruments = instruments;
             _types = types;
             _photos = photos;
-            _repository = repository;
+            _productRepository = productRepository;
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            var products = _products.GetInstrumentList(page.GetValueOrDefault(1), Request.IsAuthenticated);
-            return View(LoadInstrumentListViewModel(products));
+            return View(LoadInstrumentListViewModel());
         }
 
         public ActionResult Detail(int id)
         {
-            var instrument = _instruments.GetSingle(id);
-
-            return View(LoadInstrumentDetailViewModel(instrument));
+            return View(LoadInstrumentDetailViewModel(id));
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            var instrument = _instruments.GetSingle(id);
-
-            return View(LoadInstrumentEditViewModel(instrument));
+            return View(LoadInstrumentEditViewModel(id));
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, InstrumentEditViewModel viewModel)
         {
-            var instrument = _instruments.GetSingle(id);
-            var product = instrument.Product;
+            _productRepository.Delete(id);
 
-            //_products.Delete(product);
-            _repository.Delete(product);
-            var products = _products.GetInstrumentList(1, Request.IsAuthenticated);
-
-            return RedirectToAction("Index", LoadInstrumentListViewModel(products));
+            return RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var instrument = _instruments.GetSingle(id);
-            return View(LoadInstrumentEditViewModel(instrument));
+            return View(LoadInstrumentEditViewModel(id));
         }
 
         [HttpPost]
         public ActionResult Edit(int id, InstrumentEditViewModel viewModel)
         {
-            var instrument = _instruments.GetSingle(id);
+            var product = _products.Get(id);
 
-            UpdateInstrument(instrument, viewModel);
-            var products = _products.GetInstrumentList(1, Request.IsAuthenticated);
+            UpdateInstrument(product.Instrument, viewModel);
+            UpdateProduct(product, viewModel);
 
-            return  RedirectToAction("Index", LoadInstrumentListViewModel(products));
+            _products.Update(product);
+
+            return  RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult Create()
         {
-            var instrument = new Instrument();
-
-            return View(LoadInstrumentEditViewModel(instrument));
+            return View(LoadInstrumentEditViewModel(0));
         }
 
         [Authorize]
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Create(InstrumentEditViewModel viewModel)
         {
             var product = new Product
@@ -128,36 +115,70 @@ namespace Charltone.Controllers
                                   ProductStatus = new ProductStatus {Id = viewModel.StatusId},
                                   IsPosted = false
                               };
-            _repository.Save(product);
-            //_products.Save(product);
 
-            var products = _products.GetInstrumentList(1, Request.IsAuthenticated);
-            return RedirectToAction("Index", LoadInstrumentListViewModel(products));
+            _productRepository.Add(product);
+
+            return RedirectToAction("Index", LoadInstrumentListViewModel());
+        }
+
+        [HttpGet]
+        public FileResult GetPhoto(int id)
+        {
+            var photo = _photos.GetData(id);
+
+            return File(photo, "image/jpeg");
+        }
+
+        private void UpdateProduct(Product product, InstrumentEditViewModel viewModel)
+        {
+            var posted = viewModel.IsPosted;
+            var statusid = viewModel.StatusId;
+
+            if (product.ProductStatus.Id != statusid)
+            {
+                product.ProductStatus = _types.GetProductStatus(statusid);
+            }
+
+            product.ProductStatus.Id = viewModel.StatusId;
+            product.IsPosted = posted;
+            product.Price = viewModel.Price;
+            product.DisplayPrice = viewModel.DisplayPrice;
         }
 
         private void UpdateInstrument(Instrument instrument, InstrumentEditViewModel viewModel)
         {
-            //--- update the flat data
-            UpdateModel(instrument);
-
-            //--- update the referenced objects
-            if (instrument.InstrumentType.Id != viewModel.InstrumentTypeId)
-                instrument.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
-            if (instrument.Classification.Id != viewModel.ClassificationId)
-                instrument.Classification = _types.GetSingleClassification(viewModel.ClassificationId);
-            if (instrument.SubClassification.Id != viewModel.SubClassificationId)
-                instrument.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
-
-            //--- update the parent product
-            UpdateProduct(instrument.Product, viewModel);
-
-            //--- commit changes
-            //_repository.Update(instrument);
-            _instruments.Update(instrument);
+            //--- update the instrument
+            instrument.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
+            instrument.Classification = _types.GetSingleClassification(viewModel.ClassificationId);
+            instrument.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
+            instrument.BackAndSides = viewModel.BackAndSides;
+            instrument.Binding = viewModel.Binding;
+            instrument.Body = viewModel.Body;
+            instrument.Bridge = viewModel.Bridge;
+            instrument.CaseDetail = viewModel.CaseDetail;
+            instrument.Comments = viewModel.Comments;
+            instrument.EdgeDots = viewModel.EdgeDots;
+            instrument.Faceplate = viewModel.Faceplate;
+            instrument.Fingerboard = viewModel.Fingerboard;
+            instrument.Finish = viewModel.Finish;
+            instrument.FretMarkers = viewModel.FretMarkers;
+            instrument.FunFacts = viewModel.FunFacts;
+            instrument.Model = viewModel.Model;
+            instrument.Neck = viewModel.Neck;
+            instrument.NutWidth = viewModel.NutWidth;
+            instrument.PickGuard = viewModel.PickGuard;
+            instrument.Pickup = viewModel.Pickup;
+            instrument.ScaleLength = viewModel.ScaleLength;
+            instrument.Sn = viewModel.Sn;
+            instrument.Strings = viewModel.Strings;
+            instrument.Top = viewModel.Top;
+            instrument.Tuners = viewModel.Tuners;
         }
 
-        private InstrumentListViewModel<InstrumentInfo> LoadInstrumentListViewModel(IEnumerable<Product> products)
+        private InstrumentListViewModel<InstrumentInfo> LoadInstrumentListViewModel()
         {
+            var products = _products.GetInstrumentList(Request.IsAuthenticated);
+
             var vm = new InstrumentListViewModel<InstrumentInfo>();
             var sortedlist = products.OrderBy(l => l.Instrument.InstrumentType.SortOrder)
                                     .ThenBy(l => l.Instrument.Classification.SortOrder)
@@ -165,7 +186,7 @@ namespace Charltone.Controllers
                                     .ThenBy(l => l.Instrument.Model)
                                     .ThenBy(l => l.Instrument.Sn);
 
-            var totalitems = _instruments.Count(Request.IsAuthenticated);
+            var totalitems = _products.InstrumentCount(Request.IsAuthenticated);
             vm.TotalItemsCount = totalitems;
 
             //--- construct the banner message
@@ -182,9 +203,10 @@ namespace Charltone.Controllers
             var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
 
             vm.BackgroundImageHeight = (rowheight * vm.RowCount) + menuheight + "px;";
-            
+
             //--- add info for each instrument
-            foreach (var info in sortedlist.Select(i => new InstrumentInfo(i.Instrument, _photos.GetDefaultId(i.Id))).Where(info => vm.InstrumentInfo != null))
+            foreach (var info in sortedlist.Select(p => new InstrumentInfo(p, _photos.GetDefaultId(p.Id)))
+                .Where(info => vm.InstrumentInfo != null))
             {
                 vm.InstrumentInfo.Add(info);
             }
@@ -192,45 +214,42 @@ namespace Charltone.Controllers
             return vm;
         }
 
-        private void UpdateProduct(Product product, InstrumentEditViewModel viewModel)
+        private InstrumentDetailViewModel LoadInstrumentDetailViewModel(int productId)
         {
-            var posted = viewModel.IsPosted;
-            var statusid = viewModel.StatusId;
+            var product = _products.Get(productId);
+            var vm = new InstrumentDetailViewModel(product);
+            var photoIds = _photos.GetIdList(productId);
 
-            if (product.ProductStatus.Id != statusid) product.ProductStatus = _types.GetSingleProductStatus(statusid);
-            if (product.IsPosted != posted) product.IsPosted = posted;
-            if (product.Price != viewModel.Price) product.Price = viewModel.Price;
-            if (product.DisplayPrice != viewModel.DisplayPrice) product.DisplayPrice = viewModel.DisplayPrice;
-        }
-
-        private InstrumentDetailViewModel LoadInstrumentDetailViewModel(Instrument instrument)
-        {
-            var vm = new InstrumentDetailViewModel(instrument);
-            var photoIds = _photos.GetIdList(instrument.Id);
-
-            vm.DefaultPhotoId = _photos.GetDefaultId(instrument.Id);
+            vm.DefaultPhotoId = _photos.GetDefaultId(productId);
             vm.PhotoIds = photoIds;
 
             return vm;
         }
 
-        private InstrumentEditViewModel LoadInstrumentEditViewModel(Instrument instrument)
+        private InstrumentEditViewModel LoadInstrumentEditViewModel(int productId)
         {
-            var vm = new InstrumentEditViewModel(instrument, _types, _repository);
-            var photos = _photos.GetList(instrument.Id);
+            var product = productId > 0 
+                ? _products.Get(productId) 
+                : new Product
+                  {
+                      ProductStatus = new ProductStatus { Id = Constants.ProductStatusTypeId.NotForSale },
+                      IsPosted = false,
+                      Instrument = new Instrument 
+                      { 
+                          InstrumentType = new InstrumentType { Id = Constants.InstrumentTypeId.Guitar },
+                          Classification = new Classification { Id = Constants.ClassificationTypeId.SteelString },
+                          SubClassification = new SubClassification{ Id = Constants.SubClassificationTypeId.Classical }
+                      }
+                  };   
+            
+            var vm = new InstrumentEditViewModel(product, _types);
+            var photos = _photos.GetList(product.Id);
             var photolist = photos.ToList();
 
-            vm.DefaultPhotoId = _photos.GetDefaultId(instrument.Id);
+            vm.DefaultPhotoId = _photos.GetDefaultId(product.Id);
             vm.Photos = photolist;
 
             return vm;
-        }
-
-        public FileResult GetPhoto(int id)
-        {
-            var photo = _photos.GetData(id);
-
-            return File(photo, "image/jpeg");
         }
     }
 }

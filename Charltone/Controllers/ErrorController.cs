@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
     public class ErrorController : Controller
     {

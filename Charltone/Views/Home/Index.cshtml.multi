@@ -1,0 +1,78 @@
+﻿@using Charltone.ViewModels.Helpers
+@*@using Charltone.ViewModels.Home;
+@model HomeViewModel<HomePageImageData>
+*@
+@{
+    ViewBag.Title = "Charltone Instruments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.slides.min.js"></script>
+<link href="/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var htmImages = "";
+        loadHomePageImages();
+
+        function loadHomePageImages() {
+            var url = '@Url.Action("GetHomePageImageListJson", "Home")';
+
+            $.getJSON(url, { "next": 10, "last": 0 }, initSlide);
+        }
+
+        function initSlide(data) {
+            var homePageImages = data.HomePageImageList;
+            var complete = data.Complete;
+
+            var htmlSuffix = "";
+
+            $(homePageImages).each(function(index, value)
+            {
+                htmImages = htmImages + '<img id="img_' + value.Id + '" class="homepageimg" src="data:image/jpg;base64,' + value.Data + '" />';
+            });
+            $("#slides").append(htmImages);
+
+            if (complete == 1) {
+                htmlSuffix = htmlSuffix + '<a href="javascript:;" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>';
+                htmlSuffix = htmlSuffix + '<a href="javascript:;" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>';
+
+                $("#slides").append(htmlSuffix);
+                $('#slides').slidesjs({
+                    width: 830,
+                    height: 520,
+                    navigation: {
+                        active: false,
+                        effect: "fade"
+                    },
+                    pagination: {
+                        effect: "fade"
+                    },
+                    effect: {
+                        fade: {
+                            speed: 400
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+
+<div id="homepage">
+    <!--
+        <div id="sitecounter">
+            <img src="http://counter.digits.com/?counter={3c41b964-06bc-f4f4-cd87-064a2c207b90}&template=simple" alt="Hit Counter by Digits"  />
+        </div>
+        -->
+    <div id="homedetail">
+        <div id="homebanner">
+            Hello!  Welcome to Charltone.com
+        </div>
+        <div id="homemessage">
+            Please check out my handmade guitars. Drop me a line if you see anything you like or have any further questions at: kevin@charltone.com.
+        </div>
+        <div class="homepagelink">@Html.ActionLinkAuthorized("Change Image", "Edit")</div>
+    </div>
+    <div id="slides"></div> 
+</div>

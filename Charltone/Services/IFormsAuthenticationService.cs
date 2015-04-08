@@ -1,4 +1,4 @@
-namespace Charltone.Services
+namespace Charltone.UI.Services
 {
 	public interface IFormsAuthenticationService
 	{

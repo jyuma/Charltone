@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Charltone.Domain;
+using Charltone.Domain.Entities;
 
-namespace Charltone.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instruments
 {
     public class InstrumentDetailViewModel
     {
-        public InstrumentDetailViewModel(Instrument instrument)
+        public InstrumentDetailViewModel(Product product)
         {
+            var instrument = product.Instrument;
+
             Id = instrument.Id;
             InstrumentType = instrument.InstrumentType.InstrumentTypeDesc;
             Classification = instrument.Classification.ClassificationDesc;
@@ -33,8 +35,8 @@ namespace Charltone.ViewModels.Instruments
             CaseDetail = instrument.CaseDetail;
             Strings = instrument.Strings;
             FunFacts = instrument.FunFacts;
-            Price = instrument.Product.DisplayPrice;
-            InstrumentStatus = instrument.Product.ProductStatus.StatusDesc;
+            Price = product.DisplayPrice;
+            InstrumentStatus = product.ProductStatus.StatusDesc;
         }
 
         public int Id { get; set; }

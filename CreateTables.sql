@@ -261,16 +261,22 @@ INSERT INTO InstrumentType(Id, InstrumentTypeDesc, SortOrder) VALUES(4, 'Dobro',
 INSERT INTO Classification(Id, ClassificationDesc, SortOrder) VALUES(1, 'Steel String', 1);
 INSERT INTO Classification(Id, ClassificationDesc, SortOrder) VALUES(2, 'Nylon String', 2);
 INSERT INTO Classification(Id, ClassificationDesc, SortOrder) VALUES(3, 'Solid Body', 3);
+INSERT INTO Classification(Id, ClassificationDesc, SortOrder) VALUES(4, 'Electro-Acoustic', 4);
 
 --------- subclassifications -----------
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(1, 'Dreadnought', 1);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(2, 'Parlour', 2);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(3, 'Flamenco', 3);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(4, 'Torres', 4);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(5, 'Flat Top', 5);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(6, 'Arched Top', 6);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(1, 'Classical', 1);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(2, 'Solid Body Arched Top', 2);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(3, 'Solid Body Flat Top', 3);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(4, 'Solid Body "X"', 4);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(5, 'Dreadnought', 5);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(6, 'OM Variation', 6);
 INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(7, 'Orchestra Model', 7);
-INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(8, 'OM Variation', 8);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(8, 'Parlour', 8);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(9, 'Flamenco', 9);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(10, 'Small Flamenco', 10);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(11, 'Semi-Hollow Body', 11);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(12, 'Folk', 12);
+INSERT INTO SubClassification(Id, SubClassificationDesc, SortOrder) VALUES(13, 'Hollow Body Archtop', 13);
 
 --------- add ItemStatus types -----------
 INSERT INTO ProductStatus(Id, StatusDesc) VALUES(1, 'Available');

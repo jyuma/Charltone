@@ -276,7 +276,7 @@ button {
 #adminlogon
 {
     position: relative;
-    background: url('/Content/Images/tools_large.jpg');
+    background: url(Images/tools_large.jpg);
     width: 900px;
     height: 675px;
     clear: both;
@@ -320,7 +320,7 @@ button {
 #editphotos
 {
     position: relative;
-    background: url('/Content/Images/tools_large_4.jpg');
+    background: url(Images/tools_large_4.jpg);
     width: 900px;
     height: 1000px;
 }
@@ -441,14 +441,14 @@ button {
 }
 #addinstrument
 {
-    background: url('/Content/Images/tools_large.jpg');
+    background: url(Images/tools_large.jpg);
     clear: both;
     width: 900px;
     height: 2470px;
 }
 #deleteinstrument
 {
-    background: url('/Content/Images/tools_large_3.jpg');
+    background: url(Images/tools_large_3.jpg);
     clear: both;
     width: 900px;
     height: 2550px;
@@ -463,7 +463,7 @@ button {
 }
 #editinstrument
 {
-    background: url('/Content/Images/tools_large.jpg');
+    background: url(Images/tools_large.jpg);
     width: 900px;
     height: 2520px;
 }
@@ -519,7 +519,7 @@ button {
 #logo
 {
     float: left;
-    background: url('/Content/charltoneLogo.png');
+    background: url(charltoneLogo.png);
     width:214px;
     height:74px;
     margin-top: 10px;
@@ -529,7 +529,7 @@ button {
 {
     position: relative;
     clear: both;
-    background: url('/Content/Images/tools_large_2_dark.jpg');
+    background: url(Images/tools_large_2_dark.jpg);
     /*background-color: #cea96d;*/
     width: 900px;
 }
@@ -662,7 +662,7 @@ button {
 }
 #editordering
 {
-    background: url('/Content/Images/tools_large.jpg');
+    background: url(Images/tools_large.jpg);
     width: 900px;
     height: 620px;
 }
@@ -686,7 +686,7 @@ button {
 }
 .listdefaultphoto
 {
-    border-style: solid;
+    border: solid;
     border-width: 0.16em;
     border-color: #cea96d;
     width: 260px;
@@ -694,7 +694,7 @@ button {
     margin-bottom: 3px;
 }
 .listdialogimg {
-    border-style: solid;
+    border: solid;
     border-width: 0.16em;
     border-color: #cea96d;
     width: 460px;
@@ -874,7 +874,7 @@ page width. Or, you can specify an exact pixel width. */
 }
 .mainphoto
 {
-	border-style: solid;
+	border: solid;
 	border-width: 0.17em;
     border-color: #cea96d;
     height: 420px;
@@ -882,7 +882,7 @@ page width. Or, you can specify an exact pixel width. */
 }
 #instrumentdetail
 {
-    background: url('/Content/Images/tools_large_2_dark.jpg') right no-repeat;
+    background: url(Images/tools_large_2_dark.jpg) right no-repeat;
     position: relative;
     width: 900px;
     height: 675px;
@@ -999,7 +999,7 @@ page width. Or, you can specify an exact pixel width. */
     position: relative;
     width: 900px;
     height: 675px;
-    background: url('/Content/Images/tools_large.jpg') right no-repeat;
+    background: url(Images/tools_large.jpg) right no-repeat;
 }
 #homedetail
 {
@@ -1062,7 +1062,7 @@ page width. Or, you can specify an exact pixel width. */
     position: relative;
     width: 900px;
     height: 675px;
-    background: url('/Content/Images/tools_large_2_dark.jpg') right no-repeat;
+    background: url(Images/tools_large_2_dark.jpg) right no-repeat;
 }
 #aboutbanner
 {
@@ -1106,7 +1106,7 @@ page width. Or, you can specify an exact pixel width. */
 }
 #menubackground
 {
-    background: url('/Content/Images/tools.jpg') right no-repeat;
+    background: url(Images/tools.jpg) right no-repeat;
     height: 90px;
     width: 900px;
     /*margin-left: 150px;*/
@@ -1426,7 +1426,7 @@ textarea#ContactMessage
 #contact
 {
     position: relative;
-    background: url('/Content/Images/faceplates_gradient.jpg') right no-repeat;
+    background: url(Images/faceplates_gradient.jpg) right no-repeat;
     width: 900px;
     height: 575px;
 }
@@ -1498,7 +1498,7 @@ textarea#ContactMessage
     width: 170px;
     float: left;
     margin-left: 20px;
-    background: url('/Content/Images/torres_small.png') right no-repeat;
+    background: url(Images/torres_small.png) right no-repeat;
 }
 #contactemailconfirm
 {

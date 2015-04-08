@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Charltone.Domain;
-using Charltone.Repositories;
-using Charltone.ViewModels.Home;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
+using Charltone.UI.ViewModels.Home;
 using NHibernate;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -34,17 +31,6 @@ namespace Charltone.Controllers
             return View();
 		}
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult Edit(FormCollection collection, string actionType)
-        {
-            var images = _photoRepository.GetHomePageImageList();
-
-            Delete(images, collection);
-
-            return View(LoadHomePageImageEditViewModel(images));
-        }
-
 		public ActionResult About()
 		{
 			return View();
@@ -58,65 +44,26 @@ namespace Charltone.Controllers
         [Authorize]
         public ActionResult Edit()
         {
-            var images = _photoRepository.GetHomePageImageList();
-            return View(LoadHomePageImageEditViewModel(images));
+            var image = _photoRepository.GetHomePageImage();
+            return View(LoadHomePageImageEditViewModel(image));
         }
-
-        //[Authorize]
-        //public ActionResult Edit(int id)
-        //{
-        //    var vm = new HomePageImageEditSingleViewModel(id);
-        //    return View(vm);
-        //}
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddHomePageImage(HttpPostedFileBase file)
+        public ActionResult UpdateHomePageImage(HttpPostedFileBase file)
         {
             if (file != null)
             {
                 if (file.ContentLength > 0)
                 {
                     var b = new BinaryReader(file.InputStream);
-                    var f = b.ReadBytes(file.ContentLength);
+                    var data = b.ReadBytes(file.ContentLength);
 
-                    _photoRepository.AddHomePageImage(f);
+                    _photoRepository.UpdateHomePageImage(data);
                 }
             }
-
-            return View("Edit", LoadHomePageImageEditViewModel(_photoRepository.GetHomePageImageList()));
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult UpdateHomePageImage(int id, HttpPostedFileBase file)
-        {
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var b = new BinaryReader(file.InputStream);
-                    var f = b.ReadBytes(file.ContentLength);
-
-                    _photoRepository.UpdateHomePageImage(id, f, 1);
-                }
-            }
-            var vm = new HomePageImageEditSingleViewModel(id);
+            var vm = new HomePageImageEditViewModel();
             return View("Edit",  vm);
-        }
-
-        private void Delete(ICollection<HomePageImage> images, FormCollection collection)
-        {
-            HomePageImage image = null;
-
-            foreach (var i in images.Where(x => collection.GetValue("Delete_" + x.Id) != null))
-            {
-                _photoRepository.DeleteHomePageImage(i.Id);
-                image = i;
-            }
-
-            if (image == null) return;
-            images.Remove(image);
         }
 
         [HttpPost]
@@ -163,73 +110,34 @@ namespace Charltone.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Events()
+        [HttpGet]
+        public JsonResult GetHomePageImageJson()
         {
-            return View();
-        }
+            var image = _photoRepository.GetHomePageImage();
+            if (image == null) return null;
 
-        public ActionResult News()
-        {
-            return View();
-        }
-
-        //private HomeViewModel<HomePageImageData> LoadHomeViewModel(IEnumerable<HomePageImage> homePageImages)
-        //{
-        //    var vm = new HomeViewModel<HomePageImageData>();
-
-        //    foreach (var image in homePageImages)
-        //    {
-        //        var imgData = new HomePageImageData(image.Id, image.Data);
-        //        vm.HomePageImageList.Add(imgData);
-        //    }
-        //    return vm;
-        //}
-
-        private HomePageImageEditViewModel<HomePageImages> LoadHomePageImageEditViewModel(IEnumerable<HomePageImage> homePageImages)
-        {
-            var vm = new HomePageImageEditViewModel<HomePageImages>();
-
-            foreach (var image in homePageImages)
-            {
-                vm.HomePageImages.Add(new HomePageImages(image.Id, image.Data, image.SortOrder));
-            }
-
-            return vm;
-        }
-
-        [HttpPost]
-        public JsonResult GetHomePageImageListJson(int next, int last)
-        {
-            var images = _photoRepository.GetHomePageImageList();
             var vm = new HomeViewModel<HomePageImageData>();
-            var total = 10; // images.Count;
-            var counter = 1;
-            var index = 1;
 
-            vm.ImageCount = total;
+            var data = Convert.ToBase64String(image.Data);
+            vm.HomePageImage = data;
 
-            foreach (var i in images)
-            {
-                index++;
-                if ((i.SortOrder >= last) && (i.SortOrder <= (next + last)))
-                {
-                    var data = Convert.ToBase64String(i.Data);
-                    vm.HomePageImageList.Add(new HomePageImageData(i.Id, data));
-                    counter++;
-                }
-                if (counter > next) break; 
-            }
-            if (index >= total) vm.Complete = 1;
-            return Json(vm);
+            return Json(vm, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetPhotoJson(int id)
         {
             var photo = _photoRepository.GetData(id);
             var data = Convert.ToBase64String(photo);
 
             return Json(data);
+        }
+
+        private static HomePageImageEditViewModel LoadHomePageImageEditViewModel(HomePageImage homePageImage)
+        {
+            var vm = new HomePageImageEditViewModel { HomePageImage = homePageImage };
+
+            return vm;
         }
 	}
 }

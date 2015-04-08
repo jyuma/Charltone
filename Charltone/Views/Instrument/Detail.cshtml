@@ -1,4 +1,4 @@
-﻿@using Charltone.ViewModels.Instruments;
+﻿@using Charltone.UI.ViewModels.Instruments;
 
 @model InstrumentDetailViewModel
            
@@ -16,22 +16,18 @@
     
     $(document).ready(function () 
     {
-        $("#currentphoto").loupe();
         $(photoIds).each(function (index, value) {
             $("#lnk-show-image_" + value).click(function () {
                 showImage(value);
             });
         });
                 
-        function showImage(photoId) {
-            var img = $(".loupe").find("img");
-            
-            
-            var url = "/Photo/GetPhotoJson";
-            $.post(url, { "id": photoId },
+        function showImage(photoId) {            
+            var url = '@Url.Action("GetPhotoJson", "Photo")';
+
+            $.getJSON(url, { "id": photoId },
                 function (data) {
                     $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
-                    img.attr('src', 'data:image/jpg;base64,' + data + '');
                 });
         }
         
@@ -55,7 +51,7 @@
             $('div.funfactstooltip').remove();
         };
 
-        $("a#funfactshint'").bind(
+        $("a#funfactshint").bind(
             {
                 mousemove: changeFunFactsToolTipPos,
                 mouseenter: showFunFactsToolTip,
@@ -79,15 +75,12 @@
             $('div.commentstooltip').remove();
         };
 
-        $("a#commentshint'").bind(
+        $("a#commentshint").bind(
             {
                 mousemove: changeCommentsToolTipPos,
                 mouseenter: showCommentsToolTip,
                 mouseleave: hideCommentsToolTip
             });
-        alert('hi');
-
-
     });
 </script>
 
@@ -114,7 +107,7 @@
                 {
                     <a id="funfactshint"></a>
                 }
-                <a id="backtolistlink" href="/Instrument/Index" onClick="history.back();return false;">Back to list</a>
+                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")" onclick="history.back();return false;">Back to list</a>
             </div>
 
             @{
@@ -282,7 +275,7 @@
             @foreach (var pId in Model.PhotoIds)
             {
                 var @lnkImageid = "lnk-show-image_" + @pId;
-                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = pId }) alt=""/></a>
+                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetPhoto", "Photo", new { id = pId })' alt=""/></a>
             }
         </div>
     </div>

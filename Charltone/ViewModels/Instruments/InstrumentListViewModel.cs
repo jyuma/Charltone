@@ -1,6 +1,6 @@
-﻿using Charltone.Domain;
+﻿using Charltone.Domain.Entities;
 
-namespace Charltone.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instruments
 {
     using System.Collections.Generic;
 
@@ -9,9 +9,6 @@ namespace Charltone.ViewModels.Instruments
         public InstrumentListViewModel()
         {
             InstrumentInfo = new List<T>();
-            //PageNumber = pageNumber;
-            //TotalItemsCount = totalItemsCount;
-            //PageSize = pageSize;
         }
 
         public List<T> InstrumentInfo { get; private set; }
@@ -19,29 +16,31 @@ namespace Charltone.ViewModels.Instruments
         public int RowCount { get; set; }
         public string BackgroundImageHeight { get; set; }
         public string Banner { get; set; }
-        //public int PageNumber { get; private set; }
-        //public int PageSize { get; private set }
     }
 
     public class InstrumentInfo
     {
-        public InstrumentInfo(Instrument instrument, int photoid)
+        public InstrumentInfo(Product product, int photoid)
         {
+            var instrument = product.Instrument;
+
             Id = instrument.Id;
+            ProductId = product.Id;
             InstrumentType = instrument.InstrumentType.InstrumentTypeDesc;
             Classification = instrument.Classification.ClassificationDesc;
             SubClassification = instrument.SubClassification.SubClassificationDesc;
             Model = instrument.Model + ' ' + instrument.Sn;
-            if (instrument.Product != null)
-            {
-                InstrumentStatusPrice = (instrument.Product.ProductStatus.Id == Constants.ProductStatusTypeId.ProductStatusIdAvailable
-                    ? instrument.Product.DisplayPrice
-                    : instrument.Product.ProductStatus.StatusDesc);
-                NotPostedMessage = instrument.Product.IsPosted ? "" : "NOT POSTED";
-            }
+
+            InstrumentStatusPrice = (product.ProductStatus.Id == Constants.ProductStatusTypeId.Available
+                ? product.DisplayPrice
+                : product.ProductStatus.StatusDesc);
+            NotPostedMessage = product.IsPosted ? "" : "NOT POSTED";
+
             DefaultPhotoId = photoid;
         }
+
         public int Id;
+        public int ProductId;
         public string InstrumentType;
         public string Classification;
         public string SubClassification;

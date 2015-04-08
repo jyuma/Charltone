@@ -1,53 +1,49 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Charltone.Domain;
-using Charltone.Repositories;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
 using System.Web.Mvc;
 
-namespace Charltone.ViewModels.Orderings
+namespace Charltone.UI.ViewModels.Orderings
 {
     public class OrderingEditViewModel
     {
-        private readonly ITypeRepository _types;
-
         public OrderingEditViewModel()
         {
         }
 
-        public OrderingEditViewModel(Ordering ordering, ITypeRepository types)
+        public OrderingEditViewModel(Ordering ordering, IInstrumentTypeRepository types)
         {
-            _types = types;
-
             Id = ordering.Id;
             Model = ordering.Model;
             TypicalPrice = ordering.TypicalPrice;
             Comments = ordering.Comments;
 
             if (ordering.InstrumentType == null) ordering.InstrumentType = new InstrumentType();
-            InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id);
+            InstrumentTypes = new SelectList(types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id);
             InstrumentTypeId = ordering.InstrumentType.Id;
 
             if (ordering.Classification == null) ordering.Classification = new Classification();
-            ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", ordering.Classification.Id);
+            ClassificationTypes = new SelectList(types.GetClassificationList(), "Id", "ClassificationDesc", ordering.Classification.Id);
             ClassificationId = ordering.Classification.Id;
 
             if (ordering.SubClassification == null) ordering.SubClassification = new SubClassification();
-            SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", ordering.SubClassification.Id);
+            SubClassificationTypes = new SelectList(types.GetSubClassificationList(), "Id", "SubClassificationDesc", ordering.SubClassification.Id);
             SubClassificationId = ordering.SubClassification.Id;
 
         }
 
         public int Id;
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Classification")]
         public SelectList ClassificationTypes { get; set; }
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Style")]
         public SelectList SubClassificationTypes { get; set; }
 

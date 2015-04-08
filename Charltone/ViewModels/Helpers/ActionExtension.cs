@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Charltone.ViewModels.Helpers
+namespace Charltone.UI.ViewModels.Helpers
 {
     public static class ActionExtensions
     {

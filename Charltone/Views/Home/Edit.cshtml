@@ -1,39 +1,28 @@
-﻿@using Charltone.ViewModels.Home;
-@model HomePageImageEditViewModel<HomePageImages>
+﻿@using Charltone.UI.ViewModels.Home;
+@model HomePageImageEditViewModel
 
 @{
     ViewBag.Title = "Edit Home Page Image";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add/Remove Home Page Images</h2>
-
-@using (Html.BeginForm("AddHomePageImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-{
-    <div id="editphotosupload">
-        <div id="uploadaphoto">Upload an image <a href="/Home/Index">Get me outta here, I'm done</a></div>
-        <input type="file" name="file" id="file" />
-        <input type="submit" value="Upload"/>
-    </div>
-}
-
-    @using (Html.BeginForm("Edit", "Home"))
-    {
-        <div id="editphotosmanage">
-            <fieldset class="fieldset">
-                <legend class="legend">Images</legend>
-                @foreach (var image in Model.HomePageImages)
-                {
-                    <div id="edithomepageimagethumbnail">
-                        <a href="javascript:showPic(@image.Id);"> <img class="homepagethumbnail" src=@Url.Action("GetHomePageImage", "Photo", new {id = image.Id}) alt="" /></a>
-                        <div>
-                            @{
-                                var name2 = "Delete_" + @image.Id;
-                                <input type="submit" name=@name2 value="Delete"/>
-                            }
-                        </div> 
-                    </div>
-                }                                                    
-            </fieldset> 
+<div id="homepage">
+    <div id="homedetail">
+        <div id="homeeditbanner">
+            Change Home Page Image
         </div>
-    }
+        <div id="homeedituploadimage">
+            @using (Html.BeginForm("UpdateHomePageImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div id="editphotosupload">
+                    <div id="uploadaphoto">Upload an image <a class="homepagelink" href="@Url.Action("Index", "Home")">Back to Home</a></div>
+                    <input type="file" name="file" id="file" />
+                    <input type="submit" value="Upload"/>
+                </div>
+                <div>
+                    <img id="homepageimg" src=@Url.Action("GetHomePageImage", "Photo") alt="" />
+                </div>
+            }
+            </div>
+    </div>
+</div>

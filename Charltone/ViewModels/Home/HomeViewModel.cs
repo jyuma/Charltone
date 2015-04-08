@@ -1,17 +1,8 @@
-﻿namespace Charltone.ViewModels.Home
+﻿namespace Charltone.UI.ViewModels.Home
 {
-    using System.Collections.Generic;
-
     public class HomeViewModel<T>
     {
-        public List<T> HomePageImageList { get; private set; }
-        public int Complete = 0;
-        public int ImageCount = 0;
-
-        public HomeViewModel()
-        {
-            HomePageImageList = new List<T>();
-        }
+        public string HomePageImage { get; set; }
     }
 
     public class HomePageImageData

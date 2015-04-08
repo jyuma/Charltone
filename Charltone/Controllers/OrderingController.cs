@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Web;
-using Charltone.Domain;
-using Charltone.ViewModels.Orderings;
+using System.Web.Mvc;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
+using Charltone.UI.ViewModels.Orderings;
 using System.Linq;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
-    using System.Web.Mvc;
-    using Repositories;
-
     public class OrderingController : Controller
     {
         private readonly IOrderingRepository _orderings;
         private readonly IPhotoRepository _photos;
-        private readonly ITypeRepository _types;
+        private readonly IInstrumentTypeRepository _types;
 
-        public OrderingController(IOrderingRepository orderings, ITypeRepository types, IPhotoRepository photos)
+        public OrderingController(IOrderingRepository orderings, IInstrumentTypeRepository types, IPhotoRepository photos)
         {
             _orderings = orderings;
             _photos = photos;
@@ -65,38 +64,18 @@ namespace Charltone.Controllers
             return vm;
         }
 
-        //[Authorize]
-        //public ActionResult Delete(int id)
-        //{
-        //    var ordering = _orderings.GetSingle(id);
-
-        //    return View(LoadOrderingEditViewModel(ordering));
-        //}
-
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult Delete(int id, OrderingEditViewModel viewModel)
-        //{
-        //    var ordering = _orderings.GetSingle(id);
-        //    var product = ordering.Product;
-
-        //    _products.Delete(product);
-        //    var products = _products.GetOrderingList(1, Request.IsAuthenticated);
-
-        //    return RedirectToAction("Index", LoadOrderingListViewModel(products));
-        //}
-
         [Authorize]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var ordering = _orderings.GetSingle(id);
+            var ordering = _orderings.Get(id);
             return View(LoadOrderingEditViewModel(ordering));
         }
 
         [HttpPost]
         public ActionResult Edit(int id, OrderingEditViewModel viewModel)
         {
-            var ordering = _orderings.GetSingle(id);
+            var ordering = _orderings.Get(id);
 
             UpdateOrdering(ordering, viewModel);
             var orderings = _orderings.GetList(1);
@@ -108,7 +87,7 @@ namespace Charltone.Controllers
         [HttpPost]
         public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
         {
-            var ordering = _orderings.GetSingle(id);
+            var ordering = _orderings.Get(id);
 
             if (file != null)
             {
@@ -125,6 +104,7 @@ namespace Charltone.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult Create()
         {
             var ordering = new Ordering();
@@ -133,7 +113,7 @@ namespace Charltone.Controllers
         }
 
         [Authorize]
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Create(OrderingEditViewModel viewModel)
         {
             var ordering = new Ordering
@@ -145,10 +125,18 @@ namespace Charltone.Controllers
                     TypicalPrice = viewModel.TypicalPrice,
                     Comments = viewModel.Comments,
                 };
-            _orderings.Save(ordering);
+            _orderings.Update(ordering);
 
             var orderings = _orderings.GetList(1);
             return RedirectToAction("Index", LoadOrderingListViewModel(orderings));
+        }
+
+        [HttpGet]
+        public FileResult GetPhoto(int id)
+        {
+            byte[] photo = _orderings.GetPhoto(id) ?? _photos.GetData(-1);
+
+            return File(photo, "image/jpeg");
         }
 
         private void UpdateOrdering(Ordering ordering, OrderingEditViewModel viewModel)
@@ -166,13 +154,6 @@ namespace Charltone.Controllers
 
             //--- commit changes
             _orderings.Update(ordering);
-        }
-
-        public FileResult GetPhoto(int id)
-        {
-            byte[] photo = _orderings.GetPhoto(id) ?? _photos.GetData(-1);
-
-            return File(photo, "image/jpeg");
         }
     }
 }

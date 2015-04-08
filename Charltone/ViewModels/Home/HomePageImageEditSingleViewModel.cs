@@ -1,4 +1,4 @@
-﻿namespace Charltone.ViewModels.Home
+﻿namespace Charltone.UI.ViewModels.Home
 {
     public class HomePageImageEditSingleViewModel
     {

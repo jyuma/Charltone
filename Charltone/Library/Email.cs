@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
-using Charltone.Domain;
+using Charltone.Domain.Entities;
 
-namespace Charltone.Library
+namespace Charltone.UI.Library
 {
     public class Email
     {

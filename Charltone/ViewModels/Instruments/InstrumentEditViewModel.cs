@@ -1,28 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Charltone.Domain;
-using Charltone.Repositories;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
 using System.Web.Mvc;
 using DataAnnotationsExtensions;
 
-namespace Charltone.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instruments
 {
     public class InstrumentEditViewModel
     {
-        private readonly ITypeRepository _types;
-        private readonly IRepository<Product> _repository;
-
         public InstrumentEditViewModel()
         {
         }
 
-        public InstrumentEditViewModel (Instrument instrument, ITypeRepository types, IRepository<Product> repository)
+        public InstrumentEditViewModel(Product product, IInstrumentTypeRepository types)
         {
-            _types = types;
-            _repository = repository;
+            var instrument = product.Instrument;
 
             Id = instrument.Id;
+
+            InstrumentTypeId = instrument.InstrumentType.Id;
+            ClassificationId = instrument.Classification.Id;
+            SubClassificationId = instrument.SubClassification.Id;
+
             Model = instrument.Model;
             Sn = instrument.Sn;
             Top = instrument.Top;
@@ -46,48 +47,32 @@ namespace Charltone.ViewModels.Instruments
             CaseDetail = instrument.CaseDetail;
             Strings = instrument.Strings;
 
-            if (instrument.InstrumentType == null) instrument.InstrumentType = new InstrumentType();
-            InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id);
-            InstrumentTypeId = instrument.InstrumentType.Id;
+            InstrumentTypes = new SelectList(types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id);
+            ClassificationTypes = new SelectList(types.GetClassificationList(), "Id", "ClassificationDesc", instrument.Classification.Id);
+            SubClassificationTypes = new SelectList(types.GetSubClassificationList(), "Id", "SubClassificationDesc", instrument.SubClassification.Id);
+            StatusTypes = new SelectList(types.GetProductStatusList(), "Id", "StatusDesc", product.ProductStatus.Id);
 
-            if (instrument.Classification == null) instrument.Classification = new Classification();
-            ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", instrument.Classification.Id);
-            ClassificationId = instrument.Classification.Id;
-
-            if (instrument.SubClassification == null) instrument.SubClassification = new SubClassification();
-            SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", instrument.SubClassification.Id);
-            SubClassificationId = instrument.SubClassification.Id;
-
-            if (instrument.Product == null)
-            {
-                //var product = products.GetSingle(instrument.Id);
-                var product = _repository.GetSingle(instrument.Id);
-                instrument.Product = product ?? new Product {ProductStatus = new ProductStatus {Id = 1}, Price = 0};
-            }
-
-            StatusTypes = new SelectList(_types.GetProductStatusList(), "Id", "StatusDesc", instrument.Product.ProductStatus.Id);
-            StatusId = instrument.Product.ProductStatus.Id;
-            Price = instrument.Product.Price;
-            DisplayPrice = instrument.Product.DisplayPrice;
-
-            IsPosted = instrument.Product.IsPosted;
+            StatusId = product.ProductStatus.Id;
+            Price = product.Price;
+            DisplayPrice = product.DisplayPrice;
+            IsPosted = product.IsPosted;
         }
 
         public int Id;
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Classification")]
         public SelectList ClassificationTypes { get; set; }
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Style")]
         public SelectList SubClassificationTypes { get; set; }
 
-        [UIHint("SelectList")]
+        //[UIHint("SelectList")]
         [DisplayName("Status")]
         public SelectList StatusTypes { get; set; }
 

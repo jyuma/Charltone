@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Charltone.Repositories;
+using Charltone.Data.Repositories;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
     [HandleError]
     public class AdminController : Controller
@@ -18,8 +18,8 @@ namespace Charltone.Controllers
             _adminRepository = adminRepository;
 		}
 
-        [HttpPost]
-        public ActionResult Login(string password)
+        [HttpGet]
+        public JsonResult Login(string password)
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             {
@@ -28,10 +28,19 @@ namespace Charltone.Controllers
                 if (msg == null)
                 {
                     CreateLoginAuthenticationTicket("Admin");
-                    return Json(new {success = true});
+                    return Json(new {success = true}, JsonRequestBehavior.AllowGet);
                 }
-                return Json(new {success = false, messages = msg});
+                return Json(new {success = false, messages = msg}, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpGet]
+        public JsonResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            ClearAdminCookie();
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         private List<string> ValidateAdminLogin(string password)
@@ -65,23 +74,12 @@ namespace Charltone.Controllers
             Response.Cookies.Add(new HttpCookie(cname, enticket));
         }
 
-        // **************************************
-        // URL: /Admin/LogOff
-        // **************************************
-
         private void ClearAdminCookie()
         {
             var cookie = Request.Cookies["Admin"];
             if (cookie == null) return;
             cookie.Expires = DateTime.Now.AddDays(-1);
             Response.Cookies.Add(cookie);
-        }
-
-        public ActionResult LogOff()
-        {
-            FormsAuthentication.SignOut();
-            ClearAdminCookie();
-            return Json(new { success = true });
         }
     }
 }

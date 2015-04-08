@@ -1,4 +1,4 @@
-﻿@using Charltone.ViewModels.Photos
+﻿@using Charltone.UI.ViewModels.Photos
 
 @model PhotosEditViewModel
            
@@ -52,10 +52,10 @@
                                     <a href="javascript:showPic(@p.Id);"> <img class="thumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = p.Id }) alt=''/></a>
                                     <div>
                                         @{
-                                            var name1 = "SetDefault_" + @p.Id;     
-                                            <input type="submit" name=@name1 value="Default"/>
-                                            var name2 = "Delete_" + @p.Id;                                                                     
-                                            <input type="submit" name=@name2 value="Delete"/>
+                                            var defaultName = "SetDefault_" + @p.Id;     
+                                            <input type="submit" name=@defaultName value="Default"/>
+                                            var deleteName = "Delete_" + @p.Id;                                                                     
+                                            <input type="submit" name=@deleteName value="Delete"/>
                                          }
                                     </div> 
                                 }

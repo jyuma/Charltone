@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Caching;
 
-namespace Charltone.Extensions
+namespace Charltone.UI.Extensions
 {
     public static class CacheExtensions
     {

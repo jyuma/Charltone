@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 
-namespace Charltone.ViewModels.Helpers
+namespace Charltone.UI.ViewModels.Helpers
 {
     public static class LinkExtensions
     {

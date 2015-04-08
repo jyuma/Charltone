@@ -1,45 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Web;
-using Charltone.Domain;
+using System.Web.Mvc;
+using Charltone.Data.Repositories;
 using System.Linq;
-using Charltone.ViewModels.Photos;
+using Charltone.UI.ViewModels.Photos;
 
-namespace Charltone.Controllers
+namespace Charltone.UI.Controllers
 {
-    using System.Web.Mvc;
-    using Repositories;
-
     public class PhotoController : Controller
     {
-        private readonly IInstrumentRepository _instruments;
+        private readonly IProductRepository _products;
         private readonly IPhotoRepository _photoRepository;
 
-        public PhotoController(IInstrumentRepository instruments, IPhotoRepository photoRepository)
+        public PhotoController(IProductRepository products, IPhotoRepository photoRepository)
         {
-            _instruments = instruments;
+            _products = products;
             _photoRepository = photoRepository;
         }
 
         [Authorize]
         public ActionResult Index(int id)
         {
-            var photos = _photoRepository.GetList(id);
-
-            return View(LoadPhotosEditViewModel(id, photos));
+            return View(LoadPhotosEditViewModel(id));
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Index(int id, FormCollection collection, string actionType)
+        public ActionResult Index(int id, FormCollection collection)
         {
-            var photos = _photoRepository.GetList(id);
+            var key = collection.Keys.Get(0);
+            var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
+            var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
 
-            Delete(photos, collection);
-            SetDefault(id, photos, collection);
+            var isDelete = collection.AllKeys.Select(x => x.StartsWith("Delete")).Single();
+            var isSetDefault = collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single();
 
-            return View(LoadPhotosEditViewModel(id, photos));
+            if (isDelete)
+            {
+                _photoRepository.Delete(photoId);
+            }
+            else if (isSetDefault)
+            {
+                _photoRepository.UpdateDefault(id, photoId);
+            }
+
+            return View(LoadPhotosEditViewModel(id));
         }
 
         [Authorize]
@@ -56,46 +62,11 @@ namespace Charltone.Controllers
                     _photoRepository.AddPhoto(id, f);
                 }
             }
-            var photos = _photoRepository.GetList(id);
-            return View("Index", LoadPhotosEditViewModel(id, photos));
+
+            return View("Index", LoadPhotosEditViewModel(id));
         }
 
-        private void Delete(ICollection<Photo> photos, FormCollection collection)
-        {
-            Photo photo = null;
-
-            foreach (var p in photos.Where(p => collection.GetValue("Delete_" + p.Id) != null))
-            {
-                _photoRepository.Delete(p.Id);
-                photo = p;
-            }
-
-            if (photo == null) return;
-            photos.Remove(photo);
-        }
-
-        private void SetDefault(int id, IEnumerable<Photo> photos, FormCollection collection)
-        {
-            foreach (var p in photos.Where(p => collection.GetValue("SetDefault_" + p.Id) != null))
-            {
-                _photoRepository.UpdateDefault(id, p.Id);
-            }            
-        }
-
-        private PhotosEditViewModel LoadPhotosEditViewModel(int id, IEnumerable<Photo> photos)
-        {
-            var vm = new PhotosEditViewModel();
-            var photolist = photos.ToList();
-            var instrument = _instruments.GetSingle(id);
-
-            vm.Photos = photolist;
-            vm.ProductId = id;
-            vm.DefaultPhotoId = _photoRepository.GetDefaultId(id);
-            vm.Model = instrument.Model + ' ' + instrument.Sn;
-
-            return vm;
-        }
-
+        [HttpGet]
         public FileResult GetPhoto(int id)
         {
             var photo = _photoRepository.GetData(id);
@@ -103,20 +74,36 @@ namespace Charltone.Controllers
             return File(photo, "image/jpeg");
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetPhotoJson(int id)
         {
             var photo = _photoRepository.GetData(id);
             var data = Convert.ToBase64String(photo);
 
-            return Json(data);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public FileResult GetHomePageImage(int id)
+        [HttpGet]
+        public FileResult GetHomePageImage()
         {
-            var photo = _photoRepository.GetHomePageImageData(id);
+            var photo = _photoRepository.GetHomePageImageData();
 
             return File(photo, "image/jpeg");
+        }
+
+        private PhotosEditViewModel LoadPhotosEditViewModel(int productid)
+        {
+            var photos = _photoRepository.GetList(productid);
+            var vm = new PhotosEditViewModel();
+           
+            var product = _products.Get(productid);
+
+            vm.Photos = photos;
+            vm.ProductId = productid;
+            vm.DefaultPhotoId = _photoRepository.GetDefaultId(productid);
+            vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
+
+            return vm;
         }
     }
 }

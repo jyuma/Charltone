@@ -1,7 +1,0 @@
-2011-05-06 00:29:47,169 [38] INFO  - Closing
-2011-05-06 00:29:47,212 [38] DEBUG - Disposing of ConnectionProvider.
-2011-05-06 00:29:54,660 [4] INFO  - checking mappings queue
-2011-05-06 00:29:54,675 [4] INFO  - processing one-to-many association mappings
-2011-05-06 00:29:54,678 [4] INFO  - processing one-to-one association property references
-2011-05-06 00:29:54,682 [4] INFO  - processing foreign key constraints
-2011-05-06 00:29:54,689 [4] DEBUG - resolving reference to class: Charltone.Classification

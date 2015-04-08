@@ -1,6 +1,6 @@
 using System.Web.Security;
 
-namespace Charltone.Services
+namespace Charltone.UI.Services
 {
 	public class FormsAuthenticationService : IFormsAuthenticationService
 	{

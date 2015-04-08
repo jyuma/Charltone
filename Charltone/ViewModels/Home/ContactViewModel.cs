@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Charltone.ViewModels.Home
+namespace Charltone.UI.ViewModels.Home
 {
     public class ContactViewModel
     {
