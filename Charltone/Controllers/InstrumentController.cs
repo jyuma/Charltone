@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
@@ -11,16 +12,14 @@ namespace Charltone.UI.Controllers
     public class InstrumentController : Controller
     {
         private readonly IProductRepository _products;
-        private readonly IPhotoRepository _photos;
         private readonly IInstrumentTypeRepository _types;
-        private readonly IProductRepository _productRepository;
+        private readonly IPhotoRepository _photos;
 
-        public InstrumentController(IProductRepository products, IInstrumentTypeRepository types, IPhotoRepository photos, IProductRepository productRepository)
+        public InstrumentController(IProductRepository products, IInstrumentTypeRepository types, IPhotoRepository photos)
         {
             _products = products;
             _types = types;
             _photos = photos;
-            _productRepository = productRepository;
         }
 
         public ActionResult Index()
@@ -28,37 +27,23 @@ namespace Charltone.UI.Controllers
             return View(LoadInstrumentListViewModel());
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int productId)
         {
-            return View(LoadInstrumentDetailViewModel(id));
+            return View(LoadInstrumentDetailViewModel(productId));
         }
 
-        [Authorize]
         [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            return View(LoadInstrumentEditViewModel(id));
-        }
-
         [Authorize]
-        [HttpPost]
-        public ActionResult Delete(int id, InstrumentEditViewModel viewModel)
+        public ActionResult Edit(int productId)
         {
-            _productRepository.Delete(id);
-
-            return RedirectToAction("Index", LoadInstrumentListViewModel());
-        }
-
-        [Authorize]
-        public ActionResult Edit(int id)
-        {
-            return View(LoadInstrumentEditViewModel(id));
+            return View(LoadInstrumentEditViewModel(productId));
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, InstrumentEditViewModel viewModel)
+        [Authorize]
+        public ActionResult Edit(int productId, InstrumentEditViewModel viewModel)
         {
-            var product = _products.Get(id);
+            var product = _products.Get(productId);
 
             UpdateInstrument(product.Instrument, viewModel);
             UpdateProduct(product, viewModel);
@@ -68,15 +53,15 @@ namespace Charltone.UI.Controllers
             return  RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
-            return View(LoadInstrumentEditViewModel(0));
+            return View(LoadInstrumentEditViewModel(-1));
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public ActionResult Create(InstrumentEditViewModel viewModel)
         {
             var product = new Product
@@ -116,17 +101,25 @@ namespace Charltone.UI.Controllers
                                   IsPosted = false
                               };
 
-            _productRepository.Add(product);
+            _products.Add(product);
 
             return RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
         [HttpGet]
-        public FileResult GetPhoto(int id)
+        [Authorize]
+        public ActionResult Delete(int productId)
         {
-            var photo = _photos.GetData(id);
+            return View(LoadInstrumentEditViewModel(productId));
+        }
 
-            return File(photo, "image/jpeg");
+        [HttpPost]
+        [Authorize]
+        public ActionResult Delete(int productId, InstrumentEditViewModel viewModel)
+        {
+            _products.Delete(productId);
+
+            return RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
         private void UpdateProduct(Product product, InstrumentEditViewModel viewModel)
@@ -147,7 +140,6 @@ namespace Charltone.UI.Controllers
 
         private void UpdateInstrument(Instrument instrument, InstrumentEditViewModel viewModel)
         {
-            //--- update the instrument
             instrument.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
             instrument.Classification = _types.GetSingleClassification(viewModel.ClassificationId);
             instrument.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
@@ -175,16 +167,46 @@ namespace Charltone.UI.Controllers
             instrument.Tuners = viewModel.Tuners;
         }
 
-        private InstrumentListViewModel<InstrumentInfo> LoadInstrumentListViewModel()
+        private InstrumentListViewModel LoadInstrumentListViewModel()
         {
             var products = _products.GetInstrumentList(Request.IsAuthenticated);
+            var instruments = new List<InstrumentViewModel>();
+            var vm = new InstrumentListViewModel();
 
-            var vm = new InstrumentListViewModel<InstrumentInfo>();
-            var sortedlist = products.OrderBy(l => l.Instrument.InstrumentType.SortOrder)
-                                    .ThenBy(l => l.Instrument.Classification.SortOrder)
-                                    .ThenBy(l => l.Instrument.SubClassification.SortOrder)
-                                    .ThenBy(l => l.Instrument.Model)
-                                    .ThenBy(l => l.Instrument.Sn);
+            var sortedProducts = products
+                    .Where(product => product.Instrument != null)
+                    .OrderBy(product => product.Instrument.InstrumentType.SortOrder)
+                    .ThenBy(product => product.Instrument.Classification.SortOrder)
+                    .ThenBy(product => product.Instrument.SubClassification.SortOrder)
+                    .ThenBy(product => product.Instrument.Model)
+                    .ThenBy(product => product.Instrument.Sn);
+
+            foreach (var product in sortedProducts)
+            {
+                var instrument = product.Instrument;
+
+                instruments.Add(new InstrumentViewModel
+                        {
+                            Id = instrument.Id,
+                            ProductId = product.Id,
+                            InstrumentType = instrument.InstrumentType.InstrumentTypeDesc,
+                            Classification = instrument.Classification.ClassificationDesc,
+                            SubClassification = instrument.SubClassification.SubClassificationDesc,
+                            Model = instrument.Model + ' ' + instrument.Sn,
+
+                            InstrumentStatusPrice =
+                                (product.ProductStatus.Id == Constants.ProductStatusTypeId.Available
+                                    ? product.DisplayPrice
+                                    : product.ProductStatus.StatusDesc),
+                            NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
+
+                            DefaultPhotoId = _photos.GetDefaultId(product.Id)
+                        });
+            }
+
+            vm.Instruments = instruments;
+
+
 
             var totalitems = _products.InstrumentCount(Request.IsAuthenticated);
             vm.TotalItemsCount = totalitems;
@@ -204,24 +226,47 @@ namespace Charltone.UI.Controllers
 
             vm.BackgroundImageHeight = (rowheight * vm.RowCount) + menuheight + "px;";
 
-            //--- add info for each instrument
-            foreach (var info in sortedlist.Select(p => new InstrumentInfo(p, _photos.GetDefaultId(p.Id)))
-                .Where(info => vm.InstrumentInfo != null))
-            {
-                vm.InstrumentInfo.Add(info);
-            }
-
             return vm;
         }
 
         private InstrumentDetailViewModel LoadInstrumentDetailViewModel(int productId)
         {
             var product = _products.Get(productId);
-            var vm = new InstrumentDetailViewModel(product);
-            var photoIds = _photos.GetIdList(productId);
+            var instrument = product.Instrument;
+            var photoIds = _photos.GetIdsByProductId(productId);
 
-            vm.DefaultPhotoId = _photos.GetDefaultId(productId);
-            vm.PhotoIds = photoIds;
+            var vm = new InstrumentDetailViewModel
+                     {
+                         Id = instrument.Id,
+                         InstrumentType = instrument.InstrumentType.InstrumentTypeDesc,
+                         Classification = instrument.Classification.ClassificationDesc,
+                         SubClassification = instrument.SubClassification.SubClassificationDesc,
+                         Model = instrument.Model + " " + instrument.Sn,
+                         Top = instrument.Top,
+                         BackAndSides = instrument.BackAndSides,
+                         Body = instrument.Body,
+                         Binding = instrument.Binding,
+                         Neck = instrument.Neck,
+                         Faceplate = instrument.Faceplate,
+                         Fingerboard = instrument.Fingerboard,
+                         FretMarkers = instrument.FretMarkers,
+                         EdgeDots = instrument.EdgeDots,
+                         Bridge = instrument.Bridge,
+                         Finish = instrument.Finish,
+                         Tuners = instrument.Tuners,
+                         PickGuard = instrument.PickGuard,
+                         Pickup = instrument.Pickup,
+                         NutWidth = instrument.NutWidth,
+                         ScaleLength = instrument.ScaleLength,
+                         Comments = instrument.Comments,
+                         CaseDetail = instrument.CaseDetail,
+                         Strings = instrument.Strings,
+                         FunFacts = instrument.FunFacts,
+                         Price = product.DisplayPrice,
+                         InstrumentStatus = product.ProductStatus.StatusDesc,
+                         DefaultPhotoId = _photos.GetDefaultId(productId),
+                         PhotoIds = photoIds
+                     };
 
             return vm;
         }
@@ -242,12 +287,52 @@ namespace Charltone.UI.Controllers
                       }
                   };   
             
-            var vm = new InstrumentEditViewModel(product, _types);
-            var photos = _photos.GetList(product.Id);
-            var photolist = photos.ToList();
+            var instrument = product.Instrument;
 
-            vm.DefaultPhotoId = _photos.GetDefaultId(product.Id);
-            vm.Photos = photolist;
+            var vm = new InstrumentEditViewModel
+                     {
+                         Id = instrument.Id,
+
+                         Model = instrument.Model,
+                         Sn = instrument.Sn,
+                         Top = instrument.Top,
+                         BackAndSides = instrument.BackAndSides,
+                         Body = instrument.Body,
+                         Binding = instrument.Binding,
+                         Neck = instrument.Neck,
+                         Faceplate = instrument.Faceplate,
+                         Fingerboard = instrument.Fingerboard,
+                         FretMarkers = instrument.FretMarkers,
+                         EdgeDots = instrument.EdgeDots,
+                         Bridge = instrument.Bridge,
+                         Finish = instrument.Finish,
+                         Tuners = instrument.Tuners,
+                         PickGuard = instrument.PickGuard,
+                         Pickup = instrument.Pickup,
+                         NutWidth = instrument.NutWidth,
+                         ScaleLength = instrument.ScaleLength,
+                         FunFacts = instrument.FunFacts,
+                         Comments = instrument.Comments,
+                         CaseDetail = instrument.CaseDetail,
+                         Strings = instrument.Strings,
+
+                         InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id),
+                         InstrumentTypeId = instrument.InstrumentType.Id,
+
+                         ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", instrument.Classification.Id),
+                         ClassificationId = instrument.Classification.Id,
+
+                         SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", instrument.SubClassification.Id),
+                         SubClassificationId = instrument.SubClassification.Id,
+
+                         StatusTypes = new SelectList(_types.GetProductStatusList(), "Id", "StatusDesc", product.ProductStatus.Id),
+                         StatusId = product.ProductStatus.Id,
+
+                         Price = product.Price,
+                         DisplayPrice = product.DisplayPrice,
+                         IsPosted = product.IsPosted,
+                         DefaultPhotoId = _photos.GetDefaultId(product.Id)
+                     };
 
             return vm;
         }

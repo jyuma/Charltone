@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using Charltone.Domain.Entities;
+﻿using Charltone.Domain.Entities;
 using NHibernate;
 
 namespace Charltone.Data.Repositories
 {
     public interface IOrderingRepository : IRepositoryBase<Ordering>
     {
-        IList<Ordering> GetList(int pageNumber);
-        byte[] GetPhoto(int id);
+        byte[] GetPhoto(int ordingId);
+        void UpdatePhoto(int orderingId, byte[] photo);
     }
 
     public class OrderingRepository : RepositoryBase<Ordering>, IOrderingRepository
@@ -17,16 +16,18 @@ namespace Charltone.Data.Repositories
         {
         }
 
-        public IList<Ordering> GetList(int pageNumber)
-        {
-            return Session.QueryOver<Ordering>().List();
-        }
-
-        public byte[] GetPhoto(int id)
+        public byte[] GetPhoto(int ordingId)
         {
             return Session.QueryOver<Ordering>()
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == ordingId)
                 .SingleOrDefault().Photo;
+        }
+
+        public void UpdatePhoto(int orderingId, byte[] photo)
+        {
+            var ordering = Get(orderingId);
+            ordering.Photo = photo;
+            Update(ordering);
         }
     }
 }

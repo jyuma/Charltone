@@ -1,10 +1,32 @@
 ﻿@using Charltone.UI.ViewModels.Photos
-
 @model PhotosEditViewModel
            
 @{
     ViewBag.Title = "Charltone Photo Management";
 }
+
+<!-- THIS CODE IS DUPLICATED IN INSTRUMENT DETAIL VIEW -->
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        var photoIds = @Html.Raw(Json.Encode(Model.PhotoIds));
+
+        $(photoIds).each(function (index, value) {
+            $("#lnk-show-image_" + value).click(function () {
+                showImage(value);
+            });
+        });
+
+        function showImage(photoId) {
+            var url = '@Url.Action("GetPhotoJson", "Photo")';
+
+            $.getJSON(url, { "id": photoId },
+                function (data) {
+                    $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
+                });
+        }
+    });
+</script>
 
 <div id="editphotos">
     <div id="editphotoscontent">
@@ -32,34 +54,34 @@
             @using (Html.BeginForm("Index/" + @Model.ProductId, "Photo"))
             {
                 <div id="editphotosdefault">
-                    <img class="mainphoto" id="mainphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=''/>
+                    <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt='' />
                 </div>
     
                 <div id="editphotosmanage">
                     <fieldset class="fieldset">
                     <legend class="legend">Manage</legend>
-                    @if (@Model.Photos.Count > 0)
-                    {
-                        <a href="javascript:showPic(@Model.DefaultPhotoId);"> 
-                            <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt=''/>
-                        </a>
-                    }
-                        @foreach (var p in Model.Photos)
-                        {            
+
+                        @foreach (var photoId in Model.PhotoIds)
+                        {
+                            var @lnkImageid = "lnk-show-image_" + photoId;
+                            
                             <div id="editphotosthumbnail">
-                                @if (p.IsDefault == false)
-                                {
-                                    <a href="javascript:showPic(@p.Id);"> <img class="thumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = p.Id }) alt=''/></a>
-                                    <div>
-                                        @{
-                                            var defaultName = "SetDefault_" + @p.Id;     
-                                            <input type="submit" name=@defaultName value="Default"/>
-                                            var deleteName = "Delete_" + @p.Id;                                                                     
-                                            <input type="submit" name=@deleteName value="Delete"/>
-                                         }
-                                    </div> 
-                                }
-                            </div>                                                        
+                                <a id=@lnkImageid href="javascript:;">
+                                    <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Photo", new { id = photoId }) alt='' />
+                                </a>
+
+                                    @if (photoId != Model.DefaultPhotoId)
+                                    {
+                                        <div>
+                                            @{
+                                                var defaultName = "SetDefault_" + photoId;
+                                                <input type="submit" name=@defaultName value="Default" />
+                                                var deleteName = "Delete_" + photoId;
+                                                <input type="submit" name=@deleteName value="Delete" />
+                                            }
+                                        </div>
+                                    }
+                        </div>                                                        
                         }
                     </fieldset> 
                 </div>

@@ -1,44 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Charltone.Domain.Entities;
 
 namespace Charltone.UI.ViewModels.Instruments
 {
     public class InstrumentDetailViewModel
     {
-        public InstrumentDetailViewModel(Product product)
-        {
-            var instrument = product.Instrument;
-
-            Id = instrument.Id;
-            InstrumentType = instrument.InstrumentType.InstrumentTypeDesc;
-            Classification = instrument.Classification.ClassificationDesc;
-            SubClassification = instrument.SubClassification.SubClassificationDesc;
-            Model = instrument.Model + " " + instrument.Sn;
-            Top = instrument.Top;
-            BackAndSides = instrument.BackAndSides;
-            Body = instrument.Body;
-            Binding = instrument.Binding;
-            Neck = instrument.Neck;
-            Faceplate = instrument.Faceplate;
-            Fingerboard = instrument.Fingerboard;
-            FretMarkers = instrument.FretMarkers;
-            EdgeDots = instrument.EdgeDots;
-            Bridge = instrument.Bridge;
-            Finish = instrument.Finish;
-            Tuners = instrument.Tuners;
-            PickGuard = instrument.PickGuard;
-            Pickup = instrument.Pickup;
-            NutWidth = instrument.NutWidth;
-            ScaleLength = instrument.ScaleLength;
-            Comments = instrument.Comments;
-            CaseDetail = instrument.CaseDetail;
-            Strings = instrument.Strings;
-            FunFacts = instrument.FunFacts;
-            Price = product.DisplayPrice;
-            InstrumentStatus = product.ProductStatus.StatusDesc;
-        }
-
         public int Id { get; set; }
         public string InstrumentType { get; set; }
 
@@ -95,7 +61,6 @@ namespace Charltone.UI.ViewModels.Instruments
         public string InstrumentStatus { get; set; }
         public int DefaultPhotoId { get; set; }
         public string Price { get; set; }
-        public List<Photo> Photos { get; set; }
         public IList<int> PhotoIds { get; set; }
     }
 }

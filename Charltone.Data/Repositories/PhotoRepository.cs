@@ -8,15 +8,18 @@ namespace Charltone.Data.Repositories
 {
     public interface IPhotoRepository : IRepositoryBase<Photo>
     {
-        IList<Photo> GetList(int id);
-        IList<int> GetIdList(int id);
+        IList<Photo> GetListByProductId(int productId);
+        IList<int> GetIdsByProductId(int productId);
+
         byte[] GetData(int id);
-        byte[] GetHomePageImageData();
-        HomePageImage GetHomePageImage();
+        byte[] GetHomePageImage();
+        byte[] GetDefaultInstrumentImage();
+
+        void Add(int id, byte[] file);
         void UpdateHomePageImage(byte[] data);
+        void SetProductDefault(int id, int newid);
+
         int GetDefaultId(int id);
-        void UpdateDefault(int id, int newid);
-        void AddPhoto(int id, byte[] file);
         int Count(int id);
     }
 
@@ -24,17 +27,17 @@ namespace Charltone.Data.Repositories
     {
         public PhotoRepository(ISession session) : base(session) {}
 
-        public IList<Photo> GetList(int id)
+        public IList<Photo> GetListByProductId(int productId)
         {
             return Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == id)
+                .Where(x => x.ProductId == productId)
                 .List();
         }
 
-        public IList<int> GetIdList(int id)
+        public IList<int> GetIdsByProductId(int productId)
         {
             var ids = Session.Query<Photo>()
-                .Where(x => x.ProductId == id)
+                .Where(x => x.ProductId == productId)
                 .Select(x => x.Id)
                 .ToList();
          
@@ -43,15 +46,59 @@ namespace Charltone.Data.Repositories
 
         public byte[] GetData(int id)
         {
-            try
+            return Session.Load<Photo>(id).Data;
+        }
+
+        public byte[] GetHomePageImage()
+        {
+            return Session.QueryOver<HomePageImage>()
+                .SingleOrDefault()
+                .Data;
+        }
+
+        public byte[] GetDefaultInstrumentImage()
+        {
+            return Session.QueryOver<NoPhotoImage>().SingleOrDefault().Data;
+        }
+
+        public void Add(int productId, byte[] data)
+        {
+            var photos = GetListByProductId(productId);
+            var photo = new Photo { IsDefault = (Count(productId) == 0), ProductId = productId, Data = data };
+
+            photos.Add(photo);
+
+            using (var tx = Session.BeginTransaction())
             {
-                return id > 0 ? Session.Load<Photo>(id).Data : GetNoPhotoImageData();
+                Session.SaveOrUpdate(photo);
+                tx.Commit();
             }
-            catch (HibernateException e)
+        }
+
+        public void SetProductDefault(int productId, int newid)
+        {
+            var photos = GetListByProductId(productId);
+            using (var tx = Session.BeginTransaction())
             {
-                var ex = e.InnerException;
+                foreach (var p in photos)
+                {
+                    p.IsDefault = (p.Id == newid);
+                    Session.SaveOrUpdate(p);
+                }
+                tx.Commit();
             }
-            return null;
+        }
+
+        public void UpdateHomePageImage(byte[] data)
+        {
+            var image = Session.QueryOver<HomePageImage>().SingleOrDefault();
+            image.Data = data;
+
+            using (var tx = Session.BeginTransaction())
+            {
+                Session.SaveOrUpdate(image);
+                tx.Commit();
+            }
         }
 
         public int GetDefaultId(int id)
@@ -66,70 +113,12 @@ namespace Charltone.Data.Repositories
             return photo.Id;
         }
 
-        public void AddPhoto(int id, byte[] file)
-        {
-            var photos = GetList(id);
-            var photo = new Photo { IsDefault = (Count(id) == 0), ProductId = id, Data = file };
-
-            photos.Add(photo);
-
-            using (var tx = Session.BeginTransaction())
-            {
-                Session.SaveOrUpdate(photo);
-                tx.Commit();
-            }
-        }
-
-        public void UpdateDefault(int id, int newid)
-        {
-            var photos = GetList(id);
-            using (var tx = Session.BeginTransaction())
-            {
-                foreach (var p in photos)
-                {
-                    p.IsDefault = (p.Id == newid);
-                    Session.SaveOrUpdate(p);
-                }
-                tx.Commit();
-            }
-        }
-
-        public byte[] GetHomePageImageData()
-        {
-            return Session.QueryOver<HomePageImage>()
-                .SingleOrDefault()
-                .Data;
-        }
-
-        public HomePageImage GetHomePageImage()
-        {
-            return Session.QueryOver<HomePageImage>()
-                .SingleOrDefault();
-        }
-
-        public void UpdateHomePageImage(byte[] data)
-        {
-            var image = GetHomePageImage();
-            image.Data = data;
-
-            using (var tx = Session.BeginTransaction())
-            {
-                Session.SaveOrUpdate(image);
-                tx.Commit();
-            }
-        }
-
         public int Count(int id)
         {
             return Session.QueryOver<Photo>()
                 .Where(x => x.ProductId == id)
                 .ToRowCountQuery()
                 .FutureValue<int>().Value;
-        }
-
-        private byte[] GetNoPhotoImageData()
-        {
-            return Session.QueryOver<NoPhotoImage>().SingleOrDefault().Data;
         }
     }
 }

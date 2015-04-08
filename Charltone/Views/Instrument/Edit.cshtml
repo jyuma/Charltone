@@ -17,7 +17,7 @@
              <div class="editinstrbuttons">
                 <input class="savebutton" type="submit" value="Save" name="Command"/>
                 &nbsp
-                @Html.ActionLink("Photos", "Index", "Photo/Index/" + Model.Id)
+                @Html.ActionLink("Photos", "Index", new { id = Model.Id })
                 &nbsp
                 @Html.ActionLink("Main List", "Index", "Instrument")        
             </div>
@@ -196,7 +196,7 @@
         </div>
 
         <div>
-            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
+            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt=""/>
         </div>
 
     </div>

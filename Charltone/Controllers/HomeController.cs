@@ -15,12 +15,12 @@ namespace Charltone.UI.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ISession _session;
-        private readonly IPhotoRepository _photoRepository;
+        private readonly IPhotoRepository _photos;
 
-        public HomeController(ISession session, IPhotoRepository photoRepository)
+        public HomeController(ISession session, IPhotoRepository photos)
 		{
             _session = session;
-            _photoRepository = photoRepository;
+            _photos = photos;
 		}
 
 		public ActionResult Index()
@@ -41,15 +41,15 @@ namespace Charltone.UI.Controllers
             return View(new ContactViewModel());
         }
 
+        [HttpGet]
         [Authorize]
         public ActionResult Edit()
         {
-            var image = _photoRepository.GetHomePageImage();
-            return View(LoadHomePageImageEditViewModel(image));
+            return View(LoadHomePageImageEditViewModel());
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public ActionResult UpdateHomePageImage(HttpPostedFileBase file)
         {
             if (file != null)
@@ -59,7 +59,7 @@ namespace Charltone.UI.Controllers
                     var b = new BinaryReader(file.InputStream);
                     var data = b.ReadBytes(file.ContentLength);
 
-                    _photoRepository.UpdateHomePageImage(data);
+                    _photos.UpdateHomePageImage(data);
                 }
             }
             var vm = new HomePageImageEditViewModel();
@@ -113,13 +113,11 @@ namespace Charltone.UI.Controllers
         [HttpGet]
         public JsonResult GetHomePageImageJson()
         {
-            var image = _photoRepository.GetHomePageImage();
-            if (image == null) return null;
+            var image = _photos.GetHomePageImage();
+            var vm = new HomePageImageViewModel();
 
-            var vm = new HomeViewModel<HomePageImageData>();
-
-            var data = Convert.ToBase64String(image.Data);
-            vm.HomePageImage = data;
+            var data = Convert.ToBase64String(image);
+            vm.Data = data;
 
             return Json(vm, JsonRequestBehavior.AllowGet);
         }
@@ -127,15 +125,16 @@ namespace Charltone.UI.Controllers
         [HttpGet]
         public JsonResult GetPhotoJson(int id)
         {
-            var photo = _photoRepository.GetData(id);
+            var photo = _photos.GetData(id);
             var data = Convert.ToBase64String(photo);
 
             return Json(data);
         }
 
-        private static HomePageImageEditViewModel LoadHomePageImageEditViewModel(HomePageImage homePageImage)
+        private HomePageImageEditViewModel LoadHomePageImageEditViewModel()
         {
-            var vm = new HomePageImageEditViewModel { HomePageImage = homePageImage };
+            var image = _photos.GetHomePageImage();
+            var vm = new HomePageImageEditViewModel { HomePageImage = image };
 
             return vm;
         }

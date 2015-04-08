@@ -195,8 +195,7 @@ GO
 IF OBJECT_ID ('charltone_Test.dbo.HomePageImage','U') IS NOT NULL DROP TABLE [dbo].[HomePageImage];
 CREATE TABLE [dbo].[HomePageImage](
 	[Id] INT IDENTITY(8,2) PRIMARY KEY,
-	[Data] IMAGE NOT NULL,
-	[SortOrder] INT NOT NULL
+	[Data] IMAGE NOT NULL
 )
 
 GO

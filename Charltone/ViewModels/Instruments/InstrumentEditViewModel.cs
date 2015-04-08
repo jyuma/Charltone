@@ -1,78 +1,22 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Charltone.Data.Repositories;
-using Charltone.Domain.Entities;
 using System.Web.Mvc;
-using DataAnnotationsExtensions;
 
 namespace Charltone.UI.ViewModels.Instruments
 {
     public class InstrumentEditViewModel
     {
-        public InstrumentEditViewModel()
-        {
-        }
-
-        public InstrumentEditViewModel(Product product, IInstrumentTypeRepository types)
-        {
-            var instrument = product.Instrument;
-
-            Id = instrument.Id;
-
-            InstrumentTypeId = instrument.InstrumentType.Id;
-            ClassificationId = instrument.Classification.Id;
-            SubClassificationId = instrument.SubClassification.Id;
-
-            Model = instrument.Model;
-            Sn = instrument.Sn;
-            Top = instrument.Top;
-            BackAndSides = instrument.BackAndSides;
-            Body = instrument.Body;
-            Binding = instrument.Binding;
-            Neck = instrument.Neck;
-            Faceplate = instrument.Faceplate;
-            Fingerboard = instrument.Fingerboard;
-            FretMarkers = instrument.FretMarkers;
-            EdgeDots = instrument.EdgeDots;
-            Bridge = instrument.Bridge;
-            Finish = instrument.Finish;
-            Tuners = instrument.Tuners;
-            PickGuard = instrument.PickGuard;
-            Pickup = instrument.Pickup;
-            NutWidth = instrument.NutWidth;
-            ScaleLength = instrument.ScaleLength;
-            FunFacts = instrument.FunFacts;
-            Comments = instrument.Comments;
-            CaseDetail = instrument.CaseDetail;
-            Strings = instrument.Strings;
-
-            InstrumentTypes = new SelectList(types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id);
-            ClassificationTypes = new SelectList(types.GetClassificationList(), "Id", "ClassificationDesc", instrument.Classification.Id);
-            SubClassificationTypes = new SelectList(types.GetSubClassificationList(), "Id", "SubClassificationDesc", instrument.SubClassification.Id);
-            StatusTypes = new SelectList(types.GetProductStatusList(), "Id", "StatusDesc", product.ProductStatus.Id);
-
-            StatusId = product.ProductStatus.Id;
-            Price = product.Price;
-            DisplayPrice = product.DisplayPrice;
-            IsPosted = product.IsPosted;
-        }
-
         public int Id;
 
-        //[UIHint("SelectList")]
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }
 
-        //[UIHint("SelectList")]
         [DisplayName("Classification")]
         public SelectList ClassificationTypes { get; set; }
 
-        //[UIHint("SelectList")]
         [DisplayName("Style")]
         public SelectList SubClassificationTypes { get; set; }
 
-        //[UIHint("SelectList")]
         [DisplayName("Status")]
         public SelectList StatusTypes { get; set; }
 
@@ -149,7 +93,7 @@ namespace Charltone.UI.ViewModels.Instruments
         [DisplayName("Fun Facts")]
         public string FunFacts { get; set; }
 
-        [Numeric(ErrorMessage = "Price must be numeric")]
+        [Range(0, int.MaxValue, ErrorMessage = "Price must be numeric")]
         public decimal Price { get; set; }
 
         [Required]
@@ -165,6 +109,5 @@ namespace Charltone.UI.ViewModels.Instruments
         public bool IsPosted { get; set; }
 
         public int DefaultPhotoId { get; set; }
-        public List<Photo> Photos { get; set; }
     }
 }

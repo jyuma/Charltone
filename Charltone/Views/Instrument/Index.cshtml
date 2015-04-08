@@ -1,7 +1,7 @@
 ﻿@using Charltone.UI.ViewModels.Instruments;
 @using Charltone.UI.ViewModels.Helpers;
 
-@model InstrumentListViewModel<InstrumentInfo>
+@model InstrumentListViewModel
 
 @{
     ViewBag.Title = "Charltone Instruments";
@@ -9,14 +9,15 @@
 }
 
 <script type="text/javascript">
-    var instrumentList = @Html.Raw(Json.Encode(Model.InstrumentInfo));
+    var instrumentList = @Html.Raw(Json.Encode(Model.Instruments));
     $(document).ready(function () {
         createImageDisplayDialog();
         $("#dialog-image-form").hide();
 
         function displayImageDialog(imageId) {
-            var url = "/Photo/GetPhotoJson";
-            $.post(url, { "id": imageId },
+            var url = '@Url.Action("GetPhotoJson", "Photo")';
+
+            $.getJSON(url, { "id": imageId },
                 function (data) {
                     var html = '<a id="lnk-dlgimage_' + imageId + '" href="javascript:;"><img id="listdialogimg_' + imageId + '" class="listdialogimg" src="data:image/jpg;base64,' + data + '" /></a>';
                     $("#dialog-image-form").html(html);
@@ -29,10 +30,10 @@
                 message: $("#dialog-image-form"),
                 backgroundColor: '#000',
                 color: '#000',
-                css: { top: 0 } 
+                css: { top: 0 }
             });
         }
-        
+
         $(instrumentList).each(function(index, value) {
             $("#img_" + value.DefaultPhotoId).click(function () {
                 displayImageDialog(value.DefaultPhotoId);
@@ -52,17 +53,17 @@
         <div id="instrlistheader">
             @Model.Banner
         </div>
-        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         <div class="editlink" id="listaddnew">
             @Html.ActionLinkAuthorized("Add", "Create")
         </div>
+        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
             int i = 0;
             string id_class_wrapper = "";
             string id_class = "";
             string lnk_image_id;
             
-            foreach (var info in Model.InstrumentInfo)
+            foreach (var info in Model.Instruments)
             {
                 lnk_image_id = "img_" + info.DefaultPhotoId;
                 
@@ -100,9 +101,9 @@
                                 @info.Classification / @info.SubClassification
                             </div>
                             <div class="viewdetailslink">
-                                @Html.ActionLink("View Details", "Detail", new { id = info.ProductId })
-                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
-                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })
+                                @Html.ActionLink("View Details", "Detail", new { productId = info.ProductId })
+                                @Html.ActionLinkAuthorized("Edit", "Edit", new { productId = info.ProductId })
+                                @Html.ActionLinkAuthorized("Delete", "Delete", new { productId = info.ProductId })
                                 @if (@Request.IsAuthenticated)
                                 { @Html.ActionLink("Photos", "Index", "Photo/Index/" + info.ProductId) }
                             </div>

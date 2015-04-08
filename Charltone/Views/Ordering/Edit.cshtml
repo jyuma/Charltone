@@ -58,20 +58,19 @@
             </div>
         </div>
         <div>
-            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt=""/>
+            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Ordering", new { orderingId = Model.Id }) alt=""/>
         </div>
     </div>
     }
-
     
-        @using (Html.BeginForm("UploadPhoto/" + @Model.Id, "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-        {
+    @using (Html.BeginForm("UploadPhoto/" + @Model.Id, "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
 
-            <div id="orderingphotouploadlabel">Upload a photo</div>
-            <div id="orderingphotoupload">
-            <input type="file" name="file" id="file" />
-            <input type="submit" value="Upload"/>
-            </div>
+        <div id="orderingphotouploadlabel">Upload a photo</div>
+        <div id="orderingphotoupload">
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="Upload"/>
+        </div>
 
         }
     

@@ -1,38 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Charltone.Data.Repositories;
-using Charltone.Domain.Entities;
 using System.Web.Mvc;
 
 namespace Charltone.UI.ViewModels.Orderings
 {
     public class OrderingEditViewModel
     {
-        public OrderingEditViewModel()
-        {
-        }
-
-        public OrderingEditViewModel(Ordering ordering, IInstrumentTypeRepository types)
-        {
-            Id = ordering.Id;
-            Model = ordering.Model;
-            TypicalPrice = ordering.TypicalPrice;
-            Comments = ordering.Comments;
-
-            if (ordering.InstrumentType == null) ordering.InstrumentType = new InstrumentType();
-            InstrumentTypes = new SelectList(types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id);
-            InstrumentTypeId = ordering.InstrumentType.Id;
-
-            if (ordering.Classification == null) ordering.Classification = new Classification();
-            ClassificationTypes = new SelectList(types.GetClassificationList(), "Id", "ClassificationDesc", ordering.Classification.Id);
-            ClassificationId = ordering.Classification.Id;
-
-            if (ordering.SubClassification == null) ordering.SubClassification = new SubClassification();
-            SubClassificationTypes = new SelectList(types.GetSubClassificationList(), "Id", "SubClassificationDesc", ordering.SubClassification.Id);
-            SubClassificationId = ordering.SubClassification.Id;
-
-        }
-
         public int Id;
 
         //[UIHint("SelectList")]

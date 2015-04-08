@@ -16,6 +16,7 @@
     
     $(document).ready(function () 
     {
+        //--- THIS CODE IS DUPLICATED IN PHOTO INDEX VIEW (BEGIN)
         $(photoIds).each(function (index, value) {
             $("#lnk-show-image_" + value).click(function () {
                 showImage(value);
@@ -30,7 +31,8 @@
                     $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
                 });
         }
-        
+        //--- THIS CODE IS DUPLICATED IN PHOTOS INDEX VIEW (END)
+
         var changeFunFactsToolTipPos = function (event) 
         {
             var tooltipX = event.pageX - 8;
@@ -107,7 +109,7 @@
                 {
                     <a id="funfactshint"></a>
                 }
-                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")" onclick="history.back();return false;">Back to list</a>
+                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back to list</a>
             </div>
 
             @{
@@ -143,9 +145,8 @@
         <div class="linehorizontal" id="instrdetaillinehoriztop"></div>
 
         <div id="instrumentinfo">
-
             <div id="instrdetailmainphoto">
-                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
+                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt=""/>
             </div>
  @*           <script>$("#currentphoto").loupe();</script>*@
             <div class="linevertical" id="instrdetaillinevertical"></div>

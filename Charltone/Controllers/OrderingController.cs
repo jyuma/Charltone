@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
+using Charltone.UI.Constants;
 using Charltone.UI.ViewModels.Orderings;
 using System.Linq;
 
@@ -14,8 +14,8 @@ namespace Charltone.UI.Controllers
     public class OrderingController : Controller
     {
         private readonly IOrderingRepository _orderings;
-        private readonly IPhotoRepository _photos;
         private readonly IInstrumentTypeRepository _types;
+        private readonly IPhotoRepository _photos;
 
         public OrderingController(IOrderingRepository orderings, IInstrumentTypeRepository types, IPhotoRepository photos)
         {
@@ -24,96 +24,36 @@ namespace Charltone.UI.Controllers
             _types = types;
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            var orderings = _orderings.GetList(page.GetValueOrDefault(1));
-            return View(LoadOrderingListViewModel(orderings));
+            return View(LoadOrderingListViewModel());
         }
 
-        private OrderingListViewModel<OrderingInfo> LoadOrderingListViewModel(IEnumerable<Ordering> orderings)
-        {
-            var vm = new OrderingListViewModel<OrderingInfo>();
-            var sortedlist = orderings.OrderBy(l => l.Classification.SortOrder)
-                .ThenBy(l => l.SubClassification.SortOrder)
-                .ThenBy(l => l.Model);
-
-            var totalitems = _orderings.Count();
-            vm.TotalItemsCount = totalitems;
-            vm.RowCount = totalitems;
-            vm.Banner = "Ordering";
-
-            //--- calculate the pixel height for the background image
-            var rowheight = Convert.ToInt32(ConfigurationManager.AppSettings["OrderingListRowHeight"]);
-            var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
-
-            vm.BackgroundImageHeight = (rowheight * totalitems) + menuheight + "px;";
-
-            //--- add info for each ordering
-            foreach (var info in sortedlist.Select(i => new OrderingInfo(i)))
-            {
-                vm.OrderingInfo.Add(info);
-            }
-
-            return vm;
-        }
-
-        private OrderingEditViewModel LoadOrderingEditViewModel(Ordering ordering)
-        {
-            var vm = new OrderingEditViewModel(ordering, _types);
-
-            return vm;
-        }
-
-        [Authorize]
         [HttpGet]
-        public ActionResult Edit(int id)
+        [Authorize]
+        public ActionResult Edit(int orderingId)
         {
-            var ordering = _orderings.Get(id);
-            return View(LoadOrderingEditViewModel(ordering));
+            return View(LoadOrderingEditViewModel(orderingId));
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, OrderingEditViewModel viewModel)
+        [Authorize]
+        public ActionResult Edit(int orderingId, OrderingEditViewModel viewModel)
         {
-            var ordering = _orderings.Get(id);
+            UpdateOrdering(orderingId, viewModel);
 
-            UpdateOrdering(ordering, viewModel);
-            var orderings = _orderings.GetList(1);
-
-            return RedirectToAction("Index", LoadOrderingListViewModel(orderings));
+            return RedirectToAction("Index", LoadOrderingListViewModel());
         }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
-        {
-            var ordering = _orderings.Get(id);
-
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var b = new BinaryReader(file.InputStream);
-                    var f = b.ReadBytes(file.ContentLength);
-                    ordering.Photo = f;
-                    _orderings.Update(ordering);
-                }
-            }
-
-            return View("Edit", LoadOrderingEditViewModel(ordering));
-        }
-
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
-            var ordering = new Ordering();
-
-            return View(LoadOrderingEditViewModel(ordering));
+            return View(LoadOrderingEditViewModel(-1));
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public ActionResult Create(OrderingEditViewModel viewModel)
         {
             var ordering = new Ordering
@@ -125,26 +65,129 @@ namespace Charltone.UI.Controllers
                     TypicalPrice = viewModel.TypicalPrice,
                     Comments = viewModel.Comments,
                 };
-            _orderings.Update(ordering);
 
-            var orderings = _orderings.GetList(1);
-            return RedirectToAction("Index", LoadOrderingListViewModel(orderings));
+            _orderings.Add(ordering);
+
+            return RedirectToAction("Index", LoadOrderingListViewModel());
         }
 
         [HttpGet]
-        public FileResult GetPhoto(int id)
+        [Authorize]
+        public ActionResult Delete(int orderingId)
         {
-            byte[] photo = _orderings.GetPhoto(id) ?? _photos.GetData(-1);
+            return View(LoadOrderingEditViewModel(orderingId));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Delete(int orderingId, OrderingEditViewModel viewModel)
+        {
+            _orderings.Delete(orderingId);
+
+            return RedirectToAction("Index", LoadOrderingListViewModel());
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var reader = new BinaryReader(file.InputStream);
+                    var data = reader.ReadBytes(file.ContentLength);
+                    _orderings.UpdatePhoto(id, data);
+                }
+            }
+
+            return View("Edit", LoadOrderingEditViewModel(id));
+        }
+
+        [HttpGet]
+        public FileResult GetPhoto(int orderingId)
+        {
+            var photo = _orderings.GetPhoto(orderingId) ?? _photos.GetDefaultInstrumentImage();
 
             return File(photo, "image/jpeg");
         }
 
-        private void UpdateOrdering(Ordering ordering, OrderingEditViewModel viewModel)
+        private OrderingListViewModel LoadOrderingListViewModel()
         {
-            //--- update the flat data
+            var orderings = _orderings.GetAll();
+            var totalitems = _orderings.Count();
+
+            var vm = new OrderingListViewModel();
+
+            var sortedlist = orderings.OrderBy(l => l.Classification.SortOrder)
+                .ThenBy(l => l.SubClassification.SortOrder)
+                .ThenBy(l => l.Model);
+
+            vm.TotalItemsCount = totalitems;
+            vm.RowCount = totalitems;
+            vm.Banner = "Ordering";
+
+            //TODO: figure out how to do this in CSS
+            var rowheight = Convert.ToInt32(ConfigurationManager.AppSettings["OrderingListRowHeight"]);
+            var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
+
+            vm.BackgroundImageHeight = (rowheight * totalitems) + menuheight + "px;";
+
+            foreach (var ordering in sortedlist)
+            {
+                vm.OrderingInfo.Add(
+                    new OrderingInfo
+                    {
+                        Id = ordering.Id,
+                        InstrumentType = ordering.InstrumentType.InstrumentTypeDesc,
+                        Style = ordering.Classification.ClassificationDesc + " / " + ordering.SubClassification.SubClassificationDesc,
+                        Model = ordering.Model,
+                        TypicalPrice = ordering.TypicalPrice,
+                        Comments = ordering.Comments,
+                        Photo = ordering.Photo
+                    });
+            }
+
+            return vm;
+        }
+
+        private OrderingEditViewModel LoadOrderingEditViewModel(int orderingId)
+        {
+            var ordering = orderingId > 0
+            ? _orderings.Get(orderingId)
+            : new Ordering
+              {
+                  Classification = new Classification { Id = ClassificationTypeId.SteelString },
+                  SubClassification = new SubClassification { Id = SubClassificationTypeId.Classical },
+                  InstrumentType = new InstrumentType { Id = InstrumentTypeId.Guitar }
+              };
+
+            var vm = new OrderingEditViewModel
+            {
+                Id = ordering.Id,
+                Model = ordering.Model,
+                TypicalPrice = ordering.TypicalPrice,
+                Comments = ordering.Comments,
+
+                InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id),
+                InstrumentTypeId = ordering.InstrumentType.Id,
+
+                ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", ordering.Classification.Id),
+                ClassificationId = ordering.Classification.Id,
+
+                SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", ordering.SubClassification.Id),
+                SubClassificationId = ordering.SubClassification.Id
+            };
+
+            return vm;
+        }
+
+        private void UpdateOrdering(int orderingId, OrderingEditViewModel viewModel)
+        {
+            var ordering = _orderings.Get(orderingId);
+
             UpdateModel(ordering);
 
-            //--- update the referenced objects
             if (ordering.InstrumentType.Id != viewModel.InstrumentTypeId)
                 ordering.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
             if (ordering.Classification.Id != viewModel.ClassificationId)
@@ -152,7 +195,6 @@ namespace Charltone.UI.Controllers
             if (ordering.SubClassification.Id != viewModel.SubClassificationId)
                 ordering.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
 
-            //--- commit changes
             _orderings.Update(ordering);
         }
     }

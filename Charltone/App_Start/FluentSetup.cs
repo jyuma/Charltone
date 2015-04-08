@@ -14,7 +14,7 @@ namespace Charltone.UI
         public ISessionFactory GetSessionFactory()
         {
             ISessionFactory fluentConfiguration = Fluently.Configure()
-                                                     .Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c.FromConnectionStringWithKey("NHibernateConnectionString")))
+                                                     .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("NHibernateConnectionString")))
                                                      .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AdminUserMap>())
                                                      .ExposeConfiguration(BuidSchema)
                                                      .BuildSessionFactory();

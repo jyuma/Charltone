@@ -1,8 +1,7 @@
 ﻿@using Charltone.UI.ViewModels.Orderings;
 @using Charltone.UI.ViewModels.Helpers;
 
-@model OrderingListViewModel<OrderingInfo>
-
+@model OrderingListViewModel
 @{
     ViewBag.Title = "Charltone Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -38,59 +37,61 @@
                 Internationally: [I have to look into this]
             </p>
         </div>
-        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
-        <!--
         <div class="editlink" id="listaddnew">
             @Html.ActionLinkAuthorized("Add", "Create")
         </div>
-        -->
+        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
+            
         @{
-            foreach (var info in Model.OrderingInfo)
+            foreach (var orderingInfo in Model.OrderingInfo)
             {
-            <table class="orderingitemtable">
-                <tr>
-                   <td id="orderingtablecelllabelmodel">
-                       Model:
-                   </td>
-                   <td class="orderingtablecell">
-                        @info.Model
-                   </td>
-                   <td colspan="3" class="orderingtablecell">
-                       @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.Id })
-                       @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.Id })
-                   </td>
-                </tr>
-            </table>
-            <table class="orderingitemtable">
-                <tr>
-                    <td rowspan="3" id="orderingtablecellphoto">
-                        <img id="orderingphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = info.Id }) alt="" />
-                    </td>
-                    <td class="orderingtablecelllabel">
-                        Style: 
-                    </td>
-                    <td class="orderingtablecell">
-                        @info.Style
-                    </td>
-                </tr>
-                <tr>
-                    <td class="orderingtablecelllabel">
-                        Typical Price: 
-                    </td>
-                    <td class="orderingtablecell">
-                        @info.TypicalPrice
-                    </td>
-                </tr>
-                <tr>
-                    <td class="orderingtablecelllabel">
-                        Description:
-                    </td>
-                    <td class="orderingtablecell">
-                        @info.Comments
-                    </td>
-                </tr>
-            </table>
-            <div class="linehorizontal" id="orderinglistlinehorizontal"></div>
+                <table class="orderingitemtable">
+                    <tr>
+                        <td id="orderingtablecelllabelmodel">
+                            Model:
+                        </td>
+                        <td class="orderingtablecell">
+                            @orderingInfo.Model
+                        </td>
+                    </tr>
+                </table>
+                <table class="orderingitemtable">
+                    <tr>
+                        <td rowspan="4" id="orderingtablecellphoto">
+                            <img id="orderingphoto" src=@Url.Action("GetPhoto", "Ordering", new { orderingId = orderingInfo.Id }) alt="" />
+                        </td>
+                        <td class="orderingtablecelllabel">
+                            Style: 
+                        </td>
+                        <td class="orderingtablecell">
+                            @orderingInfo.Style
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="orderingtablecelllabel">
+                            Typical Price: 
+                        </td>
+                        <td class="orderingtablecell">
+                            @orderingInfo.TypicalPrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="orderingtablecelllabel">
+                            Description:
+                        </td>
+                        <td class="orderingtablecell">
+                            @orderingInfo.Comments
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="orderingtablecelllink">
+                            @Html.ActionLinkAuthorized("Edit", "Edit", new { orderingId = orderingInfo.Id })
+                            @Html.ActionLinkAuthorized("Delete", "Delete", new { orderingId = orderingInfo.Id })
+                        </td>
+                    </tr>
+                </table>
+    
+                <div class="linehorizontal" id="orderinglistlinehorizontal"></div>
             }
         }
     </div>

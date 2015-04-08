@@ -42,7 +42,7 @@ to use a different color start by replacing all instances of
     color: #fff;
     font-size: .8em;
     font-family: Helvetica;
-    background: url('/Content/Images/tools_large_2_sm.jpg');
+    background-image: url(Images/tools_large_2_sm.jpg);
 }
 #lnk-admin-login {
     color: #63411D;
@@ -76,7 +76,7 @@ to use a different color start by replacing all instances of
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     font-size: .8em;
-    background: url('/Content/Images/dialog gradient.jpg');
+    background: url('Images/dialog gradient.jpg');
     color: #FFFFFF;
     border: 1px solid #aaaaaa;
 }
@@ -124,77 +124,6 @@ button {
     font-size: .75em;
     font-weight: 200;
 }
-
-    #slides {
-        margin-top: 60px;
-        margin-left: 35px;
-        display: none;
-        width: 830px;
-        height: 620px;
-        clear: both;
-        float: left;
-    }
-
-    #slides .slidesjs-navigation {
-      margin-top:5px;
-    }
-
-    #slides .slidesjs-previous {
-      margin-left: 300px;
-      float: left;
-    }
-
-    #slides .slidesjs-next {
-      margin-right: 280px;
-      float: right;
-    }
-
-    .slidesjs-pagination {
-      margin: 6px 0 0;
-      float: left;
-      list-style: none;
-    }
-
-    .slidesjs-pagination li {
-      float: left;
-      margin: 0 1px;
-    }
-
-    .slidesjs-pagination li a {
-      display: block;
-      width: 13px;
-      height: 0;
-      padding-top: 13px;
-      background-image: url(img/pagination.png);
-      background-position: 0 0;
-      float: left;
-      overflow: hidden;
-    }
-
-    .slidesjs-pagination li a.active,
-    .slidesjs-pagination li a:hover.active {
-      background-position: 0 -13px
-    }
-
-    .slidesjs-pagination li a:hover {
-      background-position: 0 -26px
-    }
-
-    #slides a:link,
-    #slides a:visited {
-        color: #cea96d;
-    }
-
-    #slides a:hover,
-    #slides a:active {
-      color: #9e2020
-    }
-
-    .navbar {
-      overflow: hidden
-    }
-
-
 
 #sitecounter {
     position: relative;
@@ -476,6 +405,7 @@ button {
 {
     position: relative;
     margin-bottom: 20px;
+    font-size: 1.2em;
 }
 .editinstrinfo
 {
@@ -625,6 +555,13 @@ button {
     padding-bottom: 5px;
     width: 95px;
 }
+.orderingtablecelllink
+{
+    font-size: 1.2em;
+    border-style:none;
+    padding: 0 0 0 0;
+    width: 95px;
+}
 #orderingtablecellphoto
 {
     border-style:none;
@@ -661,6 +598,12 @@ button {
     clear:both;
 }
 #editordering
+{
+    background: url(Images/tools_large.jpg);
+    width: 900px;
+    height: 620px;
+}
+#deleteordering
 {
     background: url(Images/tools_large.jpg);
     width: 900px;
@@ -863,14 +806,16 @@ page width. Or, you can specify an exact pixel width. */
     clear: both;
 	color: Blue;
 	font-size: 1.6em;
+    width: 120px;
 }
 #inprogress
 {    
     position: relative;
     margin-top: 15px;
     clear: both;
-	color: Blue;
+	color: #00ff21;
 	font-size: 1.6em;
+    width: 120px;
 }
 .mainphoto
 {
