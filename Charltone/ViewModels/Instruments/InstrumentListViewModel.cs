@@ -1,7 +1,7 @@
-﻿namespace Charltone.UI.ViewModels.Instruments
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace Charltone.UI.ViewModels.Instruments
+{
     public class InstrumentListViewModel
     {
         public InstrumentListViewModel()

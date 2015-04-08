@@ -10,17 +10,16 @@ namespace Charltone.Data.Repositories
     {
         IList<Photo> GetListByProductId(int productId);
         IList<int> GetIdsByProductId(int productId);
+        int CountByProductId(int productId);
 
         byte[] GetData(int id);
         byte[] GetHomePageImage();
         byte[] GetDefaultInstrumentImage();
 
-        void Add(int id, byte[] file);
         void UpdateHomePageImage(byte[] data);
         void SetProductDefault(int id, int newid);
 
         int GetDefaultId(int id);
-        int Count(int id);
     }
 
     public class PhotoRepository : RepositoryBase<Photo>, IPhotoRepository
@@ -44,6 +43,14 @@ namespace Charltone.Data.Repositories
             return ids;
         }
 
+        public int CountByProductId(int productId)
+        {
+            return Session.QueryOver<Photo>()
+                .Where(x => x.ProductId == productId)
+                .ToRowCountQuery()
+                .FutureValue<int>().Value;
+        }
+
         public byte[] GetData(int id)
         {
             return Session.Load<Photo>(id).Data;
@@ -59,20 +66,6 @@ namespace Charltone.Data.Repositories
         public byte[] GetDefaultInstrumentImage()
         {
             return Session.QueryOver<NoPhotoImage>().SingleOrDefault().Data;
-        }
-
-        public void Add(int productId, byte[] data)
-        {
-            var photos = GetListByProductId(productId);
-            var photo = new Photo { IsDefault = (Count(productId) == 0), ProductId = productId, Data = data };
-
-            photos.Add(photo);
-
-            using (var tx = Session.BeginTransaction())
-            {
-                Session.SaveOrUpdate(photo);
-                tx.Commit();
-            }
         }
 
         public void SetProductDefault(int productId, int newid)
@@ -101,24 +94,16 @@ namespace Charltone.Data.Repositories
             }
         }
 
-        public int GetDefaultId(int id)
+        public int GetDefaultId(int productId)
         {
-            if (Count(id) <= 0) return -1;
+            if (CountByProductId(productId) <= 0) return -1;
 
             var photo = Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == id)
+                .Where(x => x.ProductId == productId)
                 .And(x => x.IsDefault)
                 .SingleOrDefault();
 
             return photo.Id;
-        }
-
-        public int Count(int id)
-        {
-            return Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == id)
-                .ToRowCountQuery()
-                .FutureValue<int>().Value;
         }
     }
 }

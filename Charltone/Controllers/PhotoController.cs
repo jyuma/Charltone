@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
+using Charltone.UI.ViewModels.Photos;
+using System;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Charltone.Data.Repositories;
-using System.Linq;
-using Charltone.UI.ViewModels.Photos;
 
 namespace Charltone.UI.Controllers
 {
@@ -57,10 +58,12 @@ namespace Charltone.UI.Controllers
             {
                 if (file.ContentLength > 0)
                 {
-                    var b = new BinaryReader(file.InputStream);
-                    var f = b.ReadBytes(file.ContentLength);
+                    var reader = new BinaryReader(file.InputStream);
+                    var data = reader.ReadBytes(file.ContentLength);
+                    var count = _photos.CountByProductId(id);
 
-                    _photos.Add(id, f);
+                    var photo = new Photo { IsDefault = (count == 0), ProductId = id, Data = data };
+                    _photos.Add(photo);
                 }
             }
 

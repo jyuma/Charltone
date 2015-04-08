@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.ViewModels.Instruments;
+using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -170,10 +169,14 @@ namespace Charltone.UI.Controllers
         private InstrumentListViewModel LoadInstrumentListViewModel()
         {
             var products = _products.GetInstrumentList(Request.IsAuthenticated);
-            var instruments = new List<InstrumentViewModel>();
-            var vm = new InstrumentListViewModel();
+            var totalitems = _products.InstrumentCount(Request.IsAuthenticated);
 
-            var sortedProducts = products
+            var vm = new InstrumentListViewModel
+                     {
+                         TotalItemsCount = totalitems
+                     };
+
+            var sortedInstruments = products
                     .Where(product => product.Instrument != null)
                     .OrderBy(product => product.Instrument.InstrumentType.SortOrder)
                     .ThenBy(product => product.Instrument.Classification.SortOrder)
@@ -181,35 +184,14 @@ namespace Charltone.UI.Controllers
                     .ThenBy(product => product.Instrument.Model)
                     .ThenBy(product => product.Instrument.Sn);
 
-            foreach (var product in sortedProducts)
-            {
-                var instrument = product.Instrument;
-
-                instruments.Add(new InstrumentViewModel
-                        {
-                            Id = instrument.Id,
-                            ProductId = product.Id,
-                            InstrumentType = instrument.InstrumentType.InstrumentTypeDesc,
-                            Classification = instrument.Classification.ClassificationDesc,
-                            SubClassification = instrument.SubClassification.SubClassificationDesc,
-                            Model = instrument.Model + ' ' + instrument.Sn,
-
-                            InstrumentStatusPrice =
-                                (product.ProductStatus.Id == Constants.ProductStatusTypeId.Available
-                                    ? product.DisplayPrice
-                                    : product.ProductStatus.StatusDesc),
-                            NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
-
-                            DefaultPhotoId = _photos.GetDefaultId(product.Id)
-                        });
-            }
+            var instruments = (from product in sortedInstruments
+                let instrument = product.Instrument
+                select new InstrumentViewModel
+                       {
+                           Id = instrument.Id, ProductId = product.Id, InstrumentType = instrument.InstrumentType.InstrumentTypeDesc, Classification = instrument.Classification.ClassificationDesc, SubClassification = instrument.SubClassification.SubClassificationDesc, Model = instrument.Model + ' ' + instrument.Sn, InstrumentStatusPrice = (product.ProductStatus.Id == Constants.ProductStatusTypeId.Available ? product.DisplayPrice : product.ProductStatus.StatusDesc), NotPostedMessage = product.IsPosted ? "" : "NOT POSTED", DefaultPhotoId = _photos.GetDefaultId(product.Id)
+                       }).ToList();
 
             vm.Instruments = instruments;
-
-
-
-            var totalitems = _products.InstrumentCount(Request.IsAuthenticated);
-            vm.TotalItemsCount = totalitems;
 
             //--- construct the banner message
             if (totalitems == 1) vm.Banner = "1 instrument";

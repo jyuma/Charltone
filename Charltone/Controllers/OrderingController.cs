@@ -1,13 +1,13 @@
-﻿using System;
-using System.Configuration;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.ViewModels.Orderings;
+using System;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
 {
@@ -107,7 +107,16 @@ namespace Charltone.UI.Controllers
         [HttpGet]
         public FileResult GetPhoto(int orderingId)
         {
-            var photo = _orderings.GetPhoto(orderingId) ?? _photos.GetDefaultInstrumentImage();
+            byte[] photo;
+
+            if (orderingId == 0)  // New Ordering
+            {
+                photo = _photos.GetDefaultInstrumentImage();
+            }
+            else                // Existing Ordering
+            {
+                photo = _orderings.GetPhoto(orderingId) ?? _photos.GetDefaultInstrumentImage();
+            }
 
             return File(photo, "image/jpeg");
         }
@@ -115,17 +124,14 @@ namespace Charltone.UI.Controllers
         private OrderingListViewModel LoadOrderingListViewModel()
         {
             var orderings = _orderings.GetAll();
-            var totalitems = _orderings.Count();
+            var totalitems = orderings.Count();
 
-            var vm = new OrderingListViewModel();
-
-            var sortedlist = orderings.OrderBy(l => l.Classification.SortOrder)
-                .ThenBy(l => l.SubClassification.SortOrder)
-                .ThenBy(l => l.Model);
-
-            vm.TotalItemsCount = totalitems;
-            vm.RowCount = totalitems;
-            vm.Banner = "Ordering";
+            var vm = new OrderingListViewModel
+                     {
+                         TotalItemsCount = totalitems,
+                         RowCount = totalitems,
+                         Banner = "Ordering"
+                     };
 
             //TODO: figure out how to do this in CSS
             var rowheight = Convert.ToInt32(ConfigurationManager.AppSettings["OrderingListRowHeight"]);
@@ -133,7 +139,12 @@ namespace Charltone.UI.Controllers
 
             vm.BackgroundImageHeight = (rowheight * totalitems) + menuheight + "px;";
 
-            foreach (var ordering in sortedlist)
+            var sortedOrderings = orderings
+                .OrderBy(ordering => ordering.Classification.SortOrder)
+                .ThenBy(ordering => ordering.SubClassification.SortOrder)
+                .ThenBy(ordering => ordering.Model);
+
+            foreach (var ordering in sortedOrderings)
             {
                 vm.OrderingInfo.Add(
                     new OrderingInfo

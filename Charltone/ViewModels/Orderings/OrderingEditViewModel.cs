@@ -8,15 +8,12 @@ namespace Charltone.UI.ViewModels.Orderings
     {
         public int Id;
 
-        //[UIHint("SelectList")]
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }
 
-        //[UIHint("SelectList")]
         [DisplayName("Classification")]
         public SelectList ClassificationTypes { get; set; }
 
-        //[UIHint("SelectList")]
         [DisplayName("Style")]
         public SelectList SubClassificationTypes { get; set; }
 
