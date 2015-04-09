@@ -7,6 +7,7 @@ namespace Charltone.UI.ViewModels.Instrument
     public class InstrumentEditViewModel
     {
         public int Id;
+        public int ProductId;
 
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }

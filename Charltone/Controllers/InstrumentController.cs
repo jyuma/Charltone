@@ -294,26 +294,13 @@ namespace Charltone.UI.Controllers
 
         private InstrumentEditViewModel LoadInstrumentEditViewModel(int productId)
         {
-            var product = productId > 0 
-                ? _products.Get(productId) 
-                : new Product
-                  {
-                      ProductStatus = new ProductStatus { Id = Constants.ProductStatusTypeId.NotForSale },
-                      IsPosted = false,
-                      Instrument = new Instrument 
-                      { 
-                          InstrumentType = new InstrumentType { Id = Constants.InstrumentTypeId.Guitar },
-                          Classification = new Classification { Id = Constants.ClassificationTypeId.SteelString },
-                          SubClassification = new SubClassification{ Id = Constants.SubClassificationTypeId.Classical }
-                      }
-                  };   
-            
+            var product = GetInstrumentProduct(productId);
             var instrument = product.Instrument;
 
             var vm = new InstrumentEditViewModel
                      {
                          Id = instrument.Id,
-
+                         ProductId = productId,
                          Model = instrument.Model,
                          Sn = instrument.Sn,
                          Top = instrument.Top,
@@ -356,6 +343,23 @@ namespace Charltone.UI.Controllers
                      };
 
             return vm;
+        }
+
+        private Product GetInstrumentProduct(int productId)
+        {
+            return productId > 0
+                ? _products.Get(productId)
+                : new Product
+                {
+                    ProductStatus = new ProductStatus { Id = Constants.ProductStatusTypeId.NotForSale },
+                    IsPosted = false,
+                    Instrument = new Instrument
+                    {
+                        InstrumentType = new InstrumentType { Id = Constants.InstrumentTypeId.Guitar },
+                        Classification = new Classification { Id = Constants.ClassificationTypeId.SteelString },
+                        SubClassification = new SubClassification { Id = Constants.SubClassificationTypeId.Classical }
+                    }
+                };   
         }
 
         #endregion

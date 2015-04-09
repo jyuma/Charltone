@@ -148,9 +148,7 @@
             <div id="instrdetailmainphoto">
                 <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
             </div>
- @*           <script>$("#currentphoto").loupe();</script>*@
             <div class="linevertical" id="instrdetaillinevertical"></div>
-
             <div id="instrdetailinfo">
                 <label id="instrdetailinfoheader">@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</label>
                 <ul id="instrdetailinfolist">
