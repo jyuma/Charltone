@@ -4,6 +4,16 @@
 @{
     ViewBag.Title = "Charltone Photo Management";
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input:file').change(
+           function () {
+               if ($(this).val()) {
+                   $('input:submit').removeAttr('disabled'); 
+               }
+           });
+    });
+</script>
 
 <div id="editphotos">
     <div id="editphotoscontent">
@@ -24,8 +34,8 @@
             {
                 <div id="editphotosupload">
                     <div id="uploadaphoto">Upload a photo</div>
-                    <input type="file" name="file" id="file" />
-                    <input type="submit" value="Upload" />
+                    <input id="file" class="fileinput" type="file" name="file" size="10"/>
+                    <input id="upload" type="submit" value="Upload" disabled="disabled"/>
                 </div>
             }
 

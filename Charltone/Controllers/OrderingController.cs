@@ -102,7 +102,7 @@ namespace Charltone.UI.Controllers
                 }
             }
 
-            return View("Photo", LoadOrderingEditViewModel(id));
+            return View("Photo", LoadOrderingPhotoEditViewModel(id));
         }
 
         [HttpGet]

@@ -11,7 +11,9 @@
 <script type="text/javascript">
     var instrumentList = @Html.Raw(Json.Encode(Model.Instruments));
     $(document).ready(function () {
+
         createImageDisplayDialog();
+
         $("#dialog-image-form").hide();
 
         function displayImageDialog(imageId) {

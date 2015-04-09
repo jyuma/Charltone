@@ -5,12 +5,19 @@
     ViewBag.Title = "Charltone Photo Management";
 }
 
-<!-- THIS CODE IS DUPLICATED IN INSTRUMENT DETAIL VIEW -->
+
 <script type="text/javascript">
     $(document).ready(function ()
     {
+        $('input:file').change(
+           function () {
+               if ($(this).val()) {
+                   $('input:submit').removeAttr('disabled'); 
+               }
+           });
         var photoIds = @Html.Raw(Json.Encode(Model.PhotoIds));
 
+        //--- THIS CODE IS DUPLICATED IN INSTRUMENT DETAIL VIEW (BEGIN)
         $(photoIds).each(function (index, value) {
             $("#lnk-show-image_" + value).click(function () {
                 showImage(value);
@@ -25,6 +32,7 @@
                     $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
                 });
         }
+        //--- THIS CODE IS DUPLICATED IN INSTRUMENT DETAIL VIEW (END)
     });
 </script>
 
@@ -47,8 +55,8 @@
             {
                 <div id="editphotosupload">
                     <div id="uploadaphoto">Upload a photo</div>
-                    <input type="file" name="file" id="file" />
-                    <input type="submit" value="Upload" />
+                    <input class="fileinput" type="file" name="file" id="file" />
+                    <input type="submit" value="Upload" disabled="disabled" />
                 </div>
             }
 

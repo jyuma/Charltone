@@ -235,16 +235,9 @@ button {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-#file
+.fileinput
 {
-    /*width: 30em;*/
-}
-#uploadphoto
-{
-    margin-top: 10px;
-    position: relative;
-    color: #fff;
-    float: left;
+    width:260px;
 }
 #editphotos
 {
