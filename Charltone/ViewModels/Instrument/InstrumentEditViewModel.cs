@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Charltone.UI.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instrument
 {
     public class InstrumentEditViewModel
     {

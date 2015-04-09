@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Charltone.UI.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instrument
 {
     public class InstrumentListViewModel
     {

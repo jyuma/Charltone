@@ -1,4 +1,4 @@
-﻿@using Charltone.UI.ViewModels.Helpers
+﻿@using Charltone.UI.Helpers
 @{
     ViewBag.Title = "Charltone Instruments";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,6 +15,6 @@
     </div>
     <div id="homepageimage">
         <div class="homepagelink">@Html.ActionLinkAuthorized("Change Image", "Edit")</div>
-        <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Photo") alt="" />
+        <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
     </div>
 </div> 

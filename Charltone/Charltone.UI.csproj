@@ -154,17 +154,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
-    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Extensions\CacheExtension.cs" />
     <Compile Include="Library\Email.cs" />
     <Compile Include="ViewModels\Admin\AdminLogOnViewModel.cs" />
-    <Compile Include="ViewModels\Helpers\ActionExtension.cs">
+    <Compile Include="Helpers\ActionExtension.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Helpers\AuthorizedActionLink.cs">
+    <Compile Include="Helpers\AuthorizedActionLink.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Helpers\HtmlAuthorizedActionLink.cs">
+    <Compile Include="Helpers\HtmlAuthorizedActionLink.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\Home\ContactViewModel.cs" />
@@ -179,18 +178,19 @@
     <Compile Include="Services\IFormsAuthenticationService.cs" />
     <Compile Include="ViewModels\Home\HomePageImageEditViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
-    <Compile Include="ViewModels\Instruments\InstrumentEditViewModel.cs" />
-    <Compile Include="ViewModels\Instruments\InstrumentListViewModel.cs">
+    <Compile Include="ViewModels\Instrument\InstrumentEditViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\InstrumentListViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Instruments\InstrumentDetailViewModel.cs">
+    <Compile Include="ViewModels\Instrument\InstrumentDetailViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Orderings\OrderingEditViewModel.cs">
+    <Compile Include="ViewModels\Ordering\OrderingEditViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Orderings\OrderingListViewModel.cs" />
-    <Compile Include="ViewModels\Photos\PhotosEditViewModel.cs" />
+    <Compile Include="ViewModels\Ordering\OrderingListViewModel.cs" />
+    <Compile Include="ViewModels\Photo\OrderingPhotoEditViewModel.cs" />
+    <Compile Include="ViewModels\Photo\InstrumentPhotosEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\favicon.ico" />
@@ -258,9 +258,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Ordering\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Photo\Index.cshtml" />
+    <Content Include="Views\Instrument\Photos.cshtml" />
+    <Content Include="Views\Ordering\Photo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Contact.cshtml" />
@@ -302,6 +301,7 @@
       <Name>Charltone.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

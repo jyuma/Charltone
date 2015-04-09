@@ -1,4 +1,4 @@
-﻿@using Charltone.UI.ViewModels.Instruments;
+﻿@using Charltone.UI.ViewModels.Instrument;
 
 @model InstrumentDetailViewModel
            
@@ -24,7 +24,7 @@
         });
                 
         function showImage(photoId) {            
-            var url = '@Url.Action("GetPhotoJson", "Photo")';
+            var url = '@Url.Action("GetPhotoJson", "Instrument")';
 
             $.getJSON(url, { "id": photoId },
                 function (data) {
@@ -146,7 +146,7 @@
 
         <div id="instrumentinfo">
             <div id="instrdetailmainphoto">
-                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt=""/>
+                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
             </div>
  @*           <script>$("#currentphoto").loupe();</script>*@
             <div class="linevertical" id="instrdetaillinevertical"></div>
@@ -276,7 +276,7 @@
             @foreach (var pId in Model.PhotoIds)
             {
                 var @lnkImageid = "lnk-show-image_" + @pId;
-                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetPhoto", "Photo", new { id = pId })' alt=""/></a>
+                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetPhoto", "Instrument", new { id = pId })' alt=""/></a>
             }
         </div>
     </div>

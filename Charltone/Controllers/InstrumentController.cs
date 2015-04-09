@@ -1,10 +1,13 @@
-﻿using Charltone.Data.Repositories;
+﻿using System.IO;
+using System.Web;
+using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
-using Charltone.UI.ViewModels.Instruments;
+using Charltone.UI.ViewModels.Instrument;
 using System;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
@@ -26,28 +29,25 @@ namespace Charltone.UI.Controllers
             return View(LoadInstrumentListViewModel());
         }
 
-        public ActionResult Detail(int productId)
+        public ActionResult Detail(int id)
         {
-            return View(LoadInstrumentDetailViewModel(productId));
+            return View(LoadInstrumentDetailViewModel(id));
         }
 
         [HttpGet]
         [Authorize]
-        public ActionResult Edit(int productId)
+        public ActionResult Edit(int id)
         {
-            return View(LoadInstrumentEditViewModel(productId));
+            return View(LoadInstrumentEditViewModel(id));
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int productId, InstrumentEditViewModel viewModel)
+        public ActionResult Edit(int id, InstrumentEditViewModel viewModel)
         {
-            var product = _products.Get(productId);
+            var product = _products.Get(id);
 
-            UpdateInstrument(product.Instrument, viewModel);
-            UpdateProduct(product, viewModel);
-
-            _products.Update(product);
+            UpdateProductInstrument(product, viewModel);
 
             return  RedirectToAction("Index", LoadInstrumentListViewModel());
         }
@@ -107,63 +107,102 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult Delete(int productId)
+        public ActionResult Delete(int id)
         {
-            return View(LoadInstrumentEditViewModel(productId));
+            return View(LoadInstrumentEditViewModel(id));
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Delete(int productId, InstrumentEditViewModel viewModel)
+        public ActionResult Delete(int id, InstrumentEditViewModel viewModel)
         {
-            _products.Delete(productId);
+            _products.Delete(id);
 
             return RedirectToAction("Index", LoadInstrumentListViewModel());
         }
 
-        private void UpdateProduct(Product product, InstrumentEditViewModel viewModel)
+        [HttpGet]
+        [Authorize]
+        public ActionResult Photos(int id)
         {
-            var posted = viewModel.IsPosted;
-            var statusid = viewModel.StatusId;
-
-            if (product.ProductStatus.Id != statusid)
-            {
-                product.ProductStatus = _types.GetProductStatus(statusid);
-            }
-
-            product.ProductStatus.Id = viewModel.StatusId;
-            product.IsPosted = posted;
-            product.Price = viewModel.Price;
-            product.DisplayPrice = viewModel.DisplayPrice;
+            return View(LoadInstrumentPhotosEditViewModel(id));
         }
 
-        private void UpdateInstrument(Instrument instrument, InstrumentEditViewModel viewModel)
+        [HttpPost]
+        [Authorize]
+        public ActionResult Photos(int id, FormCollection collection)
         {
-            instrument.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
-            instrument.Classification = _types.GetSingleClassification(viewModel.ClassificationId);
-            instrument.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
-            instrument.BackAndSides = viewModel.BackAndSides;
-            instrument.Binding = viewModel.Binding;
-            instrument.Body = viewModel.Body;
-            instrument.Bridge = viewModel.Bridge;
-            instrument.CaseDetail = viewModel.CaseDetail;
-            instrument.Comments = viewModel.Comments;
-            instrument.EdgeDots = viewModel.EdgeDots;
-            instrument.Faceplate = viewModel.Faceplate;
-            instrument.Fingerboard = viewModel.Fingerboard;
-            instrument.Finish = viewModel.Finish;
-            instrument.FretMarkers = viewModel.FretMarkers;
-            instrument.FunFacts = viewModel.FunFacts;
-            instrument.Model = viewModel.Model;
-            instrument.Neck = viewModel.Neck;
-            instrument.NutWidth = viewModel.NutWidth;
-            instrument.PickGuard = viewModel.PickGuard;
-            instrument.Pickup = viewModel.Pickup;
-            instrument.ScaleLength = viewModel.ScaleLength;
-            instrument.Sn = viewModel.Sn;
-            instrument.Strings = viewModel.Strings;
-            instrument.Top = viewModel.Top;
-            instrument.Tuners = viewModel.Tuners;
+            var key = collection.Keys.Get(0);
+            var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
+            var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
+
+            var isDelete = collection.AllKeys.Select(x => x.StartsWith("Delete")).Single();
+            var isSetDefault = collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single();
+
+            if (isDelete)
+            {
+                _photos.Delete(photoId);
+            }
+            else if (isSetDefault)
+            {
+                _photos.SetProductDefault(id, photoId);
+            }
+
+            return View(LoadInstrumentPhotosEditViewModel(id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var reader = new BinaryReader(file.InputStream);
+                    var data = reader.ReadBytes(file.ContentLength);
+                    var count = _photos.CountByProductId(id);
+
+                    var photo = new Photo { IsDefault = (count == 0), ProductId = id, Data = data };
+                    _photos.Add(photo);
+                }
+            }
+
+            return View("Photos", LoadInstrumentPhotosEditViewModel(id));
+        }
+
+        [HttpGet]
+        public FileResult GetPhoto(int id)
+        {
+            var photo = id > 0
+                ? _photos.GetData(id)
+                : _photos.GetDefaultInstrumentImage();
+
+            return File(photo, "image/jpeg");
+        }
+
+        [HttpGet]
+        public JsonResult GetPhotoJson(int id)
+        {
+            var photo = _photos.GetData(id);
+            var data = Convert.ToBase64String(photo);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        #region LoadViewModels
+
+        private InstrumentPhotosEditViewModel LoadInstrumentPhotosEditViewModel(int productid)
+        {
+            var vm = new InstrumentPhotosEditViewModel();
+
+            var product = _products.Get(productid);
+            vm.PhotoIds = _photos.GetIdsByProductId(productid);
+            vm.ProductId = productid;
+            vm.DefaultPhotoId = _photos.GetDefaultId(productid);
+            vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
+
+            return vm;
         }
 
         private InstrumentListViewModel LoadInstrumentListViewModel()
@@ -317,6 +356,63 @@ namespace Charltone.UI.Controllers
                      };
 
             return vm;
+        }
+
+        #endregion
+
+        private void UpdateProductInstrument(Product product, InstrumentEditViewModel viewModel)
+        {
+            var posted = viewModel.IsPosted;
+            var statusid = viewModel.StatusId;
+
+            if (product.ProductStatus.Id != statusid)
+            {
+                product.ProductStatus = _types.GetProductStatus(statusid);
+            }
+
+            product.ProductStatus.Id = viewModel.StatusId;
+            product.IsPosted = posted;
+            product.Price = viewModel.Price;
+            product.DisplayPrice = viewModel.DisplayPrice;
+
+            UpdateInstrument(product.Instrument, viewModel);
+
+            _products.Update(product);
+        }
+
+        private void UpdateInstrument(Instrument instrument, InstrumentEditViewModel viewModel)
+        {
+            if (instrument.InstrumentType.Id != viewModel.InstrumentTypeId)
+                instrument.InstrumentType = _types.GetInstrumentType(viewModel.InstrumentTypeId);
+
+            if (instrument.Classification.Id != viewModel.ClassificationId)
+                instrument.Classification = _types.GetClassification(viewModel.ClassificationId);
+
+            if (instrument.SubClassification.Id != viewModel.SubClassificationId)
+                instrument.SubClassification = _types.GetSubClassification(viewModel.SubClassificationId);
+
+            instrument.BackAndSides = viewModel.BackAndSides;
+            instrument.Binding = viewModel.Binding;
+            instrument.Body = viewModel.Body;
+            instrument.Bridge = viewModel.Bridge;
+            instrument.CaseDetail = viewModel.CaseDetail;
+            instrument.Comments = viewModel.Comments;
+            instrument.EdgeDots = viewModel.EdgeDots;
+            instrument.Faceplate = viewModel.Faceplate;
+            instrument.Fingerboard = viewModel.Fingerboard;
+            instrument.Finish = viewModel.Finish;
+            instrument.FretMarkers = viewModel.FretMarkers;
+            instrument.FunFacts = viewModel.FunFacts;
+            instrument.Model = viewModel.Model;
+            instrument.Neck = viewModel.Neck;
+            instrument.NutWidth = viewModel.NutWidth;
+            instrument.PickGuard = viewModel.PickGuard;
+            instrument.Pickup = viewModel.Pickup;
+            instrument.ScaleLength = viewModel.ScaleLength;
+            instrument.Sn = viewModel.Sn;
+            instrument.Strings = viewModel.Strings;
+            instrument.Top = viewModel.Top;
+            instrument.Tuners = viewModel.Tuners;
         }
     }
 }

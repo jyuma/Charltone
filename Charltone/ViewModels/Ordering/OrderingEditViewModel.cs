@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Charltone.UI.ViewModels.Orderings
+namespace Charltone.UI.ViewModels.Ordering
 {
     public class OrderingEditViewModel
     {

@@ -1,5 +1,5 @@
-﻿@using Charltone.UI.ViewModels.Orderings;
-@using Charltone.UI.ViewModels.Helpers;
+﻿@using Charltone.UI.ViewModels.Ordering;
+@using Charltone.UI.Helpers;
 
 @model OrderingListViewModel
 @{
@@ -58,7 +58,7 @@
                 <table class="orderingitemtable">
                     <tr>
                         <td rowspan="4" id="orderingtablecellphoto">
-                            <img id="orderingphoto" src=@Url.Action("GetPhoto", "Ordering", new { orderingId = orderingInfo.Id }) alt="" />
+                            <img id="orderingphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = orderingInfo.Id }) alt="" />
                         </td>
                         <td class="orderingtablecelllabel">
                             Style: 
@@ -85,8 +85,9 @@
                     </tr>
                     <tr>
                         <td class="orderingtablecelllink">
-                            @Html.ActionLinkAuthorized("Edit", "Edit", new { orderingId = orderingInfo.Id })
-                            @Html.ActionLinkAuthorized("Delete", "Delete", new { orderingId = orderingInfo.Id })
+                            @Html.ActionLinkAuthorized("Edit", "Edit", new { id = orderingInfo.Id })
+                            @Html.ActionLinkAuthorized("Delete", "Delete", new { id = orderingInfo.Id })
+                            @Html.ActionLinkAuthorized("Photo", "Photo", new { id = orderingInfo.Id })
                         </td>
                     </tr>
                 </table>

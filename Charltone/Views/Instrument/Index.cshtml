@@ -1,5 +1,5 @@
-﻿@using Charltone.UI.ViewModels.Instruments;
-@using Charltone.UI.ViewModels.Helpers;
+﻿@using Charltone.UI.ViewModels.Instrument;
+@using Charltone.UI.Helpers;
 
 @model InstrumentListViewModel
 
@@ -15,7 +15,7 @@
         $("#dialog-image-form").hide();
 
         function displayImageDialog(imageId) {
-            var url = '@Url.Action("GetPhotoJson", "Photo")';
+            var url = '@Url.Action("GetPhotoJson", "Instrument")';
 
             $.getJSON(url, { "id": imageId },
                 function (data) {
@@ -89,7 +89,7 @@
                                 @info.InstrumentStatusPrice
                             </div>
                             <a id=@lnk_image_id href="javascript:;">
-                                <img id=@info.DefaultPhotoId class="listdefaultphoto" src=@Url.Action("GetPhoto", "Photo", new { id = info.DefaultPhotoId }) alt="" />
+                                <img id=@info.DefaultPhotoId class="listdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = info.DefaultPhotoId }) alt="" />
                             </a>
                             <div class="listinfomodel">
                                 @info.Model
@@ -101,11 +101,10 @@
                                 @info.Classification / @info.SubClassification
                             </div>
                             <div class="viewdetailslink">
-                                @Html.ActionLink("View Details", "Detail", new { productId = info.ProductId })
-                                @Html.ActionLinkAuthorized("Edit", "Edit", new { productId = info.ProductId })
-                                @Html.ActionLinkAuthorized("Delete", "Delete", new { productId = info.ProductId })
-                                @if (@Request.IsAuthenticated)
-                                { @Html.ActionLink("Photos", "Index", "Photo/Index/" + info.ProductId) }
+                                @Html.ActionLink("View Details", "Detail", new { id = info.ProductId })
+                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
+                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })
+                                @Html.ActionLinkAuthorized("Photos", "Photos", new { id = info.ProductId })
                             </div>
                         </div>
                         <br />

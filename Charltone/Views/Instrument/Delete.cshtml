@@ -1,4 +1,4 @@
-﻿@model Charltone.UI.ViewModels.Instruments.InstrumentEditViewModel
+﻿@model Charltone.UI.ViewModels.Instrument.InstrumentEditViewModel
 
 @{
     ViewBag.Title = "Delete Instrument";
@@ -196,7 +196,7 @@
             </div>
              <div id="editinstrphoto">
                 <div>
-                    <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Photo", new { id = Model.DefaultPhotoId }) alt=""/>
+                    <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
                 </div>
             </div>
         </div>

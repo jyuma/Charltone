@@ -123,12 +123,11 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetPhotoJson(int id)
+        public FileResult GetHomePageImage()
         {
-            var photo = _photos.GetData(id);
-            var data = Convert.ToBase64String(photo);
+            var photo = _photos.GetHomePageImage();
 
-            return Json(data);
+            return File(photo, "image/jpeg");
         }
 
         private HomePageImageEditViewModel LoadHomePageImageEditViewModel()

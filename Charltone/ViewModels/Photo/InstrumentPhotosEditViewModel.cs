@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Charltone.UI.ViewModels.Photos
+namespace Charltone.UI.ViewModels.Photo
 {
-    public class PhotosEditViewModel
+    public class InstrumentPhotosEditViewModel
     {
         public int ProductId { get; set; }
         public string Model { get; set; }

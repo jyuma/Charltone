@@ -1,13 +1,14 @@
 ﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
-using Charltone.UI.ViewModels.Orderings;
+using Charltone.UI.ViewModels.Ordering;
 using System;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
@@ -31,16 +32,16 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult Edit(int orderingId)
+        public ActionResult Edit(int id)
         {
-            return View(LoadOrderingEditViewModel(orderingId));
+            return View(LoadOrderingEditViewModel(id));
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int orderingId, OrderingEditViewModel viewModel)
+        public ActionResult Edit(int id, OrderingEditViewModel viewModel)
         {
-            UpdateOrdering(orderingId, viewModel);
+            UpdateOrdering(id, viewModel);
 
             return RedirectToAction("Index", LoadOrderingListViewModel());
         }
@@ -73,16 +74,16 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult Delete(int orderingId)
+        public ActionResult Delete(int id)
         {
-            return View(LoadOrderingEditViewModel(orderingId));
+            return View(LoadOrderingEditViewModel(id));
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Delete(int orderingId, OrderingEditViewModel viewModel)
+        public ActionResult Delete(int id, OrderingEditViewModel viewModel)
         {
-            _orderings.Delete(orderingId);
+            _orderings.Delete(id);
 
             return RedirectToAction("Index", LoadOrderingListViewModel());
         }
@@ -101,24 +102,44 @@ namespace Charltone.UI.Controllers
                 }
             }
 
-            return View("Edit", LoadOrderingEditViewModel(id));
+            return View("Photo", LoadOrderingEditViewModel(id));
         }
 
         [HttpGet]
-        public FileResult GetPhoto(int orderingId)
+        [Authorize]
+        public ActionResult Photo(int id)
+        {
+            return View(LoadOrderingPhotoEditViewModel(id));
+        }
+
+        [HttpGet]
+        public FileResult GetPhoto(int id)
         {
             byte[] photo;
 
-            if (orderingId == 0)  // New Ordering
+            if (id == 0)  // New Ordering
             {
                 photo = _photos.GetDefaultInstrumentImage();
             }
-            else                // Existing Ordering
+            else          // Existing Ordering
             {
-                photo = _orderings.GetPhoto(orderingId) ?? _photos.GetDefaultInstrumentImage();
+                photo = _orderings.GetPhoto(id) ?? _photos.GetDefaultInstrumentImage();
             }
 
             return File(photo, "image/jpeg");
+        }
+
+        private OrderingPhotoEditViewModel LoadOrderingPhotoEditViewModel(int ordingId)
+        {
+            var ordering = _orderings.Get(ordingId);
+            var vm = new OrderingPhotoEditViewModel
+                     {
+                         OrderingId = ordingId,
+                         Photo = _orderings.GetPhoto(ordingId),
+                         Model = ordering.Model
+                     };
+
+            return vm;
         }
 
         private OrderingListViewModel LoadOrderingListViewModel()
@@ -197,14 +218,18 @@ namespace Charltone.UI.Controllers
         {
             var ordering = _orderings.Get(orderingId);
 
-            UpdateModel(ordering);
-
             if (ordering.InstrumentType.Id != viewModel.InstrumentTypeId)
-                ordering.InstrumentType = _types.GetSingleInstrumentType(viewModel.InstrumentTypeId);
+                ordering.InstrumentType = _types.GetInstrumentType(viewModel.InstrumentTypeId);
+
             if (ordering.Classification.Id != viewModel.ClassificationId)
-                ordering.Classification = _types.GetSingleClassification(viewModel.ClassificationId);
+                ordering.Classification = _types.GetClassification(viewModel.ClassificationId);
+
             if (ordering.SubClassification.Id != viewModel.SubClassificationId)
-                ordering.SubClassification = _types.GetSingleSubClassification(viewModel.SubClassificationId);
+                ordering.SubClassification = _types.GetSubClassification(viewModel.SubClassificationId);
+
+            ordering.Comments = viewModel.Comments;
+            ordering.Model = viewModel.Model;
+            ordering.TypicalPrice = viewModel.TypicalPrice;
 
             _orderings.Update(ordering);
         }

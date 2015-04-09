@@ -1,0 +1,40 @@
+﻿@using Charltone.UI.ViewModels.Photo
+@model OrderingPhotoEditViewModel
+
+@{
+    ViewBag.Title = "Charltone Photo Management";
+}
+
+<div id="editphotos">
+    <div id="editphotoscontent">
+        <div class="editlink" id="editphotoslinks">
+            @Html.ActionLink("Main List", "Index", "Ordering")
+            &nbsp
+            @Html.ActionLink("Ordering Detail", "Edit", new { id = @Model.OrderingId })
+        </div>
+
+        <div id="editphotosheader">
+            <div id="editphotosmodel">Ordering photo for model</div>
+            <div id="editphotosmodeldesc">@Model.Model</div>
+        </div>
+        <div class="linehorizontal" id="editphotoslinehorizontal"></div>
+
+        <div id="editphotosdetail">
+            @using (Html.BeginForm("UploadPhoto/" + @Model.OrderingId, "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div id="editphotosupload">
+                    <div id="uploadaphoto">Upload a photo</div>
+                    <input type="file" name="file" id="file" />
+                    <input type="submit" value="Upload" />
+                </div>
+            }
+
+            @using (Html.BeginForm("Photo/" + @Model.OrderingId, "Ordering"))
+            {
+                <div id="editphotosdefault">
+                    <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.OrderingId }) alt='' />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Charltone.UI.ViewModels.Instruments
+namespace Charltone.UI.ViewModels.Instrument
 {
     public class InstrumentDetailViewModel
     {

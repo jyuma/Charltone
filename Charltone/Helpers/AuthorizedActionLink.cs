@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Web.Mvc;
 
-namespace Charltone.UI.ViewModels.Helpers
+namespace Charltone.UI.Helpers
 {
     internal static class Helpers
     {

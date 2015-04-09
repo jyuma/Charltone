@@ -11,9 +11,9 @@ namespace Charltone.Data.Repositories
         IList<SubClassification> GetSubClassificationList();
         IList<ProductStatus> GetProductStatusList();
 
-        InstrumentType GetSingleInstrumentType(int id);
-        Classification GetSingleClassification(int id);
-        SubClassification GetSingleSubClassification(int id);
+        InstrumentType GetInstrumentType(int id);
+        Classification GetClassification(int id);
+        SubClassification GetSubClassification(int id);
         ProductStatus GetProductStatus(int id);
     }
 
@@ -29,7 +29,7 @@ namespace Charltone.Data.Repositories
             return Session.QueryOver<InstrumentType>().List();
         }
 
-        public InstrumentType GetSingleInstrumentType(int id)
+        public InstrumentType GetInstrumentType(int id)
         {
             return Session.QueryOver<InstrumentType>().Where(x => x.Id == id).SingleOrDefault();
         }
@@ -39,7 +39,7 @@ namespace Charltone.Data.Repositories
             return Session.QueryOver<Classification>().List();
         }
 
-        public Classification GetSingleClassification(int id)
+        public Classification GetClassification(int id)
         {
             return Session.QueryOver<Classification>().Where(x => x.Id == id).SingleOrDefault();
         }
@@ -49,7 +49,7 @@ namespace Charltone.Data.Repositories
             return Session.QueryOver<SubClassification>().List();
         }
 
-        public SubClassification GetSingleSubClassification(int id)
+        public SubClassification GetSubClassification(int id)
         {
             return Session.QueryOver<SubClassification>().Where(x => x.Id == id).SingleOrDefault();
         }

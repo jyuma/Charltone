@@ -1,6 +1,6 @@
 ﻿using Charltone.Domain.Entities;
 
-namespace Charltone.UI.ViewModels.Orderings
+namespace Charltone.UI.ViewModels.Ordering
 {
     using System.Collections.Generic;
 
