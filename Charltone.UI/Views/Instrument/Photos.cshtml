@@ -12,7 +12,7 @@
         $('input:file').change(
            function () {
                if ($(this).val()) {
-                   $('input:submit').removeAttr('disabled'); 
+                   $('input:submit').removeAttr('disabled');
                }
            });
         var photoIds = @Html.Raw(Json.Encode(Model.PhotoIds));
@@ -50,8 +50,8 @@
         </div>
         <div class="linehorizontal" id="editphotoslinehorizontal"></div>
         <div id="editphotosdetail">
-            
-            @using (Html.BeginForm("UploadPhoto/" + @Model.ProductId, "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+
+            @using (Html.BeginForm(@Model.ProductId + "/Photo", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
             {
                 <div id="editphotosupload">
                     <div id="uploadaphoto">Upload a photo</div>
@@ -60,7 +60,7 @@
                 </div>
             }
 
-            @using (Html.BeginForm("Photos/" + @Model.ProductId, "Instrument"))
+            @using (Html.BeginForm(@Model.ProductId + "/Photos", "Instrument"))
             {
                 <div id="editphotosdefault">
                     <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt='' />
@@ -69,23 +69,24 @@
                 <div id="editphotosmanage">
                     <fieldset class="fieldset">
                         <legend class="legend">Manage</legend>
-                        
-                        <a id="lnk-show-image_" @Model.DefaultPhotoId href="javascript:;">
-                            <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt='' />
+                        @{
+                        var @lnkImageIdDefault = "lnk-show-image_" + @Model.DefaultPhotoId;
+                        <a id=@lnkImageIdDefault href="javascript:;">
+                            <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
                         </a>
-
+                        }
                         @foreach (var photoId in Model.PhotoIds)
                         {
-                            var @lnkImageid = "lnk-show-image_" + photoId;
+                            var @lnkImageId = "lnk-show-image_" + photoId;
 
                             <div id="editphotosthumbnail">
 
                                 @if (photoId != Model.DefaultPhotoId)
                                 {
-                                    <a id=@lnkImageid href="javascript:;">
+                                    <a id=@lnkImageId href="javascript:;">
                                         <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Instrument", new { id = photoId }) alt='' />
                                     </a>
-                                    
+
                                     <div>
                                         @{
                                             var defaultName = "SetDefault_" + photoId;

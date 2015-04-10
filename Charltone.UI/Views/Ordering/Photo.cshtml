@@ -9,7 +9,7 @@
         $('input:file').change(
            function () {
                if ($(this).val()) {
-                   $('input:submit').removeAttr('disabled'); 
+                   $('input:submit').removeAttr('disabled');
                }
            });
     });
@@ -30,16 +30,16 @@
         <div class="linehorizontal" id="editphotoslinehorizontal"></div>
 
         <div id="editphotosdetail">
-            @using (Html.BeginForm("UploadPhoto/" + @Model.OrderingId, "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            @using (Html.BeginForm(@Model.OrderingId + "/Photo", "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))
             {
                 <div id="editphotosupload">
                     <div id="uploadaphoto">Upload a photo</div>
-                    <input id="file" class="fileinput" type="file" name="file" size="10"/>
-                    <input id="upload" type="submit" value="Upload" disabled="disabled"/>
+                    <input id="file" class="fileinput" type="file" name="file" size="10" />
+                    <input id="upload" type="submit" value="Upload" disabled="disabled" />
                 </div>
             }
 
-            @using (Html.BeginForm("Photo/" + @Model.OrderingId, "Ordering"))
+            @using (Html.BeginForm(Model.OrderingId + "/Photo", "Ordering"))
             {
                 <div id="editphotosdefault">
                     <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.OrderingId }) alt='' />

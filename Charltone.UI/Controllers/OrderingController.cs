@@ -12,6 +12,7 @@ using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
+    [RoutePrefix("Ordering/{id}")]
     public class OrderingController : Controller
     {
         private readonly IOrderingRepository _orderings;
@@ -32,6 +33,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Edit")]
         public ActionResult Edit(int id)
         {
             return View(LoadOrderingEditViewModel(id));
@@ -39,15 +41,17 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Edit")]
         public ActionResult Edit(int id, OrderingEditViewModel viewModel)
         {
             UpdateOrdering(id, viewModel);
 
-            return RedirectToAction("Index", LoadOrderingListViewModel());
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         [Authorize]
+        [Route("Create")]
         public ActionResult Create()
         {
             return View(LoadOrderingEditViewModel(-1));
@@ -55,6 +59,7 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Create")]
         public ActionResult Create(OrderingEditViewModel viewModel)
         {
             var ordering = new Ordering
@@ -74,6 +79,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Delete")]
         public ActionResult Delete(int id)
         {
             return View(LoadOrderingEditViewModel(id));
@@ -81,6 +87,7 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Delete")]
         public ActionResult Delete(int id, OrderingEditViewModel viewModel)
         {
             _orderings.Delete(id);
@@ -90,7 +97,8 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
+        [Route("Photo")]
+        public ActionResult Photo(int id, HttpPostedFileBase file)
         {
             if (file != null)
             {
@@ -107,6 +115,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Photo")]
         public ActionResult Photo(int id)
         {
             return View(LoadOrderingPhotoEditViewModel(id));

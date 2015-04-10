@@ -1,0 +1,204 @@
+﻿@model Charltone.UI.ViewModels.Instrument.InstrumentEditViewModel
+
+@{
+    ViewBag.Title = "Delete Instrument";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="deleteinstrument">
+    @using (Html.BeginForm())
+    {
+        <div class="editinstrcontainer">
+            <div id="deleteconfirm">
+                Are you sure you want to delete this instrument?
+            </div>
+            
+            <div class="editinstrinfo">
+             <div class="editinstrbuttons">
+                <input class="savebutton" type="submit" value="Delete" name="Command"/>
+                &nbsp
+                @Html.ActionLink("Main List", "Index", "Instrument")        
+            </div>
+    
+                <div class="editinstrument">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InstrumentTypes)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ClassificationTypes)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SubClassificationTypes)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        Model/SN
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Model, new { @disabled = true })
+                        @Html.TextBoxFor(model => model.Sn, new { @disabled = true })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Top)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Top, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BackAndSides)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.BackAndSides, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Body)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Body, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Binding)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Binding, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Neck)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Neck, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Faceplate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Faceplate, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Fingerboard)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Fingerboard, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.FretMarkers)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.FretMarkers, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EdgeDots)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.EdgeDots, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Bridge)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Bridge, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Finish)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Finish, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Tuners)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Tuners, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PickGuard)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.PickGuard, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Pickup)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Pickup, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NutWidth)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.NutWidth, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ScaleLength)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.ScaleLength, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CaseDetail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.CaseDetail, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Strings)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Strings, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Comments)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Comments, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.FunFacts)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.FunFacts, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DisplayPrice)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.DisplayPrice, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Price)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Price, new { @disabled = true })
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => Model.IsPosted)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => Model.IsPosted, new { @disabled = true })
+                    </div>
+
+                    <div class="editor-label">
+                        Status
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(x => x.StatusId, Model.StatusTypes, new { @disabled = true })
+                    </div>
+                </div>
+            </div>
+             <div id="editinstrphoto">
+                <div>
+                    <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
+                </div>
+            </div>
+        </div>
+    }
+</div>

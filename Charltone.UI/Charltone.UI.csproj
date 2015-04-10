@@ -237,6 +237,9 @@
     <Content Include="Views\Instrument\Edit.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Ordering\Photo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -255,7 +258,6 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Ordering\Delete.cshtml" />
     <Content Include="Views\Instrument\Photos.cshtml" />
-    <Content Include="Views\Ordering\Photo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Contact.cshtml" />
@@ -284,7 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\charltone.com.pubxml" />
-    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Properties\PublishProfiles\test.charltone.com.pubxml" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charltone.Data", "Charltone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charltone.Domain", "Charltone.Domain\Charltone.Domain.csproj", "{223FB3E1-10BB-4E63-8731-AA8F573A1B74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charltone.UI", "Charltone\Charltone.UI.csproj", "{4A4B3729-8D04-4F3B-A562-449696A62C51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charltone.UI", "Charltone.UI\Charltone.UI.csproj", "{4A4B3729-8D04-4F3B-A562-449696A62C51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

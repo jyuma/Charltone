@@ -11,6 +11,7 @@ using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
+    [RoutePrefix("Instrument/{id}")]
     public class InstrumentController : Controller
     {
         private readonly IProductRepository _products;
@@ -36,6 +37,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Edit")]
         public ActionResult Edit(int id)
         {
             return View(LoadInstrumentEditViewModel(id));
@@ -43,17 +45,19 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Edit")]
         public ActionResult Edit(int id, InstrumentEditViewModel viewModel)
         {
             var product = _products.Get(id);
 
             UpdateProductInstrument(product, viewModel);
 
-            return  RedirectToAction("Index", LoadInstrumentListViewModel());
+            return View("Index", LoadInstrumentListViewModel());
         }
 
         [HttpGet]
         [Authorize]
+        [Route("Create")]
         public ActionResult Create()
         {
             return View(LoadInstrumentEditViewModel(-1));
@@ -61,6 +65,7 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Create")]
         public ActionResult Create(InstrumentEditViewModel viewModel)
         {
             var product = new Product
@@ -107,6 +112,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Delete")]
         public ActionResult Delete(int id)
         {
             return View(LoadInstrumentEditViewModel(id));
@@ -114,6 +120,7 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Delete")]
         public ActionResult Delete(int id, InstrumentEditViewModel viewModel)
         {
             _products.Delete(id);
@@ -123,6 +130,7 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
+        [Route("Photos")]
         public ActionResult Photos(int id)
         {
             return View(LoadInstrumentPhotosEditViewModel(id));
@@ -130,6 +138,7 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Photos")]
         public ActionResult Photos(int id, FormCollection collection)
         {
             var key = collection.Keys.Get(0);
@@ -153,7 +162,8 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult UploadPhoto(int id, HttpPostedFileBase file)
+        [Route("Photo")]
+        public ActionResult Photo(int id, HttpPostedFileBase file)
         {
             if (file != null)
             {

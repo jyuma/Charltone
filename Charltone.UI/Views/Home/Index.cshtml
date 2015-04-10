@@ -1,0 +1,20 @@
+﻿@using Charltone.UI.Helpers
+@{
+    ViewBag.Title = "Charltone Instruments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="homepage">
+    <div id="homedetail">
+        <div id="homebanner">
+            Hello!  Welcome to Charltone.com
+        </div>
+        <div id="homemessage">
+            Please check out my handmade guitars. Drop me a line if you see anything you like or have any further questions at: kevin@charltone.com.
+        </div>
+    </div>
+    <div id="homepageimage">
+        <div class="homepagelink">@Html.ActionLinkAuthorized("Change Image", "Edit")</div>
+        <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
+    </div>
+</div> 
