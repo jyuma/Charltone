@@ -155,7 +155,9 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
     <Compile Include="Extensions\CacheExtension.cs" />
-    <Compile Include="Library\Email.cs" />
+    <Compile Include="Library\Email.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModels\Admin\AdminLogOnViewModel.cs" />
     <Compile Include="Helpers\ActionExtension.cs">
       <SubType>Code</SubType>
@@ -209,17 +211,11 @@
     <Content Include="Content\Images\torres.png" />
     <Content Include="Content\Images\torres_small.png" />
     <Content Include="Content\Images\workshop2_cropped.jpg" />
-    <Content Include="Scripts\jquery.loupe.js" />
-    <Content Include="Scripts\jquery.loupe.min.js" />
-    <Content Include="Scripts\jquery.slides.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.ui.dialog.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.4.1.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

@@ -34,7 +34,6 @@ namespace Charltone.UI
         {
             Bind<ISessionFactory>().ToProvider<NhibernateSessionFactoryProvider>().InSingletonScope();
             Bind<ISession>().ToMethod(context => context.Kernel.Get<ISessionFactory>().OpenSession()).InRequestScope();
-
         }
     }
 

@@ -1,21 +1,46 @@
-﻿using System.Net.Mail;
-using Charltone.Domain.Entities;
+﻿using System.Configuration;
+using System.Net.Mail;
+using System.Text;
 
 namespace Charltone.UI.Library
 {
-    public class Email
+    public static class Email
     {
-        public void Send(Contact contact)
+        public static void Send(string name, string phone, string email, string message)
         {
-            var mail = new MailMessage(
-                contact.From,
-                "john_charlton@sympatico.ca",
-                //ConfigurationManager.AppSettings[Keys.ContactToEmail],
-                contact.Subject,
-                contact.Message);
+            var emailBody = new StringBuilder();
 
-            var smtp = new SmtpClient {Host = "127.0.0.1"};
-            smtp.Send(mail);
+            emailBody.Append("<b>The following message was received from Charltone.com:</b>");
+            emailBody.Append("<br>");
+            emailBody.Append("<br>");
+            emailBody.Append("From: " + name);
+            emailBody.Append("<br>");
+            emailBody.Append("Phone: " + phone);
+            emailBody.Append("<br>");
+            emailBody.Append("Email: " + email);
+            emailBody.Append("<br>");
+            emailBody.Append("<br>");
+            emailBody.Append(message);
+
+            var eMail = new MailMessage
+            {
+                IsBodyHtml = true,
+                Body = emailBody.ToString(),
+                From = new MailAddress(ConfigurationManager.AppSettings["AdminEmailAddress"]),
+                Subject = ConfigurationManager.AppSettings["ContactEmailSubject"]
+            };
+
+            eMail.To.Add(ConfigurationManager.AppSettings["ContactEmailToAddress"]);
+
+            using (var client = new SmtpClient())
+            {
+                client.Credentials = new System.Net.NetworkCredential(
+                    ConfigurationManager.AppSettings["SmtpCredentialsUserName"],
+                    ConfigurationManager.AppSettings["SmtpCredentialsPassword"]);
+
+                client.Host = ConfigurationManager.AppSettings["SmtpHost"];
+                client.Send(eMail);
+            }
         }
     }
 }

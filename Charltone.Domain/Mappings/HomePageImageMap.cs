@@ -11,7 +11,6 @@ namespace Charltone.Domain.Mappings
 
             Id(x => x.Id).Column("Id");
             Map(m => m.Data).Column("Data").Length(int.MaxValue);
-            //Map(m => m.SortOrder).Column("SortOrder");
         }
     }
 }
