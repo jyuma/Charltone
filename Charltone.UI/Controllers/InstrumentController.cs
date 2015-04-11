@@ -1,13 +1,15 @@
-﻿using System.IO;
-using System.Web;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
+using Charltone.UI.Constants;
+using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Instrument;
+using Charltone.UI.ViewModels.Photo;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
@@ -57,7 +59,6 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("Create")]
         public ActionResult Create()
         {
             return View(LoadInstrumentEditViewModel(-1));
@@ -65,7 +66,6 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("Create")]
         public ActionResult Create(InstrumentEditViewModel viewModel)
         {
             var product = new Product
@@ -170,10 +170,15 @@ namespace Charltone.UI.Controllers
                 if (file.ContentLength > 0)
                 {
                     var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength);
+                    var data = reader.ReadBytes(file.ContentLength)
+                        .ByteArrayToImage()
+                        .CropInstrument()
+                        .ImageToByteArray();
+
                     var count = _photos.CountByProductId(id);
 
                     var photo = new Photo { IsDefault = (count == 0), ProductId = id, Data = data };
+
                     _photos.Add(photo);
                 }
             }
@@ -189,6 +194,21 @@ namespace Charltone.UI.Controllers
                 : _photos.GetDefaultInstrumentImage();
 
             return File(photo, "image/jpeg");
+        }
+
+        [HttpGet]
+        public FileResult GetThumbnail(int id)
+        {
+            var photo = id > 0
+                ? _photos.GetData(id)
+                : _photos.GetDefaultInstrumentImage();
+
+            var thumbnail = photo
+                .ByteArrayToImage()
+                .GetThumbnailImage(InstrumentThumbnail.Width, InstrumentThumbnail.Height, () => false, IntPtr.Zero)
+                .ImageToByteArray();
+
+            return File(thumbnail, "image/jpeg");
         }
 
         [HttpGet]

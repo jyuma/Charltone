@@ -274,7 +274,7 @@
             @foreach (var pId in Model.PhotoIds)
             {
                 var @lnkImageid = "lnk-show-image_" + @pId;
-                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetPhoto", "Instrument", new { id = pId })' alt=""/></a>
+                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetThumbnail", "Instrument", new { id = pId })' alt=""/></a>
             }
         </div>
     </div>

@@ -154,7 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
-    <Compile Include="Extensions\CacheExtension.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Library\Email.cs">
       <SubType>Code</SubType>
     </Compile>

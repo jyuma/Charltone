@@ -84,7 +84,7 @@
                                 @if (photoId != Model.DefaultPhotoId)
                                 {
                                     <a id=@lnkImageId href="javascript:;">
-                                        <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetPhoto", "Instrument", new { id = photoId }) alt='' />
+                                        <img class="thumbnail" id="editphotosdefaultthumbnail" src=@Url.Action("GetThumbnail", "Instrument", new { id = photoId }) alt='' />
                                     </a>
 
                                     <div>

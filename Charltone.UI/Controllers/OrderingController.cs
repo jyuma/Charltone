@@ -1,14 +1,15 @@
 ﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
+using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Ordering;
+using Charltone.UI.ViewModels.Photo;
 using System;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Charltone.UI.ViewModels.Photo;
 
 namespace Charltone.UI.Controllers
 {
@@ -51,7 +52,6 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("Create")]
         public ActionResult Create()
         {
             return View(LoadOrderingEditViewModel(-1));
@@ -59,7 +59,6 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("Create")]
         public ActionResult Create(OrderingEditViewModel viewModel)
         {
             var ordering = new Ordering
@@ -105,7 +104,11 @@ namespace Charltone.UI.Controllers
                 if (file.ContentLength > 0)
                 {
                     var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength);
+                    var data = reader.ReadBytes(file.ContentLength)
+                        .ByteArrayToImage()
+                        .CropOrdering()
+                        .ImageToByteArray();
+
                     _orderings.UpdatePhoto(id, data);
                 }
             }
@@ -124,18 +127,39 @@ namespace Charltone.UI.Controllers
         [HttpGet]
         public FileResult GetPhoto(int id)
         {
+            var photo = LoadPhoto(id);
+
+            return File(photo, "image/jpeg");
+        }
+
+        [HttpGet]
+        public FileResult GetThumbnail(int id)
+        {
+
+            var photo = LoadPhoto(id);
+
+            var thumbnail = photo
+                .ByteArrayToImage()
+                .GetThumbnailImage(OrderingThumbnail.Width, OrderingThumbnail.Height, () => false, IntPtr.Zero)
+                .ImageToByteArray();
+
+            return File(thumbnail, "image/jpeg");
+        }
+
+        private byte[] LoadPhoto(int id)
+        {
             byte[] photo;
 
-            if (id == 0)  // New Ordering
-            {
-                photo = _photos.GetDefaultInstrumentImage();
-            }
-            else          // Existing Ordering
+            if (id > 0) // Existing Ordering
             {
                 photo = _orderings.GetPhoto(id) ?? _photos.GetDefaultInstrumentImage();
             }
+            else        // New Ordering
+            {
+                photo = _photos.GetDefaultInstrumentImage();
+            }
 
-            return File(photo, "image/jpeg");
+            return photo;
         }
 
         private OrderingPhotoEditViewModel LoadOrderingPhotoEditViewModel(int ordingId)
