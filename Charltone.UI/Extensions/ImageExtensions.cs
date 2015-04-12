@@ -35,24 +35,33 @@ namespace Charltone.UI.Extensions
             var width = image.Size.Width;
             var height = image.Size.Height;
 
-            if (width > height / 1.3)
+            // ------- crop
+            Rectangle cropRect;
+            if (width > height / 1.3)   // too wide
             {
-                width = (int)(height / 1.3);
+                var newWidth = (int)(height / 1.3);
+                var x = (width - newWidth) / 2;
+                var point = new Point(x, 0);
+
+                cropRect = new Rectangle(point, new Size(newWidth, height));
             }
-            else
+            else                        // too tall
             {
-                height = (int)(width * 1.3);
+                var newHeight = (int)(width * 1.3);
+                var y = (height - newHeight) / 2;
+
+                var point = new Point(0, y);
+                cropRect = new Rectangle(point, new Size(width, newHeight));
             }
+            var cropped = new Bitmap(image).Clone(cropRect, image.PixelFormat);
 
-            var cropRect = new Rectangle(new Point(0, 0), new Size(width, height));
-            var croppped = new Bitmap(image).Clone(cropRect, image.PixelFormat);
+            // ------- resize
+            var resizeRect = new Rectangle(new Point(0, 0), cropped.Size);
+            var resized = new Bitmap(image).Clone(resizeRect, cropped.PixelFormat);
 
-            var resizeRect = new Rectangle(new Point(0, 0), croppped.Size);
-            var resized = new Bitmap(image).Clone(resizeRect, croppped.PixelFormat);
+            var result = new Bitmap(cropped, new Size(size.Width, size.Height));
 
-            var result = new Bitmap(resized, new Size(size.Width, size.Height));
-
-            croppped.Dispose();
+            cropped.Dispose();
             resized.Dispose();
 
             return result;
