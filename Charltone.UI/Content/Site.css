@@ -64,6 +64,7 @@ to use a different color start by replacing all instances of
     margin-top: 8px;
     margin-bottom: 8px;
     margin-right: 5px;
+    /*margin: 8px 5px 8px 55px;*/
     clear: both;
     float: left;
     font-family: inherit;
@@ -935,6 +936,7 @@ page width. Or, you can specify an exact pixel width. */
 #homepage
 {
     position: relative;
+    top: 75px;
     width: 900px;
     height: 675px;
     background: url(Images/tools_large.jpg) right no-repeat;
@@ -983,15 +985,10 @@ page width. Or, you can specify an exact pixel width. */
     position: relative;
     width: 830px;
     height: 520px;
-    /*border-style: solid;
-    border-width: 0.2em;
-    border-color: #cea96d;*/
 }
 #homepageimage
 {
     position: relative;
-    /*width: 830px;
-    height: 600px;*/
     margin-left: 30px;
     margin-top: 60px;
 }
@@ -1047,11 +1044,9 @@ page width. Or, you can specify an exact pixel width. */
     background: url(Images/tools.jpg) right no-repeat;
     height: 90px;
     width: 900px;
-    /*margin-left: 150px;*/
 }
 #main
 {
-    /*padding: 100px 150px 15px 150px;*/
     width: 100%;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
@@ -1059,7 +1054,6 @@ page width. Or, you can specify an exact pixel width. */
 #footer
 {
     color: #999;
-    /*padding: 10px 0;*/
     text-align: center;
     line-height: normal;
     margin: 0;
@@ -1070,8 +1064,6 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    /*border-bottom: 1px #5C87B2 solid;*/
-    /*padding: 0 0 2px;*/
     position: relative;
     margin: 0;
     text-align: right;
@@ -1084,13 +1076,11 @@ ul#menu li
 {
     display: inline;
     list-style: none;
-    /*color: #7DA5D8;*/
     background-color:transparent;
 }
 
 ul#menu li#greeting
 {
-    /*padding: 10px 20px;*/
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
@@ -1110,7 +1100,6 @@ ul#menu li a
 
 ul#menu li a:hover
 {
-    /*background-color: #272722;*/
     background-color:transparent;
     text-decoration: none;
     color: #7DA5D8;

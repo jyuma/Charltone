@@ -39,123 +39,123 @@
                         }
                     </ul>
                 </div>
+                @*</div>*@
+                <div id="main">
+                    @RenderBody()
+                </div>
             </div>
-            <div id="main">
-                @RenderBody()
-            </div>
-        </div>
 
-        <!-- Google Analytics -->
-        <!-- Charltone = UA-61760002-1,  Charltone_Test = UA-61760002-2 -->
+            <!-- Google Analytics -->
+            <!-- Charltone = UA-61760002-1,  Charltone_Test = UA-61760002-2 -->
 
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                    ga('create', 'UA-61760002-1', 'auto');
-                    ga('send', 'pageview');
-        </script>
+            @*<script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-61760002-1', 'auto');
+                ga('send', 'pageview');
+            </script>*@
 
-        <!--- TODO:  CREATE A PARTIAL VIEW FOR THIS STUFF -->
-        <script type="text/javascript">
-            $(document).ready(function() {
+            <!--- TODO:  CREATE A PARTIAL VIEW FOR THIS STUFF -->
+            <script type="text/javascript">
+                $(document).ready(function() {
 
-                bindAdminLogInForm();
+                    bindAdminLogInForm();
 
-                function displayAdminLoginDialog() {
-                    $.blockUI({
-                        message: $("#admin-login-form"),
-                        width: '300px'
-                    });
+                    function displayAdminLoginDialog() {
+                        $.blockUI({
+                            message: $("#admin-login-form"),
+                            width: '300px'
+                        });
 
-                    $("button").button();
-                    $("#validation-container-admin-login").hide();
-                }
+                        $("button").button();
+                        $("#validation-container-admin-login").hide();
+                    }
 
-                function bindAdminLogInForm() {
-                    $("#btnCancelAdminLogin").click(function () {
-                        $("#validation-container-admin-login").html("");
-                        $.unblockUI();
-                    });
+                    function bindAdminLogInForm() {
+                        $("#btnCancelAdminLogin").click(function () {
+                            $("#validation-container-admin-login").html("");
+                            $.unblockUI();
+                        });
 
-                    $("#btnLogInAdmin").click(function () {
-                        logInAdmin();
-                    });
-
-                    $('#admin-login-form').keyup(function (e) {
-                        if (e.keyCode == 13) {
+                        $("#btnLogInAdmin").click(function () {
                             logInAdmin();
-                        }
-                    });
+                        });
 
-                    $("#lnk-admin-login").click(function () {
-                        displayAdminLoginDialog();
-                    });
-
-                    $("#lnk-admin-logoff").click(function () {
-
-                        var url = '@Url.Action("LogOff", "Admin")';
-                        $.getJSON(url, null, function (data) {
-                            if (data.success) {
-                                window.location.reload(true);
+                        $('#admin-login-form').keyup(function (e) {
+                            if (e.keyCode == 13) {
+                                logInAdmin();
                             }
                         });
-                    });
-                }
 
-                function logInAdmin() {
-                    var pword = $("#txtPassword").val();
-                    var model = { password: pword };
+                        $("#lnk-admin-login").click(function () {
+                            displayAdminLoginDialog();
+                        });
 
-                    $("#validation-container-admin-login").html("");
+                        $("#lnk-admin-logoff").click(function () {
 
-                    var url = '@Url.Action("LogIn", "Admin")';
-                    $.getJSON(url, model,
-                        function (data) {
-                            if (data.success) {
-                                $.unblockUI();
-                                window.location.reload(true);
-                            } else {
-                                if (data.messages.length > 0) {
-                                    $("#validation-container-admin-login").show();
-                                    $("#validation-container-admin-login").html("");
-                                    var html = "<ul>";
-                                    for (var i = 0; i < data.messages.length; i++) {
-                                        html = html + "<li>" + data.messages[i] + "</li>";
-                                    }
-                                    html = html + "</ul>";
-                                    $("#validation-container-admin-login").append(html);
+                            var url = '@Url.Action("LogOff", "Admin")';
+                            $.getJSON(url, null, function (data) {
+                                if (data.success) {
+                                    window.location.reload(true);
                                 }
-                            }
+                            });
                         });
-                }
-            });
-        </script>
+                    }
 
-        <div id="dialog-wrapper">
-            <div id='admin-login-form' hidden>
-                <div id='admin-login'></div>"
-                <div class='dialog-header'><h2>Admin Log In</h2></div>
-                <div id='admin-login-credentials'>
-                    <div>
-                        <div class='login-label'>Password</div>
-                        <div class='login-input'><input type='password' id='txtPassword' maxlength=20 /></div>
+                    function logInAdmin() {
+                        var pword = $("#txtPassword").val();
+                        var model = { password: pword };
+
+                        $("#validation-container-admin-login").html("");
+
+                        var url = '@Url.Action("LogIn", "Admin")';
+                        $.getJSON(url, model,
+                            function (data) {
+                                if (data.success) {
+                                    $.unblockUI();
+                                    window.location.reload(true);
+                                } else {
+                                    if (data.messages.length > 0) {
+                                        $("#validation-container-admin-login").show();
+                                        $("#validation-container-admin-login").html("");
+                                        var html = "<ul>";
+                                        for (var i = 0; i < data.messages.length; i++) {
+                                            html = html + "<li>" + data.messages[i] + "</li>";
+                                        }
+                                        html = html + "</ul>";
+                                        $("#validation-container-admin-login").append(html);
+                                    }
+                                }
+                            });
+                    }
+                });
+            </script>
+
+            <div id="dialog-wrapper">
+                <div id='admin-login-form' hidden>
+                    <div id='admin-login'></div>"
+                    <div class='dialog-header'><h2>Admin Log In</h2></div>
+                    <div id='admin-login-credentials'>
+                        <div>
+                            <div class='login-label'>Password</div>
+                            <div class='login-input'><input type='password' id='txtPassword' maxlength=20 /></div>
+                        </div>
                     </div>
+                    <div id='admin-login-cancel-button-container'>
+                        <span id='login-button'>
+                            <button id='btnLogInAdmin' type='button'>Log In</button>
+                        </span>
+                        <span id='cancel-button'>
+                            <button id='btnCancelAdminLogin' type='button'>Cancel</button>
+                        </span>
+                    </div>
+                    <div id='validation-container-admin-login' class='validation-container'></div>
                 </div>
-                <div id='admin-login-cancel-button-container'>
-                    <span id='login-button'>
-                        <button id='btnLogInAdmin' type='button'>Log In</button>
-                    </span>
-                    <span id='cancel-button'>
-                        <button id='btnCancelAdminLogin' type='button'>Cancel</button>
-                    </span>
-                </div>
-                <div id='validation-container-admin-login' class='validation-container'></div>
             </div>
         </div>
     </body>
-
 </html>
