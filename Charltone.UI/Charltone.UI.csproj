@@ -158,6 +158,7 @@
     <Compile Include="Library\Email.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Library\Imaging.cs" />
     <Compile Include="ViewModels\Admin\AdminLogOnViewModel.cs" />
     <Compile Include="Helpers\ActionExtension.cs">
       <SubType>Code</SubType>

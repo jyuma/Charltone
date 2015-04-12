@@ -68,17 +68,10 @@ to use a different color start by replacing all instances of
     float: left;
     font-family: inherit;
 }
+
 .dialog-header h2{
     font-size: 1.9em;
     color: #cea96d;
-}
-.ui-dialog-custom  {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: .8em;
-    background: url('Images/dialog gradient.jpg');
-    color: #FFFFFF;
-    border: 1px solid #aaaaaa;
 }
 .ui-image-dialog-custom  {
     position: relative;
@@ -106,7 +99,7 @@ to use a different color start by replacing all instances of
 }
 .ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane {
     font-size: 0.8em;
-    padding: 0px 0px 0px 0px; 
+    padding: 0 0 0 0; 
 }
 .ui-widget {
     font-size: 0.8em;

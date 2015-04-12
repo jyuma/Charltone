@@ -53,7 +53,7 @@ CLOSE cur_photos;
 DEALLOCATE cur_photos;
 
 -- SINGLE EXTRACT
--- EXEC xp_cmdshell 'BCP "SELECT [Data] FROM DEV1.Charltone.dbo.[Photo] WHERE Id=334" queryout C:\Images\CL-RAM_334_default.jpg -T -S -f C:\Images\a.fmt';
+--EXEC xp_cmdshell 'BCP "SELECT [Data] FROM DEV1.Charltone.dbo.HomePageImage" queryout C:\Images\HomePage.jpg -T -S -f C:\Images\a.fmt';
 
 -------------------------------------------------------------------------------
 -- INSERT
