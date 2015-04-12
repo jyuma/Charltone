@@ -22,29 +22,24 @@ namespace Charltone.UI.Extensions
 
         public static Image CropInstrument(this Image image)
         {
-            return Crop(image, new Size(InstrumentPhoto.Width, InstrumentPhoto.Height), InstrumentPhoto.Ratio);
+            return Crop(image, new Size(InstrumentPhoto.Width, InstrumentPhoto.Height));
         }
 
         public static Image CropOrdering(this Image image)
         {
-            return Crop(image, new Size(OrderingPhoto.Width, OrderingPhoto.Height), OrderingPhoto.Ratio);
+            return Crop(image, new Size(OrderingPhoto.Width, OrderingPhoto.Height));
         }
 
-        public static Image CropHomePageImage(this Image image)
-        {
-            return Crop(image, new Size(OrderingPhoto.Width, OrderingPhoto.Height), HomePagePhoto.Ratio);
-        }
-
-        private static Image Crop(Image image, Size size, double ratio)
+        private static Image Crop(Image image, Size size)
         {
             var width = image.Size.Width;
             var height = image.Size.Height;
 
             // ------- crop
             Rectangle cropRect;
-            if (width > height / ratio)   // too wide
+            if (width > height / 1.3)   // too wide
             {
-                var newWidth = (int)(height / ratio);
+                var newWidth = (int)(height / 1.3);
                 var x = (width - newWidth) / 2;
                 var point = new Point(x, 0);
 
@@ -52,7 +47,7 @@ namespace Charltone.UI.Extensions
             }
             else                        // too tall
             {
-                var newHeight = (int)(width * ratio);
+                var newHeight = (int)(width * 1.3);
                 var y = (height - newHeight) / 2;
 
                 var point = new Point(0, y);

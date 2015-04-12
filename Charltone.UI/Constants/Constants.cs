@@ -23,7 +23,6 @@
 
     public class InstrumentPhoto
     {
-        public const double Ratio = 1.3;
         public const int Width = 346;
         public const int Height = 450;
     }
@@ -36,7 +35,6 @@
 
     public class OrderingPhoto
     {
-        public const double Ratio = 1.3;
         public const int Width = 346;
         public const int Height = 450;
     }
@@ -45,12 +43,5 @@
     {
         public const int Width = 230;
         public const int Height = 300;
-    }
-
-    public class HomePagePhoto
-    {
-        public const double Ratio = .6;
-        public const int Width = 830;
-        public const int Height = 520;
     }
 }

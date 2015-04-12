@@ -1,12 +1,11 @@
-﻿using Charltone.Data.Repositories;
-using Charltone.Domain.Entities;
-using Charltone.UI.Extensions;
-using Charltone.UI.ViewModels.Home;
-using NHibernate;
-using System;
+﻿using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using Charltone.Data.Repositories;
+using Charltone.Domain.Entities;
+using Charltone.UI.ViewModels.Home;
+using NHibernate;
 
 namespace Charltone.UI.Controllers
 {
@@ -54,11 +53,8 @@ namespace Charltone.UI.Controllers
             {
                 if (file.ContentLength > 0)
                 {
-                    var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength)
-                        .ByteArrayToImage()
-                        .CropHomePageImage()
-                        .ImageToByteArray();
+                    var b = new BinaryReader(file.InputStream);
+                    var data = b.ReadBytes(file.ContentLength);
 
                     _photos.UpdateHomePageImage(data);
                 }
