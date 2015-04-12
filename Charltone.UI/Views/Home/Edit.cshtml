@@ -17,12 +17,12 @@
                 <div id="editphotosupload">
                     <div id="uploadaphoto">Upload an image <a class="homepagelink" href="@Url.Action("Index", "Home")">Back to Home</a></div>
                     <input type="file" name="file" id="file" />
-                    <input type="submit" value="Upload"/>
-                </div>
-                <div>
-                    <img id="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
+                    <input type="submit" value="Upload" />
                 </div>
             }
-            </div>
+        </div>
+    </div>
+    <div id="homepageimage">
+        <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
     </div>
 </div>
