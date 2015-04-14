@@ -17,12 +17,14 @@ namespace Charltone.UI.Controllers
     public class OrderingController : Controller
     {
         private readonly IOrderingRepository _orderings;
+        private readonly IOrderingHeaderContentRepository _header;
         private readonly IInstrumentTypeRepository _types;
         private readonly IPhotoRepository _photos;
 
-        public OrderingController(IOrderingRepository orderings, IInstrumentTypeRepository types, IPhotoRepository photos)
+        public OrderingController(IOrderingRepository orderings, IOrderingHeaderContentRepository header, IInstrumentTypeRepository types, IPhotoRepository photos)
         {
             _orderings = orderings;
+            _header = header;
             _photos = photos;
             _types = types;
         }
@@ -125,6 +127,22 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public ActionResult EditHeader()
+        {
+            return View(LoadOrderingHeaderEditViewModel());
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditHeader(OrderingHeaderEditViewModel viewModel)
+        {
+            UpdateOrderingHeader(viewModel);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public FileResult GetPhoto(int id)
         {
             var photo = LoadPhoto(id);
@@ -177,14 +195,17 @@ namespace Charltone.UI.Controllers
 
         private OrderingListViewModel LoadOrderingListViewModel()
         {
+            var header = _header.GetAll().Single();
             var orderings = _orderings.GetAll();
             var totalitems = orderings.Count();
 
             var vm = new OrderingListViewModel
                      {
+                         HeaderInfo = new HeaderInfo { Summary = header.Summary, Pricing = header.Pricing, PaymentOptions = header.PaymentOptions, PaymentPolicy = header.PaymentPolicy, Shipping = header.Shipping },
                          TotalItemsCount = totalitems,
                          RowCount = totalitems,
                          Banner = "Ordering"
+
                      };
 
             //TODO: figure out how to do this in CSS
@@ -247,6 +268,22 @@ namespace Charltone.UI.Controllers
             return vm;
         }
 
+        private OrderingHeaderEditViewModel LoadOrderingHeaderEditViewModel()
+        {
+
+            var orderingHeader = _header.GetAll().Single();
+            var vm = new OrderingHeaderEditViewModel
+            {
+                Summary = orderingHeader.Summary,
+                Pricing = orderingHeader.Pricing,
+                PaymentOptions = orderingHeader.PaymentOptions,
+                PaymentPolicy = orderingHeader.PaymentPolicy,
+                Shipping = orderingHeader.Shipping
+            };
+
+            return vm;
+        }
+
         private void UpdateOrdering(int orderingId, OrderingEditViewModel viewModel)
         {
             var ordering = _orderings.Get(orderingId);
@@ -265,6 +302,19 @@ namespace Charltone.UI.Controllers
             ordering.TypicalPrice = viewModel.TypicalPrice;
 
             _orderings.Update(ordering);
+        }
+
+        private void UpdateOrderingHeader(OrderingHeaderEditViewModel viewModel)
+        {
+            var orderingHeader = _header.GetAll().Single();
+
+            orderingHeader.Summary = viewModel.Summary;
+            orderingHeader.Pricing = viewModel.Pricing;
+            orderingHeader.PaymentOptions = viewModel.PaymentOptions;
+            orderingHeader.PaymentPolicy = viewModel.PaymentPolicy;
+            orderingHeader.Shipping = viewModel.Shipping;
+
+            _header.Update(orderingHeader);
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Charltone.Domain.Mappings
             Map(m => m.CaseDetail).Column("CaseDetail");
             Map(m => m.FunFacts).Column("FunFacts");
             Map(m => m.Strings).Column("Strings");
+            Map(m => m.FretWire).Column("FretWire");
+            Map(m => m.Dimensions).Column("Dimensions");
 
             References(m => m.InstrumentType).Column("InstrumentTypeId");
             References(m => m.Classification).Column("ClassificationId");

@@ -20,6 +20,7 @@ namespace Charltone.UI
             kernel.Bind<IAdminRepository>().To<AdminRepository>();
             kernel.Bind<IHomePageImageRepository>().To<HomePageImageRepository>();
             kernel.Bind<IOrderingRepository>().To<OrderingRepository>();
+            kernel.Bind<IOrderingHeaderContentRepository>().To<OrderingHeaderContentRepository>();
             kernel.Bind<IInstrumentRepository>().To<InstrumentRepository>();
             kernel.Bind<IInstrumentTypeRepository>().To<InstrumentTypeRepository>();
             kernel.Bind<IPhotoRepository>().To<PhotoRepository>();

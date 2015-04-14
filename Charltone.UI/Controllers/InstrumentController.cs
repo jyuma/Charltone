@@ -76,27 +76,30 @@ namespace Charltone.UI.Controllers
                                                              InstrumentType = new InstrumentType {Id = viewModel.InstrumentTypeId},
                                                              Classification = new Classification {Id = viewModel.ClassificationId},
                                                              SubClassification = new SubClassification {Id = viewModel.SubClassificationId},
-                                                             Model = viewModel.Model,
-                                                             Sn = viewModel.Sn,
-                                                             Top = viewModel.Top,
+
                                                              Body = viewModel.Body,
                                                              BackAndSides = viewModel.BackAndSides,
                                                              Binding = viewModel.Binding,
-                                                             Neck = viewModel.Neck,
-                                                             Faceplate = viewModel.Faceplate,
-                                                             Fingerboard = viewModel.Fingerboard,
-                                                             FretMarkers = viewModel.FretMarkers,
-                                                             EdgeDots = viewModel.EdgeDots,
                                                              Bridge = viewModel.Bridge,
-                                                             Finish = viewModel.Finish,
-                                                             Tuners = viewModel.Tuners,
-                                                             PickGuard = viewModel.PickGuard,
-                                                             Pickup = viewModel.Pickup,
-                                                             NutWidth = viewModel.NutWidth,
-                                                             ScaleLength = viewModel.ScaleLength,
                                                              CaseDetail = viewModel.CaseDetail,
                                                              Comments = viewModel.Comments,
-                                                             FunFacts = viewModel.FunFacts
+                                                             Dimensions = viewModel.Dimensions,
+                                                             EdgeDots = viewModel.EdgeDots,
+                                                             Faceplate = viewModel.Faceplate,
+                                                             Fingerboard = viewModel.Fingerboard,
+                                                             Finish = viewModel.Finish,
+                                                             FretMarkers = viewModel.FretMarkers,
+                                                             FretWire = viewModel.FretWire,
+                                                             FunFacts = viewModel.FunFacts,
+                                                             Model = viewModel.Model,
+                                                             Neck = viewModel.Neck,
+                                                             NutWidth = viewModel.NutWidth,
+                                                             PickGuard = viewModel.PickGuard,
+                                                             Pickup = viewModel.Pickup,
+                                                             ScaleLength = viewModel.ScaleLength,
+                                                             Sn = viewModel.Sn,
+                                                             Top = viewModel.Top,
+                                                             Tuners = viewModel.Tuners
                                                          },
                                   ProductDesc = "Instrument",
                                   Price = viewModel.Price,
@@ -312,6 +315,8 @@ namespace Charltone.UI.Controllers
                          Comments = instrument.Comments,
                          CaseDetail = instrument.CaseDetail,
                          Strings = instrument.Strings,
+                         FretWire = instrument.FretWire,
+                         Dimensions = instrument.Dimensions,
                          FunFacts = instrument.FunFacts,
                          Price = product.DisplayPrice,
                          InstrumentStatus = product.ProductStatus.StatusDesc,
@@ -353,6 +358,8 @@ namespace Charltone.UI.Controllers
                          Comments = instrument.Comments,
                          CaseDetail = instrument.CaseDetail,
                          Strings = instrument.Strings,
+                         FretWire = instrument.FretWire,
+                         Dimensions = instrument.Dimensions,
 
                          InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id),
                          InstrumentTypeId = instrument.InstrumentType.Id,
@@ -398,19 +405,15 @@ namespace Charltone.UI.Controllers
         {
             var posted = viewModel.IsPosted;
             var statusid = viewModel.StatusId;
-
             if (product.ProductStatus.Id != statusid)
             {
                 product.ProductStatus = _types.GetProductStatus(statusid);
             }
-
             product.ProductStatus.Id = viewModel.StatusId;
             product.IsPosted = posted;
             product.Price = viewModel.Price;
             product.DisplayPrice = viewModel.DisplayPrice;
-
             UpdateInstrument(product.Instrument, viewModel);
-
             _products.Update(product);
         }
 
@@ -431,11 +434,13 @@ namespace Charltone.UI.Controllers
             instrument.Bridge = viewModel.Bridge;
             instrument.CaseDetail = viewModel.CaseDetail;
             instrument.Comments = viewModel.Comments;
+            instrument.Dimensions = viewModel.Dimensions;
             instrument.EdgeDots = viewModel.EdgeDots;
             instrument.Faceplate = viewModel.Faceplate;
             instrument.Fingerboard = viewModel.Fingerboard;
             instrument.Finish = viewModel.Finish;
             instrument.FretMarkers = viewModel.FretMarkers;
+            instrument.FretWire = viewModel.FretWire;
             instrument.FunFacts = viewModel.FunFacts;
             instrument.Model = viewModel.Model;
             instrument.Neck = viewModel.Neck;

@@ -1,0 +1,58 @@
+﻿@model Charltone.UI.ViewModels.Ordering.OrderingHeaderEditViewModel
+
+@{
+    ViewBag.Title = "Edit Ordering Header Content";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="editordering">
+    @using (Html.BeginForm())
+    {
+        <div class="editinstrcontainer">
+            @Html.ValidationSummary(true)
+            <div class="editinstrinfo">
+                <div class="editinstrbuttons">
+                    <input class="savebutton" type="submit" value="Save" name="Command" />
+                    &nbsp
+                    @Html.ActionLink("Main List", "Index", "Ordering")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Summary)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Summary)
+                    @Html.ValidationMessageFor(model => model.Summary)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Pricing)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Pricing)
+                    @Html.ValidationMessageFor(model => model.Pricing)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PaymentOptions)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.PaymentOptions)
+                    @Html.ValidationMessageFor(model => model.PaymentOptions)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PaymentPolicy)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.PaymentPolicy)
+                    @Html.ValidationMessageFor(model => model.PaymentPolicy)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Shipping)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Shipping)
+                    @Html.ValidationMessageFor(model => model.Shipping)
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

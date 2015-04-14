@@ -58,6 +58,11 @@ namespace Charltone.UI.ViewModels.Instrument
 
         public string Strings { get; set; }
 
+        [DisplayName("Fret Wire")]
+        public string FretWire { get; set; }
+
+        public string Dimensions { get; set; }
+
         public string InstrumentStatus { get; set; }
         public int DefaultPhotoId { get; set; }
         public string Price { get; set; }

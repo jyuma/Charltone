@@ -5,17 +5,20 @@ namespace Charltone.UI.ViewModels.Home
 {
     public class ContactViewModel
     {
+        public string HeaderMessage { get; set; }
+
         public ContactViewModel()
         {
             HeaderMessage = "Want to drop us a line?";
         }
-
+        
         [Required]
         [DisplayName("Name")]
         public string ContactName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [StringLength(50)]
         [DisplayName("Email")]
         public string ContactEmail { get; set; }
 
@@ -25,12 +28,11 @@ namespace Charltone.UI.ViewModels.Home
         [Required]
         [DisplayName("Message")]
         public string ContactMessage { get; set; }
+
         public string Phone { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
-
-        public string HeaderMessage { get; set; }
     }
 }

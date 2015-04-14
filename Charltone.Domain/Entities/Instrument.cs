@@ -27,6 +27,7 @@
         public virtual string Comments { get; set; }
         public virtual string FunFacts { get; set; }
         public virtual string Strings { get; set; }
-        //public virtual Product Product { get; set; }
+        public virtual string FretWire { get; set; }
+        public virtual string Dimensions { get; set; }
     }
 }

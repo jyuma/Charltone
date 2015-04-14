@@ -58,6 +58,7 @@
     <Compile Include="Entities\InstrumentType.cs" />
     <Compile Include="Entities\NoPhotoImage.cs" />
     <Compile Include="Entities\Ordering.cs" />
+    <Compile Include="Entities\OrderingHeaderContent.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductStatus.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Mappings\InstrumentMap.cs" />
     <Compile Include="Mappings\InstrumentTypeMap.cs" />
     <Compile Include="Mappings\NoPhotoImageMap.cs" />
+    <Compile Include="Mappings\OrderingHeaderContentMapping.cs" />
     <Compile Include="Mappings\OrderingMap.cs" />
     <Compile Include="Mappings\PhotoMap.cs" />
     <Compile Include="Mappings\ProductMap.cs" />

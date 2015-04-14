@@ -191,6 +191,7 @@
     <Compile Include="ViewModels\Ordering\OrderingEditViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\Ordering\OrderingHeaderEditViewModel.cs" />
     <Compile Include="ViewModels\Ordering\OrderingListViewModel.cs" />
     <Compile Include="ViewModels\Photo\OrderingPhotoEditViewModel.cs" />
     <Compile Include="ViewModels\Photo\InstrumentPhotosEditViewModel.cs" />
@@ -212,6 +213,8 @@
     <Content Include="Content\Images\torres.png" />
     <Content Include="Content\Images\torres_small.png" />
     <Content Include="Content\Images\workshop2_cropped.jpg" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.ui.dialog.js" />
@@ -222,10 +225,12 @@
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
@@ -259,6 +264,7 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Ordering\Delete.cshtml" />
     <Content Include="Views\Instrument\Photos.cshtml" />
+    <Content Include="Views\Ordering\EditHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Contact.cshtml" />

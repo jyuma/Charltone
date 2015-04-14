@@ -6,60 +6,61 @@
     ViewBag.Title = "Charltone Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script type="text/javascript">
+    $(function () {
+        $("#orderinglistviewheader").accordion();
+    });
+</script>
+
 <div id="instrlistview" style="height: @Model.BackgroundImageHeight">
     <div id="orderinglistviewcontent">
+        <div class="editlink" id="orderingheadereditlnk">
+            @Html.ActionLinkAuthorized("Add Ordering", "Create")
+            &nbsp
+            @Html.ActionLinkAuthorized("Edit Header", "EditHeader")
+        </div>
         <div id="orderinglistviewheader">
+            <h3>Ordering</h3>
             <div>
-                Ordering a Charltone instrument is normally an interactive process, governed by how specific you want to be on the various aspects. Of course, it would be best if you could drop by my shop and we could go over everything in person. However, it works fine using email (c/w photos) and/or the phone. Once you decide which model you’d like, we can nail down the specifics of wood, hardware, nut width, and so on. I can provide photos of the various options, as well as links to the on-line catalogues I order from.
+                @Model.HeaderInfo.Summary
             </div>
-            <br />
+            <h3>Pricing</h3>
             <div>
-                As far as pricing goes, I indicate a typical price for each model in the descriptions below. The final price will depend on the materials used, inlays, special requests, type of case, and shipping costs. I insist some kind of hardshell case be included in the final package if shipping id required.
+                @Model.HeaderInfo.Pricing
             </div>
-            <p>
-                Payment Options:
-                <br />
-                1) Certified cheque or Money order via regular mail
-                <br />
-                2) e-Transfer via on-line banking
-            </p>
-            <p>
-                Payment Policy:
-                I require a 30% non-refundable deposit up front. The balance is due upon completion, prior to shipping.
-            </p>
-            <p>
-                Shipping:
-                <br />
-                This cost is to be borne by the customer.
-                <br />
-                In Canada: I’ve been using Greyhound. So long as the instrument is in a hardshell case boxed up in corrugated cardboard, it works fine. Insurance is up to the customer. I think they charge 3% - e.g., if you want $1,000 insurance, it costs $30.
-                <br />
-                Internationally: [I have to look into this]
-            </p>
+            <h3>Payment Options</h3>
+            <div>
+                @Model.HeaderInfo.PaymentOptions
+            </div>
+            <h3>Payment Policy</h3>
+            <div>
+                @Model.HeaderInfo.PaymentPolicy
+            </div>
+            <h3>Shipping</h3>
+            <div>
+                @Model.HeaderInfo.Shipping
+            </div>
         </div>
-        <div class="editlink" id="listaddnew">
-            @Html.ActionLinkAuthorized("Add", "Create")
-        </div>
-        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
-            
+
+        <div class="linehorizontal" id="orderinglistlinehorizontal"></div>
+
         @{
             foreach (var orderingInfo in Model.OrderingInfo)
             {
                 <table class="orderingitemtable">
                     <tr>
-                        <td id="orderingtablecelllabelmodel">
+                        <td rowspan="5" id="orderingtablecellphoto">
+                            <img id="orderingphoto" src=@Url.Action("GetThumbnail", "Ordering", new { id = orderingInfo.Id }) alt="" />
+                        </td>
+                        <td class="orderingtablecelllabel">
                             Model:
                         </td>
                         <td class="orderingtablecell">
                             @orderingInfo.Model
                         </td>
                     </tr>
-                </table>
-                <table class="orderingitemtable">
                     <tr>
-                        <td rowspan="4" id="orderingtablecellphoto">
-                            <img id="orderingphoto" src=@Url.Action("GetThumbnail", "Ordering", new { id = orderingInfo.Id }) alt="" />
-                        </td>
                         <td class="orderingtablecelllabel">
                             Style: 
                         </td>

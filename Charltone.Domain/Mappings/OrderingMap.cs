@@ -2,7 +2,6 @@
 using FluentNHibernate.Mapping;
 
 namespace Charltone.Domain.Mappings
-
 {
     public sealed class OrderingMap : ClassMap<Ordering>
     {

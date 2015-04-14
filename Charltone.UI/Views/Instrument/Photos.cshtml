@@ -41,7 +41,9 @@
         <div class="editlink" id="editphotoslinks">
             @Html.ActionLink("Main List", "Index", "Instrument")
             &nbsp
-            @Html.ActionLink("Instrument Detail", "Detail", new { id = @Model.ProductId })
+            @Html.ActionLink("Edit", "Edit", new { id = @Model.ProductId })
+            &nbsp
+            @Html.ActionLink("View", "Detail", new { id = @Model.ProductId })
         </div>
 
         <div id="editphotosheader">
