@@ -19,7 +19,9 @@ namespace Charltone.Domain.Mappings
 
             References(m => m.ProductType).Column("ProductTypeId");
             References(m => m.ProductStatus).Column("StatusId");
-            References(m => m.Instrument).Column("InstrumentId").Cascade.All();
+            References(m => m.Instrument).Column("InstrumentId")
+                .Fetch.Join()
+                .Cascade.All();
         }
     }
 }

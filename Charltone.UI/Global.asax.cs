@@ -19,6 +19,7 @@ namespace Charltone.UI
 
             kernel.Bind<IAboutContentRepository>().To<AboutContentRepository>();
             kernel.Bind<IAdminRepository>().To<AdminRepository>();
+            kernel.Bind<IClassificationRepository>().To<ClassificationRepository>();
             kernel.Bind<IHomeContentRepository>().To<HomeContentRepository>();
             kernel.Bind<IInstrumentRepository>().To<InstrumentRepository>();
             kernel.Bind<IInstrumentTypeRepository>().To<InstrumentTypeRepository>();
@@ -26,6 +27,8 @@ namespace Charltone.UI
             kernel.Bind<IOrderingHeaderContentRepository>().To<OrderingHeaderContentRepository>();
             kernel.Bind<IPhotoRepository>().To<PhotoRepository>();
             kernel.Bind<IProductRepository>().To<ProductRepository>();
+            kernel.Bind<IProductStatusRepository>().To<ProductStatusRepository>();
+            kernel.Bind<ISubClassificationRepository>().To<SubClassificationRepository>();
 
             return kernel;
         }

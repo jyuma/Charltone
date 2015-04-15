@@ -18,15 +18,25 @@ namespace Charltone.UI.Controllers
     {
         private readonly IOrderingRepository _orderings;
         private readonly IOrderingHeaderContentRepository _headerContent;
-        private readonly IInstrumentTypeRepository _types;
+        private readonly IInstrumentTypeRepository _instrumentTypes;
+        private readonly IClassificationRepository _classifications;
+        private readonly ISubClassificationRepository _subClassifications;
+
         private readonly IPhotoRepository _photos;
 
-        public OrderingController(IOrderingRepository orderings, IOrderingHeaderContentRepository headerContent, IInstrumentTypeRepository types, IPhotoRepository photos)
+        public OrderingController(IOrderingRepository orderings, 
+            IOrderingHeaderContentRepository headerContent, 
+            IInstrumentTypeRepository instrumentTypes,
+            IClassificationRepository classifications,
+            ISubClassificationRepository subClassifications,
+            IPhotoRepository photos)
         {
             _orderings = orderings;
             _headerContent = headerContent;
             _photos = photos;
-            _types = types;
+            _instrumentTypes = instrumentTypes;
+            _classifications = classifications;
+            _subClassifications = subClassifications;
         }
 
         public ActionResult Index()
@@ -255,13 +265,13 @@ namespace Charltone.UI.Controllers
                 TypicalPrice = ordering.TypicalPrice,
                 Comments = ordering.Comments,
 
-                InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id),
+                InstrumentTypes = new SelectList(_instrumentTypes.GetAll(), "Id", "InstrumentTypeDesc", ordering.InstrumentType.Id),
                 InstrumentTypeId = ordering.InstrumentType.Id,
 
-                ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", ordering.Classification.Id),
+                ClassificationTypes = new SelectList(_classifications.GetAll(), "Id", "ClassificationDesc", ordering.Classification.Id),
                 ClassificationId = ordering.Classification.Id,
 
-                SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", ordering.SubClassification.Id),
+                SubClassificationTypes = new SelectList(_subClassifications.GetAll(), "Id", "SubClassificationDesc", ordering.SubClassification.Id),
                 SubClassificationId = ordering.SubClassification.Id
             };
 
@@ -289,13 +299,13 @@ namespace Charltone.UI.Controllers
             var ordering = _orderings.Get(orderingId);
 
             if (ordering.InstrumentType.Id != viewModel.InstrumentTypeId)
-                ordering.InstrumentType = _types.GetInstrumentType(viewModel.InstrumentTypeId);
+                ordering.InstrumentType = _instrumentTypes.GetAll().Single(x => x.Id == viewModel.InstrumentTypeId);
 
             if (ordering.Classification.Id != viewModel.ClassificationId)
-                ordering.Classification = _types.GetClassification(viewModel.ClassificationId);
+                ordering.Classification = _classifications.GetAll().Single(x => x.Id == viewModel.ClassificationId);
 
             if (ordering.SubClassification.Id != viewModel.SubClassificationId)
-                ordering.SubClassification = _types.GetSubClassification(viewModel.SubClassificationId);
+                ordering.SubClassification = _subClassifications.GetAll().Single(x => x.Id == viewModel.SubClassificationId);
 
             ordering.Comments = viewModel.Comments;
             ordering.Model = viewModel.Model;

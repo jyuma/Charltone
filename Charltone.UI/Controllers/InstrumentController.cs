@@ -17,13 +17,25 @@ namespace Charltone.UI.Controllers
     public class InstrumentController : Controller
     {
         private readonly IProductRepository _products;
-        private readonly IInstrumentTypeRepository _types;
+        private readonly IInstrumentTypeRepository _instrumentTypes;
+        private readonly IClassificationRepository _classifications;
+        private readonly ISubClassificationRepository _subClassifications;
+        private readonly IProductStatusRepository _productStatus;
         private readonly IPhotoRepository _photos;
 
-        public InstrumentController(IProductRepository products, IInstrumentTypeRepository types, IPhotoRepository photos)
+
+        public InstrumentController(IProductRepository products, 
+            IInstrumentTypeRepository instrumentTypes,
+            IClassificationRepository classifications,
+            ISubClassificationRepository subClassifications,
+            IProductStatusRepository productStatus, 
+            IPhotoRepository photos)
         {
             _products = products;
-            _types = types;
+            _instrumentTypes = instrumentTypes;
+            _classifications = classifications;
+            _subClassifications = subClassifications;
+            _productStatus = productStatus;
             _photos = photos;
         }
 
@@ -228,28 +240,15 @@ namespace Charltone.UI.Controllers
 
         #region LoadViewModels
 
-        private InstrumentPhotosEditViewModel LoadInstrumentPhotosEditViewModel(int productid)
-        {
-            var vm = new InstrumentPhotosEditViewModel();
-
-            var product = _products.Get(productid);
-            vm.PhotoIds = product.Photos.Select(x => x.Id);
-            vm.ProductId = productid;
-            vm.DefaultPhotoId = product.GetDefaultPhotoId();
-            vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
-
-            return vm;
-        }
-
         private InstrumentListViewModel LoadInstrumentListViewModel()
         {
             var products = _products.GetInstrumentList(Request.IsAuthenticated);
-            var totalitems = _products.InstrumentCount(Request.IsAuthenticated);
+            var totalitems = products.Count;
 
             var vm = new InstrumentListViewModel
-                     {
-                         TotalItemsCount = totalitems
-                     };
+            {
+                TotalItemsCount = totalitems
+            };
 
             var sortedList = products
                     .Where(product => product.Instrument != null)
@@ -261,24 +260,24 @@ namespace Charltone.UI.Controllers
 
             vm.Instruments = sortedList
                 .Select((product, index) => new InstrumentViewModel
+                {
+                    Id = product.Instrument.Id,
+                    ProductId = product.Id,
+                    WrapperClassId = string.Format("{0}-wrapper", product.Instrument.GetClassId(index)),
+                    ClassId = product.Instrument.GetClassId(index),
+                    PhotoClassId = string.Format("img_{0}", product.GetDefaultPhotoId()),
+                    InstrumentType = product.Instrument.InstrumentType.InstrumentTypeDesc,
+                    Classification = product.Instrument.Classification.ClassificationDesc,
+                    SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
+                    Model = product.Instrument.Model + ' ' + product.Instrument.Sn,
+                    Status = new Status
                     {
-                        Id = product.Instrument.Id,
-                        ProductId = product.Id, 
-                        WrapperClassId = string.Format("{0}-wrapper", product.Instrument.GetClassId(index)),
-                        ClassId = product.Instrument.GetClassId(index),
-                        PhotoClassId = string.Format("img_{0}", product.GetDefaultPhotoId()),
-                        InstrumentType = product.Instrument.InstrumentType.InstrumentTypeDesc,
-                        Classification = product.Instrument.Classification.ClassificationDesc,
-                        SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
-                        Model = product.Instrument.Model + ' ' + product.Instrument.Sn,
-                        Status = new Status
-                                    {
-                                        Description = product.ProductStatus.GetDescription(product.DisplayPrice),
-                                        ClassId = product.ProductStatus.GetClassId()
-                                    },
-                        NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
-                        DefaultPhotoId = product.GetDefaultPhotoId()
-                    }).ToList();
+                        Description = product.ProductStatus.GetDescription(product.DisplayPrice),
+                        ClassId = product.ProductStatus.GetClassId()
+                    },
+                    NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
+                    DefaultPhotoId = product.GetDefaultPhotoId()
+                }).ToList();
 
             //--- construct the banner message
             if (totalitems == 1) vm.Banner = "1 instrument";
@@ -294,6 +293,19 @@ namespace Charltone.UI.Controllers
             var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
 
             vm.BackgroundImageHeight = (rowheight * vm.RowCount) + menuheight + "px;";
+
+            return vm;
+        }
+
+        private InstrumentPhotosEditViewModel LoadInstrumentPhotosEditViewModel(int productid)
+        {
+            var vm = new InstrumentPhotosEditViewModel();
+
+            var product = _products.Get(productid);
+            vm.PhotoIds = product.Photos.Select(x => x.Id);
+            vm.ProductId = productid;
+            vm.DefaultPhotoId = product.GetDefaultPhotoId();
+            vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
 
             return vm;
         }
@@ -387,16 +399,16 @@ namespace Charltone.UI.Controllers
                          Comments = instrument.Comments,
                          FunFacts = instrument.FunFacts,
 
-                         InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id),
+                         InstrumentTypes = new SelectList(_instrumentTypes.GetAll(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id),
                          InstrumentTypeId = instrument.InstrumentType.Id,
 
-                         ClassificationTypes = new SelectList(_types.GetClassificationList(), "Id", "ClassificationDesc", instrument.Classification.Id),
+                         ClassificationTypes = new SelectList(_classifications.GetAll(), "Id", "ClassificationDesc", instrument.Classification.Id),
                          ClassificationId = instrument.Classification.Id,
 
-                         SubClassificationTypes = new SelectList(_types.GetSubClassificationList(), "Id", "SubClassificationDesc", instrument.SubClassification.Id),
+                         SubClassificationTypes = new SelectList(_subClassifications.GetAll(), "Id", "SubClassificationDesc", instrument.SubClassification.Id),
                          SubClassificationId = instrument.SubClassification.Id,
 
-                         StatusTypes = new SelectList(_types.GetProductStatusList(), "Id", "StatusDesc", product.ProductStatus.Id),
+                         StatusTypes = new SelectList(_productStatus.GetAll(), "Id", "StatusDesc", product.ProductStatus.Id),
                          StatusId = product.ProductStatus.Id,
 
                          Price = product.Price,
@@ -435,7 +447,7 @@ namespace Charltone.UI.Controllers
             var statusid = viewModel.StatusId;
             if (product.ProductStatus.Id != statusid)
             {
-                product.ProductStatus = _types.GetProductStatus(statusid);
+                product.ProductStatus = _productStatus.GetAll().Single(x => x.Id == statusid);
             }
             product.ProductStatus.Id = viewModel.StatusId;
             product.IsPosted = posted;
@@ -448,13 +460,13 @@ namespace Charltone.UI.Controllers
         private void UpdateInstrument(Instrument instrument, InstrumentEditViewModel viewModel)
         {
             if (instrument.InstrumentType.Id != viewModel.InstrumentTypeId)
-                instrument.InstrumentType = _types.GetInstrumentType(viewModel.InstrumentTypeId);
+                instrument.InstrumentType = _instrumentTypes.GetAll().Single(x => x.Id == viewModel.InstrumentTypeId);
 
             if (instrument.Classification.Id != viewModel.ClassificationId)
-                instrument.Classification = _types.GetClassification(viewModel.ClassificationId);
+                instrument.Classification = _classifications.GetAll().Single(x => x.Id == viewModel.ClassificationId);
 
             if (instrument.SubClassification.Id != viewModel.SubClassificationId)
-                instrument.SubClassification = _types.GetSubClassification(viewModel.SubClassificationId);
+                instrument.SubClassification = _subClassifications.GetAll().Single(x => x.Id == viewModel.SubClassificationId);
 
             instrument.Top = viewModel.Top;
             instrument.BackAndSides = viewModel.BackAndSides;

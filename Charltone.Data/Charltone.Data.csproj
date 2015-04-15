@@ -67,6 +67,7 @@
     <Compile Include="NHibernateExtensions.cs" />
     <Compile Include="Repositories\AboutContentRepository.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
+    <Compile Include="Repositories\ClassificationRepository.cs" />
     <Compile Include="Repositories\HomeContentRepository.cs" />
     <Compile Include="Repositories\InstrumentRespository.cs" />
     <Compile Include="Repositories\OrderingHeaderContentRepository.cs" />
@@ -74,9 +75,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PhotoRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductStatusRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\SortExtension.cs" />
     <Compile Include="Repositories\InstrumentTypeRepository.cs" />
+    <Compile Include="Repositories\SubClassificationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

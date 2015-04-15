@@ -6,7 +6,6 @@ namespace Charltone.Data.Repositories
 {
     public interface IProductRepository : IRepositoryBase<Product>
     {
-        int InstrumentCount(bool includeUnposted);
         IList<Product> GetInstrumentList(bool includeUnposted);
     }
 
@@ -15,12 +14,6 @@ namespace Charltone.Data.Repositories
         public ProductRepository(ISession session)
             : base(session)
         {
-        }
-
-        public int InstrumentCount(bool includeUnposted)
-        {
-            var list = GetInstrumentList(includeUnposted);
-            return list.Count;
         }
 
         public IList<Product> GetInstrumentList(bool includeUnposted)

@@ -15,7 +15,6 @@ namespace Charltone.Domain.Mappings
             Map(m => m.IsDefault).Column("IsDefault");
 
             References(m => m.Product).Column("ProductId").ReadOnly()
-                .Fetch.Join()
                 .Cascade.None();
         }
     }
