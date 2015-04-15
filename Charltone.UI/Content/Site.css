@@ -80,7 +80,7 @@ button {
    cursor:pointer;
    top: 35px; 
    color: #cea96d;
-   font-size: .82em;
+   font-size: 12pt;
    padding-right: 5px;
 }
 #funfactshint {
@@ -88,23 +88,25 @@ button {
    cursor:pointer;
    top: 35px; 
    color: #cea96d;
-   font-size: .82em;
+   font-size: 12pt;
    padding-right: 5px;
 }
 .funfactstooltip {
+    position: absolute;
 	margin:8px;
 	padding:1px;
 	border:1px solid #cea96d;
 	background-color:#fff;
-	position: absolute;
+    font-size: 8pt;
 	z-index: 2;
 }
 .commentstooltip {
+    position: absolute;
 	margin:8px;
 	padding:1px;
 	border:1px solid #cea96d;
 	background-color:#fff;
-	position: absolute;
+    font-size: 8pt;
 	z-index: 2;
 }
 .fieldset {
@@ -118,10 +120,6 @@ button {
 }
 .fileinput {
     width:260px;
-}
-#listaddnew {
-    margin-top: 5px;
-    margin-bottom: 10px;
 }
 #editphotos {
     position: relative;
@@ -184,8 +182,8 @@ button {
 #editphotoslinks {
     clear: both;
     position: relative;
-    top: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+    font-size: 12pt;
 }
 #editphotosupload {
     position: relative;
@@ -206,7 +204,7 @@ button {
     position: relative;
 }
 .editlink {
-   font-size: 14pt;
+   font-size: 12pt;
 }
 .thumbnail {
     width: 90px;
@@ -230,13 +228,13 @@ button {
     background: url(Images/tools_large.jpg);
     clear: both;
     width: 900px;
-    height: 2870px;
+    height: 2400px;
 }
 #deleteinstrument {
     background: url(Images/tools_large_3.jpg);
     clear: both;
     width: 900px;
-    height: 2870px;
+    height: 2400px;
 }
 #deleteconfirm {
     position: relative;
@@ -245,10 +243,14 @@ button {
     font-size: 16pt;
     color: #AC3219;
 }
+#deleteinstrbuttons {
+    position: relative;
+    font-size: 12pt;
+}
 #editinstrument {
     background: url(Images/tools_large.jpg);
     width: 900px;
-    height: 2870px;
+    height: 2400px;
 }
 .editinstrcontainer {
     position: relative;
@@ -296,12 +298,10 @@ button {
     border-left: dotted;
     border-right: none;
 }
-.viewdetailslink {
-    font-size:1em;
-    color: #7DA5D8;
-    width: 250px;
-}
-#instrlistview {
+
+/* Instrument List */
+
+#instrlist {
     position: relative;
     clear: both;
     background: url(Images/tools_large_2_dark.jpg);
@@ -309,14 +309,21 @@ button {
 }
 #instrlistheader {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     clear: both;
     font-size: 12pt;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
     color: #fff;
+    float: left;
 }
-#instrlistviewcontent {
+#instrlistaddnew {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    float: right;
+    margin: 0 33px 0 0;
+}
+#instrlistcontent {
     top: 20px;
     position: relative;
     margin-left: 33px;
@@ -326,50 +333,71 @@ button {
    width: 835px;
    margin-bottom: 20px;
 }
-#listdetail {
-    width: 875px;
-}
-.listinfomodel {
+#instrlistinfomodel {
     position: relative;
     color: #fff;
     padding: 0;
     width: 250px;
     font-size: 13pt;
 }
-.listinfostatus {
-    position: relative;
+#instrlistinfodetail {
     color: #fff;
+    font-size: 1em;
     padding: 0;
-    width: 250px;
-    font-size: 11pt;
 }
+#instrlistinfonotposted {
+    color: Red;
+}
+#instrlistdetail {
+    width: 875px;
+}
+.instrlistdefaultphoto {
+    border: solid;
+    border-width: 2px;
+    border-color: #cea96d;
+    width: 260px;
+    height: 320px;
+    margin-bottom: 3px;
+}
+.instrlistviewdetailslink {
+    font-size:1em;
+    color: #7DA5D8;
+    width: 250px;
+}
+
+/* Ordering */
 #orderingheadereditlnk {
-    font-size: 12pt;
+    margin: 2px 0 2px 0;
+}
+#orderinglistlinehorizontaltop {
+    position: relative;
+    width: 835px;
+    margin: 10px 0 10px 0
 }
 #orderinglistlinehorizontal {
     position: relative;
     width: 835px;
     margin: 8px 0 8px 0
 }
-#orderinglistview {
+#orderinglist {
     position: relative;
     clear: both;
     background: url(Images/tools_large_2_dark.jpg);
     width: 900px;
 }
-#orderinglistviewcontent {
+#orderinglistcontent {
     position: relative;
     margin-left: 33px;
     color: #fff;
 }
-#orderinglistviewheader .ui-accordion-content {
+#orderinglistheader .ui-accordion-content {
     margin: 0;
     width: 785px;
     color: #000000;
     background-color: #cea96d;
     font-size: 8pt;
 }
-#orderinglistviewheader .ui-accordion-header {
+#orderinglistheader .ui-accordion-header {
     width: 800px;
     background-color: #63411D;
     color: #f0f0f0;
@@ -426,7 +454,30 @@ button {
 #editordering {
     background: url(Images/tools_large.jpg);
     width: 900px;
-    height: 620px;
+    height: 600px;
+}
+#editorderinginfo {
+    position: relative;
+    color: #fff;
+    float: left;
+}
+#editorderingcontainer {
+    position: relative;
+    left: 25px;
+    color: #ffffff;
+}
+#editorderingbuttons {
+    position: relative;
+    margin: 20px 0 20px 0;
+    font-size: 12pt;
+}
+#editorderingphotoimg {
+	border-style: solid;
+    border-color: #cea96d;
+    margin-top: 35px;
+    margin-left: 50px;
+    height: 240px;
+    width: 180px;
 }
 #deleteordering {
     background: url(Images/tools_large.jpg);
@@ -436,22 +487,7 @@ button {
 #editorfieldorderingmodel {
     width: 2em;
 }
-#listinfopostedmessage {
-    color: Red;
-}
-.listinfodetail {
-    color: #fff;
-    font-size: 1em;
-    padding: 0;
-}
-.listdefaultphoto {
-    border: solid;
-    border-width: 2px;
-    border-color: #cea96d;
-    width: 260px;
-    height: 320px;
-    margin-bottom: 3px;
-}
+
 .listdialogimg {
     border: solid;
     border-width: 2px;
@@ -466,19 +502,19 @@ button {
 .right {
   margin-left: 0;
 }
-.left_wrapper {
+.left-wrapper {
   width: 285px;
   float: left;
   position: relative;
   z-index: 0;
 }
-.middle_wrapper {
+.middle-wrapper {
   width: 285px;
   float: left;
   position: relative;
   z-index: 2;
 }
-.right_wrapper {
+.right-wrapper {
   width: 285px;
   float: left;
   position: relative;
@@ -524,33 +560,33 @@ h3 {
 
 
 /* List page */
-label#listavailable {
+label#available {
     position: relative;
     color: #fff;
     padding: 0;
     width: 250px;
-    font-size: 11pt;
+    font-size: 10pt;
 }
-label#listsold {
+label#sold {
     position: relative;
     color: Red;
     padding: 0;
     width: 250px;
-    font-size: 11pt;
+    font-size: 10pt;
 }
-label#listnotforsale {
+label#notforsale {
     position: relative;
     color: #1d60ff;
     padding: 0;
     width: 250px;
-    font-size: 11pt;
+    font-size: 10pt;
 }
-label#listinprogress {
+label#inprogress {
     position: relative;
     color: #00ff21;
     padding: 0;
     width: 250px;
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 /* Detail page */
@@ -559,7 +595,7 @@ div#sold {
     margin-top: 10px;
     clear: both;
 	color: Red;
-	font-size: 14pt;
+	font-size: 12pt;
 	width: 20px;
 }
 div#notforsale {
@@ -567,7 +603,7 @@ div#notforsale {
     margin-top: 10px;
     clear: both;
 	color: Blue;
-	font-size: 14pt;
+	font-size: 12pt;
     width: 120px;
 }
 div#inprogress {    
@@ -575,21 +611,29 @@ div#inprogress {
     margin-top: 15px;
     clear: both;
 	color: #00ff21;
-	font-size: 14pt;
+	font-size: 12pt;
     width: 120px;
+}
+div#available {
+    font-size: 12pt;
+    clear: both;
+}
+#instrumentdetailprice {
+    font-size: 11pt;
+    clear: both;
 }
 .mainphoto {
 	border: solid;
 	border-width: 2px;
     border-color: #cea96d;
-    height: 420px;
-    width: 320px;
+    height: 450px;
+    width: 346px;
 }
 #instrumentdetail {
     background: url(Images/tools_large_2_dark.jpg) right no-repeat;
     position: relative;
     width: 900px;
-    height: 675px;
+    height: 665px;
 }
 #instrumentdetailcontent {
     margin-left: 30px;
@@ -597,7 +641,7 @@ div#inprogress {
 #instrdetaillinehoriztop {
    position: relative;
    margin-top: 12px;
-   width: 830px;
+   width: 840px;
    height: 1px;
 }
 #instrdetailheader {
@@ -606,18 +650,20 @@ div#inprogress {
     clear: both;
 }
 #instrdetailmodel {
-    margin-top: 15px;
-    font-size: 1.6em;
+    margin-top: 10px;
+    font-size: 13pt;
     float: left;
     color: #cea96d;
 }
-#instrumentdetailprice {
-    font-size: 10pt;
-    clear: both;
+#instrdetailadminbuttons {
+	position: relative;
+	float: left;
+    margin: 10px 0 0 10px;
+	font-size: 12pt;
 }
-#instrumentinfo {
+#instrdetailininfo {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 900px;
     float: left;
 }
@@ -629,16 +675,14 @@ div#inprogress {
 }
 #instrdetailmainphoto {
     position: relative;
-    top: 15px;
-    margin-bottom: 10px;
+    margin: 12px 0 0 0;
     float: left;
 }
 #instrdetaillinevertical {
    position: relative;
-   margin-top: 20px;
-   margin-left: 25px;
+   margin: 15px 0 0 15px;
    float: left;
-   height: 415px;
+   height: 448px;
 }
 #instrdetailinfo {
     position: relative;
@@ -650,34 +694,31 @@ div#inprogress {
     list-style: none;
     font-size: 10pt;
     font-family: Arial;
-    padding-left: 25px;
+    padding-left: 15px;
 }
 #instrdetailbacktolist {
     position: relative;
     text-align: right;
-    width: 828px;
     font-size: 12pt;
+    width: 828px;
 }
 #backtolistlink {
    position: relative;
    top: 35px; 
-   font-size: .82em;
    font-style: normal;
    text-decoration: none;
    color: #7DA5D8;
 }
 #instrdetaillinehorizbottom {
    position: relative;
-   margin-top: 40px;
-   width: 830px;
+   width: 840px;
    height: 1px;
 }
 #instrdetailthumbnail {
     width: 920px;
 	clear: both;
 	position: relative;
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-top: 10px;
 }
 .homepagelink {
     position: relative;
@@ -778,7 +819,7 @@ div#inprogress {
 #editabout {
     background: url(Images/tools_large.jpg);
     width: 900px;
-    height: 720px;
+    height: 680px;
 }
 .editaboutcontainer {
     position: relative;
@@ -1018,33 +1059,34 @@ textarea#Model,
 textarea#Top,
 textarea#BackAndSides,
 textarea#Binding,
-textarea#Body, 
-textarea#Neck,
+textarea#Body,
+textarea#Bridge,
+textarea#CaseDetail,
+textarea#Dimensions,
+textarea#EdgeDots,
 textarea#Faceplate,
+textarea#Finish,
 textarea#Fingerboard,
 textarea#FretMarkers,
-textarea#EdgeDots,
-textarea#Bridge,
-textarea#Finish,
-textarea#Tuners,
+textarea#FretWire,
+textarea#Neck,
+textarea#NutWidth,
 textarea#PickGuard,
 textarea#Pickup,
-textarea#NutWidth,
 textarea#ScaleLength,
-textarea#CaseDetail,
 textarea#Strings,
-textarea#FretWire,
-textarea#Dimensions {
+textarea#Tuners,
+textarea#Tailpiece {
     position: relative;
     clear:both;
     width: 600px;
-    height: 50px;
+    height: 30px;
     border: 3px solid #cccccc;
-    padding: 5px;
+    padding: 2px;
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 10pt;
+    font-size: 9pt;
     resize: none;
 }
 textarea#Comments, 
@@ -1055,11 +1097,11 @@ textarea#TypicalPrice {
     width: 600px;
     height: 100px;
     border: 3px solid #cccccc;
-    padding: 5px;
+    padding: 2px;
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 10pt;
+    font-size: 9pt;
     resize: none;
 }
 textarea#Name,
@@ -1071,11 +1113,11 @@ textarea#Materials {
     width: 800px;
     height: 100px;
     border: 3px solid #cccccc;
-    padding: 5px;
+    padding: 2px;
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 10pt;
+    font-size: 9pt;
     resize: none;
 }
 textarea#Introduction {
@@ -1088,7 +1130,7 @@ textarea#Introduction {
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 10pt;
+    font-size: 9pt;
     resize: none;
 }
 textarea#Greeting {
@@ -1097,11 +1139,11 @@ textarea#Greeting {
     width: 800px;
     height: 100px;
     border: 3px solid #cccccc;
-    padding: 5px;
+    padding: 2px;
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 10pt;
+    font-size: 9pt;
     resize: none;
 }
 
@@ -1125,10 +1167,11 @@ textarea#Shipping {
     width: 830px;
     height: 80px;
     border: 3px solid #cccccc;
-    padding: 10px 0 0 0; 
+    padding: 2px 0 0 0; 
     font-family: Tahoma, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
+    font-size: 9pt;
     resize: none;
 }
 #contact {

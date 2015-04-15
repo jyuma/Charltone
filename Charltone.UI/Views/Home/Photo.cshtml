@@ -20,10 +20,10 @@
 <div id="home">
     <div id="homecontent">
         <div id="homeimageedit">
-            Change Home Page Image
+            Change Home Page Picture
         </div>
         <div id="homeimageeditcancellnk">
-            <a href="@Url.Action("Index", "Home")">Home</a>
+            @Html.ActionLink("Cancel", "Index", "Home")
         </div>
         <div id="homeedituploadimage">
             @using (Html.BeginForm("UpdateHomePageImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))

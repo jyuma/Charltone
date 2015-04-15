@@ -14,7 +14,9 @@ namespace Charltone.Domain.Mappings
             Map(m => m.Data).Column("Data").Length(int.MaxValue);
             Map(m => m.IsDefault).Column("IsDefault");
 
-            References(m => m.Product).Column("ProductId").ReadOnly().Cascade.None();
+            References(m => m.Product).Column("ProductId").ReadOnly()
+                .Fetch.Join()
+                .Cascade.None();
         }
     }
 }

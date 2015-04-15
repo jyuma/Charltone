@@ -1,53 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Charltone.Domain.Entities;
 using NHibernate;
-using NHibernate.Linq;
 
 namespace Charltone.Data.Repositories
 {
     public interface IPhotoRepository : IRepositoryBase<Photo>
     {
-        IList<Photo> GetListByProductId(int productId);
-        IList<int> GetIdsByProductId(int productId);
-        int CountByProductId(int productId);
-
         byte[] GetData(int id);
         byte[] GetDefaultInstrumentImage();
 
         void SetProductDefault(int id, int newid);
-
-        int GetDefaultId(int id);
     }
 
     public class PhotoRepository : RepositoryBase<Photo>, IPhotoRepository
     {
         public PhotoRepository(ISession session) : base(session) {}
-
-        public IList<Photo> GetListByProductId(int productId)
-        {
-            return Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == productId)
-                .List();
-        }
-
-        public IList<int> GetIdsByProductId(int productId)
-        {
-            var ids = Session.Query<Photo>()
-                .Where(x => x.ProductId == productId)
-                .Select(x => x.Id)
-                .ToList();
-         
-            return ids;
-        }
-
-        public int CountByProductId(int productId)
-        {
-            return Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == productId)
-                .ToRowCountQuery()
-                .FutureValue<int>().Value;
-        }
 
         public byte[] GetData(int id)
         {
@@ -73,16 +40,11 @@ namespace Charltone.Data.Repositories
             }
         }
 
-        public int GetDefaultId(int productId)
+        private IEnumerable<Photo> GetListByProductId(int productId)
         {
-            if (CountByProductId(productId) <= 0) return -1;
-
-            var photo = Session.QueryOver<Photo>()
+            return Session.QueryOver<Photo>()
                 .Where(x => x.ProductId == productId)
-                .And(x => x.IsDefault)
-                .SingleOrDefault();
-
-            return photo.Id;
+                .List();
         }
     }
 }

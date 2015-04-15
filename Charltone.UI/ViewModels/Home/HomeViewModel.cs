@@ -2,8 +2,8 @@
 {
     public class HomeViewModel
     {
-        public string Introduction;
-        public string Greeting;
-        public byte[] Photo;
+        public string Introduction { get; set; }
+        public string Greeting { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

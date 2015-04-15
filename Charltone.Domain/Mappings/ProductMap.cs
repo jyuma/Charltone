@@ -16,6 +16,7 @@ namespace Charltone.Domain.Mappings
             Map(m => m.IsPosted).Column("IsPosted");
 
             HasMany(m => m.Photos).KeyColumn("ProductId").Cascade.Delete();
+
             References(m => m.ProductType).Column("ProductTypeId");
             References(m => m.ProductStatus).Column("StatusId");
             References(m => m.Instrument).Column("InstrumentId").Cascade.All();

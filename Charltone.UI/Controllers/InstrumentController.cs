@@ -77,6 +77,7 @@ namespace Charltone.UI.Controllers
                                                              Classification = new Classification {Id = viewModel.ClassificationId},
                                                              SubClassification = new SubClassification {Id = viewModel.SubClassificationId},
 
+                                                             Top = viewModel.Top,
                                                              Body = viewModel.Body,
                                                              BackAndSides = viewModel.BackAndSides,
                                                              Binding = viewModel.Binding,
@@ -98,7 +99,7 @@ namespace Charltone.UI.Controllers
                                                              Pickup = viewModel.Pickup,
                                                              ScaleLength = viewModel.ScaleLength,
                                                              Sn = viewModel.Sn,
-                                                             Top = viewModel.Top,
+                                                             Tailpiece =  viewModel.Tailpiece,
                                                              Tuners = viewModel.Tuners
                                                          },
                                   ProductDesc = "Instrument",
@@ -178,7 +179,7 @@ namespace Charltone.UI.Controllers
                         .CropInstrument()
                         .ImageToByteArray();
 
-                    var count = _photos.CountByProductId(id);
+                    var count = _products.Get(id).Photos.Count;
 
                     var photo = new Photo { IsDefault = (count == 0), ProductId = id, Data = data };
 
@@ -230,9 +231,9 @@ namespace Charltone.UI.Controllers
             var vm = new InstrumentPhotosEditViewModel();
 
             var product = _products.Get(productid);
-            vm.PhotoIds = _photos.GetIdsByProductId(productid);
+            vm.PhotoIds = product.Photos.Select(x => x.Id);
             vm.ProductId = productid;
-            vm.DefaultPhotoId = _photos.GetDefaultId(productid);
+            vm.DefaultPhotoId = product.GetDefaultPhotoId();
             vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
 
             return vm;
@@ -248,7 +249,7 @@ namespace Charltone.UI.Controllers
                          TotalItemsCount = totalitems
                      };
 
-            var sortedInstruments = products
+            var sortedList = products
                     .Where(product => product.Instrument != null)
                     .OrderBy(product => product.Instrument.InstrumentType.SortOrder)
                     .ThenBy(product => product.Instrument.Classification.SortOrder)
@@ -256,14 +257,26 @@ namespace Charltone.UI.Controllers
                     .ThenBy(product => product.Instrument.Model)
                     .ThenBy(product => product.Instrument.Sn);
 
-            var instruments = (from product in sortedInstruments
-                let instrument = product.Instrument
-                select new InstrumentViewModel
-                       {
-                           Id = instrument.Id, ProductId = product.Id, InstrumentType = instrument.InstrumentType.InstrumentTypeDesc, Classification = instrument.Classification.ClassificationDesc, SubClassification = instrument.SubClassification.SubClassificationDesc, Model = instrument.Model + ' ' + instrument.Sn, InstrumentStatusPrice = (product.ProductStatus.Id == Constants.ProductStatusTypeId.Available ? product.DisplayPrice : product.ProductStatus.StatusDesc), NotPostedMessage = product.IsPosted ? "" : "NOT POSTED", DefaultPhotoId = _photos.GetDefaultId(product.Id)
-                       }).ToList();
-
-            vm.Instruments = instruments;
+            vm.Instruments = sortedList
+                .Select((product, index) => new InstrumentViewModel
+                    {
+                        Id = product.Instrument.Id,
+                        ProductId = product.Id, 
+                        WrapperClassId = string.Format("{0}-wrapper", product.Instrument.GetClassId(index)),
+                        ClassId = product.Instrument.GetClassId(index),
+                        PhotoClassId = string.Format("img_{0}", product.GetDefaultPhotoId()),
+                        InstrumentType = product.Instrument.InstrumentType.InstrumentTypeDesc,
+                        Classification = product.Instrument.Classification.ClassificationDesc,
+                        SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
+                        Model = product.Instrument.Model + ' ' + product.Instrument.Sn,
+                        Status = new Status
+                                    {
+                                        Description = product.ProductStatus.GetDescription(product.DisplayPrice),
+                                        ClassId = product.ProductStatus.GetClassId()
+                                    },
+                        NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
+                        DefaultPhotoId = product.GetDefaultPhotoId()
+                    }).ToList();
 
             //--- construct the banner message
             if (totalitems == 1) vm.Banner = "1 instrument";
@@ -287,41 +300,49 @@ namespace Charltone.UI.Controllers
         {
             var product = _products.Get(productId);
             var instrument = product.Instrument;
-            var photoIds = _photos.GetIdsByProductId(productId);
 
             var vm = new InstrumentDetailViewModel
                      {
                          Id = instrument.Id,
                          InstrumentType = instrument.InstrumentType.InstrumentTypeDesc,
+                         ProductId = productId,
                          Classification = instrument.Classification.ClassificationDesc,
                          SubClassification = instrument.SubClassification.SubClassificationDesc,
+                         Price = product.DisplayPrice,
                          Model = instrument.Model + " " + instrument.Sn,
                          Top = instrument.Top,
+
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
                          Binding = instrument.Binding,
-                         Neck = instrument.Neck,
+                         Bridge = instrument.Bridge,
+                         CaseDetail = instrument.CaseDetail,
+                         Dimensions = instrument.Dimensions,
+                         EdgeDots = instrument.EdgeDots,
                          Faceplate = instrument.Faceplate,
+                         Finish = instrument.Finish,
                          Fingerboard = instrument.Fingerboard,
                          FretMarkers = instrument.FretMarkers,
-                         EdgeDots = instrument.EdgeDots,
-                         Bridge = instrument.Bridge,
-                         Finish = instrument.Finish,
-                         Tuners = instrument.Tuners,
+                         FretWire = instrument.FretWire,
                          PickGuard = instrument.PickGuard,
                          Pickup = instrument.Pickup,
+                         Neck = instrument.Neck,
                          NutWidth = instrument.NutWidth,
                          ScaleLength = instrument.ScaleLength,
-                         Comments = instrument.Comments,
-                         CaseDetail = instrument.CaseDetail,
                          Strings = instrument.Strings,
-                         FretWire = instrument.FretWire,
-                         Dimensions = instrument.Dimensions,
+                         Tailpiece = instrument.Tailpiece,
+                         Tuners = instrument.Tuners,
+
+                         Comments = instrument.Comments,
                          FunFacts = instrument.FunFacts,
-                         Price = product.DisplayPrice,
-                         InstrumentStatus = product.ProductStatus.StatusDesc,
-                         DefaultPhotoId = _photos.GetDefaultId(productId),
-                         PhotoIds = photoIds
+                         
+                         Status = new Status
+                                  {
+                                      Description = product.ProductStatus.GetDescription(product.DisplayPrice),
+                                      ClassId = product.ProductStatus.GetClassId()
+                                  },
+                         DefaultPhotoId = product.GetDefaultPhotoId(),
+                         PhotoIds = product.Photos.Select(x => x.Id)
                      };
 
             return vm;
@@ -339,27 +360,30 @@ namespace Charltone.UI.Controllers
                          Model = instrument.Model,
                          Sn = instrument.Sn,
                          Top = instrument.Top,
+
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
                          Binding = instrument.Binding,
-                         Neck = instrument.Neck,
+                         Bridge = instrument.Bridge,
+                         CaseDetail = instrument.CaseDetail,
+                         Dimensions = instrument.Dimensions,
+                         EdgeDots = instrument.EdgeDots,
                          Faceplate = instrument.Faceplate,
+                         Finish = instrument.Finish,
                          Fingerboard = instrument.Fingerboard,
                          FretMarkers = instrument.FretMarkers,
-                         EdgeDots = instrument.EdgeDots,
-                         Bridge = instrument.Bridge,
-                         Finish = instrument.Finish,
-                         Tuners = instrument.Tuners,
+                         FretWire = instrument.FretWire,
+                         Neck = instrument.Neck,
+                         NutWidth = instrument.NutWidth,
                          PickGuard = instrument.PickGuard,
                          Pickup = instrument.Pickup,
-                         NutWidth = instrument.NutWidth,
                          ScaleLength = instrument.ScaleLength,
-                         FunFacts = instrument.FunFacts,
-                         Comments = instrument.Comments,
-                         CaseDetail = instrument.CaseDetail,
                          Strings = instrument.Strings,
-                         FretWire = instrument.FretWire,
-                         Dimensions = instrument.Dimensions,
+                         Tailpiece = instrument.Tailpiece,
+                         Tuners = instrument.Tuners,
+
+                         Comments = instrument.Comments,
+                         FunFacts = instrument.FunFacts,
 
                          InstrumentTypes = new SelectList(_types.GetInstrumentTypeList(), "Id", "InstrumentTypeDesc", instrument.InstrumentType.Id),
                          InstrumentTypeId = instrument.InstrumentType.Id,
@@ -376,7 +400,7 @@ namespace Charltone.UI.Controllers
                          Price = product.Price,
                          DisplayPrice = product.DisplayPrice,
                          IsPosted = product.IsPosted,
-                         DefaultPhotoId = _photos.GetDefaultId(product.Id)
+                         DefaultPhotoId = product.GetDefaultPhotoId()
                      };
 
             return vm;
@@ -388,18 +412,20 @@ namespace Charltone.UI.Controllers
                 ? _products.Get(productId)
                 : new Product
                 {
-                    ProductStatus = new ProductStatus { Id = Constants.ProductStatusTypeId.NotForSale },
+                    ProductStatus = new ProductStatus { Id = ProductStatusTypeId.NotForSale },
                     IsPosted = false,
                     Instrument = new Instrument
                     {
-                        InstrumentType = new InstrumentType { Id = Constants.InstrumentTypeId.Guitar },
-                        Classification = new Classification { Id = Constants.ClassificationTypeId.SteelString },
-                        SubClassification = new SubClassification { Id = Constants.SubClassificationTypeId.Classical }
+                        InstrumentType = new InstrumentType { Id = InstrumentTypeId.Guitar },
+                        Classification = new Classification { Id = ClassificationTypeId.SteelString },
+                        SubClassification = new SubClassification { Id = SubClassificationTypeId.Classical }
                     }
                 };   
         }
 
         #endregion
+
+        #region Update Entitities
 
         private void UpdateProductInstrument(Product product, InstrumentEditViewModel viewModel)
         {
@@ -428,6 +454,7 @@ namespace Charltone.UI.Controllers
             if (instrument.SubClassification.Id != viewModel.SubClassificationId)
                 instrument.SubClassification = _types.GetSubClassification(viewModel.SubClassificationId);
 
+            instrument.Top = viewModel.Top;
             instrument.BackAndSides = viewModel.BackAndSides;
             instrument.Binding = viewModel.Binding;
             instrument.Body = viewModel.Body;
@@ -450,8 +477,10 @@ namespace Charltone.UI.Controllers
             instrument.ScaleLength = viewModel.ScaleLength;
             instrument.Sn = viewModel.Sn;
             instrument.Strings = viewModel.Strings;
-            instrument.Top = viewModel.Top;
+            instrument.Tailpiece = viewModel.Tailpiece;
             instrument.Tuners = viewModel.Tuners;
         }
+
+        #endregion
     }
 }

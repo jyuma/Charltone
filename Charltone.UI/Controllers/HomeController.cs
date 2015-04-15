@@ -36,7 +36,7 @@ namespace Charltone.UI.Controllers
         {
             UpdateHomeContent(viewModel);
 
-            return View("Index", LoadHomeViewModel());
+            return RedirectToAction("Index", LoadHomeViewModel());
         }
 
         [HttpGet]

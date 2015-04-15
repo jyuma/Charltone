@@ -18,9 +18,9 @@
 <div id="editphotos">
     <div id="editphotoscontent">
         <div class="editlink" id="editphotoslinks">
-            @Html.ActionLink("Main List", "Index", "Ordering")
+            @Html.ActionLink("Edit Details", "Edit", new { id = @Model.OrderingId })
             &nbsp
-            @Html.ActionLink("Ordering Detail", "Edit", new { id = @Model.OrderingId })
+            @Html.ActionLink("Cancel", "Index", "Ordering")
         </div>
 
         <div id="editphotosheader">

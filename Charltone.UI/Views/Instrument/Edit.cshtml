@@ -16,7 +16,7 @@
                     &nbsp
                     @Html.ActionLink("Photos", "Photos", new { id = Model.ProductId })
                     &nbsp
-                    @Html.ActionLink("Main List", "Index", "Instrument")
+                    @Html.ActionLink("Back to list", "Index", "Instrument")
                     &nbsp
                     <div class="editinstrisposted">
                         @Html.LabelFor(model => Model.IsPosted)
@@ -70,6 +70,13 @@
                 <div class="editor-field">
                     @Html.EditorFor(model => model.Price)
                     @Html.ValidationMessageFor(model => model.Price)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Top)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Top)
+                    @Html.ValidationMessageFor(model => model.Top)
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.BackAndSides)
@@ -198,11 +205,11 @@
                     @Html.ValidationMessageFor(model => model.Strings)
                 </div>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.Top)
+                    @Html.LabelFor(model => model.Tailpiece)
                 </div>
                 <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Top)
-                    @Html.ValidationMessageFor(model => model.Top)
+                    @Html.TextAreaFor(model => model.Tailpiece)
+                    @Html.ValidationMessageFor(model => model.Tailpiece)
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Tuners)

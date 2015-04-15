@@ -5,7 +5,6 @@
     ViewBag.Title = "Charltone Photo Management";
 }
 
-
 <script type="text/javascript">
     $(document).ready(function ()
     {
@@ -38,12 +37,12 @@
 
 <div id="editphotos">
     <div id="editphotoscontent">
-        <div class="editlink" id="editphotoslinks">
+        <div id="editphotoslinks">
             @Html.ActionLink("Main List", "Index", "Instrument")
             &nbsp
             @Html.ActionLink("Edit", "Edit", new { id = @Model.ProductId })
             &nbsp
-            @Html.ActionLink("View", "Detail", new { id = @Model.ProductId })
+            @Html.ActionLink("View Details", "Detail", new { id = @Model.ProductId })
         </div>
 
         <div id="editphotosheader">

@@ -64,6 +64,13 @@
                     @Html.ValidationMessageFor(model => model.Price)
                 </div>
                 <div class="editor-label">
+                    @Html.LabelFor(model => model.Top)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Top)
+                    @Html.ValidationMessageFor(model => model.Top)
+                </div>
+                <div class="editor-label">
                     @Html.LabelFor(model => model.BackAndSides)
                 </div>
                 <div class="editor-field">
@@ -190,11 +197,11 @@
                     @Html.ValidationMessageFor(model => model.Strings)
                 </div>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.Top)
+                    @Html.LabelFor(model => model.Tailpiece)
                 </div>
                 <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Top)
-                    @Html.ValidationMessageFor(model => model.Top)
+                    @Html.TextAreaFor(model => model.Tailpiece)
+                    @Html.ValidationMessageFor(model => model.Tailpiece)
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Tuners)

@@ -7,6 +7,6 @@ namespace Charltone.UI.ViewModels.Photo
         public int ProductId { get; set; }
         public string Model { get; set; }
         public int DefaultPhotoId { get; set; }
-        public IList<int> PhotoIds { get; set; }
+        public IEnumerable<int> PhotoIds { get; set; }
     }
 }

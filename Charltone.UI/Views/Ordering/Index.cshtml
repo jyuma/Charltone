@@ -9,18 +9,18 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#orderinglistviewheader").accordion();
+        $("#orderinglistheader").accordion();
     });
 </script>
 
-<div id="orderinglistview" style="height: @Model.BackgroundImageHeight">
-    <div id="orderinglistviewcontent">
+<div id="orderinglist" style="height: @Model.BackgroundImageHeight">
+    <div id="orderinglistcontent">
         <div class="editlink" id="orderingheadereditlnk">
             @Html.ActionLinkAuthorized("Add Ordering", "Create")
             &nbsp
             @Html.ActionLinkAuthorized("Edit Header", "EditHeader")
         </div>
-        <div id="orderinglistviewheader">
+        <div id="orderinglistheader">
             <h3>Ordering</h3>
             <div>
                 @Model.HeaderInfo.Summary
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="linehorizontal" id="orderinglistlinehorizontal"></div>
+        <div class="linehorizontal" id="orderinglistlinehorizontaltop"></div>
 
         @{
             foreach (var orderingInfo in Model.OrderingInfo)

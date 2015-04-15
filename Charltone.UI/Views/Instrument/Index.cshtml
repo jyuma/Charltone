@@ -32,14 +32,21 @@
                 message: $("#dialog-image-form"),
                 backgroundColor: '#000',
                 color: '#000',
-                css: { top: 0 }
+                css: {
+                    top: 30,
+                    width: 0,
+                    height: 0
+                }
             });
         }
 
         $(instrumentList).each(function(index, value) {
-            $("#img_" + value.DefaultPhotoId).click(function () {
-                displayImageDialog(value.DefaultPhotoId);
-            });
+            if (value.DefaultPhotoId > 0)
+            {
+                $("#img_" + value.DefaultPhotoId).click(function () {
+                    displayImageDialog(value.DefaultPhotoId);
+                });
+            }
         });
 
         function createImageDisplayDialog() {
@@ -47,79 +54,39 @@
             $("#dialog-wrapper").append(html);
         }
     });
-
 </script>
 
-<div id="instrlistview" style="height: @Model.BackgroundImageHeight">
-    <div id="instrlistviewcontent">
+<div id="instrlist" style="height: @Model.BackgroundImageHeight">
+    <div id="instrlistcontent">
         <div id="instrlistheader">
             @Model.Banner
         </div>
-        <div class="editlink" id="listaddnew">
-            @Html.ActionLinkAuthorized("Add", "Create")
+        <div class="editlink" id="instrlistaddnew">
+            @Html.ActionLinkAuthorized("Add Instrument", "Create")
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
-            int i = 0;
-            string id_class_wrapper = "";
-            string id_class = "";
-            string lnk_image_id;
             foreach (var info in Model.Instruments)
             {
-                lnk_image_id = "img_" + info.DefaultPhotoId;
-                
-                switch (i++ % 3)
-                {
-                    case 0:
-                        id_class_wrapper = "left_wrapper";
-                        id_class = "left";
-                        break;
-                    case 1:
-                        id_class_wrapper = "middle_wrapper";
-                        id_class = "middle";
-                        break;
-                    case 2:
-                        id_class_wrapper = "right_wrapper";
-                        id_class = "right";
-                        break;
-                }
-
-                string id_status_label;
-                switch (info.InstrumentStatusPrice)
-                {
-                    case "Sold":
-                        id_status_label = "listsold";
-                        break;
-                    case "Not For Sale":
-                        id_status_label = "listnotforsale";
-                        break;
-                    case "In Progress":
-                        id_status_label = "listinprogress";
-                        break;
-                    default:
-                        id_status_label = "listavailable";
-                        break;
-                }
-                 
-                <div id="listdetail">
-                    <div class=@id_class_wrapper>
-                        <div class=@id_class>
+                <div id="instrlistdetail">
+                    <div class="@info.WrapperClassId">
+                        <div class="@info.ClassId">
                             <div>
-                                <label id="@id_status_label">@info.InstrumentStatusPrice</label>
+                                <label id="@info.Status.ClassId">@info.Status.Description</label>
                             </div>
-                            <a id=@lnk_image_id href="javascript:;">
-                                <img id=@info.DefaultPhotoId class="listdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = info.DefaultPhotoId }) alt="" />
+                            <a id="@info.PhotoClassId" href="javascript:;">
+                                <img id=@info.DefaultPhotoId class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = info.DefaultPhotoId }) alt="" />
                             </a>
-                            <div class="listinfomodel">
+                            <div id="instrlistinfomodel">
                                 @info.Model
-                                <label id="listinfopostedmessage">
+                                <label id="instrlistinfonotposted">
                                     @info.NotPostedMessage
                                 </label>
                             </div>
-                            <div class="listinfodetail">
+                            <div id="instrlistinfodetail">
                                 @info.Classification / @info.SubClassification
                             </div>
-                            <div class="viewdetailslink">
+                            <div class="instrlistviewdetailslink">
                                 @Html.ActionLink("View Details", "Detail", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })

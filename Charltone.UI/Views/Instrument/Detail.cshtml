@@ -1,4 +1,5 @@
-﻿@using Charltone.UI.ViewModels.Instrument;
+﻿@using Charltone.UI.Helpers
+@using Charltone.UI.ViewModels.Instrument;
 
 @model InstrumentDetailViewModel
            
@@ -93,6 +94,11 @@
                 @Model.Model
             </div>
             <div id="instrdetailbacktolist">
+                <div id="instrdetailadminbuttons">
+                    @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
+                    &nbsp
+                    @Html.ActionLinkAuthorized("Photos", "Photos", new { id = @Model.ProductId })
+                </div>
                 @if (!@Model.Comments.IsEmpty())
                 {
                     <a id="commentshint">Comments</a>
@@ -111,40 +117,14 @@
                 }
                 <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back to list</a>
             </div>
-
-            @{
-                string id = "";
-                
-                if (Model.InstrumentStatus == "Sold")
-                {
-                    id = "sold";
-                }
-                else if (Model.InstrumentStatus == "Not For Sale")
-                {
-                    id = "notforsale";
-                }
-                else if (Model.InstrumentStatus == "In Progress")
-                {
-                    id = "inprogress";
-                }
-                else if (Model.InstrumentStatus == "Available")
-                {
-                    <div id="instrumentdetailprice">
-                        @Model.Price
-                    </div>
-                }
-                if (!id.IsEmpty())
-                {
-                    <div id="@id">
-                        @Model.InstrumentStatus
-                    </div>
-                }
-            }
+            <div id="@Model.Status.ClassId">
+                @Model.Status.Description
+            </div>
         </div>
         
         <div class="linehorizontal" id="instrdetaillinehoriztop"></div>
 
-        <div id="instrumentinfo">
+        <div id="instrdetailininfo">
             <div id="instrdetailmainphoto">
                 <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
             </div>
@@ -152,6 +132,12 @@
             <div id="instrdetailinfo">
                 <label id="instrdetailinfoheader">@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</label>
                 <ul id="instrdetailinfolist">
+                    @if (!@Model.Top.IsEmpty())
+                    {
+                        <li>
+                            @Html.LabelFor(model => model.Top) - @Html.DisplayFor(model => model.Top)
+                        </li>
+                    }
                     @if (!@Model.BackAndSides.IsEmpty())
                     {
                         <li>
@@ -262,10 +248,10 @@
                             @Html.LabelFor(model => model.Strings) - @Html.DisplayFor(model => model.Strings)
                         </li>
                     }
-                    @if (!@Model.Top.IsEmpty())
+                    @if (!@Model.Tailpiece.IsEmpty())
                     {
                         <li>
-                            @Html.LabelFor(model => model.Top) - @Html.DisplayFor(model => model.Top)
+                            @Html.LabelFor(model => model.Tailpiece) - @Html.DisplayFor(model => model.Tailpiece)
                         </li>
                     }
                     @if (!@Model.Tuners.IsEmpty())

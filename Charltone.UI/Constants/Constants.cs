@@ -3,7 +3,9 @@
     public class ProductStatusTypeId
     {
         public const int Available = 1;
+        public const int Sold = 2;
         public const int NotForSale = 3;
+        public const int InProgress = 4;
     }
 
     public class InstrumentTypeId

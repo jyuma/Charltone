@@ -157,6 +157,9 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\InstrumentExtensions.cs" />
+    <Compile Include="Extensions\ProductExtensions.cs" />
+    <Compile Include="Extensions\ProductStatusExtensions.cs" />
     <Compile Include="Library\Email.cs">
       <SubType>Code</SubType>
     </Compile>
