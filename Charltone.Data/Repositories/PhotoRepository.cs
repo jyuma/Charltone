@@ -13,10 +13,8 @@ namespace Charltone.Data.Repositories
         int CountByProductId(int productId);
 
         byte[] GetData(int id);
-        byte[] GetHomePageImage();
         byte[] GetDefaultInstrumentImage();
 
-        void UpdateHomePageImage(byte[] data);
         void SetProductDefault(int id, int newid);
 
         int GetDefaultId(int id);
@@ -56,13 +54,6 @@ namespace Charltone.Data.Repositories
             return Session.Load<Photo>(id).Data;
         }
 
-        public byte[] GetHomePageImage()
-        {
-            return Session.QueryOver<HomePageImage>()
-                .SingleOrDefault()
-                .Data;
-        }
-
         public byte[] GetDefaultInstrumentImage()
         {
             return Session.QueryOver<NoPhotoImage>().SingleOrDefault().Data;
@@ -78,18 +69,6 @@ namespace Charltone.Data.Repositories
                     p.IsDefault = (p.Id == newid);
                     Session.SaveOrUpdate(p);
                 }
-                tx.Commit();
-            }
-        }
-
-        public void UpdateHomePageImage(byte[] data)
-        {
-            var image = Session.QueryOver<HomePageImage>().SingleOrDefault();
-            image.Data = data;
-
-            using (var tx = Session.BeginTransaction())
-            {
-                Session.SaveOrUpdate(image);
                 tx.Commit();
             }
         }

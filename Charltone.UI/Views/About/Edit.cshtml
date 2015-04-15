@@ -1,0 +1,51 @@
+﻿@model Charltone.UI.ViewModels.About.AboutViewModel
+
+@{
+    ViewBag.Title = "Edit About Content";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="editabout">
+    @using (Html.BeginForm())
+    {
+        <div class="editaboutcontainer">
+            @Html.ValidationSummary(true)
+            <div class="editaboutinfo">
+                <div class="editaboutbuttons">
+                    <input class="savebutton" type="submit" value="Save" name="Command" />
+                    &nbsp
+                    @Html.ActionLink("Cancel", "Index", "About")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.CompanyName)
+                    @Html.ValidationMessageFor(model => model.CompanyName)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Origins)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Origins)
+                    @Html.ValidationMessageFor(model => model.Origins)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Materials)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Materials)
+                    @Html.ValidationMessageFor(model => model.Materials)
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

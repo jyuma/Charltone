@@ -25,7 +25,7 @@
                 <div id="menucontainer">
                     <ul id="menu">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                        <li>@Html.ActionLink("About Us", "Index", "About")</li>
                         <li>@Html.ActionLink("Instruments", "Index", "Instrument")</li>
                         <li>@Html.ActionLink("Ordering", "Index", "Ordering")</li>
                         <!--<li>@Html.ActionLink("Other Products", "Index", "Product")</li>-->
@@ -35,7 +35,7 @@
                         }
                         else
                         {
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
                         }
                     </ul>
                 </div>

@@ -17,12 +17,13 @@ namespace Charltone.UI
 
             kernel.Load(Assembly.GetExecutingAssembly());
 
+            kernel.Bind<IAboutContentRepository>().To<AboutContentRepository>();
             kernel.Bind<IAdminRepository>().To<AdminRepository>();
-            kernel.Bind<IHomePageImageRepository>().To<HomePageImageRepository>();
-            kernel.Bind<IOrderingRepository>().To<OrderingRepository>();
-            kernel.Bind<IOrderingHeaderContentRepository>().To<OrderingHeaderContentRepository>();
+            kernel.Bind<IHomeContentRepository>().To<HomeContentRepository>();
             kernel.Bind<IInstrumentRepository>().To<InstrumentRepository>();
             kernel.Bind<IInstrumentTypeRepository>().To<InstrumentTypeRepository>();
+            kernel.Bind<IOrderingRepository>().To<OrderingRepository>();
+            kernel.Bind<IOrderingHeaderContentRepository>().To<OrderingHeaderContentRepository>();
             kernel.Bind<IPhotoRepository>().To<PhotoRepository>();
             kernel.Bind<IProductRepository>().To<ProductRepository>();
 

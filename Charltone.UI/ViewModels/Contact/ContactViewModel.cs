@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Charltone.UI.ViewModels.Home
+namespace Charltone.UI.ViewModels.Contact
 {
     public class ContactViewModel
     {
@@ -11,7 +11,7 @@ namespace Charltone.UI.ViewModels.Home
         {
             HeaderMessage = "Want to drop us a line?";
         }
-        
+
         [Required]
         [DisplayName("Name")]
         public string ContactName { get; set; }

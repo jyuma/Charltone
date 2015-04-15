@@ -1,14 +1,37 @@
 ﻿
-/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
+/* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-#homepageimagecontainer {
-    width: 830px;
-    height: 520px;
-    border: 1px solid #cea96d;
+.page {
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }
+#header {
+    position: relative;
+    height: 20px;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+#header h1 {
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+#logo {
+    float: left;
+    background: url(charltoneLogo.png);
+    width:214px;
+    height:74px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
 #txtPassword {
     width: 180px;
 }
@@ -33,7 +56,7 @@ to use a different color start by replacing all instances of
 }
 #lnk-admin-login {
     color: #63411D;
-    font-size: 1.9em;
+    font-size: 16pt;
     text-decoration: none;
     top: 2px;
 }
@@ -46,46 +69,13 @@ to use a different color start by replacing all instances of
     font-size: 14pt;
     color: #cea96d;
 }
-/*.login-input {
-    width: 100px;
-    padding-bottom: 2px;
-    float: left;
-}*/
-/*.login-label {
-    padding-top: 3px;
-    width: 100px;
-    font-size: 1.4em;
-    padding-bottom: 2px;
-    float: left;
-}*/
-/*#dialog-image-form {
-    position: relative;
-}*/
-/*.ui-block-dialog {
-    font-family: Arial, Helvetica, sans-serif;
-}
-.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane {
-    font-size: 10pt;
-    padding: 0 0 0 0; 
-}
-.ui-widget {
-    font-size: 9pt;
-}*/
-/*.ui-dialog-custom  {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: .8em;
-    color: #FFFFFF;
-    border: 1px solid #aaaaaa;
-}*/
 button {
     width: 75px;
     height: 30px;
     font-size: 8pt;
     font-weight: 200;
 }
-#commentshint
-{
+#commentshint {
    position: relative;
    cursor:pointer;
    top: 35px; 
@@ -93,9 +83,7 @@ button {
    font-size: .82em;
    padding-right: 5px;
 }
-
-#funfactshint
-{
+#funfactshint {
    position: relative;
    cursor:pointer;
    top: 35px; 
@@ -103,9 +91,7 @@ button {
    font-size: .82em;
    padding-right: 5px;
 }
-
-.funfactstooltip
-{
+.funfactstooltip {
 	margin:8px;
 	padding:1px;
 	border:1px solid #cea96d;
@@ -113,8 +99,7 @@ button {
 	position: absolute;
 	z-index: 2;
 }
-.commentstooltip
-{
+.commentstooltip {
 	margin:8px;
 	padding:1px;
 	border:1px solid #cea96d;
@@ -122,245 +107,164 @@ button {
 	position: absolute;
 	z-index: 2;
 }
-#adminlogonbanner
-{
-    color: #fff;
-    position: relative;
-    top: 20px;
-    margin-left: 22px;
-    margin-bottom: 20px;
-    font-size: 1.3em;
-}
-#adminlogonpasswordlabel
-{
-    position: relative;
-    color: #fff;
-    margin-left: 25px;
-    margin-right: 15px;
-    margin-top: 33px;
-    float: left;
-}
-#adminlogonpassword
-{
-    color: #fff;
-    position: relative;
-    margin-right: 15px;
-    margin-top: 30px;
-    float: left;
-}
-#adminpasswordvalidation
-{
-    position: relative;
-    margin-left: 20px;
-    margin-top: 30px;
-    clear: both;
-}
-#adminlogon
-{
-    position: relative;
-    background: url(Images/tools_large.jpg);
-    width: 900px;
-    height: 675px;
-    clear: both;
-}
-#adminlinehorizontal
-{
-    position: relative;
-    top: 20px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 25px;
-    width: 850px;
-}
-.fieldset
-{
+.fieldset {
     color: #fff;
     position: relative;
 	border-color: #cea96d;
 }
-.legend
-{
+.legend {
     color: #fff;
     position: relative;
 }
-#listaddnew
-{
+.fileinput {
+    width:260px;
+}
+#listaddnew {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-.fileinput
-{
-    width:260px;
-}
-#editphotos
-{
+#editphotos {
     position: relative;
     background: url(Images/tools_large_4.jpg);
     width: 900px;
     height: 1000px;
 }
-#editphotoscontent
-{
+#editphotoscontent {
     position: relative;
     top: 20px;
     left: 25px;
     width: 800px;
 }
-#editphotosheader
-{
+#editphotosheader {
     clear: both;
     color: #fff;
     font-size: large;
     margin-bottom: 10px;
 }
-#editphotosmodel 
-{
+#editphotosmodel {
     float: left;
     margin-right: 10px;
 }
-#editphotoslinehorizontal
-{
+#editphotoslinehorizontal {
     position: relative;
     width: 850px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
-#editphotosmodeldesc
-{
+#editphotosmodeldesc {
     font-style:italic;
 }
-#editphotosdetail
-{
+#editphotosdetail {
     position: relative;
     clear: both;
 }
-#editphotosmanage
-{
+#editphotosmanage {
     position: relative;
     left: 20px;
     width: 350px;
     float: left;
 }
-#editphotosdefault
-{
+#editphotosdefault {
     position: relative;
     float: left;
 	margin-top: 35px;
 }
-#editphotosdefaultimg
-{
+#editphotosdefaultimg {
     border: solid;
 	border-width: 1px;
     border-color: #cea96d;
     height: 520px;
     width: 400px;
 }
-#editphotossave
-{
+#editphotossave {
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
 }
-#editphotoslinks
-{
+#editphotoslinks {
     clear: both;
     position: relative;
     top: 10px;
     margin-bottom: 25px;
 }
-#editphotosupload
-{
+#editphotosupload {
     position: relative;
     width: 800px;
     color: #fff;
 }
-#uploadaphoto
-{
+#uploadaphoto {
     clear: both;
     margin-bottom: 5px;
 }
-#editphotodefaultthumbnail
-{
+#editphotodefaultthumbnail {
     margin-bottom: 10px;
     position: relative;
 }
-#editphotosthumbnail
-{
+#editphotosthumbnail {
     margin-top: 8px;
     width: 400px;
     position: relative;
 }
-.editlink
-{
-   font-size: 1.2em;
+.editlink {
+   font-size: 14pt;
 }
-.thumbnail
-{
+.thumbnail {
     width: 90px;
     height: 90px;
-    border-width: 2px;
+    border: 2px;
     border-style: solid;
     border-color: #cea96d;
     margin-bottom: 2px;
 }
-.savebutton
-{
-    font-size: 1em;
+.savebutton {
+    font-size: 12pt;
     width: 100px;
     height: 30px;
 }
-#addphoto
-{
+#addphoto {
     float: left;
     clear:right;
 	margin-top: 50px;
 }
-#addinstrument
-{
+#addinstrument {
     background: url(Images/tools_large.jpg);
     clear: both;
     width: 900px;
     height: 2870px;
 }
-#deleteinstrument
-{
+#deleteinstrument {
     background: url(Images/tools_large_3.jpg);
     clear: both;
     width: 900px;
     height: 2870px;
 }
-#deleteconfirm
-{
+#deleteconfirm {
     position: relative;
     clear: both;
     top: 20px;
-    font-size: 1.5em;
+    font-size: 16pt;
     color: #AC3219;
 }
-#editinstrument
-{
+#editinstrument {
     background: url(Images/tools_large.jpg);
     width: 900px;
     height: 2870px;
 }
-.editinstrcontainer
-{
+.editinstrcontainer {
     position: relative;
     left: 25px;
     color: #ffffff;
 }
-.editinstrbuttons
-{
+.editinstrbuttons {
     position: relative;
     margin-bottom: 20px;
-    font-size: 1.2em;
+    font-size: 12pt;
 }
 .editinstrisposted {
     position: relative;
     float: right;
 }
-.editinstrinfo
-{
+.editinstrinfo {
     position: relative;
     margin-top: 40px;
     color: #fff;
@@ -369,8 +273,7 @@ button {
 .editinstrphoto {
     float: left;
 }
-.editinstrphotoimg
-{
+.editinstrphotoimg {
 	border-style: solid;
     border-color: #cea96d;
     margin-top: 35px;
@@ -378,8 +281,7 @@ button {
     height: 240px;
     width: 180px;
 }
-.linehorizontal
-{
+.linehorizontal {
     color: #cea96d;
     clear: both;
     border-top-style:dotted;
@@ -387,38 +289,25 @@ button {
     border-left: none;
     border-right: none;
 }
-.linevertical
-{
+.linevertical {
     color: #cea96d;
     border-top: none;
     border-bottom: none;
     border-left: dotted;
     border-right: none;
 }
-.viewdetailslink
-{
+.viewdetailslink {
     font-size:1em;
     color: #7DA5D8;
     width: 250px;
 }
-#logo
-{
-    float: left;
-    background: url(charltoneLogo.png);
-    width:214px;
-    height:74px;
-    margin-top: 10px;
-    margin-left: 30px;
-}
-#instrlistview
-{
+#instrlistview {
     position: relative;
     clear: both;
     background: url(Images/tools_large_2_dark.jpg);
     width: 900px;
 }
-#instrlistheader
-{
+#instrlistheader {
     position: relative;
     margin-bottom: 20px;
     clear: both;
@@ -427,51 +316,48 @@ button {
     font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
     color: #fff;
 }
-#instrlistviewcontent
-{
+#instrlistviewcontent {
     top: 20px;
     position: relative;
     margin-left: 33px;
 }
-#instrlistlinehorizontal
-{
+#instrlistlinehorizontal {
    position: relative;
    width: 835px;
    margin-bottom: 20px;
 }
-#listdetail
-{
+#listdetail {
     width: 875px;
 }
-.listinfomodel
-{
+.listinfomodel {
     position: relative;
     color: #fff;
     padding: 0;
     width: 250px;
     font-size: 13pt;
 }
-.listinfostatus
-{
+.listinfostatus {
     position: relative;
     color: #fff;
     padding: 0;
     width: 250px;
     font-size: 11pt;
 }
-#orderingheadereditlnk
-{
+#orderingheadereditlnk {
     font-size: 12pt;
 }
-#orderinglistlinehorizontal
-{
+#orderinglistlinehorizontal {
     position: relative;
     width: 835px;
     margin: 8px 0 8px 0
 }
-#orderinglistviewcontent
-{
-    top: 20px;
+#orderinglistview {
+    position: relative;
+    clear: both;
+    background: url(Images/tools_large_2_dark.jpg);
+    width: 900px;
+}
+#orderinglistviewcontent {
     position: relative;
     margin-left: 33px;
     color: #fff;
@@ -489,22 +375,19 @@ button {
     color: #f0f0f0;
     font-size: 9pt;
 }
-.orderingitemtable
-{
+.orderingitemtable {
     width: 840px;
     border-style:none;
     padding-bottom: 3px;
 }
-#orderingphoto
-{
+#orderingphoto {
     border: solid;
     border-width: 1px;
     border-color: #cea96d;
     width: 115px;        /*   width & height: H = W * 1.3 */
     height: 150px;
 }
-.orderingtablecelllabel
-{
+.orderingtablecelllabel {
     border-style:none;
     font-style: italic;
     vertical-align: text-top;
@@ -512,67 +395,56 @@ button {
     padding-bottom: 5px;
     width: 95px;
 }
-.orderingtablecelllink
-{
+.orderingtablecelllink {
     font-size: 9pt;
     border-style:none;
     padding: 0;
     width: 150px;
 }
-#orderingtablecellphoto
-{
+#orderingtablecellphoto {
     border-style:none;
     padding: 0 0 0 0;
     width: 125px;
 }
-.orderingtablecell
-{
+.orderingtablecell {
     border-style:none;
     padding: 0;
     vertical-align: text-top;
     font-size: 9pt;
 }
-#orderingphotoupload
-{
+#orderingphotoupload {
     position: relative;
     margin-left: 30px;
     color: #fff;
 }
-#orderingphotouploadlabel
-{
+#orderingphotouploadlabel {
     position: relative;
     margin-left: 30px;
     color: #fff;
     clear:both;
 }
-#editordering
-{
+#editordering {
     background: url(Images/tools_large.jpg);
     width: 900px;
     height: 620px;
 }
-#deleteordering
-{
+#deleteordering {
     background: url(Images/tools_large.jpg);
     width: 900px;
     height: 620px;
 }
-#editorfieldorderingmodel
-{
+#editorfieldorderingmodel {
     width: 2em;
 }
-#listinfopostedmessage
-{
+#listinfopostedmessage {
     color: Red;
 }
-.listinfodetail
-{
+.listinfodetail {
     color: #fff;
     font-size: 1em;
     padding: 0;
 }
-.listdefaultphoto
-{
+.listdefaultphoto {
     border: solid;
     border-width: 2px;
     border-color: #cea96d;
@@ -588,65 +460,53 @@ button {
     height: 600px;
     margin-bottom: 3px; 
 }
-
-.left 
-{
+.left {
   margin-right: 53px;
 }
-.right 
-{
-  margin-left: 0px;
+.right {
+  margin-left: 0;
 }
-.left_wrapper 
-{
+.left_wrapper {
   width: 285px;
   float: left;
   position: relative;
   z-index: 0;
 }
-.middle_wrapper 
-{
+.middle_wrapper {
   width: 285px;
   float: left;
   position: relative;
   z-index: 2;
 }
-.right_wrapper 
-{
+.right_wrapper {
   width: 285px;
   float: left;
   position: relative;
   z-index: 1;
 }
-body
-{
+body{
     background-color: #272722;
     font-size: 10pt;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
 }
-a:link
-{
+a:link {
     color: #034af3;
     text-decoration: underline;
 }
-a:visited
-{
+a:visited {
     color: #505abc;
 }
-a:hover
-{
+a:hover {
     color: #1d60ff;
     text-decoration: none;
 }
-a:active
-{
+a:active {
     color: #12eb87;
 }
 
-p, ul
-{
+p, ul {
     margin-bottom: 20px;
     line-height: 1.6em;
 }
@@ -658,75 +518,34 @@ h3 {
     padding: 0;
 }
 
-/* this rule styles <h2> tags that are the 
-first child of the left and right table columns */
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
-{
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
     margin-top: 0;
 }
 
-/* PRIMARY LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-/* you can specify a greater or lesser percentage for the 
-page width. Or, you can specify an exact pixel width. */
-.page
-{
-    margin-left: auto;
-    margin-right: auto;
-    width: 900px;
-}
-
-#header
-{
-    position: relative;
-    height: 20px;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
-}
-
-#header h1
-{
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px !important;
-}
-
-/*   Gallery attributes - begin */
 
 /* List page */
-label#listavailable
-{
+label#listavailable {
     position: relative;
     color: #fff;
     padding: 0;
     width: 250px;
     font-size: 11pt;
 }
-label#listsold
-{
+label#listsold {
     position: relative;
     color: Red;
     padding: 0;
     width: 250px;
     font-size: 11pt;
 }
-label#listnotforsale
-{
+label#listnotforsale {
     position: relative;
     color: #1d60ff;
     padding: 0;
     width: 250px;
     font-size: 11pt;
 }
-label#listinprogress
-{
+label#listinprogress {
     position: relative;
     color: #00ff21;
     padding: 0;
@@ -735,8 +554,7 @@ label#listinprogress
 }
 
 /* Detail page */
-div#sold
-{
+div#sold {
     position: relative;
     margin-top: 10px;
     clear: both;
@@ -744,8 +562,7 @@ div#sold
 	font-size: 14pt;
 	width: 20px;
 }
-div#notforsale
-{
+div#notforsale {
     position: relative;
     margin-top: 10px;
     clear: both;
@@ -753,8 +570,7 @@ div#notforsale
 	font-size: 14pt;
     width: 120px;
 }
-div#inprogress
-{    
+div#inprogress {    
     position: relative;
     margin-top: 15px;
     clear: both;
@@ -762,102 +578,87 @@ div#inprogress
 	font-size: 14pt;
     width: 120px;
 }
-.mainphoto
-{
+.mainphoto {
 	border: solid;
 	border-width: 2px;
     border-color: #cea96d;
     height: 420px;
     width: 320px;
 }
-#instrumentdetail
-{
+#instrumentdetail {
     background: url(Images/tools_large_2_dark.jpg) right no-repeat;
     position: relative;
     width: 900px;
     height: 675px;
 }
-#instrumentdetailcontent
-{
+#instrumentdetailcontent {
     margin-left: 30px;
 }
-#instrdetaillinehoriztop
-{
+#instrdetaillinehoriztop {
    position: relative;
    margin-top: 12px;
    width: 830px;
    height: 1px;
 }
-#instrdetailheader
-{
+#instrdetailheader {
     position: relative;
     color: #fff;
     clear: both;
 }
-#instrdetailmodel 
-{
+#instrdetailmodel {
     margin-top: 15px;
     font-size: 1.6em;
     float: left;
     color: #cea96d;
 }
-#instrumentdetailprice
-{
+#instrumentdetailprice {
     font-size: 10pt;
     clear: both;
 }
-#instrumentinfo
-{
+#instrumentinfo {
     position: relative;
     margin-bottom: 20px;
     width: 900px;
     float: left;
 }
-#instrdetailinfoheader
-{
+#instrdetailinfoheader {
     position: relative;
     left: 22px;
     font-size: 10pt;
     color: #cea96d;
 }
-#instrdetailmainphoto
-{
+#instrdetailmainphoto {
     position: relative;
     top: 15px;
     margin-bottom: 10px;
     float: left;
 }
-#instrdetaillinevertical
-{
+#instrdetaillinevertical {
    position: relative;
    margin-top: 20px;
    margin-left: 25px;
    float: left;
    height: 415px;
 }
-#instrdetailinfo
-{
+#instrdetailinfo {
     position: relative;
     float: left;
     top: 20px;
 	color: #fff;
 }
-#instrdetailinfolist
-{
+#instrdetailinfolist {
     list-style: none;
     font-size: 10pt;
     font-family: Arial;
     padding-left: 25px;
 }
-#instrdetailbacktolist
-{
+#instrdetailbacktolist {
     position: relative;
     text-align: right;
     width: 828px;
     font-size: 12pt;
 }
-#backtolistlink
-{
+#backtolistlink {
    position: relative;
    top: 35px; 
    font-size: .82em;
@@ -865,88 +666,92 @@ div#inprogress
    text-decoration: none;
    color: #7DA5D8;
 }
-#instrdetaillinehorizbottom
-{
+#instrdetaillinehorizbottom {
    position: relative;
    margin-top: 40px;
    width: 830px;
    height: 1px;
 }
-#instrdetailthumbnail 
-{
+#instrdetailthumbnail {
     width: 920px;
 	clear: both;
 	position: relative;
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
-#homepage
-{
-    position: relative;
-    width: 900px;
-    height: 675px;
-    background: url(Images/tools_large.jpg) right no-repeat;
-}
-#homedetail
-{
-    position: relative;
-    top: 40px;
-    margin-left: 30px;
-    margin-right: 15px;
-}
-#homebanner
-{
-    position: relative;
-    font-size: 1.5em;
-    color: #cea96d;
-}
-#homeeditbanner
-{
-    position: relative;
-    font-size: 1.5em;
-    color: #fff;
-}
-#homeedituploadimage
-{
-    position: relative;
-    margin-top: 20px;
-}
-#homemessage
-{
-    position: relative;
-    top: 10px;
-    font-size: 1.1em;
-    color: #fff;
-}
-.homepagelink
-{
+.homepagelink {
     position: relative;
     font-weight: bold;
     padding-bottom: 5px;
     color: #fff;
     font-size: 14px;
 }
-.homepageimg
-{
+#home {
+    position: relative;
+    width: 900px;
+    height: 675px;
+    background: url(Images/tools_large.jpg) right no-repeat;
+}
+#homecontent {
+    position: relative;
+    margin: 0 5px 0 30px;
+}
+#homeintroduction {
+    position: relative;
+    font-size: 16pt;
+    color: #cea96d;
+}
+#homegreeting {
+    position: relative;
+    top: 10px;
+    font-size: 11pt;
+    color: #fff;
+}
+#homeimagecontainer {
+    width: 830px;
+    height: 520px;
+    margin: 25px 0 0 0;
+    border: 1px solid #cea96d;
+}
+#homeimageedit {
+    position: relative;
+    margin: 0;
+    padding-top: 10px;
+    color: #ffffff;
+    font-size: 14pt;
+}
+#homeimageeditcancellnk {
+    margin-right: 35px;
+    font-size: 12pt;
+    float: right;
+}
+#homeedit {
+    position: relative;
+    font-size: 12pt;
+    color: #fff;
+}
+#homeedituploadimage {
+    position: relative;
+    margin: 20px 0 10px 0;
+}
+.homeeditlink {
+    position: relative;
+    margin: 0;
+    padding: 10px 0 5px 0;
+    font-size: 12pt;
+}
+.homeimage {
     position: relative;
     width: 830px;
     height: 520px;
 }
-#homepageimage
-{
-    position: relative;
-    margin-left: 30px;
-    margin-top: 60px;
-}
-#aboutpage
-{
+#aboutpage {
     position: relative;
     width: 900px;
-    height: 675px;
+    height: 550px;
     background: url(Images/tools_large_2_dark.jpg) right no-repeat;
 }
-#aboutbanner
-{
+#aboutbanner {
     position: relative;
     font-size: 2.2em;
     margin-left: 30px;
@@ -954,50 +759,66 @@ div#inprogress
     margin-bottom: 40px;
     color: #cea96d;
 }
-#aboutmain
-{
+#about {
     position: relative;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 80px;
+    padding: 5px 0 0 0;
+    margin: 0 30px 0 30px;
     color: #fff;
     clear: both;
 }
-#aboutlinehorizontal
-{
+#aboutlinehorizontal {
     position: relative;
-    top: 50px;
-    margin-left: 30px;
     width: 835px;
+    margin: 15px 0 10px 0;
 }
-.aboutheader
-{
+#abouteditlnk {
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+#editabout {
+    background: url(Images/tools_large.jpg);
+    width: 900px;
+    height: 720px;
+}
+.editaboutcontainer {
+    position: relative;
+    left: 25px;
+    color: #ffffff;
+}
+.editaboutinfo {
+    position: relative;
+    margin-top: 40px;
+    color: #fff;
+    float: left;
+}
+.editaboutbuttons {
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 12pt;
+}
+.aboutfield {
     position: relative;
     clear: both;
-    font-size: 18pt;
+    font-size: 16pt;
     color: #cea96d;
 }
-.aboutmessage
-{
+.aboutfieldcontent {
     position: relative;
     clear: both;
-    font-size: 11pt;
+    font-size: 10pt;
     color: #fff;
 }
-#menubackground
-{
+#menubackground {
     background: url(Images/tools.jpg) right no-repeat;
     height: 90px;
     width: 900px;
 }
-#main
-{
+#main {
     width: 100%;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
-#footer
-{
+#footer {
     color: #999;
     text-align: center;
     line-height: normal;
@@ -1007,8 +828,7 @@ div#inprogress
 
 /* TAB MENU   
 ----------------------------------------------------------*/
-ul#menu
-{
+ul#menu {
     position: relative;
     margin: 0;
     text-align: right;
@@ -1016,24 +836,18 @@ ul#menu
     background-color: transparent;
     
 }
-
-ul#menu li
-{
+ul#menu li {
     display: inline;
     list-style: none;
     background-color:transparent;
 }
-
-ul#menu li#greeting
-{
+ul#menu li#greeting {
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
     color: #fff;
 }
-
-ul#menu li a
-{
+ul#menu li a {
     padding: 10px 10px;
     font-weight: bold;
     text-decoration: none;
@@ -1042,78 +856,67 @@ ul#menu li a
     color: #fff;
 }
 
-ul#menu li a:hover
-{
+ul#menu li a:hover {
     background-color:transparent;
     text-decoration: none;
     color: #7DA5D8;
 }
 
-ul#menu li a:active
-{
+ul#menu li a:active {
     background-color:transparent;
     text-decoration: none;
     color: #7DA5D8;
 }
 
-ul#menu li.selected a
-{
+ul#menu li.selected a {
     color: #7DA5D8;
 }
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
-fieldset 
-{
+fieldset {
     margin: 1em 0;
     padding: 1em;
     border: 1px solid #CCC;
 }
 
-fieldset p 
-{
+fieldset p {
     margin: 2px 12px 10px 10px;
 }
 
-legend 
-{
+legend {
     font-size: 1.1em;
     font-weight: 600;
     padding: 2px 4px 8px 4px;
 }
 
-input[type="text"] 
-{
+input[type="text"] {
     width: 200px;
     border: 1px solid #CCC;
 }
 
-input[type="password"] 
-{
+/*input[type="password"] {
     width: 200px;
     border: 1px solid #CCC;
-}
+}*/
 
 /* TABLE
 ----------------------------------------------------------*/
 
-table 
-{
+table {
   height: 100%;
   border: solid 1px #e8eef4;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-table td 
-{
+table td {
   padding: 5px;   
   border: solid 1px #e8eef4;
 }
 
-table th
-{
+table th {
   padding: 6px 5px;
   text-align: left;
   background-color: #272722;
@@ -1123,37 +926,31 @@ table th
 
 /* MISC  
 ----------------------------------------------------------*/
-.clear
-{
+.clear {
     clear: both;
 }
 
-.error
-{
+.error {
     color:Red;
 }
 
-#menucontainer
-{
+#menucontainer {
     position:relative;
     float: right;
-    margin-top:40px;
-    margin-right: 13px;
+    margin: 40px 13px 0 0;
     display:inline;
     padding:0 13px 5px 0;
     text-transform:uppercase;
     font-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
-div#title
-{
+div#title {
     display:block;
     float:left;
     text-align:left;
 }
 
-#logindisplay
-{
+#logindisplay {
     font-size:1.1em;
     display:block;
     text-align:right;
@@ -1161,50 +958,38 @@ div#title
     color:White;
 }
 
-#logindisplay a:link
-{
+#logindisplay a:link {
     color: white;
     text-decoration: underline;
 }
 
-#logindisplay a:visited
-{
+#logindisplay a:visited {
     color: white;
     text-decoration: underline;
 }
 
-#logindisplay a:hover
-{
+#logindisplay a:hover {
     color: white;
     text-decoration: none;
 }
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error
-{
+.field-validation-error {
     color: #ff0000;
 }
-
-.field-validation-valid
-{
+.field-validation-valid {
     display: none;
 }
-
-.input-validation-error
-{
+.input-validation-error {
     border: 1px solid #ff0000;
     background-color: #ffeeee;
 }
-
-.validation-summary-errors
-{
+.validation-summary-errors {
     font-weight: bold;
     color: #ff0000;
 }
-
-.validation-summary-valid
-{
+.validation-summary-valid {
     display: none;
 }
 
@@ -1212,30 +997,21 @@ div#title
 ----------------------------------------------------------*/
 
 .display-label,
-.editor-label
-{
+.editor-label {
     margin: 0.5em, 0;
     margin-bottom: .3em;
 }
-
 .display-field,
-.editor-field
-{
+.editor-field {
     margin-bottom: 1em;
 }
-
-.text-box
-{
+.text-box {
     width: 355px;
 }
-
-.text-box.multi-line
-{
+.text-box.multi-line {
     height: 6.5em;
 }
-
-.tri-state
-{
+.tri-state {
     width: 6em;
 }
 textarea#Model,
@@ -1258,8 +1034,7 @@ textarea#ScaleLength,
 textarea#CaseDetail,
 textarea#Strings,
 textarea#FretWire,
-textarea#Dimensions
-{
+textarea#Dimensions {
     position: relative;
     clear:both;
     width: 600px;
@@ -1269,10 +1044,12 @@ textarea#Dimensions
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 1.1em;
+    font-size: 10pt;
+    resize: none;
 }
-textarea#Comments, textarea#FunFacts, textarea#TypicalPrice
-{
+textarea#Comments, 
+textarea#FunFacts, 
+textarea#TypicalPrice {
     position: relative;
     clear:both;
     width: 600px;
@@ -1282,10 +1059,53 @@ textarea#Comments, textarea#FunFacts, textarea#TypicalPrice
     font-family: Arial, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
-    font-size: 1.1em;
+    font-size: 10pt;
+    resize: none;
 }
-textarea#ContactMessage
-{
+textarea#Name,
+textarea#CompanyName,
+textarea#Origins,
+textarea#Materials {
+    position: relative;
+    clear:both;
+    width: 800px;
+    height: 100px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 10pt;
+    resize: none;
+}
+textarea#Introduction {
+    position: relative;
+    clear:both;
+    width: 800px;
+    height: 50px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 10pt;
+    resize: none;
+}
+textarea#Greeting {
+    position: relative;
+    clear:both;
+    width: 800px;
+    height: 100px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 10pt;
+    resize: none;
+}
+
+textarea#ContactMessage {
     position: relative;
     width: 350px;
     height: 80px;
@@ -1294,14 +1114,13 @@ textarea#ContactMessage
     font-family: Tahoma, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
+    resize: none;
 }
-
 textarea#Summary,
 textarea#Pricing,
 textarea#PaymentOptions,
 textarea#PaymentPolicy,
-textarea#Shipping
-{
+textarea#Shipping {
     position: relative;
     width: 830px;
     height: 80px;
@@ -1310,16 +1129,15 @@ textarea#Shipping
     font-family: Tahoma, sans-serif;
     background-position: bottom right;
     background-repeat: no-repeat;
+    resize: none;
 }
-#contact
-{
+#contact {
     position: relative;
     background: url(Images/faceplates_gradient.jpg) right no-repeat;
     width: 900px;
     height: 500px;
 }
-#contactmain
-{
+#contactmain {
     margin-top: 40px;
     margin-left: 30px;
     clear: both;
@@ -1327,59 +1145,50 @@ textarea#Shipping
     width: 650px;
     color: #fff;
 }
-#contactlinehorizontal
-{
+#contactlinehorizontal {
     margin-bottom: 10px;
     width: 650px;
 }
-#contactinfo
-{
+#contactinfo {
     position:relative;
     top: 10px;
     float:left;
     color: #fff;
     width: 400px;
 }
-#contactheader
-{
+#contactheader {
     position: relative;
     font-size: 1.5em;
     margin-bottom: 30px;
 }
-#getintouchheader
-{
+#getintouchheader {
     position: relative;
     font-size: 1.4em;
     color: #fff;
     bottom: 20px;
     margin-top: 30px;   
 }
-#contactlinevertical
-{
+#contactlinevertical {
     position: relative;
     width: 10px;
     height: 300px;
     margin-bottom: 10px;
     float: left;
 }
-#getintouch
-{
+#getintouch {
     margin-left: 40px;
     color: #fff;
     width: 180px;
     float: left;
 }
-#getintouchemail
-{
+#getintouchemail {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-#getintouchcountry
-{
+#getintouchcountry {
     margin-top: 20px;
 }
-#contactguitarimg
-{
+#contactguitarimg {
     position: relative;
     top: 80px;
     height: 350px;
@@ -1388,13 +1197,11 @@ textarea#Shipping
     margin-left: 20px;
     background: url(Images/torres_small.png) right no-repeat;
 }
-#contactemailconfirm
-{
+#contactemailconfirm {
     color: #fff;
     font-size: 12pt;
 }
-#contactsend
-{
+#contactsend {
     margin-top: 10px;
     position: relative;
     float: left;

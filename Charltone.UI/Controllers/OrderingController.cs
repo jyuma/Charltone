@@ -17,14 +17,14 @@ namespace Charltone.UI.Controllers
     public class OrderingController : Controller
     {
         private readonly IOrderingRepository _orderings;
-        private readonly IOrderingHeaderContentRepository _header;
+        private readonly IOrderingHeaderContentRepository _headerContent;
         private readonly IInstrumentTypeRepository _types;
         private readonly IPhotoRepository _photos;
 
-        public OrderingController(IOrderingRepository orderings, IOrderingHeaderContentRepository header, IInstrumentTypeRepository types, IPhotoRepository photos)
+        public OrderingController(IOrderingRepository orderings, IOrderingHeaderContentRepository headerContent, IInstrumentTypeRepository types, IPhotoRepository photos)
         {
             _orderings = orderings;
-            _header = header;
+            _headerContent = headerContent;
             _photos = photos;
             _types = types;
         }
@@ -137,7 +137,7 @@ namespace Charltone.UI.Controllers
         [Authorize]
         public ActionResult EditHeader(OrderingHeaderEditViewModel viewModel)
         {
-            UpdateOrderingHeader(viewModel);
+            UpdateOrderingHeaderContent(viewModel);
 
             return RedirectToAction("Index");
         }
@@ -195,7 +195,7 @@ namespace Charltone.UI.Controllers
 
         private OrderingListViewModel LoadOrderingListViewModel()
         {
-            var header = _header.GetAll().Single();
+            var header = _headerContent.GetAll().Single();
             var orderings = _orderings.GetAll();
             var totalitems = orderings.Count();
 
@@ -270,15 +270,15 @@ namespace Charltone.UI.Controllers
 
         private OrderingHeaderEditViewModel LoadOrderingHeaderEditViewModel()
         {
+            var headerContent = _headerContent.GetAll().Single();
 
-            var orderingHeader = _header.GetAll().Single();
             var vm = new OrderingHeaderEditViewModel
             {
-                Summary = orderingHeader.Summary,
-                Pricing = orderingHeader.Pricing,
-                PaymentOptions = orderingHeader.PaymentOptions,
-                PaymentPolicy = orderingHeader.PaymentPolicy,
-                Shipping = orderingHeader.Shipping
+                Summary = headerContent.Summary,
+                Pricing = headerContent.Pricing,
+                PaymentOptions = headerContent.PaymentOptions,
+                PaymentPolicy = headerContent.PaymentPolicy,
+                Shipping = headerContent.Shipping
             };
 
             return vm;
@@ -304,17 +304,17 @@ namespace Charltone.UI.Controllers
             _orderings.Update(ordering);
         }
 
-        private void UpdateOrderingHeader(OrderingHeaderEditViewModel viewModel)
+        private void UpdateOrderingHeaderContent(OrderingHeaderEditViewModel viewModel)
         {
-            var orderingHeader = _header.GetAll().Single();
+            var headerContent = _headerContent.GetAll().Single();
 
-            orderingHeader.Summary = viewModel.Summary;
-            orderingHeader.Pricing = viewModel.Pricing;
-            orderingHeader.PaymentOptions = viewModel.PaymentOptions;
-            orderingHeader.PaymentPolicy = viewModel.PaymentPolicy;
-            orderingHeader.Shipping = viewModel.Shipping;
+            headerContent.Summary = viewModel.Summary;
+            headerContent.Pricing = viewModel.Pricing;
+            headerContent.PaymentOptions = viewModel.PaymentOptions;
+            headerContent.PaymentPolicy = viewModel.PaymentPolicy;
+            headerContent.Shipping = viewModel.Shipping;
 
-            _header.Update(orderingHeader);
+            _headerContent.Update(headerContent);
         }
     }
 }

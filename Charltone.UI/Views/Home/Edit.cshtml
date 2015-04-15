@@ -1,28 +1,37 @@
-﻿@using Charltone.UI.ViewModels.Home;
-@model HomePageImageEditViewModel
+﻿@model Charltone.UI.ViewModels.Home.HomeEditViewModel
 
 @{
-    ViewBag.Title = "Edit Home Page Image";
+    ViewBag.Title = "Edit Home Content";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="homepage">
-    <div id="homedetail">
-        <div id="homeeditbanner">
-            Change Home Page Image
-        </div>
-        <div id="homeedituploadimage">
-            @using (Html.BeginForm("UpdateHomePageImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-            {
-                <div id="editphotosupload">
-                    <div id="uploadaphoto">Upload an image <a class="homepagelink" href="@Url.Action("Index", "Home")">Back to Home</a></div>
-                    <input type="file" name="file" id="file" />
-                    <input type="submit" value="Upload" />
+<div id="editabout">
+    @using (Html.BeginForm())
+    {
+        <div class="editaboutcontainer">
+            @Html.ValidationSummary(true)
+            <div class="editaboutinfo">
+                <div class="editaboutbuttons">
+                    <input class="savebutton" type="submit" value="Save" name="Command" />
+                    &nbsp
+                    @Html.ActionLink("Cancel", "Index", "Home")
                 </div>
-            }
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Introduction)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Introduction)
+                    @Html.ValidationMessageFor(model => model.Introduction)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Greeting)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Greeting)
+                    @Html.ValidationMessageFor(model => model.Greeting)
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="homepageimage">
-        <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
-    </div>
+    }
+
 </div>

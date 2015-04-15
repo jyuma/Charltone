@@ -1,0 +1,52 @@
+﻿@using Charltone.UI.ViewModels.About;
+@using Charltone.UI.Helpers;
+
+@model AboutViewModel
+@{
+    ViewBag.Title = "Charltone About Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="aboutpage">
+    <div id="about">
+        <div class="editlink" id="abouteditlnk">
+            @Html.ActionLinkAuthorized("Edit", "Edit")
+        </div>
+        <div class="linehorizontal" id="aboutlinehorizontal"></div>
+        <div class="aboutfield">
+            The Name
+        </div>
+        <br />
+        <div class="aboutfieldcontent">
+            @Model.Name
+        </div>
+        <br />
+        <br />
+        <div class="aboutfield">
+            The Company Name
+        </div>
+        <br />
+        <div class="aboutfieldcontent">
+            @Model.CompanyName
+        </div>
+        <br />
+        <br />
+        <div class="aboutfield">
+            Origins
+        </div>
+        <br />
+        <div class="aboutfieldcontent">
+            @Model.Origins
+        </div>
+        <br />
+        <br />
+        <div class="aboutfield">
+            Materials
+        </div>
+        <br />
+        <div class="aboutfieldcontent">
+            @Model.Materials
+        </div>
+        <div class="linehorizontal" id="aboutlinehorizontal"></div>
+    </div>
+</div>

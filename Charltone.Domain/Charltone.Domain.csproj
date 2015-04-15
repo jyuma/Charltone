@@ -49,11 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AboutContent.cs" />
     <Compile Include="Entities\AdminUser.cs" />
     <Compile Include="Entities\Classification.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\EntityBase.cs" />
-    <Compile Include="Entities\HomePageImage.cs" />
+    <Compile Include="Entities\HomeContent.cs" />
     <Compile Include="Entities\Instrument.cs" />
     <Compile Include="Entities\InstrumentType.cs" />
     <Compile Include="Entities\NoPhotoImage.cs" />
@@ -65,13 +66,14 @@
     <Compile Include="Entities\ProductType.cs" />
     <Compile Include="Entities\SubClassification.cs" />
     <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Mappings\AboutContentMap.cs" />
     <Compile Include="Mappings\AdminUserMap.cs" />
     <Compile Include="Mappings\ClassificationMap.cs" />
-    <Compile Include="Mappings\HomePageImageMap.cs" />
+    <Compile Include="Mappings\HomeContentMap.cs" />
     <Compile Include="Mappings\InstrumentMap.cs" />
     <Compile Include="Mappings\InstrumentTypeMap.cs" />
     <Compile Include="Mappings\NoPhotoImageMap.cs" />
-    <Compile Include="Mappings\OrderingHeaderContentMapping.cs" />
+    <Compile Include="Mappings\OrderingHeaderContentMap.cs" />
     <Compile Include="Mappings\OrderingMap.cs" />
     <Compile Include="Mappings\PhotoMap.cs" />
     <Compile Include="Mappings\ProductMap.cs" />

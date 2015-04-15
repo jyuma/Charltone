@@ -1,49 +1,49 @@
-﻿using System;
-using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using Charltone.Data.Repositories;
-using Charltone.Domain.Entities;
+﻿using Charltone.Data.Repositories;
 using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Home;
-using NHibernate;
+using System;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ISession _session;
-        private readonly IPhotoRepository _photos;
+        private readonly IHomeContentRepository _content;
 
-        public HomeController(ISession session, IPhotoRepository photos)
+        public HomeController(IHomeContentRepository content)
 		{
-            _session = session;
-            _photos = photos;
+            _content = content;
 		}
 
 		public ActionResult Index()
 		{
-            ViewBag.Message = "Welcome to Charltone Instruments";
-            ViewBag.EventCount = _session.QueryOver<Instrument>().RowCount();
-
-            return View();
+            return View(LoadHomeViewModel());
 		}
-
-		public ActionResult About()
-		{
-			return View();
-		}
-
-        public ActionResult Contact()
-        {
-            return View(new ContactViewModel());
-        }
 
         [HttpGet]
         [Authorize]
         public ActionResult Edit()
         {
-            return View(LoadHomePageImageEditViewModel());
+            return View(LoadHomePageEditViewModel());
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(HomeEditViewModel viewModel)
+        {
+            UpdateHomeContent(viewModel);
+
+            return View("Index", LoadHomeViewModel());
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Photo()
+        {
+            return View(LoadHomeImageViewModel());
         }
 
         [HttpPost]
@@ -60,32 +60,23 @@ namespace Charltone.UI.Controllers
                         .CropHomePageImage()
                         .ImageToByteArray();
 
-                    _photos.UpdateHomePageImage(data);
+                    var content = _content.GetAll().Single();
+                    content.Photo = data;
+
+                    _content.Update(content);
                 }
             }
-            var vm = new HomePageImageEditViewModel();
-            return View("Edit",  vm);
-        }
 
-        [HttpPost]
-        public ActionResult Contact(ContactViewModel viewModel)
-        {
-            var contactName = viewModel.ContactName ?? "Not supplied";
-            var contactPhone = viewModel.ContactPhone ?? "Not supplied";
-            var contactEmail = viewModel.ContactEmail ?? "Not supplied";
-            var contactMessage = viewModel.ContactMessage;
+            var vm = new HomeViewModel();
 
-            Library.Email.Send(contactName, contactPhone, contactEmail, contactMessage);
-
-            viewModel.HeaderMessage = "We received your message.  Thank you.";
-            return View(viewModel);
+            return View("Photo",  vm);
         }
 
         [HttpGet]
         public JsonResult GetHomePageImageJson()
         {
-            var image = _photos.GetHomePageImage();
-            var vm = new HomePageImageViewModel();
+            var image = _content.GetAll().Single().Photo;
+            var vm = new HomeImageViewModel();
 
             var data = Convert.ToBase64String(image);
             vm.Data = data;
@@ -96,17 +87,46 @@ namespace Charltone.UI.Controllers
         [HttpGet]
         public FileResult GetHomePageImage()
         {
-            var photo = _photos.GetHomePageImage();
+            var image = _content.GetAll().Single().Photo;
 
-            return File(photo, "image/jpeg");
+            return File(image, "image/jpeg");
         }
 
-        private HomePageImageEditViewModel LoadHomePageImageEditViewModel()
+        private HomeViewModel LoadHomeImageViewModel()
         {
-            var image = _photos.GetHomePageImage();
-            var vm = new HomePageImageEditViewModel { HomePageImage = image };
+            var image = _content.GetAll().Single().Photo;
+
+            var vm = new HomeViewModel { Photo = image };
 
             return vm;
+        }
+
+        private HomeViewModel LoadHomeViewModel()
+        {
+            var content = _content.GetAll().Single();
+
+            var vm = new HomeViewModel { Introduction = content.Introduction, Greeting = content.Greeting};
+
+            return vm;
+        }
+
+        private HomeEditViewModel LoadHomePageEditViewModel()
+        {
+            var content = _content.GetAll().Single();
+
+            var vm = new HomeEditViewModel { Greeting = content.Greeting, Introduction = content.Introduction };
+
+            return vm;
+        }
+
+        private void UpdateHomeContent(HomeEditViewModel viewModel)
+        {
+            var content = _content.GetAll().Single();
+
+            content.Introduction = viewModel.Introduction;
+            content.Greeting = viewModel.Greeting;
+
+            _content.Update(content);
         }
 	}
 }

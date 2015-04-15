@@ -1,8 +1,9 @@
 ﻿namespace Charltone.UI.ViewModels.Home
 {
-    public class HomePageImageViewModel
+    public class HomeViewModel
     {
-        public int Id;
-        public string Data;
+        public string Introduction;
+        public string Greeting;
+        public byte[] Photo;
     }
 }

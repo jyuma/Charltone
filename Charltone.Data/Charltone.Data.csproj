@@ -65,8 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NHibernateExtensions.cs" />
+    <Compile Include="Repositories\AboutContentRepository.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
-    <Compile Include="Repositories\HomePageImageRepository.cs" />
+    <Compile Include="Repositories\HomeContentRepository.cs" />
     <Compile Include="Repositories\InstrumentRespository.cs" />
     <Compile Include="Repositories\OrderingHeaderContentRepository.cs" />
     <Compile Include="Repositories\OrderingRepository.cs" />

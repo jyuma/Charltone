@@ -1,0 +1,44 @@
+﻿@using Charltone.UI.ViewModels.Home;
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Edit Home Page Image";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('input:file').change(
+            function() {
+                if ($(this).val()) {
+                    $('input:submit').removeAttr('disabled');
+                }
+            });
+    });
+</script>
+
+<div id="home">
+    <div id="homecontent">
+        <div id="homeimageedit">
+            Change Home Page Image
+        </div>
+        <div id="homeimageeditcancellnk">
+            <a href="@Url.Action("Index", "Home")">Home</a>
+        </div>
+        <div id="homeedituploadimage">
+            @using (Html.BeginForm("UpdateHomePageImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div id="editphotosupload">
+                    <div id="uploadaphoto">
+                        Upload an image
+                    </div>
+                    <input type="file" name="file" id="file" />
+                    <input type="submit" value="Upload" disabled="disabled" />
+                </div>
+            }
+        </div>
+        <div id="homeimagecontainer">
+            <img class="homeimage" src=@Url.Action("GetHomePageImage", "Home") alt="" />
+        </div>
+    </div>
+</div>

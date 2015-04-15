@@ -13,7 +13,7 @@
     });
 </script>
 
-<div id="instrlistview" style="height: @Model.BackgroundImageHeight">
+<div id="orderinglistview" style="height: @Model.BackgroundImageHeight">
     <div id="orderinglistviewcontent">
         <div class="editlink" id="orderingheadereditlnk">
             @Html.ActionLinkAuthorized("Add Ordering", "Create")
@@ -62,7 +62,7 @@
                     </tr>
                     <tr>
                         <td class="orderingtablecelllabel">
-                            Style: 
+                            Style:
                         </td>
                         <td class="orderingtablecell">
                             @orderingInfo.Style
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td class="orderingtablecelllabel">
-                            Typical Price: 
+                            Typical Price:
                         </td>
                         <td class="orderingtablecell">
                             @orderingInfo.TypicalPrice
@@ -92,7 +92,7 @@
                         </td>
                     </tr>
                 </table>
-    
+
                 <div class="linehorizontal" id="orderinglistlinehorizontal"></div>
             }
         }

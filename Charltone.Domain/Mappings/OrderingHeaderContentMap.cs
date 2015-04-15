@@ -3,9 +3,9 @@ using FluentNHibernate.Mapping;
 
 namespace Charltone.Domain.Mappings
 {
-    internal class OrderingHeaderContentMapping : ClassMap<OrderingHeaderContent>
+    internal class OrderingHeaderContentMap : ClassMap<OrderingHeaderContent>
     {
-        public OrderingHeaderContentMapping()
+        public OrderingHeaderContentMap()
         {
             Table("OrderingHeaderContent");
 

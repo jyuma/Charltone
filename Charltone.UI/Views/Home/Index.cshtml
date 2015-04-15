@@ -1,22 +1,29 @@
-﻿@using Charltone.UI.Helpers
+﻿@using Charltone.UI.ViewModels.Home;
+@using Charltone.UI.Helpers;
+
+@model HomeViewModel
 @{
-    ViewBag.Title = "Charltone Instruments";
+    ViewBag.Title = "Charltone About Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="homepage">
-    <div id="homedetail">
-        <div id="homebanner">
-            Hello!  Welcome to Charltone.com
+<div id="home">
+    <div id="homecontent">
+        <div class="homeeditlink">
+            @Html.ActionLinkAuthorized("Edit Greeting", "Edit")
+            &nbsp
+            @Html.ActionLinkAuthorized("Change Picture", "Photo")
         </div>
-        <div id="homemessage">
-            Please check out my handmade guitars. Drop me a line if you see anything you like or have any further questions at: kevin@charltone.com.
+        <div id="homeintroduction">
+            @Model.Introduction
         </div>
-    </div>
-    <div id="homepageimage">
-        <div class="homepagelink">@Html.ActionLinkAuthorized("Change Image", "Edit")</div>
-        <div id="homepageimagecontainer">
-            <img class="homepageimg" src=@Url.Action("GetHomePageImage", "Home") alt="" />
+        <div id="homegreeting">
+            @Model.Greeting
+        </div>
+        <div class="homeimage">
+            <div id="homeimagecontainer">
+                <img class="homeimage" src=@Url.Action("GetHomePageImage", "Home") alt="" />
+            </div>
         </div>
     </div>
 </div> 
