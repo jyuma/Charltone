@@ -32,6 +32,8 @@ namespace Charltone.UI.Controllers
             return View(LoadInstrumentListViewModel());
         }
 
+        [HttpGet]
+        [Route("Detail")]
         public ActionResult Detail(int id)
         {
             return View(LoadInstrumentDetailViewModel(id));
