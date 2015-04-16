@@ -23,14 +23,14 @@
         public const int Classical = 1;
     }
 
-    public class InstrumentPhoto
+    public class InstrumentPhotoSize
     {
         public const double Ratio = 1.3;
         public const int Width = 346;
         public const int Height = 450;
     }
 
-    public class InstrumentThumbnail
+    public class InstrumentThumbnailSize
     {
         public const int Width = 120;
         public const int Height = 120;

@@ -60,33 +60,70 @@ namespace Charltone.UI.Controllers
             var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
             var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
 
-            var isDelete = collection.AllKeys.Select(x => x.StartsWith("Delete")).Single();
-            var isSetDefault = collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single();
-
             var product = _products.Get(id);
-            var photo = product.Photos.Single(x => x.Id == photoId);
 
-            if (isDelete)
+            var action = GetSubmitActionName(collection);
+
+            switch (action)
             {
-                if (photo.IsDefault)
+                case "DELETE":
                 {
-                    if (product.Photos.Any(x => x.Id != photoId))
+                    var photo = product.Photos.Single(x => x.Id == photoId);
+                    if (photo.IsDefault)
                     {
-                        var newDefault = product.Photos.First(x => x.Id != photoId);
-                        _photos.SetProductDefault(id, newDefault.Id);
+                        if (product.Photos.Any(x => x.Id != photoId))
+                        {
+                            var newDefault = product.Photos.First(x => x.Id != photoId);
+                            _photos.SetProductDefault(id, newDefault.Id);   // randomly set another photo as the default
+                        }
                     }
+                    _photos.Delete(photoId);
+                    product.Photos.Remove(photo);
+                    break;
                 }
+                case "DEFAULT":
+                {
+                    var photo = product.Photos.Single(x => x.Id == photoId);
+                    _photos.SetProductDefault(id, photoId);
+                    photo.IsDefault = true;
+                    break;
+                }
+                case "MOVELEFT":
+                case "MOVERIGHT":
+                {
+                    var increment = (action == "MOVELEFT") ? -1 : 1;
+                    var p1 = product.Photos.Single(x => x.Id == photoId);
+                    var p2 = product.Photos.Single(x => x.SortOrder == (p1.SortOrder + increment));
 
-                _photos.Delete(photoId);
-                product.Photos.Remove(photo);
-            }
-            else if (isSetDefault)
-            {
-                _photos.SetProductDefault(id, photoId);
-                photo.IsDefault = true;
-            }
+                    p2.SortOrder = p1.SortOrder;
+                    p1.SortOrder = p1.SortOrder + increment;
 
+                     _photos.Update(p1);
+                     _photos.Update(p2);
+                    break;
+                }
+            }
+            
             return View(LoadInstrumentDetailViewModel(id));
+        }
+
+        private static string GetSubmitActionName(FormCollection collection)
+        {
+            var result = "";
+
+            if (collection.AllKeys.Select(x => x.StartsWith("Delete")).Single())
+                result = "DELETE";
+
+            if (collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single())
+                result = "DEFAULT";
+
+            if (collection.AllKeys.Select(x => x.StartsWith("MoveLeft")).Single())
+                result = "MOVELEFT";
+
+            if (collection.AllKeys.Select(x => x.StartsWith("MoveRight")).Single())
+                result = "MOVERIGHT";
+
+            return result;
         }
 
         [HttpPost]
@@ -196,7 +233,7 @@ namespace Charltone.UI.Controllers
 
             var thumbnail = photo
                 .ByteArrayToImage()
-                .GetThumbnailImage(InstrumentThumbnail.Width, InstrumentThumbnail.Height, () => false, IntPtr.Zero)
+                .GetThumbnailImage(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height, () => false, IntPtr.Zero)
                 .ImageToByteArray();
 
             return File(thumbnail, "image/jpeg");
@@ -306,17 +343,25 @@ namespace Charltone.UI.Controllers
                          Strings = instrument.Strings,
                          Tailpiece = instrument.Tailpiece,
                          Tuners = instrument.Tuners,
-
                          Comments = instrument.Comments,
                          FunFacts = instrument.FunFacts,
                          
                          Status = new Status
-                                  {
-                                      Description = product.ProductStatus.GetDescription(product.DisplayPrice),
-                                      ClassId = product.ProductStatus.GetClassId()
-                                  },
+                            {
+                                Description = product.ProductStatus.GetDescription(product.DisplayPrice),
+                                ClassId = product.ProductStatus.GetClassId()
+                            },
+
                          DefaultPhotoId = product.GetDefaultPhotoId(),
-                         PhotoIds = product.Photos.Select(x => x.Id).ToArray()
+                         InstrumentPhotos = product.Photos.OrderBy(x => x.SortOrder).Select(x =>
+                             new InstrumentPhoto
+                             {
+                                Id = x.Id,
+                                IsDefault = x.IsDefault,
+                                SortOrder = x.SortOrder,
+                                IsFirst = (x.SortOrder == 1),
+                                IsLast = (x.SortOrder == product.Photos.Count)
+                             }).ToArray()
                      };
 
             return vm;

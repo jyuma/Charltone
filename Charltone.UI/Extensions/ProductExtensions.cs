@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Charltone.Domain.Entities;
+﻿using Charltone.Domain.Entities;
+using System.Linq;
 
 namespace Charltone.UI.Extensions
 {

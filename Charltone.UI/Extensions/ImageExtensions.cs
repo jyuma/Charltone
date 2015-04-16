@@ -23,7 +23,7 @@ namespace Charltone.UI.Extensions
 
         public static Image CropInstrument(this Image image)
         {
-            return Imaging.Crop(image, new Size(InstrumentPhoto.Width, InstrumentPhoto.Height), InstrumentPhoto.Ratio);
+            return Imaging.Crop(image, new Size(InstrumentPhotoSize.Width, InstrumentPhotoSize.Height), InstrumentPhotoSize.Ratio);
         }
 
         public static Image CropOrdering(this Image image)

@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 
-    var photoIds = @Html.Raw(Json.Encode(Model.PhotoIds));
+    var instrumentPhotos = @Html.Raw(Json.Encode(Model.InstrumentPhotos));
     var funFacts = @Html.Raw(Json.Encode(Model.FunFacts));
     var comments = @Html.Raw(Json.Encode(Model.Comments));
     var defaultPhotoId = @Html.Raw(Json.Encode(Model.DefaultPhotoId));
@@ -18,9 +18,9 @@
     $(document).ready(function () 
     {
         //--- THIS CODE IS DUPLICATED IN PHOTO INDEX VIEW (BEGIN)
-        $(photoIds).each(function (index, value) {
-            $("#lnk-show-image_" + value).click(function () {
-                showImage(value);
+        $(instrumentPhotos).each(function (index, value) {
+            $("#lnk-show-image_" + value.Id).click(function () {
+                showImage(value.Id);
             });
         });
                 
@@ -285,53 +285,39 @@
         @using (Html.BeginForm(@Model.ProductId + "/Detail", "Instrument"))
         {
             <div id="instrdetailthumbnailconatiner">
-       
-                    @{
-            var @lnkImageIdDefault = "lnk-show-image_" + @Model.DefaultPhotoId;
+                @foreach (var instrPhoto in Model.InstrumentPhotos)
+                {
+                    var lnkImageId = "lnk-show-image_" + instrPhoto.Id;
 
-            <div id="instrdetailthumbnail">
-                @*<a id=@lnkImageIdDefault href="javascript:;">
-                    <img class="thumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
-                </a>*@
-            </div>
-                    }
-                    @foreach (var photoId in Model.PhotoIds)
-                    {
-                        var @lnkImageId = "lnk-show-image_" + photoId;
-
-                        <div id="instrdetailthumbnail">
-
-                            @if (photoId != Model.DefaultPhotoId)
-                            {
-                                <a id=@lnkImageId href="javascript:;">
-                                    <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new {id = photoId}) alt='' />
-                                </a>
-
-                                <div>
-                                    @{
-                                        var defaultName = "SetDefault_" + photoId;
-                                        <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
-                                        var deleteName = "Delete_" + photoId;
-                                        <input type="submit" name=@deleteName value="X" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
-                                    }
-                                </div>
-                            }
-                            else
-                            {
-                                <a id=@lnkImageIdDefault href="javascript:;">
-                                    <img class="thumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
-                                </a>
+                    <div id="instrdetailthumbnail">
+                        <a id="@lnkImageId" href="javascript:;">
+                            <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new { id = instrPhoto.Id}) alt='' />
+                        </a>
+                        <div>
+                            @{
+                                if (!instrPhoto.IsDefault)
+                                {
+                                    var defaultName = "SetDefault_" + instrPhoto.Id;
+                                    <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                }
                                 
-                                <div>
-                                    @{
-                                        var deleteName = "Delete_" + photoId;
-                                        <input type="submit" name=@deleteName value="X" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
-                                    }
-                                </div>
+                                var deleteName = "Delete_" + instrPhoto.Id;
+                                <input type="submit" name=@deleteName value="R" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" onclick="return confirm('Remove photo?');" />
+
+                                if (!instrPhoto.IsFirst)
+                                {
+                                    var moveleft = "MoveLeft_" + instrPhoto.Id;
+                                    <input type="submit" name=@moveleft value="<" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                }
+                                if (!instrPhoto.IsLast)
+                                {
+                                    var moveRight = "MoveRight_" + instrPhoto.Id;
+                                    <input type="submit" name=@moveRight value=">" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                }
                             }
                         </div>
-                    }
-
+                    </div>
+                }
             </div>
         }
     </div>

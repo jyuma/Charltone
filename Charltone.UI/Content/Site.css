@@ -566,10 +566,11 @@ h3 {
     background: url(Images/tools_large_2_dark.jpg) right repeat;
     position: relative;
     width: 900px;
-    height: 700px;
+    height: 675px;
 }
 #instrumentdetailcontent {
     margin-left: 30px;
+    padding-top: 5px;
 }
 #instrdetaillinehoriztop {
    position: relative;
@@ -586,7 +587,6 @@ h3 {
     font-size: 13pt;
     color: #cea96d;
     padding-bottom: 5px;
-    /*width: 100px;*/
     float: left;
 }
 #instrdetaileditupload {
@@ -595,7 +595,7 @@ h3 {
 }
 #instrdetaillinks {
     position: relative;
-    font-size: 12pt;
+    font-size: 11pt;
     padding: 0 30px 5px 0;
     float: right;
 }
@@ -608,7 +608,7 @@ h3 {
     font-style: normal;
     text-decoration: none;
     color: #7DA5D8;
-    /*float: left;*/
+    float: right;
 }
 #commentshint {
     cursor:pointer;
@@ -626,6 +626,13 @@ h3 {
 }
 .instrdetailadmin-hidden {
     visibility: hidden;
+}
+.instrdetailadminbutton {
+    height: 25px;
+    width: 19px;
+    padding: 2px;
+    font-size: 10pt;
+    font-weight: bold;
 }
 #instrdetailininfo {
     position: relative;

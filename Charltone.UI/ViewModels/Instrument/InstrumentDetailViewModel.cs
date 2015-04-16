@@ -10,8 +10,8 @@ namespace Charltone.UI.ViewModels.Instrument
         public int ProductId { get; set; }
         public bool IsAuthenticated { get; set; }
         public Status Status { get; set; }
-        public int DefaultPhotoId { get; set; }
         public string Price { get; set; }
+        public int DefaultPhotoId { get; set; }
 
         [DisplayName("Class")]
         public string Classification { get; set; }
@@ -70,12 +70,21 @@ namespace Charltone.UI.ViewModels.Instrument
         [DisplayName("Fun Facts")]
         public string FunFacts { get; set; }
 
-        public IEnumerable<int> PhotoIds { get; set; }
+        public IEnumerable<InstrumentPhoto> InstrumentPhotos { get; set; }
     }
 
     public class Status
     {
         public string Description { get; set; }
         public string ClassId { get; set; }
+    }
+
+    public class InstrumentPhoto
+    {
+        public int Id { get; set; }
+        public bool IsDefault { get; set; }
+        public int SortOrder { get; set; }
+        public bool IsFirst { get; set; }
+        public bool IsLast { get; set; }
     }
 }
