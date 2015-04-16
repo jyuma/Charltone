@@ -59,9 +59,7 @@ namespace Charltone.UI.Controllers
             var key = collection.Keys.Get(0);
             var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
             var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
-
             var product = _products.Get(id);
-
             var action = GetSubmitActionName(collection);
 
             switch (action)
@@ -79,6 +77,12 @@ namespace Charltone.UI.Controllers
                     }
                     _photos.Delete(photoId);
                     product.Photos.Remove(photo);
+                    product.Photos.ResetSortOrder();
+                    foreach (var p in product.Photos)
+                    {
+                        _photos.Update(p);
+                    }
+
                     break;
                 }
                 case "DEFAULT":

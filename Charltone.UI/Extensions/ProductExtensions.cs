@@ -1,4 +1,5 @@
-﻿using Charltone.Domain.Entities;
+﻿using System.Collections.Generic;
+using Charltone.Domain.Entities;
 using System.Linq;
 
 namespace Charltone.UI.Extensions
@@ -17,5 +18,16 @@ namespace Charltone.UI.Extensions
 
             return id;
         }
+
+        public static void ResetSortOrder(this IEnumerable<Photo> photos)
+        {
+            var sortOrder = 1;
+
+            foreach (var photo in photos)
+            {
+                photo.SortOrder = sortOrder++;
+            }
+        }
+
     }
 }

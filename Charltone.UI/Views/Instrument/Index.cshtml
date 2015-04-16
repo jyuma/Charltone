@@ -97,9 +97,16 @@
                                 @info.Classification / @info.SubClassification
                             </div>
                             <div class="instrlistviewdetailslink">
-                                @Html.ActionLink("Details", "Detail", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })
+                                @{
+                                    var label = "Details";
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        label = "Photos";
+                                    }
+                                    @Html.ActionLink(label, "Detail", new {id = info.ProductId})
+                                }
                             </div>
                         </div>
                         <br />

@@ -110,11 +110,14 @@
 
                 @using (Html.BeginForm(@Model.ProductId + "/Details", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
-                    <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")">
-                        Photo:
-                        <input class=" fileinput" type="file" name="file" id="file" />
-                        <input type="submit" value="Upload" disabled="disabled" />
-                    </div>
+                    if (@Model.InstrumentPhotos.Count() < 8)
+                    {
+                        <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")">
+                            Photo:
+                            <input class=" fileinput" type="file" name="file" id="file" />
+                            <input type="submit" value="Upload" disabled="disabled" />
+                        </div>
+                    }
                 }
             </div>
 

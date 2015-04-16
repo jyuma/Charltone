@@ -165,6 +165,7 @@ button {
     position: relative;
 }
 #instrdetailthumbnail {
+    width: 101px;
     padding-right: 5px;
     float: left;
 }

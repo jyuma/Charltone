@@ -14,9 +14,9 @@
                 <div class="editinstrbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
-                    @Html.ActionLink("Detail", "Detail", new { id = Model.ProductId })
+                    @Html.ActionLink("Photos", "Detail", new { id = Model.ProductId })
                     &nbsp
-                    @Html.ActionLink("Back to list", "Index", "Instrument")
+                    @Html.ActionLink("Main List", "Index", "Instrument")
                     &nbsp
                     <div class="editinstrisposted">
                         @Html.LabelFor(model => Model.IsPosted)
