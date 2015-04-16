@@ -97,24 +97,28 @@
 <div id="instrumentdetail">
     <div id="instrumentdetailcontent">
         <div id="instrdetailheader">
-            <div id="instrdetailmodel">
+            <div id="instrdetailmodelstatus">
                 @Model.Model
+                <div class="@Model.Status.ClassId">
+                    @Model.Status.Description
+                </div>
             </div>
-            <div id="instrdetailbacktolist">
-                <div id="instrdetailadminbuttons">
+            <div id ="instrdetaileditupload">
+                <div class="editlink " id="instrdetaileditbutton">
                     @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
-                    &nbsp
                 </div>
 
                 @using (Html.BeginForm(@Model.ProductId + "/Details", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
-
                     <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")">
-                        <input class=" fileinput" type="file" name="file" id="file" />                        
-                        <input type="submit" value="Upload Photo" disabled="disabled" />
+                        Photo:
+                        <input class=" fileinput" type="file" name="file" id="file" />
+                        <input type="submit" value="Upload" disabled="disabled" />
                     </div>
                 }
+            </div>
 
+            <div id="instrdetaillinks">
                 @if (!@Model.Comments.IsEmpty())
                 {
                     <a id="commentshint">Comments</a>
@@ -124,17 +128,14 @@
                     <a id="commentshint"></a>
                 }
                 @if (!@Model.FunFacts.IsEmpty())
-                {            
+                {
                     <a id="funfactshint">Fun Facts</a>
                 }
                 else
                 {
                     <a id="funfactshint"></a>
                 }
-                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back to list</a>
-            </div>
-            <div id="@Model.Status.ClassId">
-                @Model.Status.Description
+                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back To List</a>
             </div>
         </div>
         
@@ -289,9 +290,9 @@
             var @lnkImageIdDefault = "lnk-show-image_" + @Model.DefaultPhotoId;
 
             <div id="instrdetailthumbnail">
-                <a id=@lnkImageIdDefault href="javascript:;">
+                @*<a id=@lnkImageIdDefault href="javascript:;">
                     <img class="thumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
-                </a>
+                </a>*@
             </div>
                     }
                     @foreach (var photoId in Model.PhotoIds)
@@ -303,16 +304,29 @@
                             @if (photoId != Model.DefaultPhotoId)
                             {
                                 <a id=@lnkImageId href="javascript:;">
-                                    <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new { id = photoId }) alt='' />
+                                    <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new {id = photoId}) alt='' />
                                 </a>
 
                                 <div>
                                     @{
-                                var defaultName = "SetDefault_" + photoId;
-                                <input type="submit" name=@defaultName value="Def" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
-                                var deleteName = "Delete_" + photoId;
-                                <input type="submit" name=@deleteName value="Del" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
-}
+                                        var defaultName = "SetDefault_" + photoId;
+                                        <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
+                                        var deleteName = "Delete_" + photoId;
+                                        <input type="submit" name=@deleteName value="X" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <a id=@lnkImageIdDefault href="javascript:;">
+                                    <img class="thumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
+                                </a>
+                                
+                                <div>
+                                    @{
+                                        var deleteName = "Delete_" + photoId;
+                                        <input type="submit" name=@deleteName value="X" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
+                                    }
                                 </div>
                             }
                         </div>

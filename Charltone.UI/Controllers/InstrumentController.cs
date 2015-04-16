@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 
 namespace Charltone.UI.Controllers
 {
@@ -64,8 +65,18 @@ namespace Charltone.UI.Controllers
 
             var product = _products.Get(id);
             var photo = product.Photos.Single(x => x.Id == photoId);
+
             if (isDelete)
             {
+                if (photo.IsDefault)
+                {
+                    if (product.Photos.Any(x => x.Id != photoId))
+                    {
+                        var newDefault = product.Photos.First(x => x.Id != photoId);
+                        _photos.SetProductDefault(id, newDefault.Id);
+                    }
+                }
+
                 _photos.Delete(photoId);
                 product.Photos.Remove(photo);
             }

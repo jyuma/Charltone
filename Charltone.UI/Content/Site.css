@@ -75,40 +75,6 @@ button {
     font-size: 8pt;
     font-weight: 200;
 }
-#commentshint {
-   position: relative;
-   cursor:pointer;
-   top: 35px; 
-   color: #cea96d;
-   font-size: 12pt;
-   padding-right: 5px;
-}
-#funfactshint {
-   position: relative;
-   cursor:pointer;
-   top: 35px; 
-   color: #cea96d;
-   font-size: 12pt;
-   padding-right: 5px;
-}
-.funfactstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color:#fff;
-    font-size: 8pt;
-	z-index: 2;
-}
-.commentstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color:#fff;
-    font-size: 8pt;
-	z-index: 2;
-}
 .fieldset {
     color: #fff;
     position: relative;
@@ -195,7 +161,7 @@ button {
     margin-bottom: 5px;
 }
 #instrdetailthumbnailconatiner {
-    margin-top: 8px;
+    margin-top: 10px;
     position: relative;
 }
 #instrdetailthumbnail {
@@ -336,7 +302,6 @@ button {
     position: relative;
     color: #fff;
     padding: 0;
-    width: 250px;
     font-size: 13pt;
 }
 #instrlistinfodetail {
@@ -345,7 +310,7 @@ button {
     padding: 0;
 }
 #instrlistinfonotposted {
-    color: Red;
+    color: #d83535;
 }
 #instrlistdetail {
     width: 875px;
@@ -559,64 +524,33 @@ h3 {
 
 
 /* List page */
-label#available {
+.available {
     position: relative;
     color: #fff;
     padding: 0;
-    width: 250px;
+
     font-size: 10pt;
 }
-label#sold {
+.sold {
     position: relative;
-    color: Red;
+    color: #d83535;
     padding: 0;
     width: 250px;
     font-size: 10pt;
 }
-label#notforsale {
+.notforsale {
     position: relative;
-    color: #1d60ff;
+    color: #f0f20f;
     padding: 0;
-    width: 250px;
     font-size: 10pt;
 }
-label#inprogress {
+.inprogress {
     position: relative;
-    color: #00ff21;
-    padding: 0;
-    width: 250px;
+    color: #32cb21;
     font-size: 10pt;
 }
 
 /* Detail page */
-div#sold {
-    position: relative;
-    margin-top: 10px;
-    clear: both;
-	color: Red;
-	font-size: 12pt;
-	width: 20px;
-}
-div#notforsale {
-    position: relative;
-    margin-top: 10px;
-    clear: both;
-	color: Blue;
-	font-size: 12pt;
-    width: 120px;
-}
-div#inprogress {    
-    position: relative;
-    margin-top: 15px;
-    clear: both;
-	color: #00ff21;
-	font-size: 12pt;
-    width: 120px;
-}
-div#available {
-    font-size: 12pt;
-    clear: both;
-}
 #instrumentdetailprice {
     font-size: 11pt;
     clear: both;
@@ -646,22 +580,52 @@ div#available {
 #instrdetailheader {
     position: relative;
     color: #fff;
-    clear: both;
+    padding: 5px 0 5px 0;
 }
-#instrdetailmodel {
-    margin-top: 10px;
+#instrdetailmodelstatus {
     font-size: 13pt;
-    float: left;
     color: #cea96d;
+    padding-bottom: 5px;
+    /*width: 100px;*/
+    float: left;
+}
+#instrdetaileditupload {
+    width: 450px;
+    float: left;
+}
+#instrdetaillinks {
+    position: relative;
+    font-size: 12pt;
+    padding: 0 30px 5px 0;
+    float: right;
+}
+#instrdetaileditbutton {
+	position: relative;
+    padding: 0 10px 0 10px;
+	float: left;
+}
+#backtolistlink {
+    font-style: normal;
+    text-decoration: none;
+    color: #7DA5D8;
+    /*float: left;*/
+}
+#commentshint {
+    cursor:pointer;
+    padding-right: 10px;
+    text-decoration: underline;
+    color: #fbd934;
+    float: left;
+}
+#funfactshint {
+    cursor:pointer;
+    padding-right: 10px;
+    text-decoration: underline;
+    color: #fbd934;
+    float: left;
 }
 .instrdetailadmin-hidden {
     visibility: hidden;
-}
-#instrdetailadminbuttons {
-	position: relative;
-	float: left;
-    margin: 10px 0 0 10px;
-	font-size: 11pt;
 }
 #instrdetailininfo {
     position: relative;
@@ -698,30 +662,31 @@ div#available {
     font-family: Arial;
     padding-left: 15px;
 }
-#instrdetailbacktolist {
-    position: relative;
-    text-align: right;
-    font-size: 12pt;
-    width: 828px;
+.funfactstooltip {
+    position: absolute;
+	margin:8px;
+	padding:1px;
+	border:1px solid #cea96d;
+	background-color:#fff;
+    font-size: 8pt;
+	z-index: 2;
 }
-#backtolistlink {
-   position: relative;
-   top: 35px; 
-   font-style: normal;
-   text-decoration: none;
-   color: #7DA5D8;
+.commentstooltip {
+    position: absolute;
+	margin:8px;
+	padding:1px;
+	border:1px solid #cea96d;
+	background-color:#fff;
+    font-size: 8pt;
+	z-index: 2;
 }
 #instrdetaillinehorizbottom {
    position: relative;
    width: 840px;
    height: 1px;
 }
-/*#instrdetailthumbnail {
-    width: 920px;
-	clear: both;
-	position: relative;
-	margin-top: 10px;
-}*/
+
+/* Home */
 .homepagelink {
     position: relative;
     font-weight: bold;
@@ -812,7 +777,7 @@ div#available {
 #aboutlinehorizontal {
     position: relative;
     width: 835px;
-    margin: 15px 0 10px 0;
+    margin: 20px 0 15px 0;
 }
 #abouteditlnk {
     padding: 0;
