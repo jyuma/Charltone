@@ -84,6 +84,13 @@
                 mouseenter: showCommentsToolTip,
                 mouseleave: hideCommentsToolTip
             });
+
+        $('input:file').change(
+           function () {
+               if ($(this).val()) {
+                   $('input:submit').removeAttr('disabled');
+               }
+           });
     });
 </script>
 
@@ -97,8 +104,17 @@
                 <div id="instrdetailadminbuttons">
                     @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
                     &nbsp
-                    @Html.ActionLinkAuthorized("Photos", "Photos", new { id = @Model.ProductId })
                 </div>
+
+                @using (Html.BeginForm(@Model.ProductId + "/Details", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+
+                    <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")">
+                        <input class=" fileinput" type="file" name="file" id="file" />                        
+                        <input type="submit" value="Upload Photo" disabled="disabled" />
+                    </div>
+                }
+
                 @if (!@Model.Comments.IsEmpty())
                 {
                     <a id="commentshint">Comments</a>
@@ -265,13 +281,44 @@
         </div>
 
         <div class="linehorizontal" id="instrdetaillinehorizbottom"></div>
+        @using (Html.BeginForm(@Model.ProductId + "/Detail", "Instrument"))
+        {
+            <div id="instrdetailthumbnailconatiner">
+       
+                    @{
+            var @lnkImageIdDefault = "lnk-show-image_" + @Model.DefaultPhotoId;
 
-        <div id="instrdetailthumbnail">
-            @foreach (var pId in Model.PhotoIds)
-            {
-                var @lnkImageid = "lnk-show-image_" + @pId;
-                <a id=@lnkImageid href="javascript:;"> <img class="thumbnail" src='@Url.Action("GetThumbnail", "Instrument", new { id = pId })' alt=""/></a>
-            }
-        </div>
+            <div id="instrdetailthumbnail">
+                <a id=@lnkImageIdDefault href="javascript:;">
+                    <img class="thumbnail" src=@Url.Action("GetPhoto", "Instrument", new {id = Model.DefaultPhotoId}) alt='' />
+                </a>
+            </div>
+                    }
+                    @foreach (var photoId in Model.PhotoIds)
+                    {
+                        var @lnkImageId = "lnk-show-image_" + photoId;
+
+                        <div id="instrdetailthumbnail">
+
+                            @if (photoId != Model.DefaultPhotoId)
+                            {
+                                <a id=@lnkImageId href="javascript:;">
+                                    <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new { id = photoId }) alt='' />
+                                </a>
+
+                                <div>
+                                    @{
+                                var defaultName = "SetDefault_" + photoId;
+                                <input type="submit" name=@defaultName value="Def" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
+                                var deleteName = "Delete_" + photoId;
+                                <input type="submit" name=@deleteName value="Del" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")" />
+}
+                                </div>
+                            }
+                        </div>
+                    }
+
+            </div>
+        }
     </div>
 </div>

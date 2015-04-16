@@ -194,21 +194,20 @@ button {
     clear: both;
     margin-bottom: 5px;
 }
-#editphotodefaultthumbnail {
-    margin-bottom: 10px;
+#instrdetailthumbnailconatiner {
+    margin-top: 8px;
     position: relative;
 }
-#editphotosthumbnail {
-    margin-top: 8px;
-    width: 400px;
-    position: relative;
+#instrdetailthumbnail {
+    padding-right: 5px;
+    float: left;
 }
 .editlink {
    font-size: 12pt;
 }
 .thumbnail {
     width: 90px;
-    height: 90px;
+    height: 110px;
     border: 2px;
     border-style: solid;
     border-color: #cea96d;
@@ -630,10 +629,10 @@ div#available {
     width: 346px;
 }
 #instrumentdetail {
-    background: url(Images/tools_large_2_dark.jpg) right no-repeat;
+    background: url(Images/tools_large_2_dark.jpg) right repeat;
     position: relative;
     width: 900px;
-    height: 665px;
+    height: 700px;
 }
 #instrumentdetailcontent {
     margin-left: 30px;
@@ -655,11 +654,14 @@ div#available {
     float: left;
     color: #cea96d;
 }
+.instrdetailadmin-hidden {
+    visibility: hidden;
+}
 #instrdetailadminbuttons {
 	position: relative;
 	float: left;
     margin: 10px 0 0 10px;
-	font-size: 12pt;
+	font-size: 11pt;
 }
 #instrdetailininfo {
     position: relative;
@@ -714,12 +716,12 @@ div#available {
    width: 840px;
    height: 1px;
 }
-#instrdetailthumbnail {
+/*#instrdetailthumbnail {
     width: 920px;
 	clear: both;
 	position: relative;
 	margin-top: 10px;
-}
+}*/
 .homepagelink {
     position: relative;
     font-weight: bold;
@@ -915,12 +917,6 @@ ul#menu li.selected a {
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-
-fieldset {
-    margin: 1em 0;
-    padding: 1em;
-    border: 1px solid #CCC;
-}
 
 fieldset p {
     margin: 2px 12px 10px 10px;

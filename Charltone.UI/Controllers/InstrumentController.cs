@@ -3,7 +3,6 @@ using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Instrument;
-using Charltone.UI.ViewModels.Photo;
 using System;
 using System.Configuration;
 using System.IO;
@@ -51,6 +50,68 @@ namespace Charltone.UI.Controllers
             return View(LoadInstrumentDetailViewModel(id));
         }
 
+        [HttpPost]
+        [Authorize]
+        [Route("Detail")]
+        public ActionResult Detail(int id, FormCollection collection)
+        {
+            var key = collection.Keys.Get(0);
+            var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
+            var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
+
+            var isDelete = collection.AllKeys.Select(x => x.StartsWith("Delete")).Single();
+            var isSetDefault = collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single();
+
+            var product = _products.Get(id);
+            var photo = product.Photos.Single(x => x.Id == photoId);
+            if (isDelete)
+            {
+                _photos.Delete(photoId);
+                product.Photos.Remove(photo);
+            }
+            else if (isSetDefault)
+            {
+                _photos.SetProductDefault(id, photoId);
+                photo.IsDefault = true;
+            }
+
+            return View(LoadInstrumentDetailViewModel(id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("Details")]
+        public ActionResult Details(int id, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var reader = new BinaryReader(file.InputStream);
+                    var data = reader.ReadBytes(file.ContentLength)
+                        .ByteArrayToImage()
+                        .CropInstrument()
+                        .ImageToByteArray();
+
+                    var product = _products.Get(id);
+                    var count = product.Photos.Count;
+
+                    var photo = new Photo
+                    {
+                        IsDefault = (count == 0),
+                        Data = data,
+                        SortOrder = count + 1,
+                        Product = product
+                    };
+
+                    product.Photos.Add(photo);
+                    _photos.Add(photo);
+                }
+            }
+
+            return View("Detail", LoadInstrumentDetailViewModel(id));
+        }
+
         [HttpGet]
         [Authorize]
         [Route("Edit")]
@@ -68,7 +129,7 @@ namespace Charltone.UI.Controllers
 
             UpdateProductInstrument(product, viewModel);
 
-            return View("Index", LoadInstrumentListViewModel());
+            return RedirectToAction("Index", "Instrument");
         }
 
         [HttpGet]
@@ -82,50 +143,9 @@ namespace Charltone.UI.Controllers
         [Authorize]
         public ActionResult Create(InstrumentEditViewModel viewModel)
         {
-            var product = new Product
-                              {
-                                  ProductType = new ProductType {Id = 1},
-                                  Instrument = new Instrument
-                                                         {
-                                                             InstrumentType = new InstrumentType {Id = viewModel.InstrumentTypeId},
-                                                             Classification = new Classification {Id = viewModel.ClassificationId},
-                                                             SubClassification = new SubClassification {Id = viewModel.SubClassificationId},
+            AddInstrument(viewModel);
 
-                                                             Top = viewModel.Top,
-                                                             Body = viewModel.Body,
-                                                             BackAndSides = viewModel.BackAndSides,
-                                                             Binding = viewModel.Binding,
-                                                             Bridge = viewModel.Bridge,
-                                                             CaseDetail = viewModel.CaseDetail,
-                                                             Comments = viewModel.Comments,
-                                                             Dimensions = viewModel.Dimensions,
-                                                             EdgeDots = viewModel.EdgeDots,
-                                                             Faceplate = viewModel.Faceplate,
-                                                             Fingerboard = viewModel.Fingerboard,
-                                                             Finish = viewModel.Finish,
-                                                             FretMarkers = viewModel.FretMarkers,
-                                                             FretWire = viewModel.FretWire,
-                                                             FunFacts = viewModel.FunFacts,
-                                                             Model = viewModel.Model,
-                                                             Neck = viewModel.Neck,
-                                                             NutWidth = viewModel.NutWidth,
-                                                             PickGuard = viewModel.PickGuard,
-                                                             Pickup = viewModel.Pickup,
-                                                             ScaleLength = viewModel.ScaleLength,
-                                                             Sn = viewModel.Sn,
-                                                             Tailpiece =  viewModel.Tailpiece,
-                                                             Tuners = viewModel.Tuners
-                                                         },
-                                  ProductDesc = "Instrument",
-                                  Price = viewModel.Price,
-                                  DisplayPrice = viewModel.DisplayPrice,
-                                  ProductStatus = new ProductStatus {Id = viewModel.StatusId},
-                                  IsPosted = false
-                              };
-
-            _products.Add(product);
-
-            return RedirectToAction("Index", LoadInstrumentListViewModel());
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -143,65 +163,7 @@ namespace Charltone.UI.Controllers
         {
             _products.Delete(id);
 
-            return RedirectToAction("Index", LoadInstrumentListViewModel());
-        }
-
-        [HttpGet]
-        [Authorize]
-        [Route("Photos")]
-        public ActionResult Photos(int id)
-        {
-            return View(LoadInstrumentPhotosEditViewModel(id));
-        }
-
-        [HttpPost]
-        [Authorize]
-        [Route("Photos")]
-        public ActionResult Photos(int id, FormCollection collection)
-        {
-            var key = collection.Keys.Get(0);
-            var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
-            var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
-
-            var isDelete = collection.AllKeys.Select(x => x.StartsWith("Delete")).Single();
-            var isSetDefault = collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single();
-
-            if (isDelete)
-            {
-                _photos.Delete(photoId);
-            }
-            else if (isSetDefault)
-            {
-                _photos.SetProductDefault(id, photoId);
-            }
-
-            return View(LoadInstrumentPhotosEditViewModel(id));
-        }
-
-        [HttpPost]
-        [Authorize]
-        [Route("Photo")]
-        public ActionResult Photo(int id, HttpPostedFileBase file)
-        {
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength)
-                        .ByteArrayToImage()
-                        .CropInstrument()
-                        .ImageToByteArray();
-
-                    var count = _products.Get(id).Photos.Count;
-
-                    var photo = new Photo { IsDefault = (count == 0), ProductId = id, Data = data };
-
-                    _photos.Add(photo);
-                }
-            }
-
-            return View("Photos", LoadInstrumentPhotosEditViewModel(id));
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -297,19 +259,6 @@ namespace Charltone.UI.Controllers
             return vm;
         }
 
-        private InstrumentPhotosEditViewModel LoadInstrumentPhotosEditViewModel(int productid)
-        {
-            var vm = new InstrumentPhotosEditViewModel();
-
-            var product = _products.Get(productid);
-            vm.PhotoIds = product.Photos.Select(x => x.Id);
-            vm.ProductId = productid;
-            vm.DefaultPhotoId = product.GetDefaultPhotoId();
-            vm.Model = product.Instrument.Model + ' ' + product.Instrument.Sn;
-
-            return vm;
-        }
-
         private InstrumentDetailViewModel LoadInstrumentDetailViewModel(int productId)
         {
             var product = _products.Get(productId);
@@ -320,12 +269,12 @@ namespace Charltone.UI.Controllers
                          Id = instrument.Id,
                          InstrumentType = instrument.InstrumentType.InstrumentTypeDesc,
                          ProductId = productId,
+                         IsAuthenticated = Request.IsAuthenticated,
                          Classification = instrument.Classification.ClassificationDesc,
                          SubClassification = instrument.SubClassification.SubClassificationDesc,
                          Price = product.DisplayPrice,
                          Model = instrument.Model + " " + instrument.Sn,
                          Top = instrument.Top,
-
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
                          Binding = instrument.Binding,
@@ -356,7 +305,7 @@ namespace Charltone.UI.Controllers
                                       ClassId = product.ProductStatus.GetClassId()
                                   },
                          DefaultPhotoId = product.GetDefaultPhotoId(),
-                         PhotoIds = product.Photos.Select(x => x.Id)
+                         PhotoIds = product.Photos.Select(x => x.Id).ToArray()
                      };
 
             return vm;
@@ -440,6 +389,52 @@ namespace Charltone.UI.Controllers
         #endregion
 
         #region Update Entitities
+
+        private void AddInstrument(InstrumentEditViewModel viewModel)
+        {
+            var product = new Product
+            {
+                ProductType = new ProductType { Id = 1 },
+                Instrument = new Instrument
+                {
+                    InstrumentType = new InstrumentType { Id = viewModel.InstrumentTypeId },
+                    Classification = new Classification { Id = viewModel.ClassificationId },
+                    SubClassification = new SubClassification { Id = viewModel.SubClassificationId },
+
+                    Top = viewModel.Top,
+                    Body = viewModel.Body,
+                    BackAndSides = viewModel.BackAndSides,
+                    Binding = viewModel.Binding,
+                    Bridge = viewModel.Bridge,
+                    CaseDetail = viewModel.CaseDetail,
+                    Comments = viewModel.Comments,
+                    Dimensions = viewModel.Dimensions,
+                    EdgeDots = viewModel.EdgeDots,
+                    Faceplate = viewModel.Faceplate,
+                    Fingerboard = viewModel.Fingerboard,
+                    Finish = viewModel.Finish,
+                    FretMarkers = viewModel.FretMarkers,
+                    FretWire = viewModel.FretWire,
+                    FunFacts = viewModel.FunFacts,
+                    Model = viewModel.Model,
+                    Neck = viewModel.Neck,
+                    NutWidth = viewModel.NutWidth,
+                    PickGuard = viewModel.PickGuard,
+                    Pickup = viewModel.Pickup,
+                    ScaleLength = viewModel.ScaleLength,
+                    Sn = viewModel.Sn,
+                    Tailpiece = viewModel.Tailpiece,
+                    Tuners = viewModel.Tuners
+                },
+                ProductDesc = "Instrument",
+                Price = viewModel.Price,
+                DisplayPrice = viewModel.DisplayPrice,
+                ProductStatus = new ProductStatus { Id = viewModel.StatusId },
+                IsPosted = false
+            };
+
+            _products.Add(product);
+        }
 
         private void UpdateProductInstrument(Product product, InstrumentEditViewModel viewModel)
         {

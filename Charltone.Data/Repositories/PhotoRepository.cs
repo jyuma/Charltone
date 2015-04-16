@@ -43,7 +43,7 @@ namespace Charltone.Data.Repositories
         private IEnumerable<Photo> GetListByProductId(int productId)
         {
             return Session.QueryOver<Photo>()
-                .Where(x => x.ProductId == productId)
+                .Where(x => x.Product.Id == productId)
                 .List();
         }
     }

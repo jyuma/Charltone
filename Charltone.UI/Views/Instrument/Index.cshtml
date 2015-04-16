@@ -97,10 +97,9 @@
                                 @info.Classification / @info.SubClassification
                             </div>
                             <div class="instrlistviewdetailslink">
-                                @Html.ActionLink("View Details", "Detail", new { id = info.ProductId })
+                                @Html.ActionLink("Details", "Detail", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
                                 @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })
-                                @Html.ActionLinkAuthorized("Photos", "Photos", new { id = info.ProductId })
                             </div>
                         </div>
                         <br />

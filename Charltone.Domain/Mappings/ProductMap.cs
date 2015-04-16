@@ -17,11 +17,9 @@ namespace Charltone.Domain.Mappings
 
             HasMany(m => m.Photos).KeyColumn("ProductId").Cascade.Delete();
 
-            References(m => m.ProductType).Column("ProductTypeId");
-            References(m => m.ProductStatus).Column("StatusId");
-            References(m => m.Instrument).Column("InstrumentId")
-                .Fetch.Join()
-                .Cascade.All();
+            References(m => m.ProductType).Column("ProductTypeId").Fetch.Join();
+            References(m => m.ProductStatus).Column("StatusId").Fetch.Join();
+            References(m => m.Instrument).Column("InstrumentId").Fetch.Join().Cascade.All();
         }
     }
 }

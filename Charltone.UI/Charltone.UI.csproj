@@ -200,7 +200,6 @@
     <Compile Include="ViewModels\Ordering\OrderingHeaderEditViewModel.cs" />
     <Compile Include="ViewModels\Ordering\OrderingListViewModel.cs" />
     <Compile Include="ViewModels\Photo\OrderingPhotoEditViewModel.cs" />
-    <Compile Include="ViewModels\Photo\InstrumentPhotosEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\favicon.ico" />
@@ -268,7 +267,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Photo.cshtml" />
     <Content Include="Views\Ordering\Delete.cshtml" />
-    <Content Include="Views\Instrument\Photos.cshtml" />
     <Content Include="Views\Ordering\EditHeader.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\About\Index.cshtml" />

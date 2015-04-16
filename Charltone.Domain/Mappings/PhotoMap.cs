@@ -10,12 +10,10 @@ namespace Charltone.Domain.Mappings
             Table("Photo");
 
             Id(x => x.Id).Column("Id");
-            Map(m => m.ProductId).Column("ProductId");
-            Map(m => m.Data).Column("Data").Length(int.MaxValue);
             Map(m => m.IsDefault).Column("IsDefault");
-
-            References(m => m.Product).Column("ProductId").ReadOnly()
-                .Cascade.None();
+            Map(m => m.Data).Column("Data").Length(int.MaxValue);
+            Map(m => m.SortOrder).Column("SortOrder");
+            References(m => m.Product).Fetch.Join().Column("ProductId").Cascade.None();
         }
     }
 }

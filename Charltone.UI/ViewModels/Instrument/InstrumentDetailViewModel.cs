@@ -8,7 +8,7 @@ namespace Charltone.UI.ViewModels.Instrument
         public int Id { get; set; }
         public string InstrumentType { get; set; }
         public int ProductId { get; set; }
-
+        public bool IsAuthenticated { get; set; }
         public Status Status { get; set; }
         public int DefaultPhotoId { get; set; }
         public string Price { get; set; }

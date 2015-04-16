@@ -21,7 +21,6 @@ namespace Charltone.UI.Controllers
         private readonly IInstrumentTypeRepository _instrumentTypes;
         private readonly IClassificationRepository _classifications;
         private readonly ISubClassificationRepository _subClassifications;
-
         private readonly IPhotoRepository _photos;
 
         public OrderingController(IOrderingRepository orderings, 
@@ -85,7 +84,7 @@ namespace Charltone.UI.Controllers
 
             _orderings.Add(ordering);
 
-            return RedirectToAction("Index", LoadOrderingListViewModel());
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -103,7 +102,7 @@ namespace Charltone.UI.Controllers
         {
             _orderings.Delete(id);
 
-            return RedirectToAction("Index", LoadOrderingListViewModel());
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -193,6 +192,7 @@ namespace Charltone.UI.Controllers
         private OrderingPhotoEditViewModel LoadOrderingPhotoEditViewModel(int ordingId)
         {
             var ordering = _orderings.Get(ordingId);
+
             var vm = new OrderingPhotoEditViewModel
                      {
                          OrderingId = ordingId,
@@ -211,11 +211,17 @@ namespace Charltone.UI.Controllers
 
             var vm = new OrderingListViewModel
                      {
-                         HeaderInfo = new HeaderInfo { Summary = header.Summary, Pricing = header.Pricing, PaymentOptions = header.PaymentOptions, PaymentPolicy = header.PaymentPolicy, Shipping = header.Shipping },
+                         HeaderInfo = new HeaderInfo
+                                      {
+                                          Summary = header.Summary, 
+                                          Pricing = header.Pricing, 
+                                          PaymentOptions = header.PaymentOptions, 
+                                          PaymentPolicy = header.PaymentPolicy, 
+                                          Shipping = header.Shipping
+                                      },
                          TotalItemsCount = totalitems,
                          RowCount = totalitems,
                          Banner = "Ordering"
-
                      };
 
             //TODO: figure out how to do this in CSS
@@ -224,12 +230,13 @@ namespace Charltone.UI.Controllers
 
             vm.BackgroundImageHeight = (rowheight * totalitems) + menuheight + "px;";
 
-            var sortedOrderings = orderings
-                .OrderBy(ordering => ordering.Classification.SortOrder)
+            var sortedList = orderings
+                .OrderBy(ordering => ordering.InstrumentType.SortOrder)
+                .ThenBy(ordering => ordering.Classification.SortOrder)
                 .ThenBy(ordering => ordering.SubClassification.SortOrder)
                 .ThenBy(ordering => ordering.Model);
 
-            foreach (var ordering in sortedOrderings)
+            foreach (var ordering in sortedList)
             {
                 vm.OrderingInfo.Add(
                     new OrderingInfo

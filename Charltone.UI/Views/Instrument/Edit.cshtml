@@ -14,9 +14,7 @@
                 <div class="editinstrbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
-                    @Html.ActionLink("Photos", "Photos", new { id = Model.ProductId })
-                    &nbsp
-                    @Html.ActionLink("View", "Detail", new { id = Model.ProductId })
+                    @Html.ActionLink("Detail", "Detail", new { id = Model.ProductId })
                     &nbsp
                     @Html.ActionLink("Back to list", "Index", "Instrument")
                     &nbsp
