@@ -18,7 +18,7 @@ namespace Charltone.UI.ViewModels.Ordering
         public SelectList SubClassificationTypes { get; set; }
 
         [Required(ErrorMessage = "Model is required")]
-        [StringLength(200, ErrorMessage = "Model cannot exceed 25 characters")]
+        [StringLength(25, ErrorMessage = "Model cannot exceed 25 characters")]
         public string Model { get; set; }
 
         [Required(ErrorMessage = "Typical Price is required")]

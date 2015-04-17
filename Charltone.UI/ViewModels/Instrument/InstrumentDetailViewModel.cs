@@ -9,8 +9,9 @@ namespace Charltone.UI.ViewModels.Instrument
         public string InstrumentType { get; set; }
         public int ProductId { get; set; }
         public bool IsAuthenticated { get; set; }
-        public Status Status { get; set; }
+        public string Status { get; set; }
         public string Price { get; set; }
+        public bool ShowPrice { get; set; }
         public int DefaultPhotoId { get; set; }
 
         [DisplayName("Class")]
@@ -19,7 +20,7 @@ namespace Charltone.UI.ViewModels.Instrument
         [DisplayName("Style")]
         public string SubClassification { get; set; }
 
-        public string Model { get; set; }
+        public string ModelSn { get; set; }
         public string Top { get; set; }
 
         [DisplayName("Back & Sides")]
@@ -71,12 +72,6 @@ namespace Charltone.UI.ViewModels.Instrument
         public string FunFacts { get; set; }
 
         public IEnumerable<InstrumentPhoto> InstrumentPhotos { get; set; }
-    }
-
-    public class Status
-    {
-        public string Description { get; set; }
-        public string ClassId { get; set; }
     }
 
     public class InstrumentPhoto

@@ -256,15 +256,9 @@ namespace Charltone.UI.Controllers
 
         private InstrumentListViewModel LoadInstrumentListViewModel()
         {
-            var products = _products.GetInstrumentList(Request.IsAuthenticated);
-            var totalitems = products.Count;
+            var instruments = _products.GetInstrumentList(Request.IsAuthenticated);
 
-            var vm = new InstrumentListViewModel
-            {
-                TotalItemsCount = totalitems
-            };
-
-            var sortedList = products
+            var sortedList = instruments
                     .Where(product => product.Instrument != null)
                     .OrderBy(product => product.Instrument.InstrumentType.SortOrder)
                     .ThenBy(product => product.Instrument.Classification.SortOrder)
@@ -272,41 +266,27 @@ namespace Charltone.UI.Controllers
                     .ThenBy(product => product.Instrument.Model)
                     .ThenBy(product => product.Instrument.Sn);
 
-            vm.Instruments = sortedList
-                .Select((product, index) => new InstrumentViewModel
-                {
-                    Id = product.Instrument.Id,
-                    ProductId = product.Id,
-                    WrapperClassId = string.Format("{0}-wrapper", product.Instrument.GetClassId(index)),
-                    ClassId = product.Instrument.GetClassId(index),
-                    PhotoClassId = string.Format("img_{0}", product.GetDefaultPhotoId()),
-                    InstrumentType = product.Instrument.InstrumentType.InstrumentTypeDesc,
-                    Classification = product.Instrument.Classification.ClassificationDesc,
-                    SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
-                    Model = product.Instrument.Model + ' ' + product.Instrument.Sn,
-                    Status = new Status
-                    {
-                        Description = product.ProductStatus.GetDescription(product.DisplayPrice),
-                        ClassId = product.ProductStatus.GetClassId()
-                    },
-                    NotPostedMessage = product.IsPosted ? "" : "NOT POSTED",
-                    DefaultPhotoId = product.GetDefaultPhotoId()
-                }).ToList();
+            var vm = new InstrumentListViewModel
+                     {
+                         Instruments = sortedList
+                             .Select(product => new InstrumentViewModel
+                                    {
+                                        Id = product.Instrument.Id,
+                                        ProductId = product.Id,
+                                        InstrumentType = product.Instrument.InstrumentType.InstrumentTypeDesc,
+                                        Classification = product.Instrument.Classification.ClassificationDesc,
+                                        SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
+                                        ModelSn = string.Format("{0} {1}", product.Instrument.Model, product.Instrument.Sn),
+                                        Status = product.ProductStatus.StatusDesc,
+                                        Price = product.DisplayPrice,
+                                        ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
+                                        NotPostedMessage = product.IsPosted ? string.Empty : Messages.NotPostedText,
+                                        DefaultPhotoId = product.GetDefaultPhotoId()
+                                    }).ToList(),
 
-            //--- construct the banner message
-            if (totalitems == 1) vm.Banner = "1 instrument";
-            else vm.Banner = totalitems + " instruments";
-            vm.Banner += " currently in stock";
-
-            //--- get the row count (in groups of 3)
-            vm.RowCount = totalitems <= 3 ? 1 : Convert.ToInt32(totalitems / 3);
-            if ((totalitems > 3) && (totalitems % 3 != 0)) vm.RowCount++;
-
-            //--- calculate the pixel height for the background image
-            var rowheight = Convert.ToInt32(ConfigurationManager.AppSettings["InstrumentListRowHeight"]);
-            var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
-
-            vm.BackgroundImageHeight = (rowheight * vm.RowCount) + menuheight + "px;";
+                         Banner = string.Format("{0} currently in stock", string.Format("{0} instrument{1}", 
+                            instruments.Count, instruments.Count > 0 ? "s" : null))
+                     };
 
             return vm;
         }
@@ -324,8 +304,12 @@ namespace Charltone.UI.Controllers
                          IsAuthenticated = Request.IsAuthenticated,
                          Classification = instrument.Classification.ClassificationDesc,
                          SubClassification = instrument.SubClassification.SubClassificationDesc,
+                         ModelSn = string.Format("{0} {1}", instrument.Model, instrument.Sn),
                          Price = product.DisplayPrice,
-                         Model = instrument.Model + " " + instrument.Sn,
+                         Status = product.ProductStatus.StatusDesc,
+                         ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
+                         DefaultPhotoId = product.GetDefaultPhotoId(),
+                         
                          Top = instrument.Top,
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
@@ -349,16 +333,9 @@ namespace Charltone.UI.Controllers
                          Tuners = instrument.Tuners,
                          Comments = instrument.Comments,
                          FunFacts = instrument.FunFacts,
-                         
-                         Status = new Status
-                            {
-                                Description = product.ProductStatus.GetDescription(product.DisplayPrice),
-                                ClassId = product.ProductStatus.GetClassId()
-                            },
 
-                         DefaultPhotoId = product.GetDefaultPhotoId(),
-                         InstrumentPhotos = product.Photos.OrderBy(x => x.SortOrder).Select(x =>
-                             new InstrumentPhoto
+                         InstrumentPhotos = product.Photos.OrderBy(x => x.SortOrder)
+                            .Select(x => new InstrumentPhoto
                              {
                                 Id = x.Id,
                                 IsDefault = x.IsDefault,

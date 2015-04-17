@@ -1,4 +1,5 @@
-﻿@using Charltone.UI.ViewModels.Instrument;
+﻿@using System.Text.RegularExpressions
+@using Charltone.UI.ViewModels.Instrument;
 @using Charltone.UI.Helpers;
 
 @model InstrumentListViewModel
@@ -66,7 +67,7 @@
     });
 </script>
 
-<div id="instrlist" style="height: @Model.BackgroundImageHeight">
+<div id="instrlist">
     <div id="instrlistcontent">
         <div id="instrlistheader">
             @Model.Banner
@@ -76,37 +77,32 @@
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
-            foreach (var info in Model.Instruments)
+            foreach (var instrument in Model.Instruments)
             {
                 <div id="instrlistdetail">
-                    <div class="@info.WrapperClassId">
-                        <div class="@info.ClassId">
+                    <div id="instrlistitem">
+                        <div>
                             <div>
-                                <label class="@info.Status.ClassId">@info.Status.Description</label>
+                                <label class="@Regex.Replace(@instrument.Status, @"\s", "").ToLower()">
+                                    @(instrument.ShowPrice ? instrument.Price : instrument.Status)
+                                </label>
                             </div>
-                            <a id="@info.PhotoClassId" href="javascript:;">
-                                <img id=@info.DefaultPhotoId class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = info.DefaultPhotoId }) alt="" />
+                            <a id="@string.Format("img_{0}", @instrument.DefaultPhotoId)" href="javascript:;">
+                                <img id=@instrument.DefaultPhotoId class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = instrument.DefaultPhotoId }) alt="" />
                             </a>
                             <div id="instrlistinfomodel">
-                                @info.Model
+                                @instrument.ModelSn
                                 <label id="instrlistinfonotposted">
-                                    @info.NotPostedMessage
+                                    @instrument.NotPostedMessage
                                 </label>
                             </div>
                             <div id="instrlistinfodetail">
-                                @info.Classification / @info.SubClassification
+                                @instrument.Classification / @instrument.SubClassification
                             </div>
                             <div class="instrlistviewdetailslink">
-                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = info.ProductId })
-                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = info.ProductId })
-                                @{
-                                    var label = "Details";
-                                    if (Request.IsAuthenticated)
-                                    {
-                                        label = "Photos";
-                                    }
-                                    @Html.ActionLink(label, "Detail", new {id = info.ProductId})
-                                }
+                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = instrument.ProductId })
+                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = instrument.ProductId })
+                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "Detail", "Detail", new { id = instrument.ProductId })
                             </div>
                         </div>
                         <br />

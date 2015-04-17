@@ -21,28 +21,36 @@
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.Name)
-                    @Html.ValidationMessageFor(model => model.Name)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.CompanyName)
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.CompanyName)
-                    @Html.ValidationMessageFor(model => model.CompanyName)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.CompanyName)
+                    </div>
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Origins)
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.Origins)
-                    @Html.ValidationMessageFor(model => model.Origins)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Origins)
+                    </div>
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Materials)
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.Materials)
-                    @Html.ValidationMessageFor(model => model.Materials)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Materials)
+                    </div>
                 </div>
             </div>
         </div>

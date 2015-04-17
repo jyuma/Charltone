@@ -21,14 +21,18 @@
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.Introduction)
-                    @Html.ValidationMessageFor(model => model.Introduction)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Introduction)
+                    </div>
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Greeting)
                 </div>
                 <div class="editor-field">
                     @Html.TextAreaFor(model => model.Greeting)
-                    @Html.ValidationMessageFor(model => model.Greeting)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Greeting)
+                    </div>
                 </div>
             </div>
         </div>

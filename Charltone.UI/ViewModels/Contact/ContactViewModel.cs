@@ -12,11 +12,11 @@ namespace Charltone.UI.ViewModels.Contact
             HeaderMessage = "Want to drop us a line?";
         }
 
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         [DisplayName("Name")]
         public string ContactName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email is required")]
         [DataType(DataType.EmailAddress)]
         [StringLength(50)]
         [DisplayName("Email")]
@@ -25,7 +25,7 @@ namespace Charltone.UI.ViewModels.Contact
         [DisplayName("Phone")]
         public string ContactPhone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Message is required")]
         [DisplayName("Message")]
         public string ContactMessage { get; set; }
 

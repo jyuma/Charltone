@@ -207,7 +207,6 @@ namespace Charltone.UI.Controllers
         {
             var header = _headerContent.GetAll().Single();
             var orderings = _orderings.GetAll();
-            var totalitems = orderings.Count();
 
             var vm = new OrderingListViewModel
                      {
@@ -219,16 +218,7 @@ namespace Charltone.UI.Controllers
                                           PaymentPolicy = header.PaymentPolicy, 
                                           Shipping = header.Shipping
                                       },
-                         TotalItemsCount = totalitems,
-                         RowCount = totalitems,
-                         Banner = "Ordering"
                      };
-
-            //TODO: figure out how to do this in CSS
-            var rowheight = Convert.ToInt32(ConfigurationManager.AppSettings["OrderingListRowHeight"]);
-            var menuheight = Convert.ToInt32(ConfigurationManager.AppSettings["MenuContainerHeight"]);
-
-            vm.BackgroundImageHeight = (rowheight * totalitems) + menuheight + "px;";
 
             var sortedList = orderings
                 .OrderBy(ordering => ordering.InstrumentType.SortOrder)

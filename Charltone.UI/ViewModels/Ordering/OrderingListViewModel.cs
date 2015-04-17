@@ -11,11 +11,6 @@
 
         public HeaderInfo HeaderInfo { get; set; }
         public List<OrderingInfo> OrderingInfo { get; private set; }
-        public int TotalItemsCount { get; set; }
-        public int RowCount { get; set; }
-        public string BackgroundImageHeight { get; set; }
-        public string Banner { get; set; }
-        public string Instructions { get; set; }
     }
 
     public class HeaderInfo
