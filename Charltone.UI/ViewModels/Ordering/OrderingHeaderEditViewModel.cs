@@ -22,7 +22,7 @@ namespace Charltone.UI.ViewModels.Ordering
 
         [Required]
         [StringLength(1000, ErrorMessage = "Payment Policy cannot exceed 1000 characters")]
-        [DisplayName("PaymentPolicy")]
+        [DisplayName("Payment Policy")]
         public string PaymentPolicy { get; set; }
 
         [Required]

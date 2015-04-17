@@ -94,8 +94,8 @@
     });
 </script>
 
-<div id="instrumentdetail">
-    <div id="instrumentdetailcontent">
+<div id="instrdetail">
+    <div id="instrdetailcontent">
         <div id="instrdetailheader">
             <div id="instrdetailmodelstatus">
                 @Model.Model
@@ -112,7 +112,7 @@
                 {
                     if (@Model.InstrumentPhotos.Count() < 8)
                     {
-                        <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "instrdetailadmin-hidden")">
+                        <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "hidden")">
                             Photo:
                             <input class=" fileinput" type="file" name="file" id="file" />
                             <input type="submit" value="Upload" disabled="disabled" />
@@ -122,23 +122,21 @@
             </div>
 
             <div id="instrdetaillinks">
+                <div>
+                    <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back To List</a>
+                </div>
                 @if (!@Model.Comments.IsEmpty())
                 {
-                    <a id="commentshint">Comments</a>
-                }
-                else
-                {
-                    <a id="commentshint"></a>
+                    <div>
+                        <a class="hint" id="commentshint">Comments</a>
+                    </div>
                 }
                 @if (!@Model.FunFacts.IsEmpty())
                 {
-                    <a id="funfactshint">Fun Facts</a>
+                    <div>
+                        <a class="hint" id="funfactshint">Fun Facts</a>
+                    </div>
                 }
-                else
-                {
-                    <a id="funfactshint"></a>
-                }
-                <a id="backtolistlink" href="@Url.Action("Index", "Instrument")">Back To List</a>
             </div>
         </div>
         
@@ -301,21 +299,21 @@
                                 if (!instrPhoto.IsDefault)
                                 {
                                     var defaultName = "SetDefault_" + instrPhoto.Id;
-                                    <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                    <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
                                 }
                                 
                                 var deleteName = "Delete_" + instrPhoto.Id;
-                                <input type="submit" name=@deleteName value="R" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" onclick="return confirm('Remove photo?');" />
+                                <input type="submit" name=@deleteName value="R" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" onclick="return confirm('Remove photo?');" />
 
                                 if (!instrPhoto.IsFirst)
                                 {
                                     var moveleft = "MoveLeft_" + instrPhoto.Id;
-                                    <input type="submit" name=@moveleft value="<" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                    <input type="submit" name=@moveleft value="<" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
                                 }
                                 if (!instrPhoto.IsLast)
                                 {
                                     var moveRight = "MoveRight_" + instrPhoto.Id;
-                                    <input type="submit" name=@moveRight value=">" class="@(Model.IsAuthenticated ? "instrdetailadminbutton" : "instrdetailadmin-hidden")" />
+                                    <input type="submit" name=@moveRight value=">" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
                                 }
                             }
                         </div>

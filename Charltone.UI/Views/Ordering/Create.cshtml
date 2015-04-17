@@ -1,7 +1,7 @@
 ﻿@model Charltone.UI.ViewModels.Ordering.OrderingEditViewModel
 
 @{
-    ViewBag.Title = "Create Order";
+    ViewBag.Title = "Create Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,11 +10,14 @@
     {
     <div id="editorderingcontainer">
         @Html.ValidationSummary(true)
-        <div class="editinstrinfo">
-             <div class="editinstrbuttons">
-                <input class="savebutton" type="submit" value="Save" name="Command"/>
+        <div id="editorderinginfo">
+            <div id="editorderingimgcontainer">
+                <img id="editorderingimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
+            </div>
+            <div id="editorderingbuttons">
+                <input class="savebutton" type="submit" value="Save" name="Command" />
                 &nbsp
-                @Html.ActionLink("Cancel", "Index", "Ordering")        
+                @Html.ActionLink("Cancel", "Index", "Ordering")
             </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.InstrumentTypes)
@@ -25,7 +28,7 @@
             <div class="editor-label">
                 @Html.LabelFor(model => model.Model)
             </div>
-            <div id="editor-field">
+            <div class="editor-field">
                 @Html.EditorFor(model => model.Model)
                 @Html.ValidationMessageFor(model => model.Model)
             </div>
@@ -46,16 +49,19 @@
             </div>
             <div class="editor-field">
                 @Html.TextAreaFor(model => model.TypicalPrice)
+                <div>
+                    @Html.ValidationMessageFor(model => model.TypicalPrice)
+                </div>
             </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.Comments)
             </div>
             <div class="editor-field">
                 @Html.TextAreaFor(model => model.Comments)
+                <div>
+                    @Html.ValidationMessageFor(model => model.Comments)
+                </div>
             </div>
-        </div>
-        <div>
-            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt=""/>
         </div>
     </div>
     }

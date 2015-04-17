@@ -69,6 +69,7 @@
                     $("#txtPassword").val('');
                     $("button").button();
                     $.blockUI({
+                        css: { width: '350px' },
                         message: $("#admin-login-form")
                     });
 
@@ -142,8 +143,8 @@
                 <div class='dialog-header'><h3>Admin Log In</h3></div>
                 <div id='admin-login-credentials'>
                     <div>
-                        <div class='login-label'>Password</div>
-                        <div class='login-input'><input type='password' id='txtPassword' maxlength=20/></div>
+                        <div>Password</div>
+                        <div><input type='password' id='txtPassword' maxlength=20/></div>
                     </div>
                 </div>
                 <div id='admin-login-cancel-button-container'>

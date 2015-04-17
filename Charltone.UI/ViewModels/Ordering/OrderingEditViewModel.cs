@@ -17,15 +17,16 @@ namespace Charltone.UI.ViewModels.Ordering
         [DisplayName("Style")]
         public SelectList SubClassificationTypes { get; set; }
 
-        [Required]
-        [StringLength(200, ErrorMessage = "Description cannot exceed 25 characters")]
+        [Required(ErrorMessage = "Model is required")]
+        [StringLength(200, ErrorMessage = "Model cannot exceed 25 characters")]
         public string Model { get; set; }
 
-        [Required]
-        [StringLength(200, ErrorMessage = "Description cannot exceed 200 characters")]
+        [Required(ErrorMessage = "Typical Price is required")]
+        [StringLength(200, ErrorMessage = "Typical Price cannot exceed 200 characters")]
         [DisplayName("Typical Price")]
         public string TypicalPrice { get; set; }
 
+        [Required(ErrorMessage = "Comments are required")]
         [StringLength(1000, ErrorMessage = "Comments cannot exceed 1000 characters")]
         public string Comments { get; set; }
 
