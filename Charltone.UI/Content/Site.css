@@ -85,7 +85,7 @@ button {
     position: relative;
 }
 .fileinput {
-    width:260px;
+    width:220px;
 }
 #editphotos {
     position: relative;
@@ -297,7 +297,7 @@ button {
 #instrlistlinehorizontal {
    position: relative;
    width: 835px;
-   margin-bottom: 20px;
+   margin: 0 0 15px 0;
 }
 #instrlistinfomodel {
     position: relative;
@@ -322,7 +322,7 @@ button {
     border-color: #cea96d;
     width: 260px;
     height: 320px;
-    margin-bottom: 3px;
+    margin: 3px 0 3px 0;
 }
 .instrlistviewdetailslink {
     font-size:1em;
@@ -567,7 +567,7 @@ h3 {
     background: url(Images/tools_large_2_dark.jpg) right repeat;
     position: relative;
     width: 900px;
-    height: 675px;
+    height: 678px;
 }
 #instrumentdetailcontent {
     margin-left: 30px;
@@ -587,17 +587,19 @@ h3 {
 #instrdetailmodelstatus {
     font-size: 13pt;
     color: #cea96d;
+    width: 180px;
     padding-bottom: 5px;
     float: left;
 }
 #instrdetaileditupload {
-    width: 450px;
+    width: 400px;
     float: left;
 }
 #instrdetaillinks {
     position: relative;
     font-size: 11pt;
-    padding: 0 30px 5px 0;
+    padding: 15px 30px 5px 0;
+    width: 260px;
     float: right;
 }
 #instrdetaileditbutton {
@@ -643,7 +645,7 @@ h3 {
 }
 #instrdetailinfoheader {
     position: relative;
-    left: 22px;
+    padding: 0 0 0 14px;
     font-size: 10pt;
     color: #cea96d;
 }
@@ -716,18 +718,21 @@ h3 {
     position: relative;
     font-size: 16pt;
     color: #cea96d;
+    padding: 0 0 15px 0;
+    clear: both;
 }
 #homegreeting {
     position: relative;
-    top: 10px;
     font-size: 11pt;
     color: #fff;
+    clear: both;
 }
 #homeimagecontainer {
     width: 830px;
     height: 520px;
     margin: 25px 0 0 0;
     border: 1px solid #cea96d;
+    clear: both;
 }
 #homeimageedit {
     position: relative;
@@ -753,7 +758,7 @@ h3 {
 .homeeditlink {
     position: relative;
     margin: 0;
-    padding: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
     font-size: 12pt;
 }
 .homeimage {
