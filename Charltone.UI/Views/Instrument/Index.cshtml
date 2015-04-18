@@ -9,61 +9,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-    var instrumentList = @Html.Raw(Json.Encode(Model.Instruments));
-
-    $(document).scroll(function(){
-        localStorage['page'] = document.URL;
-        localStorage['scrollTop'] = $(document).scrollTop();
-    });
-
-    $(document).ready(function () {
-
-        if (localStorage['page'] == document.URL) {
-            $(document).scrollTop(localStorage['scrollTop']);
-        }
-
-        createImageDisplayDialog();
-
-        $("#dialog-image-form").hide();
-
-        function displayImageDialog(imageId) {
-            var url = '@Url.Action("GetPhotoJson", "Instrument")';
-
-            $.getJSON(url, { "id": imageId },
-                function (data) {
-                    var html = '<a id="lnk-dlgimage_' + imageId + '" href="javascript:;"><img id="listdialogimg_' + imageId + '" class="listdialogimg" src="data:image/jpg;base64,' + data + '" /></a>';
-                    $("#dialog-image-form").html(html);
-                    $("#lnk-dlgimage_" + imageId).click(function () {
-                        $("#dialog-image-form").html('');
-                        $.unblockUI();
-                    });
-                });
-            $.blockUI({
-                message: $("#dialog-image-form"),
-                backgroundColor: '#000',
-                color: '#000',
-                css: {
-                    top: 30,
-                    width: 0,
-                    height: 0
-                }
-            });
-        }
-
-        $(instrumentList).each(function(index, value) {
-            if (value.DefaultPhotoId > 0)
-            {
-                $("#img_" + value.DefaultPhotoId).click(function () {
-                    displayImageDialog(value.DefaultPhotoId);
-                });
-            }
-        });
-
-        function createImageDisplayDialog() {
-            var html = "<div id='dialog-image-form'></div>";
-            $("#dialog-wrapper").append(html);
-        }
+<script>
+    $(document).ready(function() {
+        SetScrollPosition();
+        var instruments = @Html.Raw(Json.Encode(Model.Instruments));
+        ApplyZooming(instruments, '@Url.Action("GetPhotoJson", "Instrument")');
     });
 </script>
 
@@ -77,8 +27,8 @@
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
-            foreach (var instrument in Model.Instruments)
-            {
+        foreach (var instrument in Model.Instruments)
+        {
                 <div id="instrlistdetail">
                     <div id="instrlistitem">
                         <div>
@@ -88,7 +38,7 @@
                                 </label>
                             </div>
                             <a id="@string.Format("img_{0}", @instrument.DefaultPhotoId)" href="javascript:;">
-                                <img id=@instrument.DefaultPhotoId class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = instrument.DefaultPhotoId }) alt="" />
+                                <img id="@instrument.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = instrument.DefaultPhotoId })     alt="" />
                             </a>
                             <div id="instrlistinfomodel">
                                 @instrument.ModelSn
@@ -108,9 +58,7 @@
                         <br />
                     </div>
                 </div>
-            }
         }
+    }
     </div>
 </div>
-
-

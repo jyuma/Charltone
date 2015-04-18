@@ -9,7 +9,7 @@ namespace Charltone.UI.ViewModels.Instrument
             Instruments = new List<InstrumentViewModel>();
         }
 
-        public List<InstrumentViewModel> Instruments { get; set; }
+        public IEnumerable<InstrumentViewModel> Instruments { get; set; }
         public int InstrumentsCount { get; set; }
         public string Banner { get; set; }
     }
@@ -18,7 +18,6 @@ namespace Charltone.UI.ViewModels.Instrument
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public string PhotoClassId { get; set; }
         public string InstrumentType { get; set; }
         public string Classification { get; set; }
         public string SubClassification { get; set; }

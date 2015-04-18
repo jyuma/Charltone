@@ -217,6 +217,9 @@
     <Content Include="Content\Images\torres_small.png" />
     <Content Include="Content\Images\workshop2_cropped.jpg" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Scripts\Admin\Login.js" />
+    <Content Include="Scripts\Metrics\GoogleAnalytics.js" />
+    <Content Include="Scripts\Instrument\Position.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
@@ -249,6 +252,7 @@
     <Content Include="Views\Ordering\Photo.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Scripts\Instrument\Zoom.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -307,7 +311,9 @@
       <Name>Charltone.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Scripts\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
