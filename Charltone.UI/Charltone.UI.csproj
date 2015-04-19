@@ -203,46 +203,63 @@
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
     <Content Include="Content\charltoneLogo.png" />
-    <Content Include="Content\Images\dialog gradient.jpg" />
-    <Content Include="Content\Images\faceplates_gradient.jpg" />
-    <Content Include="Content\Images\home_page.jpg" />
-    <Content Include="Content\Images\tools.jpg" />
-    <Content Include="Content\Images\tools_large.jpg" />
-    <Content Include="Content\Images\tools_large_2.jpg" />
-    <Content Include="Content\Images\tools_large_2_dark.jpg" />
-    <Content Include="Content\Images\tools_large_2_sm.jpg" />
-    <Content Include="Content\Images\tools_large_3.jpg" />
-    <Content Include="Content\Images\tools_large_4.jpg" />
-    <Content Include="Content\Images\torres.png" />
-    <Content Include="Content\Images\torres_small.png" />
-    <Content Include="Content\Images\workshop2_cropped.jpg" />
-    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\images\dialog gradient.jpg" />
+    <Content Include="Content\images\faceplates_gradient.jpg" />
+    <Content Include="Content\images\home_page.jpg" />
+    <Content Include="Content\images\tools.jpg" />
+    <Content Include="Content\images\tools_large.jpg" />
+    <Content Include="Content\images\tools_large_2.jpg" />
+    <Content Include="Content\images\tools_large_2_dark.jpg" />
+    <Content Include="Content\images\tools_large_2_sm.jpg" />
+    <Content Include="Content\images\tools_large_3.jpg" />
+    <Content Include="Content\images\tools_large_4.jpg" />
+    <Content Include="Content\images\torres.png" />
+    <Content Include="Content\images\torres_small.png" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\css\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\workshop2_cropped.jpg" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\jquery-ui.min.css" />
     <Content Include="Scripts\Admin\Login.js" />
+    <Content Include="Scripts\Instrument\Detail.js" />
+    <Content Include="Scripts\js\jquery-ui.js" />
     <Content Include="Scripts\Metrics\GoogleAnalytics.js" />
-    <Content Include="Scripts\Instrument\Position.js" />
-    <Content Include="Scripts\jquery-ui.min.js" />
-    <Content Include="Scripts\jquery.blockUI.js" />
-    <Content Include="Scripts\jquery.ui.core.js" />
-    <Content Include="Scripts\jquery.ui.dialog.js" />
+    <Content Include="Scripts\Page\Position.js" />
+    <Content Include="Scripts\js\jquery-ui.min.js" />
+    <Content Include="Scripts\js\jquery.blockUI.js" />
+    <Content Include="Scripts\js\jquery.ui.core.js" />
+    <Content Include="Scripts\js\jquery.ui.dialog.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.3.js" />
-    <Content Include="Scripts\jquery-2.1.3.min.js" />
-    <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <None Include="Scripts\js\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\js\jquery-2.1.3.js" />
+    <Content Include="Scripts\js\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\js\jquery-2.1.3.min.map" />
+    <None Include="Scripts\js\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\js\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\js\jquery.validate.js" />
+    <Content Include="Scripts\js\jquery.validate.min.js" />
+    <Content Include="Scripts\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\js\MicrosoftAjax.js" />
+    <Content Include="Scripts\js\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\js\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\js\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\js\MicrosoftMvcValidation.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -252,7 +269,7 @@
     <Content Include="Views\Ordering\Photo.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Scripts\Instrument\Zoom.js" />
+    <Content Include="Scripts\Instrument\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -274,6 +291,7 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\About\Edit.cshtml" />
+    <Content Include="Views\Admin\LoginForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Instrument\Index.cshtml" />
@@ -311,9 +329,7 @@
       <Name>Charltone.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

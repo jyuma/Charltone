@@ -252,6 +252,33 @@ namespace Charltone.UI.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetDefaultPhotoIds()
+        {
+            var ids = _photos.GetAll()
+                .Where(x => x.IsDefault)
+                .Select(x => new { x.Id }).ToArray();
+
+            return Json(ids, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetInstrumentPhotos(int id)
+        {
+            var p = _products.Get(id);
+            var photos = p.Photos
+                .Select(x => new InstrumentPhoto
+                             {
+                                 Id = x.Id,
+                                 IsDefault = x.IsDefault,
+                                 SortOrder = x.SortOrder,
+                                 IsFirst = (x.SortOrder == 1),
+                                 IsLast = (x.SortOrder == p.Photos.Count)
+                             }).ToArray();
+
+            return Json(photos, JsonRequestBehavior.AllowGet);
+        }
+
         #region LoadViewModels
 
         private InstrumentListViewModel LoadInstrumentListViewModel()

@@ -10,88 +10,12 @@
 }
 
 <script type="text/javascript">
+    var instrumentPhotos;
 
-    var instrumentPhotos = @Html.Raw(Json.Encode(Model.InstrumentPhotos));
-    var funFacts = @Html.Raw(Json.Encode(Model.FunFacts));
-    var comments = @Html.Raw(Json.Encode(Model.Comments));
-    var defaultPhotoId = @Html.Raw(Json.Encode(Model.DefaultPhotoId));
-    
-    $(document).ready(function () 
-    {
-        //--- THIS CODE IS DUPLICATED IN PHOTO INDEX VIEW (BEGIN)
-        $(instrumentPhotos).each(function (index, value) {
-            $("#lnk-show-image_" + value.Id).click(function () {
-                showImage(value.Id);
-            });
-        });
-                
-        function showImage(photoId) {            
-            var url = '@Url.Action("GetPhotoJson", "Instrument")';
-
-            $.getJSON(url, { "id": photoId },
-                function (data) {
-                    $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
-                });
-        }
-        //--- THIS CODE IS DUPLICATED IN PHOTOS INDEX VIEW (END)
-
-        var changeFunFactsToolTipPos = function (event) 
-        {
-            var tooltipX = event.pageX - 8;
-            var tooltipY = event.pageY + 8;
-            $('div.funfactstooltip').css({ top: tooltipY, left: tooltipX });
-        };
-
-        var showFunFactsToolTip = function (event) 
-        {
-            $('div.funfactstooltip').remove();
-            $('<div class="funfactstooltip">' + funFacts + '</div>')
-                .appendTo('body');
-            changeFunFactsToolTipPos(event);
-        };
-
-        var hideFunFactsToolTip = function () 
-        {
-            $('div.funfactstooltip').remove();
-        };
-
-        $("a#funfactshint").bind(
-            {
-                mousemove: changeFunFactsToolTipPos,
-                mouseenter: showFunFactsToolTip,
-                mouseleave: hideFunFactsToolTip
-            });
-
-        var changeCommentsToolTipPos = function (event) {
-            var tooltipX = event.pageX - 8;
-            var tooltipY = event.pageY + 8;
-            $('div.commentstooltip').css({ top: tooltipY, left: tooltipX });
-        };
-
-        var showCommentsToolTip = function (event) {
-            $('div.commentstooltip').remove();
-            $('<div class="commentstooltip">' + comments + '</div>')
-                .appendTo('body');
-            changeCommentsToolTipPos(event);
-        };
-
-        var hideCommentsToolTip = function () {
-            $('div.commentstooltip').remove();
-        };
-
-        $("a#commentshint").bind(
-            {
-                mousemove: changeCommentsToolTipPos,
-                mouseenter: showCommentsToolTip,
-                mouseleave: hideCommentsToolTip
-            });
-
-        $('input:file').change(
-           function () {
-               if ($(this).val()) {
-                   $('input:submit').removeAttr('disabled');
-               }
-           });
+    $(document).ready(function () {
+        instrumentPhotos = GetInstrumentPhotos("@Url.Content("~/")", "@Model.ProductId");
+        BindPhotos("@Url.Content("~/")", $.map(instrumentPhotos, function (arr) { return { Id: arr.Id }; }));
+        BindTooltips('@Model.Comments', '@Model.FunFacts');
     });
 </script>
 

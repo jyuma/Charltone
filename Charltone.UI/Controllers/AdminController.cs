@@ -30,17 +30,23 @@ namespace Charltone.UI.Controllers
                     CreateLoginAuthenticationTicket("Admin");
                     return Json(new {success = true}, JsonRequestBehavior.AllowGet);
                 }
+
                 return Json(new {success = false, messages = msg}, JsonRequestBehavior.AllowGet);
             }
         }
 
-        [HttpGet]
-        public JsonResult LogOff()
+        public ActionResult LogOff(string page)
         {
             FormsAuthentication.SignOut();
             ClearAdminCookie();
 
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult LoginForm()
+        {
+            return PartialView("LoginForm");
         }
 
         private List<string> ValidateAdminLogin(string password)
@@ -49,16 +55,16 @@ namespace Charltone.UI.Controllers
 
             // check for empty password
             if (password == null)
-                msgs.Add("Password is required.");
+                msgs.Add("Password is required");
             else if (password.Length == 0)
-                msgs.Add("Password is required.");
+                msgs.Add("Password is required");
 
             if (msgs.Count > 0) return msgs;
 
             // if all fields have been entered correctly, check the credentials
             var admin = _adminRepository.AttemptToLoginAdmin(password);
             if (admin == null)
-                msgs.Add("Incorrect password.");
+                msgs.Add("Incorrect password");
 
             return msgs.Count > 0 ? msgs : null;
         }

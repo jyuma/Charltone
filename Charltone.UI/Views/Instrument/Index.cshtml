@@ -9,14 +9,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script>
-    $(document).ready(function() {
-        SetScrollPosition();
-        var instruments = @Html.Raw(Json.Encode(Model.Instruments));
-        ApplyZooming(instruments, '@Url.Action("GetPhotoJson", "Instrument")');
-    });
-</script>
-
 <div id="instrlist">
     <div id="instrlistcontent">
         <div id="instrlistheader">
@@ -27,8 +19,8 @@
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
-        foreach (var instrument in Model.Instruments)
-        {
+            foreach (var instrument in Model.Instruments)
+            {
                 <div id="instrlistdetail">
                     <div id="instrlistitem">
                         <div>
@@ -58,7 +50,13 @@
                         <br />
                     </div>
                 </div>
+            }
         }
-    }
     </div>
-</div>
+    <div id='dialog-image-container'></div>
+<script>
+    $(document).ready(function () {
+        SetScrollPosition();
+        ApplyZooming("@Url.Content("~/")");
+    });
+</script>

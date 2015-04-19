@@ -15,32 +15,22 @@ button {
 .validation-container {
     position: relative;
     color: red;
-    padding: 0;
-    margin-left: 10px;
     border-style: none;
     clear: both;
 }
 .validation-container li {
     display:list-item;
-    font-size: 1.2em;
-    padding: 0;
+    list-style-type: none;
+    padding: 0 0 0 80px;
+    text-align: left;
 }
 .dialog-header h3 {
-    padding: 0;
+    padding: 0 0 10px 0;
     font-size: 14pt;
     color: #cea96d;
 }
 .hidden {
     visibility: hidden;
-}
-.fieldset {
-    color: #fff;
-    position: relative;
-	border-color: #cea96d;
-}
-.legend {
-    color: #fff;
-    position: relative;
 }
 .fileinput {
     width:220px;
@@ -67,7 +57,7 @@ button {
     border: none;
     line-height: 2em;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px !important;
+    font-size: 32px;
 }
 #logo {
     float: left;
@@ -77,26 +67,26 @@ button {
     margin-top: 10px;
     margin-left: 30px;
 }
-#admin-login-form {
-    height: 125px;
-    width: 350px;
-    color: #f0f0f0;
-    font-size: 10pt;
-    font-family: Helvetica;
-}
 #lnk-admin-login {
     color: #63411D;
     font-size: 16pt;
     text-decoration: none;
     top: 2px;
 }
+#admin-login-form {
+    background: url(images/tools_large_2.jpg);
+    overflow: auto;
+    color: #f0f0f0;
+    font-size: 10pt;
+    font-family: Helvetica;
+}
 #admin-login-cancel-button-container {
     position: relative;
-    margin: 8px 0 8px 0;
+    padding: 8px 0 8px 0;
 }
 #editorderingphoto {
     position: relative;
-    background: url(Images/tools_large_4.jpg);
+    background: url(images/tools_large_4.jpg);
     width: 900px;
     height: 630px;
 }
@@ -183,13 +173,13 @@ button {
 	margin-top: 50px;
 }
 #addinstrument {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     clear: both;
     width: 900px;
     height: 2380px;
 }
 #deleteinstrument {
-    background: url(Images/tools_large_3.jpg);
+    background: url(images/tools_large_3.jpg);
     clear: both;
     width: 900px;
     height: 2380px;
@@ -206,7 +196,7 @@ button {
     font-size: 12pt;
 }
 #editinstrument {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     width: 900px;
     height: 2380px;
 }
@@ -264,7 +254,7 @@ button {
 }
 #instrlist {
     position: relative;
-    background: url(Images/tools_large_2_dark.jpg);
+    background: url(images/tools_large_2_dark.jpg);
     width: 900px;
     overflow: hidden;
     padding-bottom: 20px;
@@ -328,7 +318,7 @@ button {
 
 #orderinglist {
     position: relative;
-    background: url(Images/tools_large_2_dark.jpg);
+    background: url(images/tools_large_2_dark.jpg);
     width: 900px;
     padding-bottom: 10px;
     clear: both;
@@ -351,22 +341,8 @@ button {
     margin-left: 33px;
     color: #fff;
 }
-#orderinglistheader .ui-accordion-content {
-    width: 800px;
-    color: #000000;
-    background-color: #cea96d;
-    font-size: 10pt;
-    padding: 0;
-    padding: 7px 17px 7px 15px;
-}
- ui {
-     padding: 0;
- }
-#orderinglistheader .ui-accordion-header {
-    width: 800px;
-    background-color: #63411D;
-    color: #f0f0f0;
-    font-size: 9pt;
+#orderinglistheader {
+    width: 833px;
 }
 .orderingitemtable {
     width: 840px;
@@ -417,12 +393,12 @@ button {
     clear:both;
 }
 #editorderingheader {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     width: 900px;
     height: 650px;
 }
 #editordering {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     width: 900px;
     height: 550px;
 }
@@ -454,7 +430,7 @@ button {
 }
 
 #deleteordering {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     width: 900px;
     height: 560px;
 }
@@ -488,10 +464,10 @@ a:hover {
     color: #12eb87;
 }*/
 
-p, ul {
+/*p, ul {
     margin-bottom: 20px;
     line-height: 1.6em;
-}
+}*/
 
 /* HEADINGS   
 ----------------------------------------------------------*/
@@ -545,7 +521,7 @@ h3 {
     width: 346px;
 }
 #instrdetail {
-    background: url(Images/tools_large_2_dark.jpg) right repeat;
+    background: url(images/tools_large_2_dark.jpg) right repeat;
     position: relative;
     width: 900px;
     height: 678px;
@@ -688,7 +664,7 @@ h3 {
     position: relative;
     width: 900px;
     height: 675px;
-    background: url(Images/tools_large.jpg) right no-repeat;
+    background: url(images/tools_large.jpg) right no-repeat;
 }
 #homecontent {
     position: relative;
@@ -750,7 +726,7 @@ h3 {
     position: relative;
     width: 900px;
     height: 550px;
-    background: url(Images/tools_large_2_dark.jpg) right no-repeat;
+    background: url(images/tools_large_2_dark.jpg) right no-repeat;
 }
 #aboutbanner {
     position: relative;
@@ -773,7 +749,7 @@ h3 {
     margin: 20px 0 15px 0;
 }
 #editabout {
-    background: url(Images/tools_large.jpg);
+    background: url(images/tools_large.jpg);
     width: 900px;
     height: 640px;
 }
@@ -810,9 +786,8 @@ h3 {
     padding: 0;
 }
 #menubackground {
-    background: url(Images/tools.jpg) right no-repeat;
+    background: url(images/tools.jpg) right no-repeat;
     height: 90px;
-    width: 900px;
 }
 #main {
     width: 100%;
@@ -1087,7 +1062,7 @@ textarea#ContactMessage {
 }
 #contact {
     position: relative;
-    background: url(Images/faceplates_gradient.jpg) right no-repeat;
+    background: url(images/faceplates_gradient.jpg) right no-repeat;
     width: 900px;
     height: 500px;
 }
@@ -1149,7 +1124,7 @@ textarea#ContactMessage {
     width: 170px;
     float: left;
     margin-left: 20px;
-    background: url(Images/torres_small.png) right no-repeat;
+    background: url(images/torres_small.png) right no-repeat;
 }
 #contactemailconfirm {
     color: #fff;

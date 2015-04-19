@@ -1,53 +1,48 @@
-﻿"use strict";
+﻿var DisplayAdminLoginDialog = function (route) {
+    'use strict';
 
-var BindAdminLogInForm = function (loginUrl, logoffUrl) {
-    $("#btnCancelAdminLogin").click(function () {
-        $("#validation-container-admin-login").html("");
-        $.unblockUI();
-    });
-
-    $("#btnLogInAdmin").click(function () {
-        logInAdmin(loginUrl);
-    });
-
-    $('#admin-login-form').keyup(function (e) {
-        if (e.keyCode == 13) {
-            logInAdmin(loginUrl);
+    $.get(route + "Admin/LoginForm", function (data) {
+        if ($("#admin-login-form").length === 0)
+        {
+            $("body").append(data);
         }
-    });
 
-    $("#lnk-admin-login").click(function () {
-        displayAdminLoginDialog();
-    });
-
-    $("#lnk-admin-logoff").click(function () {
-        $.getJSON(logoffUrl, null, function (data) {
-            if (data.success) {
-                window.location.reload(true);
+        $('#admin-login-form').keyup(function (e) {
+            if (e.keyCode == 13) {
+                logInAdmin(route);
             }
         });
+
+        $("#btnCancelAdminLogin").click(function () {
+            $.unblockUI();
+        });
+
+        $("#btnLogInAdmin").click(function () {
+            logInAdmin(route);
+        });
+
+        $("#txtPassword").val('');
+        $("button").button();
+
+        $.blockUI({
+            css: { width: '350px' },
+            message: $("#admin-login-form")
+        });
+
+        $("button").button();
+        $("#validation-container-admin-login").hide();
     });
 }
 
-function displayAdminLoginDialog() {
-    $("#txtPassword").val('');
-    $("button").button();
-    $.blockUI({
-        css: { width: '350px' },
-        message: $("#admin-login-form")
-    });
+function logInAdmin(route) {
+    'use strict';
 
-    $("button").button();
-    $("#validation-container-admin-login").hide();
-}
-
-function logInAdmin(url) {
     var pword = $("#txtPassword").val();
     var model = { password: pword };
 
-    $("#validation-container-admin-login").html("");
+    $("#validation-container-admin-login").html('');
 
-    $.getJSON(url, model,
+    $.getJSON(route + "Admin/Login", model,
         function (data) {
             if (data.success) {
                 $.unblockUI();
@@ -55,7 +50,7 @@ function logInAdmin(url) {
             } else {
                 if (data.messages.length > 0) {
                     $("#validation-container-admin-login").show();
-                    $("#validation-container-admin-login").html("");
+                    $("#validation-container-admin-login").html('');
                     var html = "<ul>";
                     for (var i = 0; i < data.messages.length; i++) {
                         html = html + "<li>" + data.messages[i] + "</li>";
@@ -65,28 +60,4 @@ function logInAdmin(url) {
                 }
             }
         });
-}
-
-var CreateForm = function() {
-    var html =   "<div id='admin-login-form' hidden>" +
-                    "<div id='admin-login'></div>" +
-                    "div class='dialog-header'><h3>Admin Log In</h3></div>" +
-                        "<div id='admin-login-credentials'>" +
-                        "<div>" +
-                            "<div>Password</div>" +
-                            "<div><input type='password' id='txtPassword' maxlength=20/></div>" +
-                        "</div>" +
-                    "</div>" +
-                    "<div id='admin-login-cancel-button-container'>" +
-                        "<span id='login-button'>" +
-                            "<button id='btnLogInAdmin' type='button'>Log In</button>" +
-                        "</span>" +
-                        "<span id='cancel-button'>" +
-                            "<button id='btnCancelAdminLogin' type='button'>Cancel</button>" +
-                        "</span>" +
-                    "</div>" +
-                    "<div id='validation-container-admin-login' class='validation-container'></div>" +
-                "</div>";
-
-    $("#dialog-wrapper").append(html);
 }

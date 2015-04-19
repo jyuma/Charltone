@@ -8,22 +8,12 @@
 }
 
 <script type="text/javascript">
-    
+    SetScrollPosition();
+
     $(function () {
         $("#orderinglistheader").accordion();
     });
 
-    $(document).scroll(function () {
-        localStorage['page'] = document.URL;
-        localStorage['scrollTop'] = $(document).scrollTop();
-    });
-
-    $(document).ready(function () {
-
-        if (localStorage['page'] == document.URL) {
-            $(document).scrollTop(localStorage['scrollTop']);
-        }
-    });
 </script>
 
 <div id="orderinglist">
