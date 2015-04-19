@@ -1,97 +1,96 @@
-﻿var Comments;
-var FunFacts;
+﻿var detail = (function() {
+    var self = {
+        config: {
+            photoIds: [],
+            comments: "",
+            funfacts: "",
+        },
 
-var BindPhotos = function (route, photos) {
-    $(photos).each(function (index, value) {
-        $("#lnk-show-image_" + value.Id).click(function () {
-            showImage(value.Id, route);
-        });
-    });
-};        
+        init: function (options) {
+            jQuery.extend(self.config, options);
+            self.bindTooltips();
+            self.bindPhotos();
+            self.bindUploadButton();
+        },
+       
+        bindTooltips: function () {
+            $("a#commentshint").bind(
+            {
+                mousemove: self.changeCommentsToolTipPos,
+                mouseenter: self.showCommentsToolTip,
+                mouseleave: self.hideCommentsToolTip
+            });
 
-var BindTooltips = function(comments, funfacts) {
-    Comments = comments;
-    FunFacts = funfacts;
+            $("a#funfactshint").bind(
+            {
+                mousemove: self.changeFunFactsToolTipPos,
+                mouseenter: self.showFunFactsToolTip,
+                mouseleave: self.hideFunFactsToolTip
+            });
+        },
 
-    $("a#commentshint").bind(
-    {
-        mousemove: changeCommentsToolTipPos,
-        mouseenter: showCommentsToolTip,
-        mouseleave: hideCommentsToolTip
-    });
+        bindPhotos: function() {
+            $(self.config.photoIds).each(function (index, value) {
+                $("#lnk-show-image_" + value).click(function() {
+                    self.showImage(value);
+                });
+            });
+        },
 
-    $("a#funfactshint").bind(
-    {
-        mousemove: changeFunFactsToolTipPos,
-        mouseenter: showFunFactsToolTip,
-        mouseleave: hideFunFactsToolTip
-    });
-}
+        showImage: function (id) {
+            $.getJSON(site.url + "Instrument/GetPhotoJson", { "id": id },
+                function(data) {
+                    $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
+                });
+        },
 
-var GetInstrumentPhotos = function (route, productId) {
-    var result;
-    $.ajax({
-        method: 'get',
-        async: false,
-        url: route + "Instrument/GetInstrumentPhotos",
-        data: { "id": productId },
-        dataType: "json",
-        success: function (data) {
-            result = data;
-        }
-    });
-    return result;
-}
+        changeFunFactsToolTipPos: function(event) {
+            var tooltipX = event.pageX - 8;
+            var tooltipY = event.pageY + 8;
+            $('div.funfactstooltip').css({ top: tooltipY, left: tooltipX });
+        },
 
-function showImage(photoId, route) {
-    $.getJSON(route + "Instrument/GetPhotoJson", { "id": photoId },
-        function (data) {
-            $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
-        });
-}
+        showFunFactsToolTip: function(event) {
+            $('div.funfactstooltip').remove();
+            $('<div class="funfactstooltip">' + self.config.funfacts + '</div>')
+                .appendTo('body');
+            self.changeFunFactsToolTipPos(event);
+        },
 
-function changeFunFactsToolTipPos (event) 
-{
-    var tooltipX = event.pageX - 8;
-    var tooltipY = event.pageY + 8;
-    $('div.funfactstooltip').css({ top: tooltipY, left: tooltipX });
-};
+        hideFunFactsToolTip: function() {
+            $('div.funfactstooltip').remove();
+        },
 
-function showFunFactsToolTip (event)
-{
-    $('div.funfactstooltip').remove();
-    $('<div class="funfactstooltip">' + FunFacts + '</div>')
-        .appendTo('body');
-    changeFunFactsToolTipPos(event);
-};
+        changeCommentsToolTipPos: function(event) {
+            var tooltipX = event.pageX - 8;
+            var tooltipY = event.pageY + 8;
+            $('div.commentstooltip').css({ top: tooltipY, left: tooltipX });
+        },
 
-function hideFunFactsToolTip()
-{
-    $('div.funfactstooltip').remove();
-};
+        showCommentsToolTip: function(event) {
+            $('div.commentstooltip').remove();
+            $('<div class="commentstooltip">' + self.config.comments + '</div>')
+                .appendTo('body');
+            self.changeCommentsToolTipPos(event);
+        },
 
-function changeCommentsToolTipPos(event) {
-    var tooltipX = event.pageX - 8;
-    var tooltipY = event.pageY + 8;
-    $('div.commentstooltip').css({ top: tooltipY, left: tooltipX });
-};
+        hideCommentsToolTip: function() {
+            $('div.commentstooltip').remove();
+        },
 
-function showCommentsToolTip(event) {
-    $('div.commentstooltip').remove();
-    $('<div class="commentstooltip">' + Comments + '</div>')
-        .appendTo('body');
-    changeCommentsToolTipPos(event);
-};
+        bindUploadButton: function () {
+            $('input:file').change(
+                function() {
+                    if ($(this).val()) {
+                        $('input:submit').removeAttr('disabled');
+                    }
+                });
+            }
+    };
 
-function hideCommentsToolTip() {
-    $('div.commentstooltip').remove();
-};
+    return {
+        init: self.init
+    };
 
-// disable/enable upload button
-$('input:file').change(
-   function () {
-       if ($(this).val()) {
-           $('input:submit').removeAttr('disabled');
-       }
-   });
+})();
 

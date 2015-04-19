@@ -1,5 +1,4 @@
-﻿@using System.Text.RegularExpressions
-@using Charltone.UI.ViewModels.Instrument;
+﻿@using Charltone.UI.ViewModels.Instrument;
 @using Charltone.UI.Helpers;
 
 @model InstrumentListViewModel
@@ -8,6 +7,13 @@
     ViewBag.Title = "Charltone Instruments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script>
+    $(document).ready(function () {
+        zoom.init();
+        position.set();
+    });
+</script>
 
 <div id="instrlist">
     <div id="instrlistcontent">
@@ -25,7 +31,7 @@
                     <div id="instrlistitem">
                         <div>
                             <div>
-                                <label class="@Regex.Replace(@instrument.Status, @"\s", "").ToLower()">
+                                <label class="@instrument.StatusCssClassId">
                                     @(instrument.ShowPrice ? instrument.Price : instrument.Status)
                                 </label>
                             </div>
@@ -54,9 +60,4 @@
         }
     </div>
     <div id='dialog-image-container'></div>
-<script>
-    $(document).ready(function () {
-        SetScrollPosition();
-        ApplyZooming("@Url.Content("~/")");
-    });
-</script>
+</div>

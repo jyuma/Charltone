@@ -16,6 +16,7 @@ namespace Charltone.UI
                   "~/Scripts/js/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/charltone").Include(
+                  "~/Scripts/Site/Site.js",
                   "~/Scripts/Instrument/Index.js",
                   "~/Scripts/Instrument/Detail.js",
                   "~/Scripts/Page/Position.js",

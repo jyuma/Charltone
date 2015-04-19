@@ -1,5 +1,4 @@
-﻿@using System.Text.RegularExpressions
-@using Charltone.UI.Helpers
+﻿@using Charltone.UI.Helpers
 @using Charltone.UI.ViewModels.Instrument;
 
 @model InstrumentDetailViewModel
@@ -10,12 +9,12 @@
 }
 
 <script type="text/javascript">
-    var instrumentPhotos;
-
     $(document).ready(function () {
-        instrumentPhotos = GetInstrumentPhotos("@Url.Content("~/")", "@Model.ProductId");
-        BindPhotos("@Url.Content("~/")", $.map(instrumentPhotos, function (arr) { return { Id: arr.Id }; }));
-        BindTooltips('@Model.Comments', '@Model.FunFacts');
+        detail.init({
+            photoIds: @Html.Raw(Json.Encode(Model.PhotoIds)),
+            comments: "@Model.Comments",
+            funfacts: "@Model.FunFacts"
+        });
     });
 </script>
 
@@ -24,7 +23,7 @@
         <div id="instrdetailheader">
             <div id="instrdetailmodelstatus">
                 @Model.ModelSn
-                <div class="@Regex.Replace(@Model.Status, @"\s", "").ToLower()">
+                <div class="@Model.StatusCssClassId">
                     @(Model.ShowPrice ? Model.Price : Model.Status)
                 </div>
             </div>

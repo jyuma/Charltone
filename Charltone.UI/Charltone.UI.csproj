@@ -260,6 +260,7 @@
     <Content Include="Scripts\js\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\js\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\js\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\Site\Site.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>

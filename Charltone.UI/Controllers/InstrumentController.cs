@@ -1,15 +1,14 @@
-﻿using Charltone.Data.Repositories;
+﻿using System.Text.RegularExpressions;
+using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Instrument;
 using System;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 
 namespace Charltone.UI.Controllers
 {
@@ -242,7 +241,7 @@ namespace Charltone.UI.Controllers
 
             return File(thumbnail, "image/jpeg");
         }
-
+ 
         [HttpGet]
         public JsonResult GetPhotoJson(int id)
         {
@@ -260,23 +259,6 @@ namespace Charltone.UI.Controllers
                 .Select(x => new { x.Id }).ToArray();
 
             return Json(ids, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public JsonResult GetInstrumentPhotos(int id)
-        {
-            var p = _products.Get(id);
-            var photos = p.Photos
-                .Select(x => new InstrumentPhoto
-                             {
-                                 Id = x.Id,
-                                 IsDefault = x.IsDefault,
-                                 SortOrder = x.SortOrder,
-                                 IsFirst = (x.SortOrder == 1),
-                                 IsLast = (x.SortOrder == p.Photos.Count)
-                             }).ToArray();
-
-            return Json(photos, JsonRequestBehavior.AllowGet);
         }
 
         #region LoadViewModels
@@ -334,6 +316,7 @@ namespace Charltone.UI.Controllers
                          ModelSn = string.Format("{0} {1}", instrument.Model, instrument.Sn),
                          Price = product.DisplayPrice,
                          Status = product.ProductStatus.StatusDesc,
+                         StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
                          ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                          DefaultPhotoId = product.GetDefaultPhotoId(),
                          
@@ -369,7 +352,8 @@ namespace Charltone.UI.Controllers
                                 SortOrder = x.SortOrder,
                                 IsFirst = (x.SortOrder == 1),
                                 IsLast = (x.SortOrder == product.Photos.Count)
-                             }).ToArray()
+                             }).ToArray(),
+                         PhotoIds = product.Photos.Select(x => x.Id).ToArray()
                      };
 
             return vm;
