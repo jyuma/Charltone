@@ -32,12 +32,12 @@
         bindPhotos: function() {
             $(self.config.photoIds).each(function (index, value) {
                 $("#lnk-show-image_" + value).click(function() {
-                    self.showImage(value);
+                    self.displayPhoto(value);
                 });
             });
         },
 
-        showImage: function (id) {
+        displayPhoto: function (id) {
             $.getJSON(site.url + "Instrument/GetPhotoJson", { "id": id },
                 function(data) {
                     $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
@@ -79,8 +79,7 @@
         },
 
         bindUploadButton: function () {
-            $('input:file').change(
-                function() {
+            $('input:file').change(function() {
                     if ($(this).val()) {
                         $('input:submit').removeAttr('disabled');
                     }

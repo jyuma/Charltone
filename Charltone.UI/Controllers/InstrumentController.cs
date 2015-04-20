@@ -287,14 +287,16 @@ namespace Charltone.UI.Controllers
                                         SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
                                         ModelSn = string.Format("{0} {1}", product.Instrument.Model, product.Instrument.Sn),
                                         Status = product.ProductStatus.StatusDesc,
+                                        StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
                                         Price = product.DisplayPrice,
                                         ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                                         NotPostedMessage = product.IsPosted ? string.Empty : Messages.NotPostedText,
                                         DefaultPhotoId = product.GetDefaultPhotoId()
                                     }).ToList(),
 
-                         Banner = string.Format("{0} currently in stock", string.Format("{0} instrument{1}", 
-                            instruments.Count, instruments.Count > 0 ? "s" : null))
+                         Banner = string.Format("{0} currently available", string.Format("{0} instrument{1}", 
+                            instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count(),
+                            instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count() > 1 ? "s" : null))
                      };
 
             return vm;

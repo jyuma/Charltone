@@ -27,7 +27,6 @@
             <div id="editorderingphotomodel">Ordering photo for model</div>
             <div id="editorderingphotomodeldesc">@Model.Model</div>
         </div>
-        <div class="linehorizontal" id="editorderingphotolinehorizontal"></div>
 
         <div id="editorderingphotodetail">
             @using (Html.BeginForm(@Model.OrderingId + "/Photo", "Ordering", FormMethod.Post, new { @enctype = "multipart/form-data" }))

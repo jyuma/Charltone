@@ -98,7 +98,7 @@ button {
 }
 #editorderingphotoheader {
     clear: both;
-    color: #fff;
+    color:  #cea96d;
     font-size: large;
     margin: 5px 0 10px 0;
 }
@@ -145,6 +145,7 @@ button {
 #editorderingphotoupload {
     position: relative;
     width: 800px;
+    padding-bottom: 15px;
     color: #fff;
 }
 #uploadaphoto {
@@ -686,22 +687,28 @@ h3 {
     border: 1px solid #cea96d;
     clear: both;
 }
-#homeimageedit {
+#homeeditphototitle {
     position: relative;
     margin: 0;
+    width: 770px;
     padding-top: 10px;
-    color: #ffffff;
+    color: #cea96d;
     font-size: 14pt;
+    float: left;
 }
 #homeimageeditcancellnk {
-    margin-right: 35px;
     font-size: 12pt;
-    float: right;
+    padding-top: 15px;
 }
 #homeedit {
     position: relative;
     font-size: 12pt;
     color: #fff;
+}
+#homeeditphotocontent {
+    position: relative;
+    margin: 0 5px 0 30px;
+    color: #ffffff;
 }
 #homeedituploadimage {
     position: relative;
