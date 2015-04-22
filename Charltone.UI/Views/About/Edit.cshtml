@@ -8,10 +8,10 @@
 <div id="editabout">
     @using (Html.BeginForm())
     {
-        <div class="editaboutcontainer">
+        <div id="editaboutcontainer">
             @Html.ValidationSummary(true)
-            <div class="editaboutinfo">
-                <div class="editaboutbuttons">
+            <div id="editaboutinfo">
+                <div id="editaboutbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Cancel", "Index", "About")

@@ -10,7 +10,6 @@
             jQuery.extend(self.config, options);
             self.bindTooltips();
             self.bindPhotos();
-            self.bindUploadButton();
         },
        
         bindTooltips: function () {
@@ -77,14 +76,6 @@
         hideCommentsToolTip: function() {
             $('div.commentstooltip').remove();
         },
-
-        bindUploadButton: function () {
-            $('input:file').change(function() {
-                    if ($(this).val()) {
-                        $('input:submit').removeAttr('disabled');
-                    }
-                });
-            }
     };
 
     return {

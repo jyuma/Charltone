@@ -28,9 +28,14 @@
         public const int Classical = 1;
     }
 
+    public static class InstrumentListPhotoSize
+    {
+        public const int Width = 260;
+        public const int Height = 320;
+    }
+
     public static class InstrumentPhotoSize
     {
-        public const double Ratio = 1.3;
         public const int Width = 346;
         public const int Height = 450;
     }
@@ -43,7 +48,6 @@
 
     public static class OrderingPhoto
     {
-        public const double Ratio = 1.3;
         public const int Width = 346;
         public const int Height = 450;
     }
@@ -56,7 +60,6 @@
 
     public static class HomePagePhoto
     {
-        public const double Ratio = .6;
         public const int Width = 830;
         public const int Height = 520;
     }

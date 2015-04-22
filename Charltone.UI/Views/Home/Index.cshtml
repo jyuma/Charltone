@@ -7,23 +7,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        file.enableUpload();
+    });
+</script>
+
 <div id="home">
     <div id="homecontent">
-        <div class="homeeditlink">
-            @Html.ActionLinkAuthorized("Edit Greeting", "Edit")
-            &nbsp
-            @Html.ActionLinkAuthorized("Change Picture", "Photo")
+        <div>
+            @Html.ValidationSummary(true)
+            <div id="homeeditlink">
+                @Html.ActionLinkAuthorized("Edit", "Edit")
+            </div>
+            <div id="homeuploadcontainer">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    <div id="homeupload" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "hidden")">
+                        <label for="File">Photo:</label>
+                        <input type="file" class="fileinput" name="File" />
+                        <input type="submit" value="Upload" disabled="disabled" />
+                        @Html.ValidationMessageFor(model => model.File)
+                    </div>
+                }
+            </div>
         </div>
+
         <div id="homeintroduction">
             @Model.Introduction
         </div>
         <div id="homegreeting">
             @Model.Greeting
         </div>
-        <div class="homeimage">
-            <div id="homeimagecontainer">
-                <img class="homeimage" src=@Url.Action("GetHomePageImage", "Home") alt="" />
-            </div>
+        <div id="homeimage">
+            <img src='~/Content/images/homepage.jpg' alt='' />
         </div>
     </div>
 </div> 

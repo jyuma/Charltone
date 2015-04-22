@@ -4,10 +4,11 @@ namespace Charltone.UI.Library
 {
     public static class Imaging
     {
-        public static Image Crop(Image image, Size size, double ratio)
+        public static Image Crop(Image image, Size size)
         {
             var width = image.Size.Width;
             var height = image.Size.Height;
+            var ratio = (double) height / width;
 
             // ------- crop
             Rectangle cropRect;

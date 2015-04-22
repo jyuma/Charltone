@@ -1,4 +1,4 @@
-﻿@using Charltone.UI.ViewModels.Photo
+﻿@using Charltone.UI.ViewModels.Ordering
 @model OrderingPhotoEditViewModel
 
 @{
@@ -6,12 +6,7 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $('input:file').change(
-           function () {
-               if ($(this).val()) {
-                   $('input:submit').removeAttr('disabled');
-               }
-           });
+        file.enableUpload();
     });
 </script>
 

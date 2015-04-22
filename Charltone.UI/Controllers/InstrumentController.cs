@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
@@ -228,18 +230,27 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
+        public FileResult GetListPhoto(int id)
+        {
+            var photo = id > 0
+                ? _photos.GetData(id)
+                : _photos.GetDefaultInstrumentImage();
+
+            var data = photo.Crop(new Size(InstrumentListPhotoSize.Width, InstrumentListPhotoSize.Height));
+
+            return File(data, "image/jpeg");
+        }
+
+        [HttpGet]
         public FileResult GetThumbnail(int id)
         {
             var photo = id > 0
                 ? _photos.GetData(id)
                 : _photos.GetDefaultInstrumentImage();
 
-            var thumbnail = photo
-                .ByteArrayToImage()
-                .GetThumbnailImage(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height, () => false, IntPtr.Zero)
-                .ImageToByteArray();
+            var data = photo.Thumbnail(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height);
 
-            return File(thumbnail, "image/jpeg");
+            return File(data, "image/jpeg");
         }
  
         [HttpGet]

@@ -1,1011 +1,870 @@
-﻿
-/* PRIMARY LAYOUT ELEMENTS   
+﻿/* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
+body {
+  background-color: #272722;
+  font-size: 10pt;
+  font-family: Verdana, Helvetica, Sans-Serif;
+  margin: 0;
+  padding: 0;
+}
 .page {
-    margin-left: auto;
-    margin-right: auto;
-    width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
 }
 button {
-    width: 75px;
-    height: 30px;
-    font-size: 8pt;
-    font-weight: 200;
-}
-.validation-container {
-    position: relative;
-    color: red;
-    border-style: none;
-    clear: both;
-}
-.validation-container li {
-    display:list-item;
-    list-style-type: none;
-    padding: 0 0 0 80px;
-    text-align: left;
-}
-.dialog-header h3 {
-    padding: 0 0 10px 0;
-    font-size: 14pt;
-    color: #cea96d;
-}
-.hidden {
-    visibility: hidden;
-}
-.fileinput {
-    width:220px;
-}
-.thumbnailbutton {
-    height: 25px;
-    width: 19px;
-    padding: 2px;
-    font-size: 10pt;
-    font-weight: bold;
-}
-#header {
-    position: relative;
-    height: 20px;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
-}
-#header h1 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px;
-}
-#logo {
-    float: left;
-    background: url(charltoneLogo.png);
-    width:214px;
-    height:74px;
-    margin-top: 10px;
-    margin-left: 30px;
-}
-#lnk-admin-login {
-    color: #63411D;
-    font-size: 16pt;
-    text-decoration: none;
-    top: 2px;
-}
-#admin-login-form {
-    background: url(images/tools_large_2.jpg);
-    overflow: auto;
-    color: #f0f0f0;
-    font-size: 10pt;
-    font-family: Helvetica;
-}
-#admin-login-cancel-button-container {
-    position: relative;
-    padding: 8px 0 8px 0;
-}
-#editorderingphoto {
-    position: relative;
-    background: url(images/tools_large_4.jpg);
-    width: 900px;
-    height: 630px;
-}
-#editorderingphotocontent {
-    position: relative;
-    top: 10px;
-    left: 25px;
-    width: 800px;
-}
-#editorderingphotoheader {
-    clear: both;
-    color:  #cea96d;
-    font-size: large;
-    margin: 5px 0 10px 0;
-}
-#editorderingphotomodel {
-    float: left;
-    margin-right: 10px;
-}
-#editorderingphotolinehorizontal {
-    position: relative;
-    width: 850px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-#editorderingphotomodeldesc {
-    font-style:italic;
-}
-#editorderingphotodetail {
-    position: relative;
-    clear: both;
-}
-#editorderingphotodefault {
-    position: relative;
-    float: left;
-	margin-top: 15px;
-}
-#editphotosdefaultimg {
-    border: solid;
-	border-width: 1px;
-    border-color: #cea96d;
-    height: 520px;
-    width: 400px;
-}
-#editorderingphotosave {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: relative;
-}
-#editorderingphotolinks {
-    clear: both;
-    position: relative;
-    margin-bottom: 15px;
-    font-size: 12pt;
-}
-#editorderingphotoupload {
-    position: relative;
-    width: 800px;
-    padding-bottom: 15px;
-    color: #fff;
-}
-#uploadaphoto {
-    clear: both;
-    margin-bottom: 5px;
-}
-.editlink {
-   font-size: 12pt;
-}
-.thumbnail {
-    width: 90px;
-    height: 110px;
-    border: 2px;
-    border-style: solid;
-    border-color: #cea96d;
-    margin-bottom: 2px;
-}
-.savebutton {
-    font-size: 12pt;
-    width: 100px;
-    height: 30px;
-}
-#addphoto {
-    float: left;
-    clear:right;
-	margin-top: 50px;
-}
-#addinstrument {
-    background: url(images/tools_large.jpg);
-    clear: both;
-    width: 900px;
-    height: 2380px;
-}
-#deleteinstrument {
-    background: url(images/tools_large_3.jpg);
-    clear: both;
-    width: 900px;
-    height: 2380px;
-}
-#deleteconfirm {
-    position: relative;
-    clear: both;
-    top: 10px;
-    font-size: 16pt;
-    color: #AC3219;
-}
-#deleteinstrbuttons {
-    position: relative;
-    font-size: 12pt;
-}
-#editinstrument {
-    background: url(images/tools_large.jpg);
-    width: 900px;
-    height: 2380px;
-}
-.editinstrcontainer {
-    position: relative;
-    margin-left: 30px;
-    color: #ffffff;
-}
-.editinstrbuttons {
-    position: relative;
-    margin-bottom: 15px;
-    font-size: 12pt;
-}
-.editinstrisposted {
-    position: relative;
-    float: right;
-}
-.editinstrinfo {
-    position: relative;
-    margin-top: 20px;
-    color: #fff;
-    float: left;
-}
-.editinstrphoto {
-    float: left;
-}
-.editinstrphotoimg {
-	border-style: solid;
-    border-color: #cea96d;
-    margin: 20px 0 0 18px;
-    height: 280px;
-    width: 215px;
-}
-.linehorizontal {
-    color: #cea96d;
-    clear: both;
-    border-top-style:dotted;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-}
-.linevertical {
-    color: #cea96d;
-    border-top: none;
-    border-bottom: none;
-    border-left: dotted;
-    border-right: none;
-}
-
-/* Instrument List */
-
-#instrlistitem {
-    float: left;
-    padding: 0 20px 0 0;
-}
-#instrlist {
-    position: relative;
-    background: url(images/tools_large_2_dark.jpg);
-    width: 900px;
-    overflow: hidden;
-    padding-bottom: 20px;
-}
-#instrlistcontent {
-    top: 20px;
-    position: relative;
-    margin-left: 33px;
-}
-#instrlistheader {
-    position: relative;
-    margin-bottom: 10px;
-    clear: both;
-    font-size: 12pt;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
-    color: #fff;
-    float: left;
-}
-#instrlistaddnew {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    float: right;
-    margin: 0 33px 0 0;
-}
-#instrlistlinehorizontal {
-   position: relative;
-   width: 835px;
-   margin: 0 0 10px 0;
-}
-#instrlistinfomodel {
-    position: relative;
-    color: #fff;
-    padding: 0;
-    font-size: 12pt;
-}
-#instrlistinfodetail {
-    color: #fff;
-    font-size: 1em;
-    padding: 0;
-}
-#instrlistinfonotposted {
-    color: #d83535;
-}
-#instrlistdetail {
-    width: 875px;
-}
-.instrlistdefaultphoto {
-    border: solid;
-    border-width: 2px;
-    border-color: #cea96d;
-    width: 260px;
-    height: 320px;
-}
-.instrlistviewdetailslink {
-    font-size:1em;
-    color: #7DA5D8;
-}
-
-/* Ordering */
-
-#orderinglist {
-    position: relative;
-    background: url(images/tools_large_2_dark.jpg);
-    width: 900px;
-    padding-bottom: 10px;
-    clear: both;
-}
-#orderingheadereditlnk {
-    margin: 2px 0 2px 0;
-}
-#orderinglistlinehorizontaltop {
-    position: relative;
-    width: 835px;
-    margin: 10px 0 10px 0
-}
-#orderinglistlinehorizontal {
-    position: relative;
-    width: 835px;
-    margin: 8px 0 8px 0
-}
-#orderinglistcontent {
-    position: relative;
-    margin-left: 33px;
-    color: #fff;
-}
-#orderinglistheader {
-    width: 833px;
-}
-.orderingitemtable {
-    width: 840px;
-    border-style:none;
-    padding-bottom: 3px;
-}
-#orderingphoto {
-    border: solid;
-    border-width: 1px;
-    border-color: #cea96d;
-    width: 115px;        /*   width & height: H = W * 1.3 */
-    height: 150px;
-}
-.orderingtablecelllabel {
-    border-style:none;
-    font-style: italic;
-    vertical-align: text-top;
-    padding: 0 0 0 0;
-    padding-bottom: 5px;
-    width: 95px;
-}
-.orderingtablecelllink {
-    font-size: 9pt;
-    border-style:none;
-    padding: 0;
-    width: 150px;
-}
-#orderingtablecellphoto {
-    border-style:none;
-    padding: 0 0 0 0;
-    width: 125px;
-}
-.orderingtablecell {
-    border-style:none;
-    padding: 0;
-    vertical-align: text-top;
-    font-size: 9pt;
-}
-#orderingphotoupload {
-    position: relative;
-    margin-left: 30px;
-    color: #fff;
-}
-#orderingphotouploadlabel {
-    position: relative;
-    margin-left: 30px;
-    color: #fff;
-    clear:both;
-}
-#editorderingheader {
-    background: url(images/tools_large.jpg);
-    width: 900px;
-    height: 650px;
-}
-#editordering {
-    background: url(images/tools_large.jpg);
-    width: 900px;
-    height: 550px;
-}
-#editorderinginfo {
-    position: relative;
-    color: #fff;
-    width: 850px;
-    float: left;
-}
-#editorderingcontainer {
-    position: relative;
-    color: #ffffff;
-    margin-left: 25px;
-}
-#editorderingbuttons {
-    position: relative;
-    margin: 20px 0 20px 0;
-    font-size: 12pt;
-}
-#editorderingimgcontainer {
-    margin: 20px 0 20px 0;
-    float: right;
-}
-#editorderingimg {
-	border-style: solid;
-    border-color: #cea96d;
-    height: 220px;
-    width: 175px;
-}
-
-#deleteordering {
-    background: url(images/tools_large.jpg);
-    width: 900px;
-    height: 560px;
-}
-.listdialogimg {
-    border: solid;
-    border-width: 2px;
-    border-color: #cea96d;
-    width: 520px;
-    height: 676px;
-    margin-bottom: 3px; 
-}
-body{
-    background-color: #272722;
-    font-size: 10pt;
-    font-family: Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
+  width: 75px;
+  height: 30px;
+  font-size: 8pt;
+  font-weight: 200;
 }
 a:link {
-    color: #034af3;
-    text-decoration: underline;
+  color: #0385f3;
+  text-decoration: none;
 }
 a:visited {
-    color: #505abc;
+  color: #0385f3;
 }
 a:hover {
-    color: #1d60ff;
-    text-decoration: none;
+  color: #91ccfe;
+  text-decoration: none;
 }
-
 /* HEADINGS   
 ----------------------------------------------------------*/
-h3 {
-    margin: 0;
-    padding: 0;
+.hidden {
+  visibility: hidden;
 }
-
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
-    margin-top: 0;
+.fileinput {
+  width: 220px;
 }
-
+.thumbnailbutton {
+  height: 25px;
+  width: 19px;
+  padding: 2px;
+  font-size: 10pt;
+  font-weight: bold;
+}
+.dialog-header h3 {
+  margin: 0;
+  padding: 0 0 10px 0;
+  font-size: 14pt;
+  color: #cea96d;
+}
+#header {
+  position: relative;
+  height: 20px;
+  margin-bottom: 0;
+  color: #000000;
+  padding: 0;
+}
+#header h1 {
+  font-weight: bold;
+  padding: 5px 0;
+  margin: 0;
+  color: #ffffff;
+  border: none;
+  line-height: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+}
+#logo {
+  float: left;
+  background: url(logo.png);
+  width: 214px;
+  height: 74px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+#lnk-admin-login {
+  color: #63411d;
+  font-size: 16pt;
+  text-decoration: none;
+  top: 2px;
+}
+#admin-login-form {
+  overflow: auto;
+  color: #f0f0f0;
+  font-size: 10pt;
+  font-family: Helvetica;
+}
+#admin-login-cancel-button-container {
+  position: relative;
+  padding: 8px 0 8px 0;
+}
+#editorderingphoto {
+  position: relative;
+  background: url(images/tools_large_4.jpg);
+  width: 900px;
+  height: 630px;
+}
+#editorderingphotocontent {
+  position: relative;
+  top: 10px;
+  left: 25px;
+  width: 800px;
+}
+#editorderingphotoheader {
+  clear: both;
+  color: #cea96d;
+  font-size: large;
+  margin: 5px 0 10px 0;
+}
+#editorderingphotomodel {
+  float: left;
+  margin-right: 10px;
+}
+#editorderingphotolinehorizontal {
+  position: relative;
+  width: 850px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#editorderingphotomodeldesc {
+  font-style: italic;
+}
+#editorderingphotodetail {
+  position: relative;
+  clear: both;
+}
+#editorderingphotodefault {
+  position: relative;
+  float: left;
+  margin-top: 15px;
+}
+#editphotosdefaultimg {
+  border: solid;
+  border-width: 1px;
+  border-color: #cea96d;
+  height: 520px;
+  width: 400px;
+}
+#editorderingphotosave {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+#editorderingphotolinks {
+  clear: both;
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 12pt;
+}
+#editorderingphotoupload {
+  position: relative;
+  width: 800px;
+  padding-bottom: 15px;
+  color: #ffffff;
+}
+#uploadaphoto {
+  clear: both;
+  margin-bottom: 5px;
+}
+.editlink {
+  font-size: 12pt;
+}
+.thumbnail {
+  width: 90px;
+  height: 110px;
+  border: 2px;
+  border-style: solid;
+  border-color: #cea96d;
+  margin-bottom: 2px;
+}
+.savebutton {
+  font-size: 12pt;
+  width: 100px;
+  height: 30px;
+}
+#addphoto {
+  float: left;
+  clear: right;
+  margin-top: 50px;
+}
+#addinstrument {
+  background: url(images/tools_large.jpg);
+  clear: both;
+  width: 900px;
+  height: 2380px;
+}
+#deleteinstrument {
+  background: url(images/tools_large_3.jpg);
+  clear: both;
+  width: 900px;
+  height: 2380px;
+}
+#deleteconfirm {
+  position: relative;
+  clear: both;
+  top: 10px;
+  font-size: 16pt;
+  color: #ac3219;
+}
+#deleteinstrbuttons {
+  position: relative;
+  font-size: 12pt;
+}
+#editinstrument {
+  background: url(images/tools_large.jpg);
+  width: 900px;
+  height: 2380px;
+}
+.editinstrcontainer {
+  position: relative;
+  margin-left: 30px;
+  color: #ffffff;
+}
+.editinstrbuttons {
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 12pt;
+}
+.editinstrisposted {
+  position: relative;
+  float: right;
+}
+.editinstrinfo {
+  position: relative;
+  margin-top: 20px;
+  color: #ffffff;
+  float: left;
+}
+.editinstrphoto {
+  float: left;
+}
+.editinstrphotoimg {
+  border-style: solid;
+  border-color: #cea96d;
+  margin: 20px 0 0 18px;
+  height: 280px;
+  width: 215px;
+}
+.linehorizontal {
+  color: #cea96d;
+  clear: both;
+  border-top-style: dotted;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+.linevertical {
+  color: #cea96d;
+  border-top: none;
+  border-bottom: none;
+  border-left: dotted;
+  border-right: none;
+}
+/* Instrument List */
+#instrlistitem {
+  float: left;
+  padding: 0 20px 0 0;
+}
+#instrlist {
+  position: relative;
+  background: url(images/tools_large_2_dark.jpg);
+  width: 900px;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+#instrlistcontent {
+  top: 20px;
+  position: relative;
+  margin-left: 33px;
+}
+#instrlistheader {
+  position: relative;
+  margin-bottom: 10px;
+  clear: both;
+  font-size: 12pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
+  color: #ffffff;
+  float: left;
+}
+#instrlistaddnew {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  float: right;
+  margin: 0 33px 0 0;
+}
+#instrlistlinehorizontal {
+  position: relative;
+  width: 835px;
+  margin: 0 0 10px 0;
+}
+#instrlistinfomodel {
+  position: relative;
+  color: #ffffff;
+  padding: 0;
+  font-size: 12pt;
+}
+#instrlistinfodetail {
+  color: #fff;
+  font-size: 1em;
+  padding: 0;
+}
+#instrlistinfonotposted {
+  color: #d83535;
+}
+#instrlistdetail {
+  width: 875px;
+}
+.instrlistdefaultphoto {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  width: 260px;
+  height: 320px;
+}
+.instrlistviewdetailslink {
+  font-size: 1em;
+  color: #7da5d8;
+}
+/* Ordering */
+#orderinglist {
+  position: relative;
+  background: url(images/tools_large_2_dark.jpg);
+  width: 900px;
+  padding-bottom: 10px;
+  clear: both;
+}
+#orderingheadereditlnk {
+  margin: 2px 0 2px 0;
+}
+#orderinglistlinehorizontaltop {
+  position: relative;
+  width: 835px;
+  margin: 10px 0 10px 0;
+}
+#orderinglistlinehorizontal {
+  position: relative;
+  width: 835px;
+  margin: 8px 0 8px 0;
+}
+#orderinglistcontent {
+  position: relative;
+  margin-left: 33px;
+  color: #fff;
+}
+#orderinglistheader {
+  width: 833px;
+}
+.orderingitemtable {
+  width: 840px;
+  border-style: none;
+  padding-bottom: 3px;
+}
+#orderingphoto {
+  border: solid;
+  border-width: 1px;
+  border-color: #cea96d;
+  width: 115px;
+  /*   width & height: H = W * 1.3 */
+  height: 150px;
+}
+.orderingtablecelllabel {
+  border-style: none;
+  font-style: italic;
+  vertical-align: text-top;
+  padding: 0 0 0 0;
+  padding-bottom: 5px;
+  width: 95px;
+}
+.orderingtablecelllink {
+  font-size: 9pt;
+  border-style: none;
+  padding: 0;
+  width: 150px;
+}
+#orderingtablecellphoto {
+  border-style: none;
+  padding: 0 0 0 0;
+  width: 125px;
+}
+.orderingtablecell {
+  border-style: none;
+  padding: 0;
+  vertical-align: text-top;
+  font-size: 9pt;
+}
+#orderingphotoupload {
+  position: relative;
+  margin-left: 30px;
+  color: #ffffff;
+}
+#orderingphotouploadlabel {
+  position: relative;
+  margin-left: 30px;
+  color: #fff;
+  clear: both;
+}
+#editorderingheader {
+  background: url(images/tools_large.jpg);
+  width: 900px;
+  height: 650px;
+}
+#editordering {
+  background: url(images/tools_large.jpg);
+  width: 900px;
+  height: 550px;
+}
+#editorderinginfo {
+  position: relative;
+  color: #ffffff;
+  width: 850px;
+  float: left;
+}
+#editorderingcontainer {
+  position: relative;
+  color: #ffffff;
+  margin-left: 25px;
+}
+#editorderingbuttons {
+  position: relative;
+  margin: 20px 0 20px 0;
+  font-size: 12pt;
+}
+#editorderingimgcontainer {
+  margin: 20px 0 20px 0;
+  float: right;
+}
+#editorderingimg {
+  border-style: solid;
+  border-color: #cea96d;
+  height: 220px;
+  width: 175px;
+}
+#deleteordering {
+  background: url(images/tools_large.jpg);
+  width: 900px;
+  height: 560px;
+}
+.listdialogimg {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  width: 520px;
+  height: 676px;
+  margin-bottom: 3px;
+}
 /* Status classes */
-
 .available {
-    position: relative;
-    color: #fff;
-    padding: 0;
-    font-size: 10pt;
+  position: relative;
+  color: #f0f0f0;
+  padding: 0;
+  font-size: 10pt;
 }
 .sold {
-    position: relative;
-    color: #d83535;
-    padding: 0;
-    width: 250px;
-    font-size: 10pt;
+  position: relative;
+  color: #d83535;
+  padding: 0;
+  width: 250px;
+  font-size: 10pt;
 }
 .notforsale {
-    position: relative;
-    color: #f0f20f;
-    padding: 0;
-    font-size: 10pt;
+  position: relative;
+  color: #f0f20f;
+  padding: 0;
+  font-size: 10pt;
 }
 .inprogress {
-    position: relative;
-    color: #32cb21;
-    font-size: 10pt;
+  position: relative;
+  color: #32cb20;
+  font-size: 10pt;
 }
-
 /* Detail page */
-
 #instrumentdetailprice {
-    font-size: 11pt;
-    clear: both;
+  font-size: 11pt;
+  clear: both;
 }
 .mainphoto {
-	border: solid;
-	border-width: 2px;
-    border-color: #cea96d;
-    height: 450px;
-    width: 346px;
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  height: 450px;
+  width: 346px;
 }
 #instrdetail {
-    background: url(images/tools_large_2_dark.jpg) right repeat;
-    position: relative;
-    width: 900px;
-    height: 678px;
+  background: url(images/tools_large_2_dark.jpg) right repeat;
+  position: relative;
+  width: 900px;
+  height: 678px;
 }
 #instrdetailcontent {
-    margin-left: 30px;
-    padding-top: 5px;
+  margin-left: 30px;
+  padding-top: 5px;
 }
 #instrdetaillinehoriztop {
-   position: relative;
-   margin-top: 12px;
-   width: 840px;
-   height: 1px;
+  position: relative;
+  margin-top: 12px;
+  width: 840px;
+  height: 1px;
 }
 #instrdetailheader {
-    position: relative;
-    color: #fff;
-    padding: 5px 0 5px 0;
+  position: relative;
+  color: #ffffff;
+  padding: 5px 0 5px 0;
 }
 #instrdetailmodelstatus {
-    font-size: 13pt;
-    color: #cea96d;
-    width: 180px;
-    padding-bottom: 5px;
-    float: left;
+  font-size: 13pt;
+  color: #cea96d;
+  width: 180px;
+  padding-bottom: 5px;
+  float: left;
 }
 #instrdetaileditupload {
-    width: 400px;
-    float: left;
+  width: 400px;
+  float: left;
 }
 #instrdetaillinks {
-    position: relative;
-    font-size: 11pt;
-    padding: 18px 30px 5px 0;
-    width: 260px;
-    float: right;
+  position: relative;
+  font-size: 11pt;
+  padding: 18px 30px 5px 0;
+  width: 260px;
+  float: right;
 }
 #backtolistlink {
-    font-style: normal;
-    text-decoration: none;
-    color: #7DA5D8;
-    float: right;
+  font-style: normal;
+  text-decoration: none;
+  color: #7da5d8;
+  float: right;
 }
 .hint {
-    cursor: pointer;
-    padding-right: 10px;
+  cursor: pointer;
+  padding-right: 10px;
 }
 #commentshint {
-    color: #fbd934;
-    text-decoration: underline;
-    float: right;
+  color: #fbd934;
+  text-decoration: underline;
+  float: right;
 }
 #funfactshint {
-    color: #fbd934;
-    text-decoration: underline;
-    float: right;
+  color: #fbd934;
+  text-decoration: underline;
+  float: right;
 }
 #instrdetaileditbutton {
-	position: relative;
-    padding: 0 10px 0 10px;
-	float: left;
+  position: relative;
+  padding: 0 10px 0 10px;
+  float: left;
 }
 #instrdetailthumbnailconatiner {
-    margin-top: 10px;
-    position: relative;
+  margin-top: 10px;
+  position: relative;
 }
 #instrdetailthumbnail {
-    width: 101px;
-    padding-right: 5px;
-    float: left;
+  width: 101px;
+  padding-right: 5px;
+  float: left;
 }
 #instrdetailininfo {
-    position: relative;
-    margin-bottom: 10px;
-    width: 900px;
-    float: left;
+  position: relative;
+  margin-bottom: 10px;
+  width: 900px;
+  float: left;
 }
 #instrdetailinfoheader {
-    position: relative;
-    padding: 0 0 0 14px;
-    font-size: 12pt;
-    color: #cea96d;
+  position: relative;
+  padding: 0 0 0 14px;
+  font-size: 12pt;
+  color: #cea96d;
 }
 #instrdetailmainphoto {
-    position: relative;
-    margin: 12px 0 0 0;
-    float: left;
+  position: relative;
+  margin: 12px 0 0 0;
+  float: left;
 }
 #instrdetaillinevertical {
-   position: relative;
-   margin: 15px 0 0 15px;
-   float: left;
-   height: 448px;
+  position: relative;
+  margin: 15px 0 0 15px;
+  float: left;
+  height: 448px;
 }
 #instrdetailinfo {
-    position: relative;
-    float: left;
-    top: 20px;
-	color: #fff;
+  position: relative;
+  float: left;
+  top: 20px;
+  color: #ffffff;
 }
 #instrdetailinfolist {
-    list-style: none;
-    font-size: 10pt;
-    font-family: Arial;
-    padding-left: 15px;
+  list-style: none;
+  font-size: 10pt;
+  font-family: Arial;
+  padding-left: 15px;
 }
 #instrdetailinfolist label {
-    color: #f0f0f0;
-    font-style: italic;
+  color: #f0f0f0;
+  font-style: italic;
 }
 .funfactstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color:#fff;
-    font-size: 8pt;
-	z-index: 2;
+  position: absolute;
+  margin: 8px;
+  padding: 1px;
+  border: 1px solid #cea96d;
+  background-color: #fff;
+  font-size: 8pt;
+  z-index: 2;
 }
 .commentstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color:#fff;
-    font-size: 8pt;
-	z-index: 2;
+  position: absolute;
+  margin: 8px;
+  padding: 1px;
+  border: 1px solid #cea96d;
+  background-color: #fff;
+  font-size: 8pt;
+  z-index: 2;
 }
 #instrdetaillinehorizbottom {
-   position: relative;
-   width: 840px;
-   height: 1px;
+  position: relative;
+  width: 840px;
+  height: 1px;
 }
-
 /* Home */
-.homepagelink {
-    position: relative;
-    font-weight: bold;
-    padding-bottom: 5px;
-    color: #fff;
-    font-size: 14px;
-}
 #home {
-    position: relative;
-    width: 900px;
-    height: 675px;
-    background: url(images/tools_large.jpg) right no-repeat;
+  position: relative;
+  width: 900px;
+  padding-bottom: 20px;
+  background: url(images/tools_large.jpg);
+  overflow: hidden;
 }
 #homecontent {
-    position: relative;
-    margin: 0 5px 0 30px;
-}
-#homeintroduction {
-    position: relative;
-    font-size: 16pt;
-    color: #cea96d;
-    padding: 0 0 15px 0;
-    clear: both;
-}
-#homegreeting {
-    position: relative;
-    font-size: 11pt;
-    color: #fff;
-    clear: both;
-}
-#homeimagecontainer {
-    width: 830px;
-    height: 520px;
-    margin: 25px 0 0 0;
-    border: 1px solid #cea96d;
-    clear: both;
-}
-#homeeditphototitle {
-    position: relative;
-    margin: 0;
-    width: 770px;
-    padding-top: 10px;
-    color: #cea96d;
-    font-size: 14pt;
-    float: left;
-}
-#homeimageeditcancellnk {
-    font-size: 12pt;
-    padding-top: 15px;
+  position: relative;
+  margin: 0 5px 0 30px;
 }
 #homeedit {
-    position: relative;
-    font-size: 12pt;
-    color: #fff;
+  position: relative;
+  font-size: 12pt;
+  padding: 0 10px 10px 0;
+  color: #ffffff;
 }
-#homeeditphotocontent {
-    position: relative;
-    margin: 0 5px 0 30px;
-    color: #ffffff;
+#homeeditlink {
+  font-size: 12pt;
+  padding-right: 10px;
+  float: left;
 }
-#homeedituploadimage {
-    position: relative;
-    margin: 20px 0 10px 0;
+#homeuploadcontainer {
+  color: #ffffff;
 }
-.homeeditlink {
-    position: relative;
-    margin: 0;
-    padding: 5px 0 5px 0;
-    font-size: 12pt;
+#homeupload {
+  color: #ffffff;
 }
-.homeimage {
-    position: relative;
-    width: 830px;
-    height: 520px;
+#homeintroduction {
+  position: relative;
+  font-size: 16pt;
+  color: #cea96d;
+  padding: 0 0 15px 0;
+  clear: both;
 }
+#homegreeting {
+  position: relative;
+  font-size: 11pt;
+  color: #ffffff;
+  clear: both;
+}
+#homeimage {
+  margin: 25px 0 0 0;
+  width: 830px;
+  height: 520px;
+  border: 1px solid #cea96d;
+}
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
+/*# sourceMappingURL=site.css.map */
 #aboutpage {
-    position: relative;
-    width: 900px;
-    height: 550px;
-    background: url(images/tools_large_2_dark.jpg) right no-repeat;
+  position: relative;
+  width: 900px;
+  height: 550px;
+  background: url(images/tools_large_2_dark.jpg) right no-repeat;
 }
 #aboutbanner {
-    position: relative;
-    font-size: 2.2em;
-    margin-left: 30px;
-    top: 50px;
-    margin-bottom: 40px;
-    color: #cea96d;
+  position: relative;
+  font-size: 2.2em;
+  margin-left: 30px;
+  top: 50px;
+  margin-bottom: 40px;
+  color: #cea96d;
 }
 #about {
-    position: relative;
-    padding: 5px 0 0 0;
-    margin: 0 30px 0 30px;
-    color: #fff;
-    clear: both;
+  position: relative;
+  padding: 5px 0 0 0;
+  margin: 0 30px 0 30px;
+  color: #ffffff;
+  clear: both;
 }
 #aboutlinehorizontal {
-    position: relative;
-    width: 835px;
-    margin: 20px 0 15px 0;
+  position: relative;
+  width: 835px;
+  margin: 20px 0 15px 0;
 }
 #editabout {
-    background: url(images/tools_large.jpg);
-    width: 900px;
-    height: 640px;
+  background: url(images/tools_large.jpg);
+  width: 900px;
+  height: 640px;
 }
-.editaboutcontainer {
-    position: relative;
-    left: 25px;
-    color: #ffffff;
+#editaboutcontainer {
+  position: relative;
+  left: 25px;
+  color: #ffffff;
 }
-.editaboutinfo {
-    position: relative;
-    margin-top: 20px;
-    color: #fff;
-    float: left;
+#editaboutinfo {
+  position: relative;
+  margin-top: 20px;
+  color: #ffffff;
+  float: left;
 }
-.editaboutbuttons {
-    position: relative;
-    margin-bottom: 20px;
-    font-size: 12pt;
+#editaboutbuttons {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 12pt;
 }
 .aboutfield {
-    position: relative;
-    clear: both;
-    font-size: 16pt;
-    color: #cea96d;
+  position: relative;
+  clear: both;
+  font-size: 16pt;
+  color: #cea96d;
 }
 .aboutfieldcontent {
-    position: relative;
-    clear: both;
-    font-size: 10pt;
-    color: #fff;
+  position: relative;
+  clear: both;
+  font-size: 10pt;
+  color: #ffffff;
 }
 #abouteditlnk {
-    margin: 0 0 0 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 #menubackground {
-    background: url(images/tools.jpg) right no-repeat;
-    height: 90px;
+  background: url(images/tools.jpg) right no-repeat;
+  height: 90px;
 }
 #main {
-    width: 100%;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+  width: 100%;
+  _height: 1px;
+  /* only IE6 applies CSS properties starting with an underscore */
 }
-
 #footer {
-    color: #999;
-    text-align: center;
-    line-height: normal;
-    margin: 0;
-    font-size: .9em;
+  color: #999;
+  text-align: center;
+  line-height: normal;
+  margin: 0;
+  font-size: .9em;
 }
-
-/* TAB MENU   
-----------------------------------------------------------*/
+/* TAB MENU */
 ul#menu {
-    position: relative;
-    margin: 0;
-    text-align: right;
-    font-size: 1.3em;
-    background-color: transparent;
+  position: relative;
+  margin: 0;
+  text-align: right;
+  font-size: 1.3em;
+  background-color: transparent;
 }
 ul#menu li {
-    display: inline;
-    list-style: none;
-    background-color:transparent;
-}
-ul#menu li#greeting {
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
+  display: inline;
+  list-style: none;
+  background-color: transparent;
 }
 ul#menu li a {
-    padding: 10px 10px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 1.4em;
-    background-color:transparent;
-    color: #fff;
+  padding: 10px 10px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.4em;
+  background-color: transparent;
+  color: #ffffff;
 }
-
 ul#menu li a:hover {
-    background-color:transparent;
-    text-decoration: none;
-    color: #7DA5D8;
+  background-color: transparent;
+  text-decoration: none;
+  color: #7da5d8;
 }
-
-ul#menu li a:active {
-    background-color:transparent;
-    text-decoration: none;
-    color: #7DA5D8;
-}
-
-ul#menu li.selected a {
-    color: #7DA5D8;
-}
-
-/* FORM LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-fieldset p {
-    margin: 2px 12px 10px 10px;
-}
-
-legend {
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 2px 4px 8px 4px;
-}
-
-input[type="text"] {
-    width: 200px;
-    border: 1px solid #CCC;
-}
-
-/*input[type="password"] {
-    width: 200px;
-    border: 1px solid #CCC;
-}*/
-
-/* TABLE
-----------------------------------------------------------*/
-
-table {
-  height: 100%;
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-table td {
-  padding: 5px;   
-  border: solid 1px #e8eef4;
-}
-
-table th {
-  padding: 6px 5px;
-  text-align: left;
-  background-color: #272722;
-  color: #fff;
-  border: solid 1px #e8eef4;   
-}
-
-/* MISC  
-----------------------------------------------------------*/
-.clear {
-    clear: both;
-}
-
-.error {
-    color:Red;
-}
-
 #menucontainer {
-    position:relative;
-    float: right;
-    margin: 40px 13px 0 0;
-    display:inline;
-    padding:0 13px 5px 0;
-    text-transform:uppercase;
-    font-family: Arial, Verdana, Helvetica, sans-serif;
+  position: relative;
+  float: right;
+  margin: 40px 13px 0 0;
+  display: inline;
+  padding: 0 13px 5px 0;
+  text-transform: uppercase;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
 }
-
 div#title {
-    display:block;
-    float:left;
-    text-align:left;
+  display: block;
+  float: left;
+  text-align: left;
 }
-
 #logindisplay {
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:10px;
-    color:White;
+  font-size: 1.1em;
+  display: block;
+  text-align: right;
+  margin: 10px;
+  color: #ffffff;
 }
-
-#logindisplay a:link {
-    color: white;
-    text-decoration: underline;
+/* Styles for validation */
+.validation-container {
+  position: relative;
+  color: red;
+  border-style: none;
+  clear: both;
 }
-
-#logindisplay a:visited {
-    color: white;
-    text-decoration: underline;
+.validation-container li {
+  display: list-item;
+  list-style-type: none;
+  padding: 0 0 0 80px;
+  text-align: left;
 }
-
-#logindisplay a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-/* Styles for validation helpers
------------------------------------------------------------*/
 .field-validation-error {
-    color: #ff0000;
+  color: #ff0000;
 }
 .field-validation-valid {
-    display: none;
+  display: none;
 }
 .input-validation-error {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+  border: 1px solid #ff0000;
+  background-color: #ffeeee;
 }
 .validation-summary-errors {
-    font-weight: bold;
-    color: #ff0000;
+  font-weight: bold;
+  color: #ff0000;
 }
 .validation-summary-valid {
-    display: none;
+  display: none;
 }
-
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
 .display-label,
 .editor-label {
-    margin: 0 0 2px 0;
+  margin: 0 0 2px 0;
 }
 .display-field,
 .editor-field {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 .text-box {
-    width: 355px;
+  width: 355px;
 }
 .text-box.single-line {
-    width: 180px;
+  width: 180px;
 }
 .text-box.multi-line {
-    height: 6.5em;
+  height: 6.5em;
 }
 .tri-state {
-    width: 6em;
+  width: 6em;
 }
 textarea {
-    position: relative;
-    clear:both;
-    border: 2px solid #cccccc;
-    padding: 2px;
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
-    font-size: 10pt;
-    resize: none;
+  position: relative;
+  clear: both;
+  border: 2px solid #cccccc;
+  padding: 2px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  resize: none;
 }
 textarea#Summary,
 textarea#Pricing,
 textarea#PaymentOptions,
 textarea#PaymentPolicy,
 textarea#Shipping {
-    width: 830px;
-    height: 75px;
-    
+  width: 830px;
+  height: 75px;
 }
 textarea#Top,
 textarea#BackAndSides,
@@ -1028,112 +887,113 @@ textarea#ScaleLength,
 textarea#Strings,
 textarea#Tuners,
 textarea#Tailpiece {
-    width: 600px;
-    height: 40px;
-    resize: none;
+  width: 600px;
+  height: 40px;
+  resize: none;
 }
-textarea#Comments, 
-textarea#FunFacts, 
+textarea#Comments,
+textarea#FunFacts,
 textarea#TypicalPrice {
-    width: 550px;
-    height: 100px;
-    resize: none;
+  width: 550px;
+  height: 100px;
+  resize: none;
 }
 textarea#Name,
 textarea#CompanyName,
 textarea#Origins,
 textarea#Materials {
-    width: 800px;
-    height: 100px;
-    resize: none;
+  width: 800px;
+  height: 100px;
+  resize: none;
 }
 textarea#Introduction {
-    width: 800px;
-    height: 50px;
-    resize: none;
+  width: 800px;
+  height: 50px;
+  resize: none;
 }
 textarea#Greeting {
-    width: 800px;
-    height: 100px;
-    resize: none;
+  width: 800px;
+  height: 100px;
+  resize: none;
 }
 textarea#ContactMessage {
-    width: 350px;
-    height: 80px;
-    resize: none;
+  width: 350px;
+  height: 80px;
+  resize: none;
 }
 #contact {
-    position: relative;
-    background: url(images/faceplates_gradient.jpg) right no-repeat;
-    width: 900px;
-    height: 500px;
-}
-#contactmain {
-    margin-top: 40px;
-    margin-left: 30px;
-    clear: both;
-    float: left;
-    width: 650px;
-    color: #fff;
-}
-#contactlinehorizontal {
-    margin-bottom: 10px;
-    width: 650px;
-}
-#contactinfo {
-    position:relative;
-    top: 10px;
-    float:left;
-    color: #fff;
-    width: 400px;
-}
-#contactheader {
-    position: relative;
-    font-size: 1.5em;
-    margin-bottom: 30px;
-}
-#getintouchheader {
-    position: relative;
-    font-size: 1.4em;
-    color: #fff;
-    bottom: 20px;
-    margin-top: 30px;   
-}
-#contactlinevertical {
-    position: relative;
-    width: 10px;
-    height: 300px;
-    margin-bottom: 10px;
-    float: left;
-}
-#getintouch {
-    margin-left: 40px;
-    color: #fff;
-    width: 180px;
-    float: left;
-}
-#getintouchemail {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-#getintouchcountry {
-    margin-top: 20px;
+  position: relative;
+  background: url(images/faceplates_gradient.jpg) right no-repeat;
+  width: 900px;
+  height: 500px;
 }
 #contactguitarimg {
-    position: relative;
-    top: 80px;
-    height: 350px;
-    width: 170px;
-    float: left;
-    margin-left: 20px;
-    background: url(images/torres_small.png) right no-repeat;
+  position: relative;
+  top: 80px;
+  height: 350px;
+  width: 170px;
+  float: left;
+  margin-left: 20px;
+  background: url(images/torres_small.png) right no-repeat;
+}
+#contactmain {
+  margin-top: 40px;
+  margin-left: 30px;
+  clear: both;
+  float: left;
+  width: 650px;
+  color: #fff;
+}
+#contactlinehorizontal {
+  margin-bottom: 10px;
+  width: 650px;
+}
+#contactinfo {
+  position: relative;
+  top: 10px;
+  float: left;
+  color: #fff;
+  width: 400px;
+}
+#contactheader {
+  position: relative;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+#getintouchheader {
+  position: relative;
+  font-size: 1.4em;
+  color: #fff;
+  bottom: 20px;
+  margin-top: 30px;
+}
+#contactlinevertical {
+  position: relative;
+  width: 10px;
+  height: 300px;
+  margin-bottom: 10px;
+  float: left;
 }
 #contactemailconfirm {
-    color: #fff;
-    font-size: 12pt;
+  color: #ffffff;
+  font-size: 12pt;
 }
 #contactsend {
-    margin-top: 10px;
-    position: relative;
-    float: left;
+  margin-top: 10px;
+  position: relative;
+  float: left;
 }
+#getintouch {
+  margin-left: 40px;
+  color: #ffffff;
+  width: 180px;
+  float: left;
+}
+#getintouchemail {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#getintouchcountry {
+  margin-top: 20px;
+}
+/*# sourceMappingURL=site.css.map */

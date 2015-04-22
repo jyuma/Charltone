@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web;
+using Charltone.UI.Attributes;
 
 namespace Charltone.UI.ViewModels.Instrument
 {
@@ -83,5 +85,11 @@ namespace Charltone.UI.ViewModels.Instrument
         public int SortOrder { get; set; }
         public bool IsFirst { get; set; }
         public bool IsLast { get; set; }
+    }
+
+    public class UploadFileModel
+    {
+        [FileTypes("jpg,jpeg,png")]
+        public HttpPostedFileBase File { get; set; }
     }
 }

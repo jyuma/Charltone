@@ -36,7 +36,7 @@
                                 </label>
                             </div>
                             <a id="@string.Format("img_{0}", @instrument.DefaultPhotoId)" href="javascript:;">
-                                <img id="@instrument.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = instrument.DefaultPhotoId })     alt="" />
+                                <img id="@instrument.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetListPhoto", "Instrument", new { id = instrument.DefaultPhotoId })     alt="" />
                             </a>
                             <div id="instrlistinfomodel">
                                 @instrument.ModelSn

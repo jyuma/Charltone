@@ -17,19 +17,24 @@ namespace Charltone.UI
 
             bundles.Add(new ScriptBundle("~/bundles/charltone").Include(
                   "~/Scripts/Site/Site.js",
+                  "~/Scripts/File/File.js",
                   "~/Scripts/Instrument/Index.js",
                   "~/Scripts/Instrument/Detail.js",
                   "~/Scripts/Page/Position.js",
                   "~/Scripts/Metrics/GoogleAnalytics.js",
                   "~/Scripts/Admin/Login.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/css").Include(
-                   "~/Content/favicon.png",
-                   "~/Content/favicon.ico",
-                   "~/Content/css/jquery-ui.css",
-                   "~/Content/site.css"));
+            var lessBundle = new Bundle("~/bundles/less").Include(
+                "~/Content/site.less", new CssRewriteUrlTransform());
 
-            BundleTable.EnableOptimizations = false;
+            lessBundle.Transforms.Add(new LessTransform());
+            lessBundle.Transforms.Add(new CssMinify());
+            bundles.Add(lessBundle);
+
+            bundles.Add(new StyleBundle("~/bundles/jquery-ui/css")
+                   .Include("~/Content/css/*.css"));
+
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }
