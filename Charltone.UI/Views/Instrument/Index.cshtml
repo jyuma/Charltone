@@ -50,10 +50,9 @@
                             <div class="instrlistviewdetailslink">
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = instrument.ProductId })
                                 @Html.ActionLinkAuthorized("Delete", "Delete", new { id = instrument.ProductId })
-                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "Detail", "Detail", new { id = instrument.ProductId })
+                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "View Details", "Detail", new { id = instrument.ProductId })
                             </div>
                         </div>
-                        <br />
                     </div>
                 </div>
             }
