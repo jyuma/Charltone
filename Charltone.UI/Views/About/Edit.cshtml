@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="editabout">
+<div id="aboutedit">
     @using (Html.BeginForm())
     {
-        <div id="editaboutcontainer">
+        <div id="abouteditcontainer">
             @Html.ValidationSummary(true)
-            <div id="editaboutinfo">
-                <div id="editaboutbuttons">
+            <div id="abouteditinfo">
+                <div id="abouteditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Cancel", "Index", "About")

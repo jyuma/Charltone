@@ -166,13 +166,10 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
+    <Compile Include="Extensions\ContactExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ProductExtensions.cs" />
     <Compile Include="App_Start\LessTransform.cs" />
-    <Compile Include="Library\Email.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Library\Imaging.cs" />
     <Compile Include="Helpers\ActionExtension.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -182,6 +179,7 @@
     <Compile Include="Helpers\HtmlAuthorizedActionLink.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="ViewModels\About\AboutViewModel.cs" />
     <Compile Include="ViewModels\Contact\ContactViewModel.cs" />
     <Compile Include="Controllers\AdminController.cs" />

@@ -4,18 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!--<script type="text/javascript">
-    $(function () {
-        $('#contactemailconfirm').hide();
-        $('form').submit(function () {
-            $('#contactemailconfirm').show('slow');
-            $(this).hide('slow');
-            return false;
-        });
-    });
-</script>-->
-
-<div id="contact">
+<div id="contactcontent">
     @using (Html.BeginForm())
     {
         <div id="contactmain">
@@ -23,7 +12,7 @@
             <div id="contactheader">
                 @Model.HeaderMessage
             </div>
-            <div class="linehorizontal" id="contactlinehorizontal"></div>
+            <div class="linehorizontal" id="contact"></div>
             <div id="contactinfo">
                 <div class="editor-label">
                     @Html.LabelFor(model => model.ContactName)
@@ -53,18 +42,18 @@
                 </div>
                 <div id="contactsend">
                     @{
-        if (Model.ContactName == null)
-        {
-            <input class="savebutton" type="submit" value="Send" name="Command" />
-        }
-        else
-        {
-            <input class="savebutton" type="submit" value="Send" name="Command" disabled="disabled" />
-        }
+                        if (Model.ContactName == null)
+                        {
+                            <input class="savebutton" type="submit" value="Send" name="Command" />
+                        }
+                        else
+                        {
+                            <input class="savebutton" type="submit" value="Send" name="Command" disabled="disabled" />
+                        }
                     }
                 </div>
             </div>
-            <div class="linevertical" id="contactlinevertical"></div>
+            <div class="linevertical" id="contact"></div>
             <div id="getintouch">
                 <div id="getintouchheader">
                     Get in touch
@@ -92,7 +81,3 @@
         </div>
     }
 </div>
-
-<!--<p id="contactemailconfirm">
-    We've received your email.  Thank you.
-</p>-->

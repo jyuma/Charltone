@@ -5,20 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="editinstrument">
+<div id="instredit">
     @using (Html.BeginForm())
     {
-        <div class="editinstrcontainer">
+        <div class="instreditcontainer">
             @Html.ValidationSummary(true)
-            <div class="editinstrinfo">
-                <div class="editinstrbuttons">
+            <div class="instreditinfo">
+                <div class="instreditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Photos", "Detail", new { id = Model.ProductId })
                     &nbsp
                     @Html.ActionLink("Main List", "Index", "Instrument")
                     &nbsp
-                    <div class="editinstrisposted">
+                    <div class="instreditisposted">
                         @Html.LabelFor(model => Model.IsPosted)
                         @Html.CheckBoxFor(model => Model.IsPosted)
                     </div>
@@ -232,7 +232,7 @@
                     @Html.TextAreaFor(model => model.FunFacts)
                     @Html.ValidationMessageFor(model => model.FunFacts)
                 </div>
-                <div class="editinstrbuttons">
+                <div class="instreditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Photos", "Photos", new { id = Model.ProductId })
@@ -242,7 +242,7 @@
             </div>
         </div>
         <div>
-            <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
+            <img class="instreditphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
         </div>
     }
 

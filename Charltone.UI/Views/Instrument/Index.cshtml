@@ -23,8 +23,10 @@
         <div class="editlink" id="instrlistaddnew">
             @Html.ActionLinkAuthorized("Add Instrument", "Create")
         </div>
-        <div class="linehorizontal" id="instrlistlinehorizontal"></div>
+        <div class="linehorizontal" id="instrument"></div>
         @{
+            var row = 1;
+            var totalrows = Model.Instruments.Count();
             foreach (var inst in Model.Instruments)
             {
                 <div id="instrlistdetail">
@@ -55,6 +57,11 @@
                         </div>
                     </div>
                 </div>
+                if (0 == (row % 3) || totalrows == row)
+                {
+                    <div class="linehorizontal" id="instrument"></div>
+                }
+                row++;
             }
         }
     </div>

@@ -272,7 +272,7 @@ namespace Charltone.UI.Controllers
             return Json(ids, JsonRequestBehavior.AllowGet);
         }
 
-        #region LoadViewModels
+        #region ViewModel
 
         private InstrumentListViewModel LoadInstrumentListViewModel()
         {
@@ -449,7 +449,7 @@ namespace Charltone.UI.Controllers
 
         #endregion
 
-        #region Update Entitities
+        #region Update
 
         private void AddInstrument(InstrumentEditViewModel viewModel)
         {

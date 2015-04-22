@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="addinstrument">
+<div id="instradd">
     @using (Html.BeginForm())
     {
-        <div class="editinstrcontainer">
+        <div class="instreditcontainer">
             @Html.ValidationSummary(true)
-            <div class="editinstrinfo">
-                <div class="editinstrbuttons">
-                    <input class="savebutton" type="submit" value="Save" name="commandType"/>
+            <div class="instreditinfo">
+                <div class="instreditbuttons">
+                    <input class="savebutton" type="submit" value="Save" name="commandType" />
                     &nbsp
                     @Html.ActionLink("Cancel", "Index", "Instrument")
                 </div>
@@ -224,7 +224,7 @@
                     @Html.TextAreaFor(model => model.FunFacts)
                     @Html.ValidationMessageFor(model => model.FunFacts)
                 </div>
-                <div class="editinstrbuttons">
+                <div class="instreditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="commandType" />
                     &nbsp
                     @Html.ActionLink("Main List", "Index", "Instrument")
@@ -232,7 +232,7 @@
             </div>
         </div>
     <div>
-        <img class="editinstrphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = -1 }) alt="" />
+        <img class="instreditphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = -1 }) alt="" />
     </div>
     }
 </div>

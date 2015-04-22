@@ -52,7 +52,6 @@
     <Compile Include="Entities\AboutContent.cs" />
     <Compile Include="Entities\AdminUser.cs" />
     <Compile Include="Entities\Classification.cs" />
-    <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\HomeContent.cs" />
     <Compile Include="Entities\Instrument.cs" />

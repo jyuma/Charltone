@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Contact;
+using Charltone.UI.Models;
 
 namespace Charltone.UI.Controllers
 {
@@ -11,16 +13,22 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(ContactViewModel viewModel)
+        public ActionResult Index(ContactViewModel viewModel)
         {
             var contactName = viewModel.ContactName ?? "Not supplied";
             var contactPhone = viewModel.ContactPhone ?? "Not supplied";
             var contactEmail = viewModel.ContactEmail ?? "Not supplied";
             var contactMessage = viewModel.ContactMessage;
 
-            Library.Email.Send(contactName, contactPhone, contactEmail, contactMessage);
+            var contact = new Contact
+                          {
+                              Name = contactName,
+                              Phone = contactPhone,
+                              Email = contactEmail
+                          };
+            contact.SendEmail(contactMessage);
 
-            viewModel.HeaderMessage = "We received your message.  Thank you.";
+            viewModel.HeaderMessage = "Thank you, we received your message.";
 
             return View(viewModel);
         }

@@ -1,23 +1,24 @@
-﻿using System.Configuration;
+﻿using Charltone.UI.Models;
+using System.Configuration;
 using System.Net.Mail;
 using System.Text;
 
-namespace Charltone.UI.Library
+namespace Charltone.UI.Extensions
 {
-    public static class Email
+    public static class ContactExtensions
     {
-        public static void Send(string name, string phone, string email, string message)
+        public static void SendEmail(this Contact contact, string message)
         {
             var emailBody = new StringBuilder();
 
             emailBody.Append("<b>The following message was received from Charltone.com:</b>");
             emailBody.Append("<br>");
             emailBody.Append("<br>");
-            emailBody.Append("From: " + name);
+            emailBody.Append("From: " + contact.Name);
             emailBody.Append("<br>");
-            emailBody.Append("Phone: " + phone);
+            emailBody.Append("Phone: " + contact.Phone);
             emailBody.Append("<br>");
-            emailBody.Append("Email: " + email);
+            emailBody.Append("Email: " + contact.Email);
             emailBody.Append("<br>");
             emailBody.Append("<br>");
             emailBody.Append(message);

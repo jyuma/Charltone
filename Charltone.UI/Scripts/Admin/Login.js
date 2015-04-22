@@ -30,7 +30,7 @@
         });
 
         $("button").button();
-        $("#validation-container-admin-login").hide();
+        $("#validation-container").hide();
     });
 }
 
@@ -40,7 +40,7 @@ function logInAdmin(route) {
     var pword = $("#txtPassword").val();
     var model = { password: pword };
 
-    $("#validation-container-admin-login").html('');
+    $("#validation-container").html('');
 
     $.getJSON(route + "Admin/Login", model,
         function (data) {
@@ -49,14 +49,14 @@ function logInAdmin(route) {
                 window.location.reload(true);
             } else {
                 if (data.messages.length > 0) {
-                    $("#validation-container-admin-login").show();
-                    $("#validation-container-admin-login").html('');
+                    $("#validation-container").show();
+                    $("#validation-container").html('');
                     var html = "<ul>";
                     for (var i = 0; i < data.messages.length; i++) {
                         html = html + "<li>" + data.messages[i] + "</li>";
                     }
                     html = html + "</ul>";
-                    $("#validation-container-admin-login").append(html);
+                    $("#validation-container").append(html);
                 }
             }
         });
