@@ -242,6 +242,7 @@
     <Content Include="Scripts\Admin\Login.js" />
     <Content Include="Scripts\File\File.js" />
     <Content Include="Scripts\Instrument\Detail.js" />
+    <Content Include="Scripts\Instrument\Zoom.js" />
     <Content Include="Scripts\js\jquery-2.1.3.min.js" />
     <Content Include="Scripts\js\jquery-ui.js" />
     <Content Include="Scripts\js\jquery-ui.min.js" />

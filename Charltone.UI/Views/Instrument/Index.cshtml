@@ -10,7 +10,7 @@
 
 <script>
     $(document).ready(function () {
-        zoom.init();
+        index.init();
         position.set();
     });
 </script>
@@ -25,32 +25,32 @@
         </div>
         <div class="linehorizontal" id="instrlistlinehorizontal"></div>
         @{
-            foreach (var instrument in Model.Instruments)
+            foreach (var inst in Model.Instruments)
             {
                 <div id="instrlistdetail">
                     <div id="instrlistitem">
                         <div>
                             <div>
-                                <label class="@instrument.StatusCssClassId">
-                                    @(instrument.ShowPrice ? instrument.Price : instrument.Status)
+                                <label class="@inst.StatusCssClassId">
+                                    @(inst.ShowPrice ? inst.Price : inst.Status)
                                 </label>
                             </div>
-                            <a id="@string.Format("img_{0}", @instrument.DefaultPhotoId)" href="javascript:;">
-                                <img id="@instrument.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetListPhoto", "Instrument", new { id = instrument.DefaultPhotoId })     alt="" />
+                            <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="javascript:;">
+                                <img id="@inst.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetListPhoto", "Instrument", new { id = inst.DefaultPhotoId }) alt="" />
                             </a>
                             <div id="instrlistinfomodel">
-                                @instrument.ModelSn
+                                @inst.ModelSn
                                 <label id="instrlistinfonotposted">
-                                    @instrument.NotPostedMessage
+                                    @inst.NotPostedMessage
                                 </label>
                             </div>
                             <div id="instrlistinfodetail">
-                                @instrument.Classification / @instrument.SubClassification
+                                @inst.Classification / @inst.SubClassification
                             </div>
                             <div class="instrlistviewdetailslink">
-                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = instrument.ProductId })
-                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = instrument.ProductId })
-                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "View Details", "Detail", new { id = instrument.ProductId })
+                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = inst.ProductId })
+                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = inst.ProductId })
+                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "View Details", "Detail", new { id = inst.ProductId })
                             </div>
                         </div>
                     </div>

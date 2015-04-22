@@ -12,6 +12,7 @@
     $(document).ready(function () {
         detail.init({
             photoIds: @Html.Raw(Json.Encode(Model.PhotoIds)),
+            defaultPhotoId: "@Model.DefaultPhotoId",
             comments: "@Model.Comments",
             funfacts: "@Model.FunFacts"
         });
@@ -69,7 +70,9 @@
 
         <div id="instrdetailininfo">
             <div id="instrdetailmainphoto">
-                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt=""/>
+                <a id="instrdetailmainphotolink" href="javascript:;">
+                    <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
+                </a>
             </div>
             <div class="linevertical" id="instrdetaillinevertical"></div>
             <div id="instrdetailinfo">
@@ -247,4 +250,5 @@
             </div>
         }
     </div>
+    <div id='dialog-image-container'></div>
 </div>

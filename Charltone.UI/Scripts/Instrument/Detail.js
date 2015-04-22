@@ -2,6 +2,7 @@
     var self = {
         config: {
             photoIds: [],
+            defaultPhotoId: 0,
             comments: "",
             funfacts: "",
         },
@@ -10,6 +11,7 @@
             jQuery.extend(self.config, options);
             self.bindTooltips();
             self.bindPhotos();
+            self.bindZoom();
         },
        
         bindTooltips: function () {
@@ -36,10 +38,17 @@
             });
         },
 
+        bindZoom: function() {
+            $("#instrdetailmainphotolink").click(function () {
+                zoom.display(self.config.defaultPhotoId);
+            });
+        },
+
         displayPhoto: function (id) {
             $.getJSON(site.url + "Instrument/GetPhotoJson", { "id": id },
                 function(data) {
                     $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
+                    self.config.defaultPhotoId = id;
                 });
         },
 

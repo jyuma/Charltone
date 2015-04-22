@@ -20,6 +20,7 @@ namespace Charltone.UI
                   "~/Scripts/File/File.js",
                   "~/Scripts/Instrument/Index.js",
                   "~/Scripts/Instrument/Detail.js",
+                  "~/Scripts/Instrument/Zoom.js",
                   "~/Scripts/Page/Position.js",
                   "~/Scripts/Metrics/GoogleAnalytics.js",
                   "~/Scripts/Admin/Login.js"));
