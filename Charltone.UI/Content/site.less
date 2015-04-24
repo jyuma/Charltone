@@ -27,6 +27,10 @@
   }
         
 /* Primary Layout */
+html {
+  overflow-y: scroll;
+}
+
 body{
     background-color: @colourBody;
     font-size: 10pt;
@@ -57,28 +61,6 @@ button {
     height: 30px;
     font-size: 8pt;
     font-weight: 200;
-}
-
-/* Upload */
-#uploadaphoto {
-    clear: both;
-    margin-bottom: 5px;
-}
-.editlink {
-   font-size: 12pt;
-}
-.thumbnail {
-    width: 90px;
-    height: 110px;
-    border: 2px;
-    border-style: solid;
-    border-color: @colourBrown;
-    margin-bottom: 2px;
-}
-.savebutton {
-    font-size: 12pt;
-    width: 100px;
-    height: 30px;
 }
 
 /* Main Menu */
@@ -207,44 +189,38 @@ div#title {
 
 /* Home */
 #home {
+    /*background-image: url(images/tools_large.jpg);*/
     .gradients;
-    background: linear-gradient(#ffff);
     position: relative;
     width: @widthBody;
     padding-bottom: 20px;
-    /*background-image: url(images/tools_large.jpg);*/
     overflow: hidden;
 }
 #homecontent {
-    position: relative;
-    margin: 0 5px 0 30px;
-}
-#homeedit {
-    position: relative;
-    font-size: 12pt;
-    padding: 0 10px 10px 0;
-    color: @colourWhite;
+    margin: 0 20px 0 30px;
 }
 #homeeditlink {
     font-size: 12pt;
     padding-right: 10px;
-    float: left;
+    float: right;
 }
 #homeuploadcontainer {
     color: @colourWhite;
+    float: left;
+}
+#homeedituploadcontainer {
+    padding-top: 10px;
 }
 #homeupload {
     color: @colourWhite;
 }
 #homeintroduction {
-    position: relative;
     font-size: 16pt;
     color: @colourBrown;
     padding: 0 0 15px 0;
     clear: both;
 }
 #homegreeting {
-    position: relative;
     font-size: 11pt;
     color: @colourWhite;
     clear: both;
@@ -252,15 +228,43 @@ div#title {
 #homeimage {
     margin: 25px 0 0 0;
     width: 830px;
-    height: 520px;
+    height: 530px;
     border: 1px solid @colourBrown;
+}
+
+/* Home Edit */
+#homeeditcontent {
+    background-image: url(images/tools_large.jpg);
+    width: @widthBody;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+#homeeditcontainer {
+    position: relative;
+    left: 25px;
+}
+#homeeditinfo {
+    margin-top: 20px;
+    padding-bottom: 15px;
+    color: @colourWhite;
+    float: left;
+}
+#homeeditbuttons {
+    margin-bottom: 20px;
+    font-size: 12pt;
+}
+#homeeditimage {
+    margin: 0 0 0 25px;
+    width: 830px;
+    height: 530px;
+    border: 1px solid @colourBrown;
+    clear: both;
 }
 
 /* About */
 #aboutpage {
-    position: relative;
     width: @widthBody;
-    height: 550px;
+    height: 560px;
     background: url(images/tools_large_2_dark.jpg) right no-repeat;
 }
 #aboutbanner {
@@ -576,23 +580,19 @@ div#title {
 }
 .instrdetailthumbnail {
     width: 101px;
-    padding-right: 4px;
+    padding-right: 3px;
     float: left;
 }
 #instrdetailthumbnailcontainer {
-    padding-top: 5px;
+    padding-top: 10px;
     overflow: hidden;
 }
 .thumbnailbutton {
-    height: 25px;
-    width: 19px;
+    width: 20px;
+    height: 20px;
     padding: 2px;
-    margin-right: 3px;
-    font-size: 10pt;
-    font-weight: bold;
 }
 #instrdetailbuttoncontainer {
-    padding-left: 4px;
 }
 #instrdetaileditbutton {
     padding-right: 10px;
@@ -661,7 +661,6 @@ div#title {
 }
 
 /* Ordering */
-
 #orderinglist {
     position: relative;
     background: url(images/tools_large_2_dark.jpg);
@@ -824,7 +823,6 @@ div#title {
     padding-bottom: 15px;
     color: @colourWhite;
 }
-
 #deleteordering {
     background: url(images/tools_large.jpg);
     width: @widthBody;
@@ -900,6 +898,28 @@ div#title {
 }
 #getintouchcountry {
     margin-top: 20px;
+}
+
+/* Upload */
+#uploadaphoto {
+    clear: both;
+    margin-bottom: 5px;
+}
+.editlink {
+   font-size: 12pt;
+}
+.thumbnail {
+    width: 90px;
+    height: 110px;
+    border: 2px;
+    border-style: solid;
+    border-color: @colourBrown;
+    margin-bottom: 2px;
+}
+.savebutton {
+    font-size: 12pt;
+    width: 100px;
+    height: 30px;
 }
 
 /* Styles for validation */
@@ -1003,11 +1023,11 @@ textarea {
         height: 100px;
     }
     &#Introduction {
-        width: 800px;
+        width: 825px;
         height: 50px;
     }
     &#Greeting {
-        width: 800px;
+        width: 825px;
         height: 100px;
     }
     &#ContactMessage {

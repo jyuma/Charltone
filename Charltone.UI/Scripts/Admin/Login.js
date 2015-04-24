@@ -1,6 +1,4 @@
 ﻿var DisplayAdminLoginDialog = function (route) {
-    'use strict';
-
     $.get(route + "Admin/LoginForm", function (data) {
         if ($("#admin-login-form").length === 0)
         {
@@ -35,8 +33,6 @@
 }
 
 function logInAdmin(route) {
-    'use strict';
-
     var pword = $("#txtPassword").val();
     var model = { password: pword };
 

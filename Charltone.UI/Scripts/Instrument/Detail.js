@@ -1,5 +1,9 @@
 ﻿var detail = (function () {
     var self = {
+        maxPhotos: 8,
+        cssInputDisabled: { opacity: 0.5, cursor: 'default' },
+        cssInputEnabled: { opacity: 1, cursor: 'pointer' },
+
         totalPhotos: 0,
         config: {
             productId: 0,
@@ -8,7 +12,7 @@
             comments: "",
             funfacts: "",
             isAuthenticated: false
-},
+        },
 
         init: function (options) {
             jQuery.extend(self.config, options);
@@ -17,15 +21,20 @@
             self.createThumbnails();
             self.bindThumbnails();
             self.bindZoom();
+            self.showHideFileUpload();
         },
 
+        // Thumbnails
         createThumbnails: function () {
             $(self.config.photos).each(function (index, value) {
-               self.appendThumbnail(index + 1, value.Id);  // make 1-based
+                self.appendThumbnail(value.Id);
+                self.enableInputDefault();
+                self.enableInputDelete();
             });
+            self.enableInputMove();
         },
 
-        appendThumbnail: function (index, id) {
+        appendThumbnail: function (id) {
             var divThumbnail = document.createElement('div');
             $(divThumbnail).attr('id', 'instrdetailthumbnail_' + id);
             $(divThumbnail).addClass('instrdetailthumbnail');
@@ -34,81 +43,36 @@
             $(divThumbnail).append(image);
 
             if (self.config.isAuthenticated) {
-                $(divThumbnail).append(self.createPhotoButtons(index, id));
+                $(divThumbnail).append(self.createThumbnailImageInputs(id));
             }
 
             $("#instrdetailthumbnailcontainer").append(divThumbnail);
         },
 
-        createPhotoButtons: function(index, id) {
-            var divButtons = document.createElement('div');
-            $(divButtons).attr('id', 'instrdetailbuttoncontainer');
+        createThumbnailImageInputs: function (id) {
+            var divButtons = $("<div id='instrdetailbuttoncontainer'>");
 
-            // Default button
-            var buttonDefault = document.createElement("button");
-            $(buttonDefault).text('D');
-            $(buttonDefault).attr('id', 'default_' + id);
-            $(buttonDefault).addClass('thumbnailbutton');
-            if (id === self.config.defaultPhotoId) {
-                $(buttonDefault).attr('disabled', 'disabled');
-            } else {
-                $(buttonDefault).removeAttr('disabled');
-            }
-            $(buttonDefault).click(function () { self.setAsDefault(id); });
+            // Set Default
+            var inputDefault = $("<input type='image' src='" + site.url + "Content/images/Check.ico' id='default_" + id + "' class='thumbnailbutton' alt=''/>");
+            $(inputDefault).click(function () { self.setAsDefault(id); });
+            $(divButtons).append(inputDefault);
 
-            // Remove button
-            var buttonRemove = document.createElement('button');
-            $(buttonRemove).text('R');
-            $(buttonRemove).attr('id', 'remove_' + id);
-            $(buttonRemove).addClass('thumbnailbutton');
-            $(buttonRemove).click(function () { self.removePhoto(id); });
+            // Remove
+            var inputRemove = $("<input type='image' src='" + site.url + "Content/images/Delete.ico' id='delete_" + id + "' class='thumbnailbutton' alt=''/>");
+            $(inputRemove).click(function () { self.deletePhoto(id); });
+            $(divButtons).append(inputRemove);
 
-            // Move Left button
-            var buttonMoveLeft = document.createElement("button");
-            $(buttonMoveLeft).text('<');
-            $(buttonMoveLeft).attr('id', 'moveleft_' + id);
-            $(buttonMoveLeft).addClass('thumbnailbutton');
-            if (index === 1) {
-                $(buttonMoveLeft).attr('disabled', 'disabled');
-            } else {
-                $(buttonMoveLeft).removeAttr('disabled');
-            }
-            $(buttonMoveLeft).click(function () { self.movePhoto(id, index, -1); });
+            // Move Left
+            var inputMoveLeft = $("<input type='image' src='" + site.url + "Content/images/Previous.ico' id='moveleft_" + id + "' class='thumbnailbutton' alt=''/>");
+            $(inputMoveLeft).click(function () { self.movePhoto(id, -1); });
+            $(divButtons).append(inputMoveLeft);
 
-            // Move Right button
-            var buttonMoveRight = document.createElement('button');
-            $(buttonMoveRight).text('>');
-            $(buttonMoveRight).attr('id', 'moveright_' + id);
-            $(buttonMoveRight).addClass('thumbnailbutton');
-            if (index === self.config.photos.length) {
-                $(buttonMoveRight).attr('disabled', 'disabled');
-            } else {
-                $(buttonMoveRight).removeAttr('disabled');
-            }
-            $(buttonMoveRight).click(function () { self.movePhoto(id, index, 1); });
-
-            $(divButtons).append(buttonDefault);
-            $(divButtons).append(buttonRemove);
-            $(divButtons).append(buttonMoveLeft);
-            $(divButtons).append(buttonMoveRight);
+            // Move Right
+            var inputMoveRight = $("<input type='image' src='" + site.url + "Content/images/Next.ico' id='moveright_" + id + "' class='thumbnailbutton' alt=''/>");
+            $(inputMoveRight).click(function () { self.movePhoto(id, 1); });
+            $(divButtons).append(inputMoveRight);
 
             return divButtons;
-        },
-
-        bindTooltips: function () {
-            $("a#commentshint").bind(
-            {
-                mousemove: self.changeCommentsToolTipPos,
-                mouseenter: self.showCommentsToolTip,
-                mouseleave: self.hideCommentsToolTip
-            });
-
-            $("a#funfactshint").bind(
-            {
-                mousemove: self.changeFunFactsToolTipPos,
-                mouseenter: self.showFunFactsToolTip,
-                mouseleave: self.hideFunFactsToolTip
-            });
         },
 
         bindThumbnails: function() {
@@ -119,6 +83,7 @@
             });
         },
 
+        // Display
         bindZoom: function() {
             $("#instrdetailmainphotolink").click(function () {
                 zoom.display(self.config.defaultPhotoId);
@@ -133,26 +98,46 @@
                 });
         },
 
+        // Photo Control Buttons
         setAsDefault: function (id) {
-            $.post(site.url + "Instrument/SetDefaultPhoto", { "id": self.config.productId, "photoId": id }, function() {
-                $("#default_" + self.config.defaultPhotoId).removeAttr('disabled');
-                self.config.defaultPhotoId = id;
-                $("#default_" + id).attr('disabled', 'disabled');
+            $.post(site.url + "Instrument/SetDefaultPhoto", { "id": self.config.productId, "photoId": id }, function () {
                 self.displayPhoto(id);
+                self.config.defaultPhotoId = id;
+                self.enableInputDefault();
+                self.enableInputDelete();
             });
         },
 
-        removePhoto: function (id) {
-            if (confirm("Delete photo?")) {
-                $.post(site.url + "Instrument/RemovePhoto", { "id": self.config.productId, "photoId": id }, function() {
-                    $("#instrdetailthumbnail_" + id).remove();
-                    self.totalPhotos--;
-                });
-            }
+        deletePhoto: function (id) {
+            var divDialog = $("<div id='dialog-confirm-delete'>Delete photo?</div>");
+
+            $("#instrdetailcontent").append(divDialog);
+            $("#dialog-confirm-delete").dialog(
+            {
+                resizable: false,
+                modal: true,
+                title: "Confirm Delete",
+                height: 140,
+                width: 200,
+                buttons: {
+                    "Yes": function() {
+                        $(this).dialog('close');
+                        $.post(site.url + "Instrument/DeletePhoto", { "id": self.config.productId, "photoId": id }, function() {
+                            $("#instrdetailthumbnail_" + id).remove();
+                            self.totalPhotos--;
+                            self.showHideFileUpload();
+                        });
+                    },
+                    "No": function() {
+                        $(this).dialog('close');
+                    }
+                }
+            });
         },
 
-        movePhoto: function (id, index, increment) {
+        movePhoto: function (id, increment) {
             var thumbnail = $("#instrdetailthumbnailcontainer").find("#instrdetailthumbnail_" + id);
+            var index = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail']").index(thumbnail) + 1;  // make sortOrder 1-based
 
             var adjacent;
             if (increment > 0) {
@@ -163,25 +148,71 @@
 
             var thumbnailId = parseInt(thumbnail.attr('id').substring(thumbnail.attr('id').indexOf("_") + 1, thumbnail.attr('id').length));
             var adjacentId = parseInt(adjacent.attr('id').substring(adjacent.attr('id').indexOf("_") + 1, adjacent.attr('id').length));
-
+            
             $.post(site.url + "Instrument/MovePhoto", { "id": thumbnailId, "adjacentId": adjacentId, "sortOrder": index + increment }, function () {
                 if (increment > 0) {
                     $(thumbnail).insertAfter(adjacent);
                 } else {
                     $(thumbnail).insertBefore(adjacent);
                 }
-                self.enableMoveButtons();
+                self.enableInputMove();
             });
         },
 
-        enableMoveButtons: function () {
-            var insideMoveButtons = $("#instrdetailthumbnailcontainer div[id*='instrdetailthumbnail']").not(':first').not(':last').find("[id^=move]");
-            var firstMovelLeft = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] button[id^='moveleft']").first();
-            var lastMoveRight = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] button[id^='moveright']").last();
+        enableInputMove: function () {
+            var firsttMovelLeft = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='moveleft']").first();
+            var lastMoveRight = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='moveright']").last();
+            var allOthertMoves = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail']").not(':first').not(':last').find("[id^=move]");
 
-            $(insideMoveButtons).removeAttr('disabled');
-            $(firstMovelLeft).attr('disabled', 'disabled');
-            $(lastMoveRight).attr('disabled', 'disabled');
+            $(allOthertMoves).removeAttr('disabled').css(self.cssInputEnabled);
+            $(firsttMovelLeft).attr('disabled', 'disabled').css(self.cssInputDisabled);
+            $(lastMoveRight).attr('disabled', 'disabled').css(self.cssInputDisabled);
+        },
+
+        enableInputDefault: function () {
+            var id = self.config.defaultPhotoId;
+
+            var inputDefault = $("#instrdetailthumbnailcontainer div[id='instrdetailthumbnail_" + id + "'] input[id='default_" + id + "']");
+            var allOtherDefaults = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='default']").not(inputDefault);
+
+            $(allOtherDefaults).removeAttr('disabled').css(self.cssInputEnabled);
+            $(inputDefault).attr('disabled', 'disabled').css(self.cssInputDisabled);
+        },
+
+        enableInputDelete: function () {
+            var id = self.config.defaultPhotoId;
+
+            var inputDelete = $("#instrdetailthumbnailcontainer div[id='instrdetailthumbnail_" + id + "'] input[id='delete_" + id + "']");
+            var allOtherDeletes = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='delete']").not(inputDelete);
+
+            $(allOtherDeletes).removeAttr('disabled').css(self.cssInputEnabled);
+            $(inputDelete).attr('disabled', 'disabled').css(self.cssInputDisabled);
+        },
+
+        showHideFileUpload: function () {
+            if (self.totalPhotos === self.maxPhotos)
+            {
+                $("#instrdetailuploaphoto").hide();
+            } else {
+                $("#instrdetailuploaphoto").show();
+            }
+        },
+
+        // Tool Tips
+        bindTooltips: function () {
+            $("a#commentshint").bind(
+            {
+                mousemove: self.changeCommentsToolTipPos,
+                mouseenter: self.showCommentsToolTip,
+                mouseleave: self.hideCommentsToolTip
+            });
+
+            $("a#funfactshint").bind(
+            {
+                mousemove: self.changeFunFactsToolTipPos,
+                mouseenter: self.showFunFactsToolTip,
+                mouseleave: self.hideFunFactsToolTip
+            });
         },
 
         changeFunFactsToolTipPos: function(event) {

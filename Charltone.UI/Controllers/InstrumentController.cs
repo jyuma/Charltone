@@ -147,19 +147,13 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        public void RemovePhoto(int id, int photoId)
+        public void DeletePhoto(int id, int photoId)
         {
             var product = _products.Get(id);
             var photo = product.Photos.Single(x => x.Id == photoId);
 
-            if (photo.IsDefault)
-            {
-                if (product.Photos.Any(x => x.Id != photoId))
-                {
-                    var newDefault = product.Photos.First(x => x.Id != photoId);
-                    _photos.SetProductDefault(id, newDefault.Id);   // randomly set another photo as the default
-                }
-            }
+            if (photo.IsDefault) return;
+
             _photos.Delete(photoId);
             product.Photos.Remove(photo);
             product.Photos.ResetSortOrder();
@@ -323,7 +317,8 @@ namespace Charltone.UI.Controllers
                          Comments = instrument.Comments,
                          FunFacts = instrument.FunFacts,
 
-                         InstrumentPhotos = product.Photos.OrderBy(x => x.SortOrder)
+                         InstrumentPhotos = product.Photos
+                            .OrderBy(x => x.SortOrder)
                             .Select(x => new InstrumentPhoto
                              {
                                 Id = x.Id,

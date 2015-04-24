@@ -8,18 +8,15 @@
 }
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         file.enableUpload();
     });
 </script>
 
 <div id="home">
     <div id="homecontent">
-        <div>
+        <div id="homeedituploadcontainer">
             @Html.ValidationSummary(true)
-            <div id="homeeditlink">
-                @Html.ActionLinkAuthorized("Edit", "Edit")
-            </div>
             <div id="homeuploadcontainer">
                 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                 {
@@ -30,6 +27,9 @@
                         @Html.ValidationMessageFor(model => model.File)
                     </div>
                 }
+            </div>
+            <div id="homeeditlink">
+                @Html.ActionLinkAuthorized("Edit", "Edit")
             </div>
         </div>
 

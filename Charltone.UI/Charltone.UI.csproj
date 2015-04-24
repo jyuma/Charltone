@@ -210,6 +210,10 @@
   <ItemGroup>
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
+    <Content Include="Content\images\Check.ico" />
+    <Content Include="Content\images\Delete.ico" />
+    <Content Include="Content\images\Next.ico" />
+    <Content Include="Content\images\Previous.ico" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\images\faceplates_gradient.jpg" />
     <Content Include="Content\images\tools.jpg" />

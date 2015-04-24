@@ -23,7 +23,6 @@
 
     });
 </script>
-
 <div id="instrdetailcontent">
     @Html.ValidationSummary(true)
     <div id="instrdetailheader">
@@ -38,17 +37,14 @@
             {
                 if (Model.IsAuthenticated)
                 {
-                    if (@Model.InstrumentPhotos.Count() < 8)
-                    {
-                        <div id="instrdetailuploaphoto">
-                            <label for="File">Upload a photo:</label>
-                            <input type="file" class="fileinput" name="File" />
-                            <input type="submit" value="Upload" disabled="disabled" />
-                        </div>
-                        <div>
-                            @Html.ValidationMessageFor(model => model.File)
-                        </div>
-                    }
+                    <div id="instrdetailuploaphoto">
+                        <label for="File">Upload a photo:</label>
+                        <input type="file" class="fileinput" name="File" />
+                        <input type="submit" value="Upload" disabled="disabled" />
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.File)
+                    </div>
                 }
             }
         </div>

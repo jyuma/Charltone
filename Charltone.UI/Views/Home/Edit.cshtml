@@ -5,37 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="editabout">
-    @using (Html.BeginForm())
-    {
-        <div id="editaboutcontainer">
-            @Html.ValidationSummary(true)
-            <div id="editaboutinfo">
-                <div id="editaboutbuttons">
-                    <input class="savebutton" type="submit" value="Save" name="Command" />
-                    &nbsp
-                    @Html.ActionLink("Cancel", "Index", "Home")
-                </div>
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.Introduction)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Introduction)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Introduction)
+<div id="homeedit">
+    <div id="homeeditcontent">
+        @using (Html.BeginForm())
+        {
+            <div id="homeeditcontainer">
+                @Html.ValidationSummary(true)
+                <div id="homeeditinfo">
+                    <div id="homeeditbuttons">
+                        <input class="savebutton" type="submit" value="Save" name="Command" />
+                        &nbsp
+                        @Html.ActionLink("Cancel", "Index", "Home")
                     </div>
-                </div>
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.Greeting)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Greeting)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Greeting)
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Introduction)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Introduction)
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Introduction)
+                        </div>
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Greeting)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Greeting)
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Greeting)
+                        </div>
                     </div>
                 </div>
             </div>
+        }
+        <div id="homeeditimage">
+            <img src='~/Content/images/homepage.jpg' alt='' />
         </div>
-    }
-
+    </div>
 </div>

@@ -36,8 +36,8 @@
 
     public static class InstrumentPhotoSize
     {
-        public const int Width = 346;
-        public const int Height = 450;
+        public const int Width = 520;
+        public const int Height = 676;
     }
 
     public static class InstrumentThumbnailSize
@@ -61,6 +61,6 @@
     public static class HomePagePhoto
     {
         public const int Width = 830;
-        public const int Height = 520;
+        public const int Height = 530;
     }
 }
