@@ -30,7 +30,7 @@
 
     public static class InstrumentListPhotoSize
     {
-        public const int Width = 260;
+        public const int Width = 246;
         public const int Height = 320;
     }
 

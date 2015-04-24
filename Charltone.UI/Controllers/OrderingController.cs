@@ -106,21 +106,18 @@ namespace Charltone.UI.Controllers
         [HttpPost]
         [Authorize]
         [Route("Photo")]
-        public ActionResult Photo(int id, HttpPostedFileBase file)
+        public ActionResult Photo(int id, OrderingPhotoEditViewModel viewModel)
         {
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength)
-                        .ByteArrayToImage()
-                        .CropOrdering()
-                        .ImageToByteArray();
+            if (!ModelState.IsValid) return View(LoadOrderingPhotoEditViewModel(id));
+            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View(LoadOrderingPhotoEditViewModel(id));
 
-                    _orderings.UpdatePhoto(id, data);
-                }
-            }
+            var reader = new BinaryReader(viewModel.File.InputStream);
+            var data = reader.ReadBytes(viewModel.File.ContentLength)
+                .ByteArrayToImage()
+                .CropOrdering()
+                .ImageToByteArray();
+
+            _orderings.UpdatePhoto(id, data);
 
             return View("Photo", LoadOrderingPhotoEditViewModel(id));
         }

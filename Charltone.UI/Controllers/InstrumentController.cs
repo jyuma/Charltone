@@ -1,15 +1,13 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.Text.RegularExpressions;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Instrument;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
@@ -55,114 +53,32 @@ namespace Charltone.UI.Controllers
         [HttpPost]
         [Authorize]
         [Route("Detail")]
-        public ActionResult Detail(int id, FormCollection collection)
+        public ActionResult Detail(int id, InstrumentDetailViewModel viewModel)
         {
-            var key = collection.Keys.Get(0);
-            var delimiterIndex = key.IndexOf("_", StringComparison.Ordinal) + 1;
-            var photoId = Convert.ToInt32(key.Substring(delimiterIndex, key.Length - delimiterIndex));
+            if (!ModelState.IsValid) return View(LoadInstrumentDetailViewModel(id));
+            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View("Detail", LoadInstrumentDetailViewModel(id));
+
+            var reader = new BinaryReader(viewModel.File.InputStream);
+            var data = reader.ReadBytes(viewModel.File.ContentLength)
+                .ByteArrayToImage()
+                .CropInstrument()
+                .ImageToByteArray();
+
             var product = _products.Get(id);
-            var action = GetSubmitActionName(collection);
+            var count = product.Photos.Count;
 
-            switch (action)
+            var photo = new Photo
             {
-                case "DELETE":
-                {
-                    var photo = product.Photos.Single(x => x.Id == photoId);
-                    if (photo.IsDefault)
-                    {
-                        if (product.Photos.Any(x => x.Id != photoId))
-                        {
-                            var newDefault = product.Photos.First(x => x.Id != photoId);
-                            _photos.SetProductDefault(id, newDefault.Id);   // randomly set another photo as the default
-                        }
-                    }
-                    _photos.Delete(photoId);
-                    product.Photos.Remove(photo);
-                    product.Photos.ResetSortOrder();
-                    foreach (var p in product.Photos)
-                    {
-                        _photos.Update(p);
-                    }
+                IsDefault = (count == 0),
+                Data = data,
+                SortOrder = count + 1,
+                Product = product
+            };
 
-                    break;
-                }
-                case "DEFAULT":
-                {
-                    var photo = product.Photos.Single(x => x.Id == photoId);
-                    _photos.SetProductDefault(id, photoId);
-                    photo.IsDefault = true;
-                    break;
-                }
-                case "MOVELEFT":
-                case "MOVERIGHT":
-                {
-                    var increment = (action == "MOVELEFT") ? -1 : 1;
-                    var p1 = product.Photos.Single(x => x.Id == photoId);
-                    var p2 = product.Photos.Single(x => x.SortOrder == (p1.SortOrder + increment));
+            product.Photos.Add(photo);
+            _photos.Add(photo);
 
-                    p2.SortOrder = p1.SortOrder;
-                    p1.SortOrder = p1.SortOrder + increment;
-
-                     _photos.Update(p1);
-                     _photos.Update(p2);
-                    break;
-                }
-            }
-            
             return View(LoadInstrumentDetailViewModel(id));
-        }
-
-        private static string GetSubmitActionName(FormCollection collection)
-        {
-            var result = "";
-
-            if (collection.AllKeys.Select(x => x.StartsWith("Delete")).Single())
-                result = "DELETE";
-
-            if (collection.AllKeys.Select(x => x.StartsWith("SetDefault")).Single())
-                result = "DEFAULT";
-
-            if (collection.AllKeys.Select(x => x.StartsWith("MoveLeft")).Single())
-                result = "MOVELEFT";
-
-            if (collection.AllKeys.Select(x => x.StartsWith("MoveRight")).Single())
-                result = "MOVERIGHT";
-
-            return result;
-        }
-
-        [HttpPost]
-        [Authorize]
-        [Route("Details")]
-        public ActionResult Details(int id, HttpPostedFileBase file)
-        {
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var reader = new BinaryReader(file.InputStream);
-                    var data = reader.ReadBytes(file.ContentLength)
-                        .ByteArrayToImage()
-                        .CropInstrument()
-                        .ImageToByteArray();
-
-                    var product = _products.Get(id);
-                    var count = product.Photos.Count;
-
-                    var photo = new Photo
-                    {
-                        IsDefault = (count == 0),
-                        Data = data,
-                        SortOrder = count + 1,
-                        Product = product
-                    };
-
-                    product.Photos.Add(photo);
-                    _photos.Add(photo);
-                }
-            }
-
-            return View("Detail", LoadInstrumentDetailViewModel(id));
         }
 
         [HttpGet]
@@ -219,6 +135,56 @@ namespace Charltone.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [Authorize]
+        public void SetDefaultPhoto(int id, int photoId)
+        {
+            var product = _products.Get(id);
+            var photo = product.Photos.Single(x => x.Id == photoId);
+            _photos.SetProductDefault(id, photoId);
+            photo.IsDefault = true;
+        }
+
+        [HttpPost]
+        [Authorize]
+        public void RemovePhoto(int id, int photoId)
+        {
+            var product = _products.Get(id);
+            var photo = product.Photos.Single(x => x.Id == photoId);
+
+            if (photo.IsDefault)
+            {
+                if (product.Photos.Any(x => x.Id != photoId))
+                {
+                    var newDefault = product.Photos.First(x => x.Id != photoId);
+                    _photos.SetProductDefault(id, newDefault.Id);   // randomly set another photo as the default
+                }
+            }
+            _photos.Delete(photoId);
+            product.Photos.Remove(photo);
+            product.Photos.ResetSortOrder();
+
+            foreach (var p in product.Photos)
+            {
+                _photos.Update(p);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public void MovePhoto(int id, int adjacentId, int sortOrder)
+        {
+            var photos = _photos.GetAll().Where(x => x.Id == id || x.Id == adjacentId).ToArray();
+            var p = photos.Single(x => x.Id == id);
+            var pAdjacent = photos.Single(x => x.Id == adjacentId);
+
+            pAdjacent.SortOrder = p.SortOrder;
+            p.SortOrder = sortOrder;
+
+            _photos.Update(p);
+            _photos.Update(pAdjacent);
+        }
+
         [HttpGet]
         public FileResult GetPhoto(int id)
         {
@@ -272,7 +238,7 @@ namespace Charltone.UI.Controllers
             return Json(ids, JsonRequestBehavior.AllowGet);
         }
 
-        #region ViewModel
+        #region View Models
 
         private InstrumentListViewModel LoadInstrumentListViewModel()
         {
@@ -362,9 +328,6 @@ namespace Charltone.UI.Controllers
                              {
                                 Id = x.Id,
                                 IsDefault = x.IsDefault,
-                                SortOrder = x.SortOrder,
-                                IsFirst = (x.SortOrder == 1),
-                                IsLast = (x.SortOrder == product.Photos.Count)
                              }).ToArray(),
                          PhotoIds = product.Photos.Select(x => x.Id).ToArray()
                      };

@@ -28,7 +28,7 @@ namespace Charltone.UI.Extensions
 
         public static byte[] Crop(this byte[] data, Size size)
         {
-            var cropped = Crop(data.ByteArrayToImage(), size);
+            var cropped = CropImage(data.ByteArrayToImage(), size);
             var result = cropped.ImageToByteArray();
 
             cropped.Dispose();
@@ -46,22 +46,22 @@ namespace Charltone.UI.Extensions
 
         public static Image CropInstrument(this Image image)
         {
-            return Crop(image, new Size(InstrumentPhotoSize.Width, InstrumentPhotoSize.Height));
+            return CropImage(image, new Size(InstrumentPhotoSize.Width, InstrumentPhotoSize.Height));
         }
 
         public static Image CropInstrumentList(this Image image)
         {
-            return Crop(image, new Size(InstrumentListPhotoSize.Width, InstrumentListPhotoSize.Height));
+            return CropImage(image, new Size(InstrumentListPhotoSize.Width, InstrumentListPhotoSize.Height));
         }
 
         public static Image CropOrdering(this Image image)
         {
-            return Crop(image, new Size(OrderingPhoto.Width, OrderingPhoto.Height));
+            return CropImage(image, new Size(OrderingPhoto.Width, OrderingPhoto.Height));
         }
 
         public static Image CropHomePageImage(this Image image)
         {
-            return Crop(image, new Size(HomePagePhoto.Width, HomePagePhoto.Height));
+            return CropImage(image, new Size(HomePagePhoto.Width, HomePagePhoto.Height));
         }
 
         public static void Save(this byte[] data, string path)
@@ -78,29 +78,29 @@ namespace Charltone.UI.Extensions
             }
         }
 
-        private static Image Crop(Image image, Size size)
+        private static Image CropImage(Image image, Size size)
         {
-            var width = image.Size.Width;
-            var height = image.Size.Height;
-            var ratio = (double) height / width;
+            var width = size.Width;
+            var height = size.Height;
+            var ratio = (double)height / width;
 
             // ------- crop
             Rectangle cropRect;
-            if (width > height / ratio)   // too wide
+            if (image.Width > image.Height / ratio)   // too wide
             {
-                var newWidth = (int)(height / ratio);
-                var x = (width - newWidth) / 2;
+                var newWidth = (int)(image.Height / ratio);
+                var x = (image.Width - newWidth) / 2;
                 var point = new Point(x, 0);
 
-                cropRect = new Rectangle(point, new Size(newWidth, height));
+                cropRect = new Rectangle(point, new Size(newWidth, image.Height));
             }
             else                        // too tall
             {
-                var newHeight = (int)(width * ratio);
-                var y = (height - newHeight) / 2;
+                var newHeight = (int)(image.Width * ratio);
+                var y = (image.Height - newHeight) / 2;
 
                 var point = new Point(0, y);
-                cropRect = new Rectangle(point, new Size(width, newHeight));
+                cropRect = new Rectangle(point, new Size(image.Width, newHeight));
             }
             var cropped = new Bitmap(image).Clone(cropRect, image.PixelFormat);
 

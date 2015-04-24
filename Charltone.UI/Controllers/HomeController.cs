@@ -23,14 +23,14 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Index(HomeViewModel fileModel)
+        public ActionResult Index(HomeViewModel viewModel)
         {
             if (!ModelState.IsValid) return View(LoadHomeViewModel());
-            if (fileModel == null || fileModel.File == null || fileModel.File.ContentLength <= 0) return View(LoadHomeViewModel());
+            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View(LoadHomeViewModel());
 
-            var reader = new BinaryReader(fileModel.File.InputStream);
+            var reader = new BinaryReader(viewModel.File.InputStream);
 
-            var data = reader.ReadBytes(fileModel.File.ContentLength);
+            var data = reader.ReadBytes(viewModel.File.ContentLength);
             var path = Server.MapPath("~/Content/images/homepage.jpg");
 
             data.Save(path);

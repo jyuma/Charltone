@@ -1,4 +1,16 @@
-﻿/* Primary Layout */
+﻿.gradients {
+  background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* W3C */
+}
+/* Primary Layout */
 body {
   background-color: #272722;
   font-size: 10pt;
@@ -60,7 +72,7 @@ button {
   /* only IE6 applies CSS properties starting with an underscore */
 }
 #footer {
-  color: #999;
+  color: #999999;
   text-align: center;
   line-height: normal;
   margin: 0;
@@ -120,13 +132,6 @@ div#title {
 .fileinput {
   width: 220px;
 }
-.thumbnailbutton {
-  height: 25px;
-  width: 19px;
-  padding: 2px;
-  font-size: 10pt;
-  font-weight: bold;
-}
 #header {
   position: relative;
   height: 20px;
@@ -176,10 +181,21 @@ div#title {
 }
 /* Home */
 #home {
+  background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* IE10 */
+  background: -o-linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(180deg, #090806 10%, #3b2713 100%);
+  /* W3C */
+  background: linear-gradient(#ffffff f);
   position: relative;
   width: 900px;
   padding-bottom: 20px;
-  background: url(images/tools_large.jpg);
+  /*background-image: url(images/tools_large.jpg);*/
   overflow: hidden;
 }
 #homecontent {
@@ -282,7 +298,7 @@ div#title {
 }
 /* Instruments */
 #instrlist {
-  position: relative;
+  /*background-color: darken(@colourDarkBrown, 20%);*/
   background: url(images/tools_large_2_dark.jpg);
   width: 900px;
   overflow: hidden;
@@ -494,12 +510,7 @@ div#title {
 /* Instrument Detail */
 #instrdetailcontent {
   background: url(images/tools_large_2_dark.jpg);
-  padding: 0 0 0 30px;
-  overflow: hidden;
-}
-#instrumentdetailprice {
-  font-size: 11pt;
-  clear: both;
+  padding: 0 0 10px 30px;
 }
 #instrdetailbacktolist {
   float: right;
@@ -511,12 +522,8 @@ div#title {
 #instrdetailmodelstatus {
   font-size: 13pt;
   color: #cea96d;
-  /*width: 180px;*/
+  width: 180px;
   padding-bottom: 5px;
-  float: left;
-}
-#instrdetaileditupload {
-  width: 400px;
   float: left;
 }
 #instrdetaillinks {
@@ -540,19 +547,29 @@ div#title {
   text-decoration: underline;
   float: right;
 }
-#instrdetaileditbutton {
-  position: relative;
-  padding: 0 10px 0 10px;
-  float: left;
-}
-#instrdetailthumbnailconatiner {
-  margin-top: 10px;
-  position: relative;
-}
-#instrdetailthumbnail {
+.instrdetailthumbnail {
   width: 101px;
-  padding-right: 5px;
+  padding-right: 4px;
   float: left;
+}
+#instrdetailthumbnailcontainer {
+  padding-top: 5px;
+  overflow: hidden;
+}
+.thumbnailbutton {
+  height: 25px;
+  width: 19px;
+  padding: 2px;
+  margin-right: 3px;
+  font-size: 10pt;
+  font-weight: bold;
+}
+#instrdetailbuttoncontainer {
+  padding-left: 4px;
+}
+#instrdetaileditbutton {
+  padding-right: 10px;
+  float: right;
 }
 #instrdetailininfo {
   position: relative;
@@ -575,6 +592,16 @@ div#title {
   position: relative;
   float: left;
   top: 20px;
+  color: #ffffff;
+}
+#instrdetailupload {
+  width: 400px;
+  float: left;
+}
+#instrdetailuploadphoto {
+  position: relative;
+  width: 800px;
+  padding-bottom: 15px;
   color: #ffffff;
 }
 #instrdetailinfolist {
@@ -864,7 +891,7 @@ div#title {
 }
 .input-validation-error {
   border: 1px solid #ff0000;
-  background-color: #ffeeee;
+  background-color: #f0f0f0;
 }
 .validation-summary-errors {
   font-weight: bold;

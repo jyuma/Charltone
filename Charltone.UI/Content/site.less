@@ -1,4 +1,6 @@
-﻿@colourBrown: #cea96d;
+﻿@colourBody: #272722;
+@colourFooter: #999;
+@colourBrown: #cea96d;
 @colourDarkBrown: #63411D;
 @colourWhite: #fff;
 @colourIvory: #f0f0f0;
@@ -12,12 +14,21 @@
 @colourInProgress: #32cb20;
 @colourMenuHover: #7DA5D8;
 @colourLink: #0385f3;
+@colourHint: #fbd934;
 
 @widthBody: 900px;
 
+.gradients {
+  background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%); /* FF3.6+ */
+  background:     -ms-linear-gradient(180deg, #090806 10%, #3b2713 100%); /* IE10 */
+  background:      -o-linear-gradient(180deg, #090806 10%, #3b2713 100%); /* Opera 11.10+ */
+  background:         linear-gradient(180deg, #090806 10%, #3b2713 100%); /* W3C */
+  }
+        
 /* Primary Layout */
 body{
-    background-color: #272722;
+    background-color: @colourBody;
     font-size: 10pt;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -81,7 +92,7 @@ button {
 }
 
 #footer {
-    color: #999;
+    color: @colourFooter;
     text-align: center;
     line-height: normal;
     margin: 0;
@@ -144,13 +155,6 @@ div#title {
 .fileinput {
     width:220px;
 }
-.thumbnailbutton {
-    height: 25px;
-    width: 19px;
-    padding: 2px;
-    font-size: 10pt;
-    font-weight: bold;
-}
 #header {
     position: relative;
     height: 20px;
@@ -203,10 +207,12 @@ div#title {
 
 /* Home */
 #home {
+    .gradients;
+    background: linear-gradient(#ffff);
     position: relative;
     width: @widthBody;
     padding-bottom: 20px;
-    background: url(images/tools_large.jpg);
+    /*background-image: url(images/tools_large.jpg);*/
     overflow: hidden;
 }
 #homecontent {
@@ -312,7 +318,7 @@ div#title {
 
 /* Instruments */
 #instrlist {
-    position: relative;
+    /*background-color: darken(@colourDarkBrown, 20%);*/
     background: url(images/tools_large_2_dark.jpg);
     width: @widthBody;
     overflow: hidden;
@@ -531,12 +537,7 @@ div#title {
 /* Instrument Detail */
 #instrdetailcontent {
     background: url(images/tools_large_2_dark.jpg);
-    padding: 0 0 0 30px;
-    overflow: hidden;
-}
-#instrumentdetailprice {
-    font-size: 11pt;
-    clear: both;
+    padding: 0 0 10px 30px;
 }
 #instrdetailbacktolist {
     float: right;
@@ -548,12 +549,8 @@ div#title {
 #instrdetailmodelstatus {
     font-size: 13pt;
     color: @colourBrown;
-    /*width: 180px;*/
+    width: 180px;
     padding-bottom: 5px;
-    float: left;
-}
-#instrdetaileditupload {
-    width: 400px;
     float: left;
 }
 #instrdetaillinks {
@@ -568,28 +565,38 @@ div#title {
     padding-right: 10px;
 }
 #commentshint {
-    color: #fbd934;
+    color: @colourHint;
     text-decoration: underline;
     float: right;
 }
 #funfactshint {
-    color: #fbd934;
+    color: @colourHint;
     text-decoration: underline;
     float: right;
 }
-#instrdetaileditbutton {
-	position: relative;
-    padding: 0 10px 0 10px;
-	float: left;
-}
-#instrdetailthumbnailconatiner {
-    margin-top: 10px;
-    position: relative;
-}
-#instrdetailthumbnail {
+.instrdetailthumbnail {
     width: 101px;
-    padding-right: 5px;
+    padding-right: 4px;
     float: left;
+}
+#instrdetailthumbnailcontainer {
+    padding-top: 5px;
+    overflow: hidden;
+}
+.thumbnailbutton {
+    height: 25px;
+    width: 19px;
+    padding: 2px;
+    margin-right: 3px;
+    font-size: 10pt;
+    font-weight: bold;
+}
+#instrdetailbuttoncontainer {
+    padding-left: 4px;
+}
+#instrdetaileditbutton {
+    padding-right: 10px;
+	float: right;
 }
 #instrdetailininfo {
     position: relative;
@@ -614,13 +621,23 @@ div#title {
     top: 20px;
 	color: @colourWhite;
 }
+#instrdetailupload {
+    width: 400px;
+    float: left;
+}
+#instrdetailuploadphoto {
+    position: relative;
+    width: 800px;
+    padding-bottom: 15px;
+    color: @colourWhite;
+}
 #instrdetailinfolist {
     list-style: none;
     font-size: 10pt;
     font-family: Arial;
     padding-left: 15px;
     label {
-        color: #f0f0f0;
+        color: @colourIvory;
         font-style: italic;
     }
 }
@@ -900,18 +917,18 @@ div#title {
 }
 
 .field-validation-error {
-    color: #ff0000;
+    color: @colourRed;
 }
 .field-validation-valid {
     display: none;
 }
 .input-validation-error {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+    border: 1px solid @colourRed;
+    background-color: @colourIvory;
 }
 .validation-summary-errors {
     font-weight: bold;
-    color: #ff0000;
+    color: @colourRed;
 }
 .validation-summary-valid {
     display: none;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 using Charltone.UI.Attributes;
 
@@ -76,15 +77,16 @@ namespace Charltone.UI.ViewModels.Instrument
 
         public IEnumerable<InstrumentPhoto> InstrumentPhotos  { get; set; }
         public int[] PhotoIds { get; set; }
+
+        [FileTypes("jpg,jpeg", ErrorMessage = "Only jpg/jpeg image formats are supported")]
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase File { get; set; }
     }
 
     public class InstrumentPhoto
     {
         public int Id { get; set; }
         public bool IsDefault { get; set; }
-        public int SortOrder { get; set; }
-        public bool IsFirst { get; set; }
-        public bool IsLast { get; set; }
     }
 
     public class UploadFileModel

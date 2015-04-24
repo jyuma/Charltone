@@ -9,18 +9,23 @@
 }
 
 <script type="text/javascript">
+
     $(document).ready(function () {
         detail.init({
-            photoIds: @Html.Raw(Json.Encode(Model.PhotoIds)),
-            defaultPhotoId: "@Model.DefaultPhotoId",
+            productId: parseInt(@Model.ProductId),
+            photos: @Html.Raw(Json.Encode(Model.InstrumentPhotos)),
+            defaultPhotoId: parseInt(@Model.DefaultPhotoId),
             comments: "@Model.Comments",
-            funfacts: "@Model.FunFacts"
+            funfacts: "@Model.FunFacts",
+            isAuthenticated: ('@(Model.IsAuthenticated)' == 'True')
         });
-        file.enableUpload();
+    file.enableUpload();
+
     });
 </script>
 
 <div id="instrdetailcontent">
+    @Html.ValidationSummary(true)
     <div id="instrdetailheader">
         <div id="instrdetailmodelstatus">
             @Model.ModelSn
@@ -28,20 +33,22 @@
                 @(Model.ShowPrice ? Model.Price : Model.Status)
             </div>
         </div>
-        <div id ="instrdetaileditupload">
-            <div class="editlink " id="instrdetaileditbutton">
-                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
-            </div>
-
-            @using (Html.BeginForm(@Model.ProductId + "/Details", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        <div id ="instrdetailupload">
+            @using (Html.BeginForm(@Model.ProductId + "/Detail", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
             {
-                if (@Model.InstrumentPhotos.Count() < 8)
+                if (Model.IsAuthenticated)
                 {
-                    <div id="instrdetailadminbuttons" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "hidden")">
-                        Photo:
-                        <input class=" fileinput" type="file" name="file" id="file" />
-                        <input type="submit" value="Upload" disabled="disabled" />
-                    </div>
+                    if (@Model.InstrumentPhotos.Count() < 8)
+                    {
+                        <div id="instrdetailuploaphoto">
+                            <label for="File">Upload a photo:</label>
+                            <input type="file" class="fileinput" name="File" />
+                            <input type="submit" value="Upload" disabled="disabled" />
+                        </div>
+                        <div>
+                            @Html.ValidationMessageFor(model => model.File)
+                        </div>
+                    }
                 }
             }
         </div>
@@ -50,16 +57,25 @@
             <div>
                 <a id="instrdetailbacktolist" href="@Url.Action("Index", "Instrument")">Back To List</a>
             </div>
-            @if (!@Model.Comments.IsEmpty())
+            @if (!@Model.IsAuthenticated)
             {
-                <div>
-                    <a class="hint" id="commentshint">Comments</a>
-                </div>
+                if (!@Model.Comments.IsEmpty())
+                {
+                    <div>
+                        <a class="hint" id="commentshint">Comments</a>
+                    </div>
+                }
+                if (!@Model.FunFacts.IsEmpty())
+                {
+                    <div>
+                        <a class="hint" id="funfactshint">Fun Facts</a>
+                    </div>
+                }
             }
-            @if (!@Model.FunFacts.IsEmpty())
+            else
             {
-                <div>
-                    <a class="hint" id="funfactshint">Fun Facts</a>
+                <div class="editlink " id="instrdetaileditbutton">
+                    @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
                 </div>
             }
         </div>
@@ -208,45 +224,7 @@
             </ul>
         </div>
     </div>
-
     <div class="linehorizontal" id="instrdetailbottom"></div>
-    @using (Html.BeginForm(@Model.ProductId + "/Detail", "Instrument"))
-    {
-        <div id="instrdetailthumbnailconatiner">
-            @foreach (var instrPhoto in Model.InstrumentPhotos)
-            {
-                var lnkImageId = "lnk-show-image_" + instrPhoto.Id;
-
-                <div id="instrdetailthumbnail">
-                    <a id="@lnkImageId" href="javascript:;">
-                        <img class="thumbnail" src=@Url.Action("GetThumbnail", "Instrument", new { id = instrPhoto.Id}) alt='' />
-                    </a>
-                    <div>
-                        @{
-                            if (!instrPhoto.IsDefault)
-                            {
-                                var defaultName = "SetDefault_" + instrPhoto.Id;
-                                <input type="submit" name=@defaultName value="D" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
-                            }
-                                
-                            var deleteName = "Delete_" + instrPhoto.Id;
-                            <input type="submit" name=@deleteName value="R" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" onclick="return confirm('Remove photo?');" />
-
-                            if (!instrPhoto.IsFirst)
-                            {
-                                var moveleft = "MoveLeft_" + instrPhoto.Id;
-                                <input type="submit" name=@moveleft value="<" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
-                            }
-                            if (!instrPhoto.IsLast)
-                            {
-                                var moveRight = "MoveRight_" + instrPhoto.Id;
-                                <input type="submit" name=@moveRight value=">" class="@(Model.IsAuthenticated ? "thumbnailbutton" : "hidden")" />
-                            }
-                        }
-                    </div>
-                </div>
-            }
-        </div>
-    }
+    <div id="instrdetailthumbnailcontainer"></div>
+    <div id='dialog-image-container'></div>
 </div>
-<div id='dialog-image-container'></div>
