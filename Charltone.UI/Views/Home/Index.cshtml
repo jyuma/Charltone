@@ -9,25 +9,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        file.enableUpload();
+        window.home.index.init();
     });
 </script>
 
 <div id="home">
     <div id="homecontent">
-        <div id="homeedituploadcontainer">
+        <div id="homeuploadeditcontainer" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
             @Html.ValidationSummary(true)
-            <div id="homeuploadcontainer">
-                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-                {
-                    <div id="homeupload" class="@(Model.IsAuthenticated ? "instrdetailadmin" : "hidden")">
-                        <label for="File">Photo:</label>
-                        <input type="file" class="fileinput" name="File" />
-                        <input type="submit" value="Upload" disabled="disabled" />
-                        @Html.ValidationMessageFor(model => model.File)
-                    </div>
-                }
+            <div id="homeupload">
+                <input id="fileupload" type="file" name="files[]" data-url="Home/Upload">
             </div>
+            <div id="progressbar"></div>
             <div id="homeeditlink">
                 @Html.ActionLinkAuthorized("Edit", "Edit")
             </div>

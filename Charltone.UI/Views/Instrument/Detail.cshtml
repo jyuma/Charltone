@@ -11,16 +11,13 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        detail.init({
+        window.instrument.detail.init({
             productId: parseInt(@Model.ProductId),
-            photos: @Html.Raw(Json.Encode(Model.InstrumentPhotos)),
             defaultPhotoId: parseInt(@Model.DefaultPhotoId),
             comments: "@Model.Comments",
             funfacts: "@Model.FunFacts",
             isAuthenticated: ('@(Model.IsAuthenticated)' == 'True')
         });
-    file.enableUpload();
-
     });
 </script>
 <div id="instrdetailcontent">
@@ -33,20 +30,14 @@
             </div>
         </div>
         <div id ="instrdetailupload">
-            @using (Html.BeginForm(@Model.ProductId + "/Detail", "Instrument", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            @if (Model.IsAuthenticated)
             {
-                if (Model.IsAuthenticated)
-                {
-                    <div id="instrdetailuploaphoto">
-                        <label for="File">Upload a photo:</label>
-                        <input type="file" class="fileinput" name="File" />
-                        <input type="submit" value="Upload" disabled="disabled" />
-                    </div>
-                    <div>
-                        @Html.ValidationMessageFor(model => model.File)
-                    </div>
-                }
+                <div id="instrdetailuploadphoto" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
+                    <input id="fileupload" type="file" name="files[]" data-url="Upload" multiple>
+                    <div id="progressbar"></div>
+                </div>
             }
+
         </div>
 
         <div id="instrdetaillinks">
@@ -80,11 +71,9 @@
     <div class="linehorizontal" id="instrdetailtop"></div>
 
     <div id="instrdetailininfo">
-        <div id="instrdetailmainphoto">
-            <a id="instrdetailmainphotolink" href="javascript:;">
-                <img class="mainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
-            </a>
-        </div>
+        <a id="instrdetailmainphotolink" href="javascript:;">
+            <img class="instrdetailmainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
+        </a>
         <div class="linevertical" id="instrdetail"></div>
         <div id="instrdetailinfo">
             <label id="instrdetailinfoheader">@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</label>

@@ -5,64 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="editordering">
+<div id="orderingedit">
     @using (Html.BeginForm())
     {
-    <div id="editorderingcontainer">
-        @Html.ValidationSummary(true)
-        <div id="editorderinginfo">
-            <div id="editorderingimgcontainer">
-                <img id="editorderingimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
-            </div>
-            <div id="editorderingbuttons">
-                <input class="savebutton" type="submit" value="Save" name="Command" />
-                &nbsp
-                @Html.ActionLink("Cancel", "Index", "Ordering")
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.InstrumentTypes)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Model)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Model)
-                @Html.ValidationMessageFor(model => model.Model)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.ClassificationTypes)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.SubClassificationTypes)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.TypicalPrice)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(model => model.TypicalPrice)
-                <div>
-                    @Html.ValidationMessageFor(model => model.TypicalPrice)
+        <div id="orderingeditcontainer">
+            @Html.ValidationSummary(true)
+            <div id="orderingeditinfo">
+                <div id="orderingeditimgcontainer">
+                    <img id="orderingeditimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
                 </div>
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Comments)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(model => model.Comments)
-                <div>
-                    @Html.ValidationMessageFor(model => model.Comments)
+                <div id="orderingeditbuttons">
+                    <input class="savebutton" type="submit" value="Save" name="Command" />
+                    &nbsp
+                    @Html.ActionLink("Cancel", "Index", "Ordering")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.InstrumentTypes)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Model)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Model)
+                    @Html.ValidationMessageFor(model => model.Model)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ClassificationTypes)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SubClassificationTypes)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TypicalPrice)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.TypicalPrice)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.TypicalPrice)
+                    </div>
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Comments)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Comments)
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Comments)
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     }
 </div>

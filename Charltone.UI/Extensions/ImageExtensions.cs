@@ -26,6 +26,7 @@ namespace Charltone.UI.Extensions
             return result;
         }
 
+        // Crop only
         public static byte[] Crop(this byte[] data, Size size)
         {
             var cropped = CropImage(data.ByteArrayToImage(), size);
@@ -44,6 +45,7 @@ namespace Charltone.UI.Extensions
             return result;
         }
 
+        // Crop and re-size
         public static Image CropInstrument(this Image image)
         {
             return CropImage(image, new Size(InstrumentPhotoSize.Width, InstrumentPhotoSize.Height));
@@ -64,7 +66,8 @@ namespace Charltone.UI.Extensions
             return CropImage(image, new Size(HomePagePhoto.Width, HomePagePhoto.Height));
         }
 
-        public static void Save(this byte[] data, string path)
+        // Save
+        public static void SaveHomePageImage(this byte[] data, string path)
         {
             var cropped = data.ByteArrayToImage().CropHomePageImage().ImageToByteArray();
 
@@ -78,13 +81,15 @@ namespace Charltone.UI.Extensions
             }
         }
 
+        // Main logic
         private static Image CropImage(Image image, Size size)
         {
+            Bitmap result;
             var width = size.Width;
             var height = size.Height;
             var ratio = (double)height / width;
 
-            // ------- crop
+            // ------- crop (if necessary)
             Rectangle cropRect;
             if (image.Width > image.Height / ratio)   // too wide
             {
@@ -104,13 +109,20 @@ namespace Charltone.UI.Extensions
             }
             var cropped = new Bitmap(image).Clone(cropRect, image.PixelFormat);
 
-            // ------- resize
-            var resizeRect = new Rectangle(new Point(0, 0), cropped.Size);
-            var resized = new Bitmap(cropped).Clone(resizeRect, cropped.PixelFormat);
-            var result = new Bitmap(resized, new Size(size.Width, size.Height));
-
+            // ------- resize (if necessary)
+            if (cropped.Width > size.Width)
+            {
+                var resizeRect = new Rectangle(new Point(0, 0), cropped.Size);
+                var resized = new Bitmap(cropped).Clone(resizeRect, cropped.PixelFormat);
+                result = new Bitmap(resized, new Size(size.Width, size.Height));
+                resized.Dispose();
+            }
+            else
+            {
+                result = new Bitmap(cropped, new Size(size.Width, size.Height));    
+            }
+            
             cropped.Dispose();
-            resized.Dispose();
 
             return result;
         }

@@ -22,20 +22,21 @@ namespace Charltone.UI.Controllers
 		}
 
         [HttpPost]
-        [Authorize]
-        public ActionResult Index(HomeViewModel viewModel)
+        public ActionResult Upload()
         {
-            if (!ModelState.IsValid) return View(LoadHomeViewModel());
-            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View(LoadHomeViewModel());
+            var file = Request.Files[0];
+            if (file == null) return Json(new { success = false, message = "File not found" });
 
-            var reader = new BinaryReader(viewModel.File.InputStream);
+            if (file.FileName.Extension() != "jpg") return Json(new { success = false, message = "Only jpg files are allowed" });
 
-            var data = reader.ReadBytes(viewModel.File.ContentLength);
+            var reader = new BinaryReader(file.InputStream);
+
+            var data = reader.ReadBytes(file.ContentLength);
             var path = Server.MapPath("~/Content/images/homepage.jpg");
 
-            data.Save(path);
+            data.SaveHomePageImage(path);
 
-            return View(LoadHomeViewModel());
+            return Json(new { success = true });
         }
 
         [HttpGet]

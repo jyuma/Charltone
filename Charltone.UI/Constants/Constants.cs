@@ -28,16 +28,24 @@
         public const int Classical = 1;
     }
 
+    // What gets saved
+    public static class InstrumentPhotoSize
+    {
+        public const int Width = 769;
+        public const int Height = 1000;
+    }
+
+    // For display
     public static class InstrumentListPhotoSize
     {
         public const int Width = 246;
         public const int Height = 320;
     }
 
-    public static class InstrumentPhotoSize
+    public static class InstrumentDetailPhotoSize
     {
-        public const int Width = 520;
-        public const int Height = 676;
+        public const int Width = 346;
+        public const int Height = 450;
     }
 
     public static class InstrumentThumbnailSize

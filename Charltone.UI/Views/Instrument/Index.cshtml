@@ -37,7 +37,7 @@
                                     @(inst.ShowPrice ? inst.Price : inst.Status)
                                 </label>
                             </div>
-                            <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="javascript:;">
+                            <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="@Url.Action("Detail", "Instrument", new { id = @inst.ProductId })">
                                 <img id="@inst.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetListPhoto", "Instrument", new { id = inst.DefaultPhotoId }) alt="" />
                             </a>
                             <div id="instrlistinfomodel">
@@ -52,7 +52,6 @@
                             <div class="instrlistviewdetailslink">
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = inst.ProductId })
                                 @Html.ActionLinkAuthorized("Delete", "Delete", new { id = inst.ProductId })
-                                @Html.ActionLink((@Request.IsAuthenticated) ? "Photos" : "View Details", "Detail", new { id = inst.ProductId })
                             </div>
                         </div>
                     </div>

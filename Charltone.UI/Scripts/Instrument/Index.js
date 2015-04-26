@@ -2,7 +2,7 @@
     var self = {
 
         init: function() {
-            self.bindZoom();
+            //self.bindZoom();
         },
 
         bindZoom: function () {

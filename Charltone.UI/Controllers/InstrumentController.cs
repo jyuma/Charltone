@@ -51,34 +51,35 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        [Route("Detail")]
-        public ActionResult Detail(int id, InstrumentDetailViewModel viewModel)
+        [Route("Upload")]
+        public ActionResult Upload(int id)
         {
-            if (!ModelState.IsValid) return View(LoadInstrumentDetailViewModel(id));
-            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View("Detail", LoadInstrumentDetailViewModel(id));
+            var file = Request.Files[0];
+            if (file == null) return Json(new { success = false });
 
-            var reader = new BinaryReader(viewModel.File.InputStream);
-            var data = reader.ReadBytes(viewModel.File.ContentLength)
-                .ByteArrayToImage()
-                .CropInstrument()
-                .ImageToByteArray();
+            if (file.FileName.Extension() != "jpg") return Json(new {success = false});
 
             var product = _products.Get(id);
             var count = product.Photos.Count;
 
+            var reader = new BinaryReader(file.InputStream);
+            var data = reader.ReadBytes(file.ContentLength)
+                .ByteArrayToImage()
+                .CropInstrument()
+                .ImageToByteArray();
+
             var photo = new Photo
-            {
-                IsDefault = (count == 0),
-                Data = data,
-                SortOrder = count + 1,
-                Product = product
-            };
+                        {
+                            IsDefault = (count == 0),
+                            Data = data,
+                            SortOrder = count + 1,
+                            Product = product
+                        };
 
             product.Photos.Add(photo);
-            _photos.Add(photo);
+            var newId = _photos.Add(photo);
 
-            return View(LoadInstrumentDetailViewModel(id));
+            return Json( new { success = true, id = newId } );
         }
 
         [HttpGet]
@@ -202,6 +203,15 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetDetailPhoto(int id)
+        {
+            var photo = _photos.GetData(id).Crop(new Size(InstrumentDetailPhotoSize.Width, InstrumentDetailPhotoSize.Height));
+            var data = Convert.ToBase64String(photo);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public FileResult GetThumbnail(int id)
         {
             var photo = id > 0
@@ -213,8 +223,9 @@ namespace Charltone.UI.Controllers
             return File(data, "image/jpeg");
         }
  
+        // For zooming
         [HttpGet]
-        public JsonResult GetPhotoJson(int id)
+        public JsonResult GetPhotoZoom(int id)
         {
             var photo = _photos.GetData(id);
             var data = Convert.ToBase64String(photo);
@@ -230,6 +241,20 @@ namespace Charltone.UI.Controllers
                 .Select(x => new { x.Id }).ToArray();
 
             return Json(ids, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetInstrumentPhotos(int id)
+        {
+            var photos = _products.Get(id).Photos
+                .OrderBy(x => x.SortOrder)
+                .Select(x => new
+                             {
+                                 x.Id,
+                                 x.IsDefault,
+                             }).ToArray();
+
+            return Json(photos, JsonRequestBehavior.AllowGet);
         }
 
         #region View Models

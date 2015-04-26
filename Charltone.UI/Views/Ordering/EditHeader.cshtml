@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="editorderingheader">
+<div id="orderingeditheader">
     @using (Html.BeginForm())
     {
-        <div id="editorderingcontainer">
+        <div id="orderingeditcontainer">
             @Html.ValidationSummary(true)
-            <div id="editorderinginfo">
-                <div id="editorderingbuttons">
+            <div id="orderingeditinfo">
+                <div id="orderingeditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Cancel", "Index", "Ordering")

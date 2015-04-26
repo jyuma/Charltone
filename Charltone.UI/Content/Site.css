@@ -1,4 +1,9 @@
-﻿.gradients {
+﻿.mainphoto {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+}
+.gradients {
   background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Chrome 10+, Saf5.1+ */
   background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
@@ -191,11 +196,15 @@ div#title {
   color: #ffffff;
   float: left;
 }
-#homeedituploadcontainer {
+#homeuploadeditcontainer {
   padding-top: 10px;
 }
 #homeupload {
+  float: left;
+}
+#homeprogressbar {
   color: #ffffff;
+  float: left;
 }
 #homeintroduction {
   font-size: 16pt;
@@ -502,14 +511,6 @@ div#title {
   color: #32cb20;
   font-size: 10pt;
 }
-/* Default Photo */
-.mainphoto {
-  border: solid;
-  border-width: 2px;
-  border-color: #cea96d;
-  height: 450px;
-  width: 346px;
-}
 /* Instrument Detail */
 #instrdetailcontent {
   background: url(images/tools_large_2_dark.jpg);
@@ -580,15 +581,20 @@ div#title {
   font-size: 12pt;
   color: #cea96d;
 }
-#instrdetailmainphoto {
-  position: relative;
+#instrdetailmainphotolink {
   margin: 12px 0 0 0;
   float: left;
 }
+.instrdetailmainphoto {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  width: 346px;
+  height: 450px;
+}
 #instrdetailinfo {
-  position: relative;
   float: left;
-  top: 20px;
+  padding-top: 10px;
   color: #ffffff;
 }
 #instrdetailupload {
@@ -697,96 +703,95 @@ div#title {
   color: #ffffff;
   clear: both;
 }
-#editorderingheader {
+/* Ordering Edit */
+#orderingeditheader {
   background: url(images/tools_large.jpg);
   width: 900px;
   height: 650px;
 }
-#editordering {
+#orderingedit {
   background: url(images/tools_large.jpg);
   width: 900px;
   height: 550px;
 }
-#editorderinginfo {
+#orderingeditinfo {
   position: relative;
   color: #ffffff;
   width: 850px;
   float: left;
 }
-#editorderingcontainer {
+#orderingeditcontainer {
   position: relative;
   color: #ffffff;
   margin-left: 25px;
 }
-#editorderingbuttons {
+#orderingeditbuttons {
   position: relative;
   margin: 20px 0 20px 0;
   font-size: 12pt;
 }
-#editorderingimgcontainer {
+#orderingeditimgcontainer {
   margin: 20px 0 20px 0;
   float: right;
 }
-#editorderingimg {
+#orderingeditimg {
   border-style: solid;
   border-color: #cea96d;
   height: 220px;
   width: 175px;
 }
-/* Ordering Edit */
-#editorderingphoto {
-  position: relative;
+/* Ordering Photo */
+#orderingphotoedit {
   background: url(images/tools_large_4.jpg);
   width: 900px;
   height: 630px;
 }
-#editorderingphotocontent {
-  position: relative;
+.orderingmainphoto {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  height: 450px;
+  width: 346px;
+}
+#orderingphotocontent {
   top: 10px;
   left: 25px;
   width: 800px;
 }
-#editorderingphotoheader {
+#orderingphotoheader {
   clear: both;
   color: #cea96d;
   font-size: large;
   margin: 5px 0 10px 0;
 }
-#editorderingphotomodel {
+#orderingphotomodel {
   float: left;
   margin-right: 10px;
 }
-#editorderingphotomodeldesc {
+#orderingphotomodeldesc {
   font-style: italic;
 }
-#editorderingphotodetail {
+#orderingphotodetail {
   position: relative;
   clear: both;
 }
-#editorderingphotodefault {
+#orderingphotodefault {
   position: relative;
   float: left;
   margin-top: 15px;
 }
-#editphotosdefaultimg {
-  border: solid;
-  border-width: 1px;
-  border-color: #cea96d;
-  height: 520px;
-  width: 400px;
-}
-#editorderingphotosave {
+#orderingphotosave {
   margin-top: 10px;
   margin-bottom: 10px;
   position: relative;
 }
-#editorderingphotolinks {
+#orderingeditphotolinks {
   clear: both;
   position: relative;
   margin-bottom: 15px;
   font-size: 12pt;
 }
-#editorderingphotoupload {
+#orderingeditphotoupload {
   position: relative;
   width: 800px;
   padding-bottom: 15px;
@@ -797,13 +802,15 @@ div#title {
   width: 900px;
   height: 560px;
 }
+#dialog-image-container {
+  position: relative;
+}
 .dialogimg {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
   width: 520px;
   height: 676px;
-  margin-bottom: 3px;
 }
 /* Contact */
 #contactcontent {

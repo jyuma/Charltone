@@ -15,9 +15,19 @@ namespace Charltone.UI
                   "~/Scripts/js/jquery.unobtrusive*", 
                   "~/Scripts/js/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fileupload").Include(
+                  "~/Scripts/js/jquery.fileupload.js",
+                  "~/Scripts/js/jquery.fileupload-process.js",
+                  "~/Scripts/js/jquery.fileupload-validate.js",
+                  "~/Scripts/js/jquery.fileupload-ui.js",
+                  "~/Scripts/js/jquery.fileupload-jquery-ui.js",
+                  "~/Scripts/js/jquery.jquery.iframe-transport.js",
+                  "~/Scripts/js/vendor/jquery.ui.widget.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/charltone").Include(
                   "~/Scripts/Site/Site.js",
                   "~/Scripts/File/File.js",
+                  "~/Scripts/Home/Index.js",
                   "~/Scripts/Instrument/Index.js",
                   "~/Scripts/Instrument/Detail.js",
                   "~/Scripts/Instrument/Zoom.js",
