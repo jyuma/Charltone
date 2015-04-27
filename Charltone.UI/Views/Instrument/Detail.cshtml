@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        window.instrument.detail.init({
+        instrument.detail.init({
             productId: parseInt(@Model.ProductId),
             defaultPhotoId: parseInt(@Model.DefaultPhotoId),
             comments: "@Model.Comments",
@@ -20,8 +20,9 @@
         });
     });
 </script>
+
 <div id="instrdetailcontent">
-    @Html.ValidationSummary(true)
+    <div id='dialog-image-container'></div>
     <div id="instrdetailheader">
         <div id="instrdetailmodelstatus">
             @Model.ModelSn
@@ -34,10 +35,8 @@
             {
                 <div id="instrdetailuploadphoto" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
                     <input id="fileupload" type="file" name="files[]" data-url="Upload" multiple>
-                    <div id="progressbar"></div>
                 </div>
             }
-
         </div>
 
         <div id="instrdetaillinks">
@@ -211,5 +210,4 @@
     </div>
     <div class="linehorizontal" id="instrdetailbottom"></div>
     <div id="instrdetailthumbnailcontainer"></div>
-    <div id='dialog-image-container'></div>
 </div>

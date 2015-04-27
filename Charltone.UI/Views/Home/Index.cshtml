@@ -9,14 +9,13 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        window.home.index.init();
+        file.upload.init(function () { window.location.reload(); });
     });
 </script>
 
 <div id="home">
     <div id="homecontent">
         <div id="homeuploadeditcontainer" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
-            @Html.ValidationSummary(true)
             <div id="homeupload">
                 <input id="fileupload" type="file" name="files[]" data-url="Home/Upload">
             </div>

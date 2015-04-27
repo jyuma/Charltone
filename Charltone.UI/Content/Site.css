@@ -1,4 +1,4 @@
-﻿.mainphoto {
+﻿.mainBorder {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
@@ -47,6 +47,9 @@ button {
   height: 30px;
   font-size: 8pt;
   font-weight: 200;
+}
+.ui-dialog-titlebar-close {
+  visibility: hidden;
 }
 /* Main Menu */
 #menubackground {
@@ -166,9 +169,16 @@ div#title {
   position: relative;
   padding: 8px 0 8px 0;
 }
+/* Zoom */
+.dialogimg {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  width: 520px;
+  height: 676px;
+}
 /* Home */
 #home {
-  /*background-image: url(images/tools_large.jpg);*/
   background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Chrome 10+, Saf5.1+ */
   background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
@@ -185,7 +195,7 @@ div#title {
   overflow: hidden;
 }
 #homecontent {
-  margin: 0 20px 0 30px;
+  margin: 0 20px 0 35px;
 }
 #homeeditlink {
   font-size: 12pt;
@@ -200,6 +210,7 @@ div#title {
   padding-top: 10px;
 }
 #homeupload {
+  color: #ffffff;
   float: left;
 }
 #homeprogressbar {
@@ -339,7 +350,7 @@ div#title {
 }
 #instrlistinfomodel {
   position: relative;
-  color: #ffffff;
+  color: #cea96d;
   padding: 0;
   font-size: 12pt;
 }
@@ -692,77 +703,28 @@ div#title {
   vertical-align: text-top;
   font-size: 9pt;
 }
-#orderingphotoupload {
-  position: relative;
-  margin-left: 30px;
-  color: #ffffff;
-}
 #orderingphotouploadlabel {
   position: relative;
   margin-left: 30px;
   color: #ffffff;
   clear: both;
 }
-/* Ordering Edit */
+/* Ordering Edit Header */
 #orderingeditheader {
   background: url(images/tools_large.jpg);
   width: 900px;
-  height: 650px;
+  padding-bottom: 10px;
+  overflow: hidden;
 }
+/* Ordering Edit */
 #orderingedit {
-  background: url(images/tools_large.jpg);
+  background: url(images/tools_large.jpg) repeat;
   width: 900px;
-  height: 550px;
+  padding-bottom: 10px;
+  overflow: hidden;
 }
 #orderingeditinfo {
-  position: relative;
   color: #ffffff;
-  width: 850px;
-  float: left;
-}
-#orderingeditcontainer {
-  position: relative;
-  color: #ffffff;
-  margin-left: 25px;
-}
-#orderingeditbuttons {
-  position: relative;
-  margin: 20px 0 20px 0;
-  font-size: 12pt;
-}
-#orderingeditimgcontainer {
-  margin: 20px 0 20px 0;
-  float: right;
-}
-#orderingeditimg {
-  border-style: solid;
-  border-color: #cea96d;
-  height: 220px;
-  width: 175px;
-}
-/* Ordering Photo */
-#orderingphotoedit {
-  background: url(images/tools_large_4.jpg);
-  width: 900px;
-  height: 630px;
-}
-.orderingmainphoto {
-  border: solid;
-  border-width: 2px;
-  border-color: #cea96d;
-  height: 450px;
-  width: 346px;
-}
-#orderingphotocontent {
-  top: 10px;
-  left: 25px;
-  width: 800px;
-}
-#orderingphotoheader {
-  clear: both;
-  color: #cea96d;
-  font-size: large;
-  margin: 5px 0 10px 0;
 }
 #orderingphotomodel {
   float: left;
@@ -771,46 +733,41 @@ div#title {
 #orderingphotomodeldesc {
   font-style: italic;
 }
-#orderingphotodetail {
-  position: relative;
+#orderingphotoheader {
   clear: both;
+  color: #cea96d;
+  font-size: large;
+  margin: 15px 0 20px 0;
 }
-#orderingphotodefault {
+#orderingeditcontainer {
   position: relative;
-  float: left;
-  margin-top: 15px;
+  color: #ffffff;
+  margin-left: 25px;
 }
-#orderingphotosave {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#orderingeditbuttons {
   position: relative;
-}
-#orderingeditphotolinks {
-  clear: both;
-  position: relative;
-  margin-bottom: 15px;
+  margin: 20px 0 10px 0;
   font-size: 12pt;
 }
+#orderingeditphotocontainer {
+  margin: 0 267px 0 0;
+  float: right;
+}
+#orderingeditphoto {
+  border-style: solid;
+  border-color: #cea96d;
+  height: 220px;
+  width: 175px;
+}
 #orderingeditphotoupload {
-  position: relative;
-  width: 800px;
-  padding-bottom: 15px;
   color: #ffffff;
 }
-#deleteordering {
-  background: url(images/tools_large.jpg);
-  width: 900px;
-  height: 560px;
-}
-#dialog-image-container {
-  position: relative;
-}
-.dialogimg {
+.orderingmainphoto {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
-  width: 520px;
-  height: 676px;
+  height: 450px;
+  width: 346px;
 }
 /* Contact */
 #contactcontent {
@@ -874,10 +831,15 @@ div#title {
 #getintouchcountry {
   margin-top: 20px;
 }
-/* Upload */
-#uploadaphoto {
-  clear: both;
-  margin-bottom: 5px;
+/* Upload Progresss */
+.bar {
+  height: 18px;
+  background: green;
+}
+#progress {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
 }
 .editlink {
   font-size: 12pt;
@@ -973,13 +935,10 @@ textarea#Pickup,
 textarea#ScaleLength,
 textarea#Strings,
 textarea#Tuners,
-textarea#Tailpiece {
+textarea#Tailpiece,
+textarea#TypicalPrice {
   width: 600px;
   height: 40px;
-}
-textarea#TypicalPrice {
-  width: 550px;
-  height: 100px;
 }
 textarea#Comments,
 textarea#FunFacts {

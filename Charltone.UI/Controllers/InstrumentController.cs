@@ -51,13 +51,14 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Upload")]
         public ActionResult Upload(int id)
         {
             var file = Request.Files[0];
-            if (file == null) return Json(new { success = false });
+            if (file == null) return Json(new {success = false, message = "No file found."});
 
-            if (file.FileName.Extension() != "jpg") return Json(new {success = false});
+            if (file.FileName.Extension() != "jpg") return Json(new { success = false, message = "Only jpg files are allowed." });
 
             var product = _products.Get(id);
             var count = product.Photos.Count;

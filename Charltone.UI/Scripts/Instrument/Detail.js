@@ -27,40 +27,14 @@
                     bindTooltips();
                     createThumbnails();
                     bindZoom(currentPhotoId);
-                    initUpload();
-                });
-
-            // File Upload
-            function initUpload() {
-                $('#fileupload').fileupload({
-                    dataType: 'json',
-                    add: function (e, data) {
-                        data.context = $('<p/>').text('Uploading...').appendTo(document.body);
-                        $.blockUI({
-                            css: { width: '350px' },
-                            message: $(data.context)
-                        });
-                        data.submit();
-                    },
-                    acceptFileTypes: /(\.|\/)(jpg)$/i,
-                    done: function(e, data) {
-                        data.context.text('');
-                        appendThumbnail(data.result.id);
-                        displayPhoto(data.result.id);
-                        photos.push({ Id: data.result.id, IsDefault: false });
+                    file.upload.init(function(result) {
+                        appendThumbnail(result.id);
+                        displayPhoto(result.id);
+                        photos.push({ Id: result.id, IsDefault: false });
                         totalPhotos++;
                         enableInputMove();
-                        
-                    }
-                }).on('fileuploadprogressall', function(e, data) {
-                    var progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('#progressbar').text(progress + '%').css('color', '#fff');
-                    if (progress === 100) {
-                        $('#progressbar').text('');
-                        $.unblockUI();
-                    }
+                    });
                 });
-            };
 
             // Thumbnails
             function createThumbnails() {
@@ -77,7 +51,7 @@
                 $(divThumbnail).attr('id', 'instrdetailthumbnail_' + id);
                 $(divThumbnail).addClass('instrdetailthumbnail');
 
-                var image = '<a id=' + "lnk-show-image_" + id + ' href="javascript:;"><img class="thumbnail" src=' + site.url + 'Instrument/GetThumbnail/' + id + ' alt="" /></a>';
+                var image = '<a id=' + "img_" + id + ' href="javascript:;"><img class="thumbnail" src=' + site.url + 'Instrument/GetThumbnail/' + id + ' alt="" /></a>';
                 $(divThumbnail).append(image);
 
                 if (config.isAuthenticated) {
@@ -116,15 +90,15 @@
             };
 
             function bindThumbnail(id) {
-                $("#lnk-show-image_" + id).click(function () {
+                $("#img_" + id).click(function () {
                     displayPhoto(id);
                 });
             };
 
-            // Display
+            // Zooming
             function bindZoom() {
                 $("#instrdetailmainphotolink").click(function() {
-                    zoom.display(currentPhotoId);
+                    zoom.init.display(currentPhotoId);
                 });
             };
 

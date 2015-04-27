@@ -23,7 +23,7 @@
                 <div id="logo">
                     @if (!Request.IsAuthenticated)
                     {
-                        <a id="lnk-admin-login" href="javascript:;" onclick="DisplayAdminLoginDialog('@Url.Content("~/")')">.</a>
+                        <a id="lnk-admin-login" href="javascript:;" onclick="admin.login.displayAdminLoginDialog()">.</a>
                     }
                 </div>
                 <div id="menucontainer">
@@ -48,5 +48,6 @@
                 @RenderBody()
             </div>
         </div>
+        <div id="error"></div>
     </body>
 </html>

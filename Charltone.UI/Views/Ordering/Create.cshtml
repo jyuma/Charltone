@@ -8,11 +8,11 @@
 <div id="orderingedit">
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(true)
         <div id="orderingeditcontainer">
-            @Html.ValidationSummary(true)
             <div id="orderingeditinfo">
-                <div id="orderingeditimgcontainer">
-                    <img id="orderingeditimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
+                <div id="orderingeditphotocontainer">
+                    <img id="orderingeditphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
                 </div>
                 <div id="orderingeditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />

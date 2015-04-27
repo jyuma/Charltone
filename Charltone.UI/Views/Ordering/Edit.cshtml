@@ -5,19 +5,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        ordering.edit.init({ orderingId: parseInt(@Model.Id) });
+    });
+</script>
 <div id="orderingedit">
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(true)
         <div id="orderingeditcontainer">
-            @Html.ValidationSummary(true)
+            <div id="orderingphotoheader">
+                <div id="orderingphotomodel">Edit Ordering for model</div>
+                <div id="orderingphotomodeldesc">@Model.Model</div>
+            </div>
+            <div id="orderingeditphotocontainer">
+                <img id="orderingeditphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
+            </div>
             <div id="orderingeditinfo">
-                <div id="orderingeditimgcontainer">
-                    <img id="orderingeditimg" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
-                </div>
                 <div id="orderingeditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Main List", "Index", "Ordering")
+                </div>
+                <div class="editor-label">
+                    Photo
+                </div>
+                <div class="editor-field">
+                    <input id="fileupload" type="file" name="files[]" data-url="Upload">
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.InstrumentTypes)

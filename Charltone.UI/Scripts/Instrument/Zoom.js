@@ -1,7 +1,8 @@
-﻿var zoom = (function () {
+﻿;(function ($) {
 
-    var self = {
+    window.zoom = {};
 
+    zoom.init = {
         display: function (id) {
             $.getJSON(site.url + "Instrument/GetPhotoZoom", { 'id': id },
                 function (data) {
@@ -10,24 +11,18 @@
 
                     $("#lnk-dlgimage_" + id).click(function () {
                         $("#dialog-image-container").html('');
-                        $.unblockUI();
+                        $('body').unblock();
                     });
 
-                    $.blockUI({
+                    $('body').block({
                         message: $("#dialog-image-container"),
                         css: {
-                            centerX: true,
-                            senterY: true,
-                            top: 30,
-                            width: 0,
-                            height: 0
+                            width: 520,     // must correspond with InstrumentPhoto.Width Constant
+                            height: 676,    // must correspond with InstrumentPhoto.Height Constant
+                            border: 'none'
                         }
                     });
                 });
         }
-    };
-
-    return {
-        display: self.display
-    };
-})();
+    }
+})(jQuery);

@@ -1,4 +1,5 @@
-﻿using Charltone.Data.Repositories;
+﻿using System.Drawing;
+using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
@@ -105,29 +106,23 @@ namespace Charltone.UI.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("Photo")]
-        public ActionResult Photo(int id, OrderingPhotoEditViewModel viewModel)
+        [Route("Upload")]
+        public ActionResult Upload(int id)
         {
-            if (!ModelState.IsValid) return View(LoadOrderingPhotoEditViewModel(id));
-            if (viewModel == null || viewModel.File == null || viewModel.File.ContentLength <= 0) return View(LoadOrderingPhotoEditViewModel(id));
+            var file = Request.Files[0];
+            if (file == null) return Json(new { success = false, message = "File not found" });
 
-            var reader = new BinaryReader(viewModel.File.InputStream);
-            var data = reader.ReadBytes(viewModel.File.ContentLength)
+            if (file.FileName.Extension() != "jpg") return Json(new { success = false, message = "Only jpg files are allowed" });
+
+            var reader = new BinaryReader(file.InputStream);
+            var data = reader.ReadBytes(file.ContentLength)
                 .ByteArrayToImage()
                 .CropOrdering()
                 .ImageToByteArray();
 
             _orderings.UpdatePhoto(id, data);
 
-            return View("Photo", LoadOrderingPhotoEditViewModel(id));
-        }
-
-        [HttpGet]
-        [Authorize]
-        [Route("Photo")]
-        public ActionResult Photo(int id)
-        {
-            return View(LoadOrderingPhotoEditViewModel(id));
+            return Json(new { success = true });
         }
 
         [HttpGet]
@@ -144,6 +139,15 @@ namespace Charltone.UI.Controllers
             UpdateOrderingHeaderContent(viewModel);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult GetPhotoJson(int id)
+        {
+            var photo = _orderings.GetPhoto(id);
+            var data = Convert.ToBase64String(photo);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -182,20 +186,6 @@ namespace Charltone.UI.Controllers
             }
 
             return photo;
-        }
-
-        private OrderingPhotoEditViewModel LoadOrderingPhotoEditViewModel(int ordingId)
-        {
-            var ordering = _orderings.Get(ordingId);
-
-            var vm = new OrderingPhotoEditViewModel
-                     {
-                         OrderingId = ordingId,
-                         Photo = _orderings.GetPhoto(ordingId),
-                         Model = ordering.Model
-                     };
-
-            return vm;
         }
 
         private OrderingListViewModel LoadOrderingListViewModel()

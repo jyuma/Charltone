@@ -19,6 +19,7 @@ namespace Charltone.UI
                   "~/Scripts/js/jquery.fileupload.js",
                   "~/Scripts/js/jquery.fileupload-process.js",
                   "~/Scripts/js/jquery.fileupload-validate.js",
+                  "~/Scripts/js/jquery.fileupload-image.js",
                   "~/Scripts/js/jquery.fileupload-ui.js",
                   "~/Scripts/js/jquery.fileupload-jquery-ui.js",
                   "~/Scripts/js/jquery.jquery.iframe-transport.js",
@@ -26,12 +27,12 @@ namespace Charltone.UI
 
             bundles.Add(new ScriptBundle("~/bundles/charltone").Include(
                   "~/Scripts/Site/Site.js",
-                  "~/Scripts/File/File.js",
-                  "~/Scripts/Home/Index.js",
-                  "~/Scripts/Instrument/Index.js",
                   "~/Scripts/Instrument/Detail.js",
                   "~/Scripts/Instrument/Zoom.js",
+                  "~/Scripts/Ordering/Edit.js",
                   "~/Scripts/Page/Position.js",
+                  "~/Scripts/File/Upload.js",
+                  "~/Scripts/Error/Error.js",
                   "~/Scripts/Metrics/GoogleAnalytics.js",
                   "~/Scripts/Admin/Login.js"));
 

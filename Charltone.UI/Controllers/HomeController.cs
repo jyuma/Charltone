@@ -22,6 +22,7 @@ namespace Charltone.UI.Controllers
 		}
 
         [HttpPost]
+        [Authorize]
         public ActionResult Upload()
         {
             var file = Request.Files[0];
