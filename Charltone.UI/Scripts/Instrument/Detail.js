@@ -9,10 +9,12 @@
                 defaultPhotoId: 0,
                 comments: "",
                 funfacts: "",
-                isAuthenticated: false
+                isAuthenticated: false,
+                maxImageWidth: 0,
+                maxImageHeight: 0,
             };
 
-            jQuery.extend(config, options);
+            $.extend(config, options);
 
             var photos;
             var cssInputDisabled = { opacity: 0.5, cursor: 'default' };
@@ -26,8 +28,14 @@
                     totalPhotos = photos.length;
                     bindTooltips();
                     createThumbnails();
+                    displayPhoto(currentPhotoId);
                     bindZoom(currentPhotoId);
-                    file.upload.init(function(result) {
+                    file.upload.init(
+                        {
+                            maxImageWidth: config.maxImageWidth,
+                            maxImageHeight: config.maxImageHeight
+                        },
+                        function (result) {
                         appendThumbnail(result.id);
                         displayPhoto(result.id);
                         photos.push({ Id: result.id, IsDefault: false });
@@ -103,7 +111,7 @@
             };
 
             function displayPhoto(id) {
-                $.getJSON(site.url + "Instrument/GetDetailPhoto", { "id": id },
+                $.getJSON(site.url + "Instrument/GetPhotoJson", { "PhotoId": id, "Width": config.maxImageWidth, "Height": config.maxImageHeight },
                     function(data) {
                         $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
                         currentPhotoId = id;

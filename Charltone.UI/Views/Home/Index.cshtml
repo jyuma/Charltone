@@ -9,8 +9,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        file.upload.init(function() {
-             window.location.reload();
+        home.index.init(
+        {
+            maxImageWidth: parseInt(@Model.MaxImageWidth),
+            maxImageHeight: parseInt(@Model.MaxImageHeight)
         });
     });
 </script>

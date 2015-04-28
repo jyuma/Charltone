@@ -8,6 +8,12 @@ namespace Charltone.UI.ViewModels.Instrument
     {
         public int Id;
         public int ProductId;
+        public int InstrumentTypeId { get; set; }
+        public int ClassificationId { get; set; }
+        public int SubClassificationId { get; set; }
+        public int StatusId { get; set; }
+        public int MaxImageWidth { get; set; }
+        public int MaxImageHeight { get; set; }
 
         [DisplayName("Instrument Type")]
         public SelectList InstrumentTypes { get; set; }
@@ -113,12 +119,7 @@ namespace Charltone.UI.ViewModels.Instrument
 
         [StringLength(1000, ErrorMessage = "Fun Facts cannot exceed 1000 characters")]
         [DisplayName("Fun Facts")]
-        public string FunFacts { get; set; }
-
-        public int InstrumentTypeId { get; set; }
-        public int ClassificationId { get; set; }
-        public int SubClassificationId { get; set; }
-        public int StatusId { get; set; }
+        public string FunFacts { get; set; } 
 
         [DisplayName("Posted")]
         public bool IsPosted { get; set; }

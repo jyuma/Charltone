@@ -60,6 +60,8 @@ namespace Charltone.UI.Controllers
                          Introduction = content.Introduction, 
                          Greeting = content.Greeting,
                          IsAuthenticated = Request.IsAuthenticated,
+                         MaxImageWidth = Constants.HomePagePhotoSize.Width,
+                         MaxImageHeight = Constants.HomePagePhotoSize.Height
                      };
 
             return vm;

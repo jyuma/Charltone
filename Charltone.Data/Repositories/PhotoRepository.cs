@@ -7,7 +7,7 @@ namespace Charltone.Data.Repositories
     public interface IPhotoRepository : IRepositoryBase<Photo>
     {
         byte[] GetData(int id);
-        byte[] GetDefaultInstrumentImage();
+        byte[] GetNoPhotoImage();
 
         void SetProductDefault(int id, int newid);
     }
@@ -21,7 +21,7 @@ namespace Charltone.Data.Repositories
             return Session.Load<Photo>(id).Data;
         }
 
-        public byte[] GetDefaultInstrumentImage()
+        public byte[] GetNoPhotoImage()
         {
             return Session.QueryOver<NoPhotoImage>().SingleOrDefault().Data;
         }

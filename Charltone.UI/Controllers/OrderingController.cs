@@ -111,10 +111,7 @@ namespace Charltone.UI.Controllers
         {
             var file = Request.Files[0];
             var reader = new BinaryReader(file.InputStream);
-            var data = reader.ReadBytes(file.ContentLength)
-                .ByteArrayToImage()
-                .CropOrdering()
-                .ImageToByteArray();
+            var data = reader.ReadBytes(file.ContentLength);
 
             _orderings.UpdatePhoto(id, data);
 
@@ -138,32 +135,21 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetPhotoJson(int id)
+        public ActionResult GetPhoto(int id)
         {
-            var photo = _orderings.GetPhoto(id);
+            var photo = LoadPhoto(id);
+
             var data = Convert.ToBase64String(photo);
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public FileResult GetPhoto(int id)
-        {
-            var photo = LoadPhoto(id);
-
-            return File(photo, "image/jpeg");
-        }
-
-        [HttpGet]
         public FileResult GetThumbnail(int id)
         {
-
             var photo = LoadPhoto(id);
 
-            var thumbnail = photo
-                .ByteArrayToImage()
-                .GetThumbnailImage(OrderingThumbnail.Width, OrderingThumbnail.Height, () => false, IntPtr.Zero)
-                .ImageToByteArray();
+            var thumbnail = photo.Resize(new Size { Width = OrderingThumbnailSize.Width, Height = OrderingThumbnailSize.Height });
 
             return File(thumbnail, "image/jpeg");
         }
@@ -174,11 +160,11 @@ namespace Charltone.UI.Controllers
 
             if (id > 0) // Existing Ordering
             {
-                photo = _orderings.GetPhoto(id) ?? _photos.GetDefaultInstrumentImage();
+                photo = _orderings.GetPhoto(id) ?? _photos.GetNoPhotoImage();
             }
             else        // New Ordering
             {
-                photo = _photos.GetDefaultInstrumentImage();
+                photo = _photos.GetNoPhotoImage();
             }
 
             return photo;
@@ -250,7 +236,10 @@ namespace Charltone.UI.Controllers
                 ClassificationId = ordering.Classification.Id,
 
                 SubClassificationTypes = new SelectList(_subClassifications.GetAll(), "Id", "SubClassificationDesc", ordering.SubClassification.Id),
-                SubClassificationId = ordering.SubClassification.Id
+                SubClassificationId = ordering.SubClassification.Id,
+
+                MaxImageWidth = OrderingPhotoSize.Width,
+                MaxImageHeight = OrderingPhotoSize.Height,
             };
 
             return vm;

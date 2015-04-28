@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        ordering.edit.init({ orderingId: parseInt(@Model.Id) });
+    });
+</script>
+
 <div id="orderingedit">
     @using (Html.BeginForm())
     {
@@ -12,7 +18,7 @@
         <div id="orderingeditcontainer">
             <div id="orderingeditinfo">
                 <div id="orderingeditphotocontainer">
-                    <img id="orderingeditphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
+                    <img id="orderingeditphoto" alt="" />
                 </div>
                 <div id="orderingeditbuttons">
                     <input class="savebutton" type="submit" value="Save" name="Command" />

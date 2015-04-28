@@ -17,6 +17,8 @@ namespace Charltone.UI.ViewModels.Instrument
         public string Price { get; set; }
         public bool ShowPrice { get; set; }
         public int DefaultPhotoId { get; set; }
+        public int MaxImageWidth { get; set; }
+        public int MaxImageHeight { get; set; }
 
         [DisplayName("Class")]
         public string Classification { get; set; }

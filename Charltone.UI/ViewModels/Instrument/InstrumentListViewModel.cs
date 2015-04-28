@@ -12,6 +12,9 @@ namespace Charltone.UI.ViewModels.Instrument
         public IEnumerable<InstrumentViewModel> Instruments { get; set; }
         public int InstrumentsCount { get; set; }
         public string Banner { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public int MaxImageWidth { get; set; }
+        public int MaxImageHeight { get; set; }
     }
 
     public class InstrumentViewModel
@@ -28,5 +31,12 @@ namespace Charltone.UI.ViewModels.Instrument
         public bool ShowPrice { get; set; }
         public int DefaultPhotoId { get; set; }
         public string NotPostedMessage { get; set; }
+    }
+
+    public class InstrumentPhotoModel
+    {
+        public int PhotoId { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }

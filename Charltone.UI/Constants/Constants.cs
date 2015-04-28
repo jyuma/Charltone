@@ -48,25 +48,31 @@
         public const int Height = 450;
     }
 
+    public static class InstrumentEditPhotoSize
+    {
+        public const int Width = 215;
+        public const int Height = 280;
+    }
+
     public static class InstrumentThumbnailSize
     {
-        public const int Width = 120;
+        public const int Width = 92;
         public const int Height = 120;
     }
 
-    public static class OrderingPhoto
+    public static class OrderingPhotoSize
     {
         public const int Width = 346;
         public const int Height = 450;
     }
 
-    public static class OrderingThumbnail
+    public static class OrderingThumbnailSize
     {
         public const int Width = 230;
         public const int Height = 300;
     }
 
-    public static class HomePagePhoto
+    public static class HomePagePhotoSize
     {
         public const int Width = 830;
         public const int Height = 530;

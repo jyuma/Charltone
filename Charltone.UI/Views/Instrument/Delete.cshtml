@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    $(document).ready(function() {
+        instrument.edit.init(parseInt(@Model.DefaultPhotoId));
+    });
+</script>
+
 <div id="instrdelete">
     @using (Html.BeginForm())
     {
@@ -13,7 +19,7 @@
                 <div class="editlink" id="instrdeletebuttons">
                     <input class="savebutton" type="submit" value="Delete" name="Command" />
                     &nbsp
-                    @Html.ActionLink("Cancel", "Index", "Instrument")
+                    @Html.ActionLink("Cancel", "Edit", "Instrument")
                     &nbsp
                     <div class="instreditisposted">
                         @Html.LabelFor(model => Model.IsPosted)
@@ -207,11 +213,9 @@
                     </div>
                 </div>
             </div>
-            <div id="instreditphoto">
-                <div>
-                    <img class="instreditphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
-                </div>
-            </div>
+        </div>
+        <div>
+            <img class="instreditphotoimg" id="instreditphoto" alt="" />
         </div>
     }
 </div>

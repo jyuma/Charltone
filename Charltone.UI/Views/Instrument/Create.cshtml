@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    $(document).ready(function () {
+        instrument.edit.init({
+                photoId: parseInt(@Model.DefaultPhotoId),
+                maxImageWidth: parseInt(@Model.MaxImageWidth),
+                maxImageHeight: parseInt(@Model.MaxImageHeight)
+            });
+    });
+</script>
+
 <div id="instradd">
     @using (Html.BeginForm())
     {
@@ -231,8 +241,8 @@
                 </div>
             </div>
         </div>
-    <div>
-        <img class="instreditphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = -1 }) alt="" />
-    </div>
+        <div>
+            <img class="instreditphotoimg" id="instreditphoto" alt="" />
+        </div>
     }
 </div>

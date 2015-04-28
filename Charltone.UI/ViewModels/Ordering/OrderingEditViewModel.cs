@@ -33,6 +33,7 @@ namespace Charltone.UI.ViewModels.Ordering
         public int InstrumentTypeId { get; set; }
         public int ClassificationId { get; set; }
         public int SubClassificationId { get; set; }
-        public byte[] Photo { get; set; }
+        public int MaxImageWidth { get; set; }
+        public int MaxImageHeight { get; set; }
     }
 }

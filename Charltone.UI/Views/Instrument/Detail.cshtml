@@ -16,7 +16,9 @@
             defaultPhotoId: parseInt(@Model.DefaultPhotoId),
             comments: "@Model.Comments",
             funfacts: "@Model.FunFacts",
-            isAuthenticated: ('@(Model.IsAuthenticated)' == 'True')
+            isAuthenticated: ('@(Model.IsAuthenticated)' == 'True'),
+            maxImageWidth: parseInt(@Model.MaxImageWidth),
+            maxImageHeight: parseInt(@Model.MaxImageHeight)
         });
     });
 </script>
@@ -71,7 +73,7 @@
 
     <div id="instrdetailininfo">
         <a id="instrdetailmainphotolink" href="javascript:;">
-            <img class="instrdetailmainphoto" id="currentphoto" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
+            <img class="instrdetailmainphoto" id="currentphoto" alt="" />
         </a>
         <div class="linevertical" id="instrdetail"></div>
         <div id="instrdetailinfo">

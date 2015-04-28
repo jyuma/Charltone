@@ -37,7 +37,12 @@
                                 </label>
                             </div>
                             <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="@Url.Action("Detail", "Instrument", new { id = @inst.ProductId })">
-                                <img id="@inst.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetListPhoto", "Instrument", new { id = inst.DefaultPhotoId }) alt="" />
+                                <img id="@inst.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
+                                                                                                                                       {
+                                                                                                                                           PhotoId = inst.DefaultPhotoId,
+                                                                                                                                           Width = Convert.ToInt32(@Model.MaxImageWidth),
+                                                                                                                                           Height = Convert.ToInt32(@Model.MaxImageHeight)
+                                                                                                                                       }) alt="" />
                             </a>
                             <div id="instrlistinfomodel">
                                 @inst.ModelSn
@@ -50,7 +55,11 @@
                             </div>
                             <div class="instrlistviewdetailslink">
                                 @Html.ActionLinkAuthorized("Edit", "Edit", new { id = inst.ProductId })
-                                @Html.ActionLinkAuthorized("Delete", "Delete", new { id = inst.ProductId })
+
+                                @(!@Model.IsAuthenticated
+                                    ? Html.ActionLink("View Details", "Detail", new { id = inst.ProductId })
+                                    : Html.ActionLinkAuthorized("Photos", "Detail", new { id = inst.ProductId }))
+
                             </div>
                         </div>
                     </div>

@@ -7,16 +7,24 @@
 
             var config = {
                 orderingId: 0,
+                maxImageWidth: 0,
+                maxImageHeight: 0
             };
 
             jQuery.extend(config, options);
 
-            file.upload.init(function (result) {
-                displayPhoto(result.id);
-            });
+            file.upload.init(
+                {
+                    maxImageWidth: config.maxImageWidth,
+                    maxImageHeight: config.maxImageHeight
+                },
+                function (result) { displayPhoto(result.id); }
+            );
+
+            displayPhoto();
 
             function displayPhoto() {
-                $.getJSON(site.url + "Ordering/GetPhotoJson", { "id": config.orderingId },
+                $.getJSON(site.url + "Ordering/GetPhoto", { "id": config.orderingId },
                     function (data) {
                         $("#orderingeditphoto").attr('src', 'data:image/jpg;base64,' + data + '');
                     });

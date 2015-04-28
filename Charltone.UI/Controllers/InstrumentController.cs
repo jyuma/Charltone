@@ -60,10 +60,7 @@ namespace Charltone.UI.Controllers
             var count = product.Photos.Count;
 
             var reader = new BinaryReader(file.InputStream);
-            var data = reader.ReadBytes(file.ContentLength)
-                .ByteArrayToImage()
-                .CropInstrument()
-                .ImageToByteArray();
+            var data = reader.ReadBytes(file.ContentLength);
 
             var photo = new Photo
                         {
@@ -178,31 +175,24 @@ namespace Charltone.UI.Controllers
         }
 
         [HttpGet]
-        public FileResult GetPhoto(int id)
+        public FileResult GetPhoto(InstrumentPhotoModel photoModel)
         {
-            var photo = id > 0
-                ? _photos.GetData(id)
-                : _photos.GetDefaultInstrumentImage();
+            var photo = photoModel.PhotoId > 0
+                ? _photos.GetData(photoModel.PhotoId)
+                : _photos.GetNoPhotoImage();
 
-            return File(photo, "image/jpeg");
-        }
-
-        [HttpGet]
-        public FileResult GetListPhoto(int id)
-        {
-            var photo = id > 0
-                ? _photos.GetData(id)
-                : _photos.GetDefaultInstrumentImage();
-
-            var data = photo.Crop(new Size(InstrumentListPhotoSize.Width, InstrumentListPhotoSize.Height));
+            var data = photo.Resize(new Size { Width = photoModel.Width, Height = photoModel.Height });
 
             return File(data, "image/jpeg");
         }
 
         [HttpGet]
-        public JsonResult GetDetailPhoto(int id)
+        public JsonResult GetPhotoJson(InstrumentPhotoModel photoModel)
         {
-            var photo = _photos.GetData(id).Crop(new Size(InstrumentDetailPhotoSize.Width, InstrumentDetailPhotoSize.Height));
+            var photo = photoModel.PhotoId > 0
+                ? _photos.GetData(photoModel.PhotoId).Resize(new Size(photoModel.Width, photoModel.Height))
+                : _photos.GetNoPhotoImage();
+
             var data = Convert.ToBase64String(photo);
 
             return Json(data, JsonRequestBehavior.AllowGet);
@@ -213,9 +203,9 @@ namespace Charltone.UI.Controllers
         {
             var photo = id > 0
                 ? _photos.GetData(id)
-                : _photos.GetDefaultInstrumentImage();
+                : _photos.GetNoPhotoImage();
 
-            var data = photo.Thumbnail(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height);
+            var data = photo.Resize(new Size(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height));
 
             return File(data, "image/jpeg");
         }
@@ -228,16 +218,6 @@ namespace Charltone.UI.Controllers
             var data = Convert.ToBase64String(photo);
 
             return Json(data, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public JsonResult GetDefaultPhotoIds()
-        {
-            var ids = _photos.GetAll()
-                .Where(x => x.IsDefault)
-                .Select(x => new { x.Id }).ToArray();
-
-            return Json(ids, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -270,6 +250,7 @@ namespace Charltone.UI.Controllers
 
             var vm = new InstrumentListViewModel
                      {
+                         IsAuthenticated = Request.IsAuthenticated,
                          Instruments = sortedList
                              .Select(product => new InstrumentViewModel
                                     {
@@ -284,12 +265,14 @@ namespace Charltone.UI.Controllers
                                         Price = product.DisplayPrice,
                                         ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                                         NotPostedMessage = product.IsPosted ? string.Empty : Messages.NotPostedText,
-                                        DefaultPhotoId = product.GetDefaultPhotoId()
+                                        DefaultPhotoId = product.GetDefaultPhotoId(),
                                     }).ToList(),
 
                          Banner = string.Format("{0} currently available", string.Format("{0} instrument{1}", 
                             instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count(),
-                            instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count() > 1 ? "s" : null))
+                            instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count() > 1 ? "s" : null)),
+                         MaxImageWidth = InstrumentListPhotoSize.Width,
+                         MaxImageHeight = InstrumentListPhotoSize.Height
                      };
 
             return vm;
@@ -314,7 +297,9 @@ namespace Charltone.UI.Controllers
                          StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
                          ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                          DefaultPhotoId = product.GetDefaultPhotoId(),
-                         
+                         MaxImageWidth = InstrumentPhotoSize.Width,
+                         MaxImageHeight = InstrumentPhotoSize.Height,
+
                          Top = instrument.Top,
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
@@ -404,7 +389,9 @@ namespace Charltone.UI.Controllers
                          Price = product.Price,
                          DisplayPrice = product.DisplayPrice,
                          IsPosted = product.IsPosted,
-                         DefaultPhotoId = product.GetDefaultPhotoId()
+                         DefaultPhotoId = product.GetDefaultPhotoId(),
+                         MaxImageWidth = InstrumentEditPhotoSize.Width,
+                         MaxImageHeight = InstrumentEditPhotoSize.Height
                      };
 
             return vm;

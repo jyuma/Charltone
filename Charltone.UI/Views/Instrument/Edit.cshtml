@@ -1,9 +1,21 @@
-﻿@model Charltone.UI.ViewModels.Instrument.InstrumentEditViewModel
+﻿@using Charltone.UI.Helpers
+@model Charltone.UI.ViewModels.Instrument.InstrumentEditViewModel
 
 @{
     ViewBag.Title = "Edit Instrument";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script>
+    $(document).ready(function () {
+        instrument.edit.init(
+            {
+                photoId: parseInt(@Model.DefaultPhotoId),
+                maxImageWidth: parseInt(@Model.MaxImageWidth),
+                maxImageHeight: parseInt(@Model.MaxImageHeight)
+            });
+    });
+</script>
 
 <div id="instredit">
     @using (Html.BeginForm())
@@ -15,6 +27,8 @@
                     <input class="savebutton" type="submit" value="Save" name="Command" />
                     &nbsp
                     @Html.ActionLink("Photos", "Detail", new { id = Model.ProductId })
+                    &nbsp
+                    @Html.ActionLinkAuthorized("Delete", "Delete", new { id = Model.ProductId })
                     &nbsp
                     @Html.ActionLink("Main List", "Index", "Instrument")
                     &nbsp
@@ -242,7 +256,7 @@
             </div>
         </div>
         <div>
-            <img class="instreditphotoimg" src=@Url.Action("GetPhoto", "Instrument", new { id = Model.DefaultPhotoId }) alt="" />
+            <img class="instreditphotoimg" id="instreditphoto" alt="" />
         </div>
     }
 

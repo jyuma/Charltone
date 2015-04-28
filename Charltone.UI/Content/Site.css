@@ -487,15 +487,12 @@ div#title {
   color: #ffffff;
   float: left;
 }
-.instreditphoto {
-  float: left;
-}
 .instreditphotoimg {
   border-style: solid;
   border-color: #cea96d;
   margin: 20px 0 0 18px;
-  height: 280px;
   width: 215px;
+  height: 280px;
 }
 /* Product Status */
 .available {
@@ -545,7 +542,7 @@ div#title {
   position: relative;
   font-size: 11pt;
   padding: 18px 30px 5px 0;
-  width: 260px;
+  width: 280px;
   float: right;
 }
 .hint {
@@ -609,7 +606,7 @@ div#title {
   color: #ffffff;
 }
 #instrdetailupload {
-  width: 400px;
+  width: 380px;
   float: left;
 }
 #instrdetailuploadphoto {
@@ -623,6 +620,11 @@ div#title {
   font-size: 10pt;
   font-family: Arial;
   padding-left: 15px;
+}
+#instrdetailinfolist li {
+  width: 455px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 #instrdetailinfolist label {
   color: #f0f0f0;
@@ -667,6 +669,7 @@ div#title {
 }
 .orderingitemtable {
   width: 840px;
+  height: 150px;
   border-style: none;
   padding-bottom: 3px;
 }
@@ -849,8 +852,8 @@ div#title {
   font-size: 12pt;
 }
 .thumbnail {
-  width: 90px;
-  height: 110px;
+  width: 92px;
+  height: 120px;
   border: 2px;
   border-style: solid;
   border-color: #cea96d;
