@@ -110,10 +110,6 @@ namespace Charltone.UI.Controllers
         public ActionResult Upload(int id)
         {
             var file = Request.Files[0];
-            if (file == null) return Json(new { success = false, message = "File not found" });
-
-            if (file.FileName.Extension() != "jpg") return Json(new { success = false, message = "Only jpg files are allowed" });
-
             var reader = new BinaryReader(file.InputStream);
             var data = reader.ReadBytes(file.ContentLength)
                 .ByteArrayToImage()

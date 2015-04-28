@@ -834,12 +834,16 @@ div#title {
 /* Upload Progresss */
 .bar {
   height: 18px;
-  background: green;
+  background: #32cb20;
 }
 #progress {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
+}
+#progressmsg {
+  background-color: #63411d;
+  color: #ffffff;
 }
 .editlink {
   font-size: 12pt;

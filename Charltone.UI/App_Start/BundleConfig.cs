@@ -16,14 +16,17 @@ namespace Charltone.UI
                   "~/Scripts/js/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/fileupload").Include(
+                  "~/Scripts/js/load-image.all.min.js",
                   "~/Scripts/js/jquery.fileupload.js",
+                  "~/Scripts/js/jquery.fileupload-ui.js",
                   "~/Scripts/js/jquery.fileupload-process.js",
                   "~/Scripts/js/jquery.fileupload-validate.js",
                   "~/Scripts/js/jquery.fileupload-image.js",
-                  "~/Scripts/js/jquery.fileupload-ui.js",
-                  "~/Scripts/js/jquery.fileupload-jquery-ui.js",
+                  "~/Scripts/js/jquery.fileupload-video.js",
+                  "~/Scripts/js/jquery.fileupload-audio.js",
                   "~/Scripts/js/jquery.jquery.iframe-transport.js",
-                  "~/Scripts/js/vendor/jquery.ui.widget.js"));
+                  "~/Scripts/js/cors/*.js",
+                  "~/Scripts/js/vendor/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/charltone").Include(
                   "~/Scripts/Site/Site.js",

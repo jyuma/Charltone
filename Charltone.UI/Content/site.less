@@ -864,11 +864,16 @@ div#title {
 /* Upload Progresss */
 .bar {
     height: 18px;
-    background: green;
+    background: @colourInProgress;
 }
 #progress{
     .mainBorder;
 }
+#progressmsg {
+    background-color: @colourDarkBrown;
+    color: @colourWhite;
+}
+
 .editlink {
    font-size: 12pt;
 }
