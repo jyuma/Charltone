@@ -15,6 +15,8 @@
 @colourMenuHover: #7DA5D8;
 @colourLink: #0385f3;
 @colourHint: #fbd934;
+@colourDarkBrown: #63411D;
+@colourProgressBar: #0db239;
 
 @widthBody: 900px;
 .mainBorder {
@@ -864,13 +866,13 @@ div#title {
 /* Upload Progresss */
 .bar {
     height: 18px;
-    background: @colourInProgress;
+    background: @colourProgressBar;
 }
 #progress{
     .mainBorder;
 }
 #progressmsg {
-    background-color: @colourDarkBrown;
+    background-color: darken(@colourDarkBrown, 10%);
     color: @colourWhite;
 }
 

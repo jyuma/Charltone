@@ -22,7 +22,7 @@
                         callback(data.result);
                     }
                 })
-                .on('fileuploadprogressall', function(e, data) {
+                .on('fileuploadprogress', function(e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     $('#progress .bar').css('width', progress + '%');
                 })
@@ -34,7 +34,8 @@
                         $("#progressmsg").text("Uploading file " + fileIndex + " of " + totalFiles + "...");
                     }
                 })
-                .on('fileuploadchange', function(e, data) {
+                .on('fileuploadchange', function (e, data) {
+                    fileIndex = 1;
                     totalFiles = data.files.length;
                     $.blockUI({
                         css: { width: '350px', border: 'none' },

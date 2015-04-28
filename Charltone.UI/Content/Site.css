@@ -834,7 +834,7 @@ div#title {
 /* Upload Progresss */
 .bar {
   height: 18px;
-  background: #32cb20;
+  background: #0db239;
 }
 #progress {
   border: solid;
@@ -842,7 +842,7 @@ div#title {
   border-color: #cea96d;
 }
 #progressmsg {
-  background-color: #63411d;
+  background-color: #3c2711;
   color: #ffffff;
 }
 .editlink {
