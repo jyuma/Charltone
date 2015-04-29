@@ -25,16 +25,12 @@ namespace Charltone.UI.Extensions
         // Resizing
         public static byte[] Resize(this byte[] data, Size size)
         {
-            var result = data;
             var image = data.ByteArrayToImage();
-
-            // ------- resize (if necessary)
-            if (image.Width <= size.Width) return result;
 
             var resizeRect = new Rectangle(new Point(0, 0), image.Size);
             var resized = new Bitmap(image).Clone(resizeRect, image.PixelFormat);
             var newImage = new Bitmap(resized, new Size(size.Width, size.Height));
-            result = newImage.ImageToByteArray();
+            var result = newImage.ImageToByteArray();
 
             image.Dispose();
             resized.Dispose();

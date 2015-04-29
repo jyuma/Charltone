@@ -183,7 +183,7 @@ namespace Charltone.UI.Controllers
 
             var data = photo.Resize(new Size { Width = photoModel.Width, Height = photoModel.Height });
 
-            return File(data, "image/jpeg");
+            return File(data, "image/jpg");
         }
 
         [HttpGet]
@@ -208,16 +208,6 @@ namespace Charltone.UI.Controllers
             var data = photo.Resize(new Size(InstrumentThumbnailSize.Width, InstrumentThumbnailSize.Height));
 
             return File(data, "image/jpeg");
-        }
- 
-        // For zooming
-        [HttpGet]
-        public JsonResult GetPhotoZoom(int id)
-        {
-            var photo = _photos.GetData(id);
-            var data = Convert.ToBase64String(photo);
-
-            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -271,8 +261,8 @@ namespace Charltone.UI.Controllers
                          Banner = string.Format("{0} currently available", string.Format("{0} instrument{1}", 
                             instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count(),
                             instruments.Where(x => x.ProductStatus.Id == ProductStatusTypeId.Available).ToArray().Count() > 1 ? "s" : null)),
-                         MaxImageWidth = InstrumentListPhotoSize.Width,
-                         MaxImageHeight = InstrumentListPhotoSize.Height
+                         MaxImageWidth = InstrumentListImageSize.Width,
+                         MaxImageHeight = InstrumentListImageSize.Height
                      };
 
             return vm;
@@ -297,8 +287,12 @@ namespace Charltone.UI.Controllers
                          StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
                          ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                          DefaultPhotoId = product.GetDefaultPhotoId(),
-                         MaxImageWidth = InstrumentPhotoSize.Width,
-                         MaxImageHeight = InstrumentPhotoSize.Height,
+                         MaxSaveImageWidth = InstrumentSaveImageSize.Width,
+                         MaxSaveImageHeight = InstrumentSaveImageSize.Height,
+                         MaxDisplayImageWidth = InstrumentDetailImageSize.Width,
+                         MaxDisplayImageHeight = InstrumentDetailImageSize.Height,
+                         MaxZoomImageWidth = InstrumentZoomImageSize.Width,
+                         MaxZoomImageHeight = InstrumentZoomImageSize.Height,
 
                          Top = instrument.Top,
                          BackAndSides = instrument.BackAndSides,
@@ -322,16 +316,7 @@ namespace Charltone.UI.Controllers
                          Tailpiece = instrument.Tailpiece,
                          Tuners = instrument.Tuners,
                          Comments = instrument.Comments,
-                         FunFacts = instrument.FunFacts,
-
-                         InstrumentPhotos = product.Photos
-                            .OrderBy(x => x.SortOrder)
-                            .Select(x => new InstrumentPhoto
-                             {
-                                Id = x.Id,
-                                IsDefault = x.IsDefault,
-                             }).ToArray(),
-                         PhotoIds = product.Photos.Select(x => x.Id).ToArray()
+                         FunFacts = instrument.FunFacts//,
                      };
 
             return vm;
@@ -346,10 +331,17 @@ namespace Charltone.UI.Controllers
                      {
                          Id = instrument.Id,
                          ProductId = productId,
+                         
+                         Price = product.Price,
+                         DisplayPrice = product.DisplayPrice,
+                         IsPosted = product.IsPosted,
+                         DefaultPhotoId = product.GetDefaultPhotoId(),
+                         MaxImageWidth = InstrumentEditImageSize.Width,
+                         MaxImageHeight = InstrumentEditImageSize.Height,
+
                          Model = instrument.Model,
                          Sn = instrument.Sn,
                          Top = instrument.Top,
-
                          BackAndSides = instrument.BackAndSides,
                          Body = instrument.Body,
                          Binding = instrument.Binding,
@@ -384,14 +376,7 @@ namespace Charltone.UI.Controllers
                          SubClassificationId = instrument.SubClassification.Id,
 
                          StatusTypes = new SelectList(_productStatus.GetAll(), "Id", "StatusDesc", product.ProductStatus.Id),
-                         StatusId = product.ProductStatus.Id,
-
-                         Price = product.Price,
-                         DisplayPrice = product.DisplayPrice,
-                         IsPosted = product.IsPosted,
-                         DefaultPhotoId = product.GetDefaultPhotoId(),
-                         MaxImageWidth = InstrumentEditPhotoSize.Width,
-                         MaxImageHeight = InstrumentEditPhotoSize.Height
+                         StatusId = product.ProductStatus.Id
                      };
 
             return vm;

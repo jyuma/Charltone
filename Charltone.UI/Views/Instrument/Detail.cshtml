@@ -17,8 +17,12 @@
             comments: "@Model.Comments",
             funfacts: "@Model.FunFacts",
             isAuthenticated: ('@(Model.IsAuthenticated)' == 'True'),
-            maxImageWidth: parseInt(@Model.MaxImageWidth),
-            maxImageHeight: parseInt(@Model.MaxImageHeight)
+            maxSaveImageWidth: parseInt(@Model.MaxSaveImageWidth),
+            maxSaveImageHeight: parseInt(@Model.MaxSaveImageHeight),
+            maxDisplayImageWidth: parseInt(@Model.MaxDisplayImageWidth),
+            maxDisplayImageHeight: parseInt(@Model.MaxDisplayImageHeight),
+            maxZoomImageWidth: parseInt(@Model.MaxZoomImageWidth),
+            maxZoomImageHeight: parseInt(@Model.MaxZoomImageHeight)
         });
     });
 </script>
@@ -73,7 +77,12 @@
 
     <div id="instrdetailininfo">
         <a id="instrdetailmainphotolink" href="javascript:;">
-            <img class="instrdetailmainphoto" id="currentphoto" alt="" />
+            <img id="currentphoto" class="instrdetailmainphoto" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
+                                                                                                                    {
+                                                                                                                        PhotoId = Convert.ToInt32(@Model.DefaultPhotoId),
+                                                                                                                        Width = Convert.ToInt32(@Model.MaxDisplayImageWidth),
+                                                                                                                        Height = Convert.ToInt32(@Model.MaxDisplayImageHeight)
+                                                                                                                    }) alt="" />
         </a>
         <div class="linevertical" id="instrdetail"></div>
         <div id="instrdetailinfo">

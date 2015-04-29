@@ -282,7 +282,6 @@
     <Content Include="Scripts\js\load-image.js" />
     <Content Include="Scripts\js\vendor\jquery.Jcrop.js" />
     <Content Include="Scripts\js\vendor\jquery.ui.widget.js" />
-    <Content Include="Scripts\Metrics\GoogleAnalytics.js" />
     <Content Include="Scripts\Ordering\Edit.js" />
     <Content Include="Scripts\Page\Position.js" />
     <Content Include="Scripts\js\jquery.blockUI.js" />
@@ -375,6 +374,9 @@
       <Project>{223fb3e1-10bb-4e63-8731-aa8f573a1b74}</Project>
       <Name>Charltone.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Metrics\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

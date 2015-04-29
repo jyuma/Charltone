@@ -10,8 +10,12 @@
                 comments: "",
                 funfacts: "",
                 isAuthenticated: false,
-                maxImageWidth: 0,
-                maxImageHeight: 0,
+                maxSaveImageWidth: 0,
+                maxSaveImageHeight: 0,
+                maxDisplayImageWidth: 0,
+                maxDisplayImageHeight: 0,
+                maxZoomImageWidth: 0,
+                maxZoomImageHeight: 0
             };
 
             $.extend(config, options);
@@ -28,12 +32,11 @@
                     totalPhotos = photos.length;
                     bindTooltips();
                     createThumbnails();
-                    displayPhoto(currentPhotoId);
                     bindZoom(currentPhotoId);
                     file.upload.init(
                         {
-                            maxImageWidth: config.maxImageWidth,
-                            maxImageHeight: config.maxImageHeight
+                            maxImageWidth: config.maxSaveImageWidth,
+                            maxImageHeight: config.maxSaveImageHeight
                         },
                         function (result) {
                         appendThumbnail(result.id);
@@ -106,12 +109,16 @@
             // Zooming
             function bindZoom() {
                 $("#instrdetailmainphotolink").click(function() {
-                    zoom.init.display(currentPhotoId);
+                    instrument.zoom.init({
+                        photoId: currentPhotoId,
+                        maxImageWidth: config.maxZoomImageWidth,
+                        maxImageHeight: config.maxZoomImageHeight
+                    });
                 });
             };
 
             function displayPhoto(id) {
-                $.getJSON(site.url + "Instrument/GetPhotoJson", { "PhotoId": id, "Width": config.maxImageWidth, "Height": config.maxImageHeight },
+                $.getJSON(site.url + "Instrument/GetPhotoJson", { "PhotoId": id, "Width": config.maxDisplayImageWidth, "Height": config.maxDisplayImageHeight },
                     function(data) {
                         $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
                         currentPhotoId = id;

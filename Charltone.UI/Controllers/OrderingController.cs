@@ -1,13 +1,12 @@
-﻿using System.Drawing;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
 using Charltone.UI.ViewModels.Ordering;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
@@ -238,8 +237,8 @@ namespace Charltone.UI.Controllers
                 SubClassificationTypes = new SelectList(_subClassifications.GetAll(), "Id", "SubClassificationDesc", ordering.SubClassification.Id),
                 SubClassificationId = ordering.SubClassification.Id,
 
-                MaxImageWidth = OrderingPhotoSize.Width,
-                MaxImageHeight = OrderingPhotoSize.Height,
+                MaxImageWidth = OrderingImageSize.Width,
+                MaxImageHeight = OrderingImageSize.Height,
             };
 
             return vm;

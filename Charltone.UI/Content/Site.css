@@ -174,8 +174,6 @@ div#title {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
-  width: 520px;
-  height: 676px;
 }
 /* Home */
 #home {
@@ -266,7 +264,8 @@ div#title {
 #aboutpage {
   width: 900px;
   height: 560px;
-  background: url(images/tools_large_2_dark.jpg) right no-repeat;
+  background: url(images/tools_large_2_dark.jpg) repeat;
+  overflow: hidden;
 }
 #aboutbanner {
   position: relative;
@@ -284,7 +283,8 @@ div#title {
 }
 #abouteditlnk {
   margin: 0;
-  padding: 0;
+  padding: 0 5px 5px 0;
+  float: right;
 }
 /* About Edit */
 #aboutedit {

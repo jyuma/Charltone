@@ -28,27 +28,33 @@
         public const int Classical = 1;
     }
 
-    // What gets saved
-    public static class InstrumentPhotoSize
+
+    // Photo Rendering Sizes
+    public static class InstrumentSaveImageSize
     {
-        public const int Width = 769;
-        public const int Height = 1000;
+        public const int Width = 768;
+        public const int Height = 1024;
     }
 
-    // For display
-    public static class InstrumentListPhotoSize
+    public static class InstrumentListImageSize
     {
         public const int Width = 246;
         public const int Height = 320;
     }
 
-    public static class InstrumentDetailPhotoSize
+    public static class InstrumentZoomImageSize
+    {
+        public const int Width = 520;
+        public const int Height = 676;
+    }
+
+    public static class InstrumentDetailImageSize
     {
         public const int Width = 346;
         public const int Height = 450;
     }
 
-    public static class InstrumentEditPhotoSize
+    public static class InstrumentEditImageSize
     {
         public const int Width = 215;
         public const int Height = 280;
@@ -60,7 +66,7 @@
         public const int Height = 120;
     }
 
-    public static class OrderingPhotoSize
+    public static class OrderingImageSize
     {
         public const int Width = 346;
         public const int Height = 450;
@@ -72,7 +78,7 @@
         public const int Height = 300;
     }
 
-    public static class HomePagePhotoSize
+    public static class HomePageImageSize
     {
         public const int Width = 830;
         public const int Height = 530;
