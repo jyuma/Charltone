@@ -306,19 +306,19 @@ div#title {
   position: relative;
   font-size: 2.2em;
   margin-left: 30px;
-  top: 50px;
   margin-bottom: 40px;
+  top: 50px;
   color: #cea96d;
 }
 #about {
   position: relative;
-  padding: 10px 15px 0 0;
+  padding: 0 10px 0 0;
   margin: 0 30px 0 30px;
   clear: both;
 }
 #abouteditlnk {
   margin: 0;
-  padding: 0 5px 5px 0;
+  padding: 10px 33px 5px 0;
   float: right;
 }
 /* About Edit */
@@ -567,12 +567,10 @@ div#title {
   padding-right: 5px;
 }
 #commentshint {
-  /*color: @colourHint;*/
   margin-right: 5px;
   float: right;
 }
 #funfactshint {
-  /*color: @colourHint;*/
   margin-right: 5px;
   float: right;
 }
@@ -602,7 +600,7 @@ div#title {
   padding: 2px;
 }
 #instrdetaileditbutton {
-  padding-right: 10px;
+  padding-right: 5px;
   float: right;
 }
 #instrdetailininfo {
@@ -635,12 +633,12 @@ label#instrdetailinfoheader {
   color: #ffffff;
 }
 #instrdetailupload {
-  width: 380px;
+  width: 300px;
   float: left;
 }
 #instrdetailuploadphoto {
   position: relative;
-  width: 800px;
+  width: 300px;
   padding-bottom: 15px;
   color: #ffffff;
 }

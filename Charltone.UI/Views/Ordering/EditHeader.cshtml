@@ -12,11 +12,10 @@
             @Html.ValidationSummary(true)
             <div id="orderingeditinfo">
                 <div id="orderingeditbuttons">
-                    <input class="savebutton" type="submit" value="Save" name="Command" />
-                    &nbsp
-                    @Html.ActionLink("Cancel", "Index", "Ordering")
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Ordering")'">Cancel</button>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Summary)
                 </div>
                 <div class="editor-field">
@@ -25,7 +24,7 @@
                         @Html.ValidationMessageFor(model => model.Summary)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Pricing)
                 </div>
                 <div class="editor-field">
@@ -34,7 +33,7 @@
                         @Html.ValidationMessageFor(model => model.Pricing)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.PaymentOptions)
                 </div>
                 <div class="editor-field">
@@ -43,7 +42,7 @@
                         @Html.ValidationMessageFor(model => model.PaymentOptions)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.PaymentPolicy)
                 </div>
                 <div class="editor-field">
@@ -52,7 +51,7 @@
                         @Html.ValidationMessageFor(model => model.PaymentPolicy)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Shipping)
                 </div>
                 <div class="editor-field">

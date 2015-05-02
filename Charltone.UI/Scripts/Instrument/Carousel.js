@@ -36,8 +36,9 @@
                             padding: 0,
                             cursor: 'default',
                             background: '#333',
-                            overflow: 'hidden'
-                        }
+                            overflow: 'hidden',
+                            border: 0
+                }
                     });
             });
          }

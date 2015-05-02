@@ -1,5 +1,4 @@
 ﻿@using Charltone.UI.ViewModels.About;
-@using Charltone.UI.Helpers;
 
 @model AboutViewModel
 @{
@@ -8,13 +7,14 @@
 }
 
 <div id="aboutpage">
+    <div id="abouteditlnk">
+        @if (Request.IsAuthenticated)
+        {
+            <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "About")'">Edit Text</button>
+        }
+    </div>
+
     <div id="about">
-        <div id="abouteditlnk">
-            @if (Request.IsAuthenticated)
-            {
-                <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "About")'">Edit Text</button>
-            }
-        </div>
         <div class="linehorizontal" id="about"></div>
         <div class="aboutfield">
             The Name

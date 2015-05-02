@@ -39,7 +39,7 @@
         </div>
         <div id ="instrdetailupload">
             <div id="instrdetailuploadphoto" class="@(Request.IsAuthenticated ? "admin" : "hidden")">
-                <input id="fileupload" type="file" name="files[]" data-url="Upload" multiple>
+                <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple>
             </div>
         </div>
 
@@ -67,8 +67,8 @@
             }
             else
             {
-                <div class="editlink" id="instrdetaileditbutton">
-                    @Html.ActionLinkAuthorized("Edit", "Edit", new { id = @Model.ProductId })
+                <div id="instrdetaileditbutton">
+                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
                 </div>
             }
         </div>
