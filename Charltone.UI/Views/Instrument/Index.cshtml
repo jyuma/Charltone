@@ -14,14 +14,21 @@
     });
 </script>
 
+<div id="carousel-container"></div>
 <div id="instrlist">
     <div id="instrlistcontent">
         <div id="instrlistheader">
             @Model.Banner
         </div>
-        <div class="editlink" id="instrlistaddnew">
-            @Html.ActionLinkAuthorized("Add Instrument", "Create")
+        <div id="instrlistshowcarousel">
+            <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show();'>View Slides</button>
         </div>
+        @if (Request.IsAuthenticated)
+        {
+            <div id="instrlistaddnew">
+                <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Create", "Instrument")' ">Add</button>
+            </div>
+        }
         <div class="linehorizontal" id="instrument"></div>
         @{
             var row = 1;
@@ -54,11 +61,15 @@
                                 @inst.Classification / @inst.SubClassification
                             </div>
                             <div class="instrlistviewdetailslink">
-                                @Html.ActionLinkAuthorized("Edit", "Edit", new { id = inst.ProductId })
-
-                                @(!@Model.IsAuthenticated
-                                    ? Html.ActionLink("View Details", "Detail", new { id = inst.ProductId })
-                                    : Html.ActionLinkAuthorized("Photos", "Detail", new { id = inst.ProductId }))
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <button class="btn btn-primary btn-xs" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = inst.ProductId })'">Edit</button>
+                                    <button class="btn btn-info btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">Photos</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-primary btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">View Details</button>
+                                }
 
                             </div>
                         </div>

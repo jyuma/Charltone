@@ -1,42 +1,63 @@
-﻿;(function($) {
+﻿/*!
+ * Charltone admin.login
+ * Author: John Charlton
+ * Date: 2015-04
+ */
+
+; (function ($) {
 
     window.admin = {};
 
     admin.login = {
-        displayAdminLoginDialog: function () {
-            window.cursor = 'wait';
-            $.get(site.url + "Admin/LoginForm", function (data) {
-                if ($("#admin-login-form").length === 0)
-                {
-                    $("body").append(data);
-                }
+        init: function (options) {
+            var config = {
+                isAuthenticated: false
+            };
 
-                $('#admin-login-form').keyup(function (e) {
-                    if (e.keyCode == 13) {
-                        logInAdmin();
+            $.extend(config, options);
+
+            if (!config.isAuthenticated) {
+                $("body").css("cursor", "wait");
+                $.get(site.url + "Admin/LoginForm", function(data) {
+                    if ($("#admin-login-form").length === 0) {
+                        $("body").append(data);
                     }
+
+                    $('#admin-login-form').keyup(function(e) {
+                        if (13 === e.keyCode) {
+                            logInAdmin();
+                        }
+                    });
+
+                    $("#btnCancelAdminLogin").click(function() {
+                        $.unblockUI();
+                    });
+
+                    $("#btnLogInAdmin").click(function() {
+                        logInAdmin();
+                    });
+
+                    $("#txtPassword").val('');
+                    $("button").button();
+
+                    $("body").css("cursor", "default");
+                    $.blockUI({
+                        css: {
+                            width: '350px',
+                            background: '#333',
+                            cursor: 'default'
+                        },
+                        message: $("#admin-login-form")
+                    });
+
+                    $("button").button();
+                    $("#validation-container").hide();
                 });
-
-                $("#btnCancelAdminLogin").click(function () {
-                    $.unblockUI();
+            } else {
+                $.post(site.url + "Admin/LogOff", function () {
+                    window.location.reload();
                 });
-
-                $("#btnLogInAdmin").click(function () {
-                    logInAdmin();
-                });
-
-                $("#txtPassword").val('');
-                $("button").button();
-
-                $.blockUI({
-                    css: { width: '350px' },
-                    message: $("#admin-login-form")
-                });
-
-                $("button").button();
-                $("#validation-container").hide();
-                window.cursor = 'default';
-            });
+            }
 
             function logInAdmin() {
                 var pword = $("#txtPassword").val();

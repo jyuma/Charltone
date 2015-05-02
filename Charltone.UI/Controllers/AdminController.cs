@@ -35,12 +35,11 @@ namespace Charltone.UI.Controllers
             }
         }
 
-        public ActionResult LogOff(string page)
+        [HttpPost]
+        public void LogOff(string page)
         {
             FormsAuthentication.SignOut();
             ClearAdminCookie();
-
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

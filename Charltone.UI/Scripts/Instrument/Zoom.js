@@ -1,4 +1,10 @@
-﻿;(function ($) {
+﻿/*!
+* Charltone instrument.zoom
+* Author: John Charlton
+* Date: 2015-04
+*/
+
+; (function ($) {
 
     window.instrument.zoom = {
 
@@ -10,6 +16,7 @@
             };
 
             $.extend(config, options);
+            $.blockUI.defaults.css = {};
 
             $.getJSON(site.url + "Instrument/GetPhotoJson", { 'PhotoId': config.photoId, "Width": config.maxImageWidth, "Height": config.maxImageHeight },
                 function (data) {
@@ -24,12 +31,13 @@
                     $.blockUI({
                         message: $("#dialog-image-container"),
                         css: {
-                            width: config.maxImageWidth,
-                            height: config.maxImageHeight,
-                            top:  '50px', 
-                            left: ($(window).width() - 550) / 2 + 'px', 
-                            border: 'none'
-                        }
+                                width: config.maxImageWidth,
+                                height: config.maxImageHeight,
+                                top:  '50px', 
+                                left: ($(window).width() - 550) / 2 + 'px', 
+                                border: 'none',
+                                cursor: 'not-allowed'
+                             }
                     });
                 });
         }

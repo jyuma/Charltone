@@ -1,4 +1,10 @@
-﻿;(function ($) {
+﻿/*!
+ * Charltone error.show
+ * Author: John Charlton
+ * Date: 2015-04
+ */
+
+; (function ($) {
 
     window.error = {};
 

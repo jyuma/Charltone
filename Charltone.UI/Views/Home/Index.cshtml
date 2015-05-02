@@ -21,11 +21,17 @@
     <div id="homecontent">
         <div id="homeuploadeditcontainer" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
             <div id="homeupload">
-                <input id="fileupload" type="file" name="files[]" data-url="Home/Upload">
+                <div class="label label-primary">
+                    <label>Change Picture</label>
+                </div>
+                <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Home/Upload">
             </div>
             <div id="progressbar"></div>
             <div id="homeeditlink">
-                @Html.ActionLinkAuthorized("Edit", "Edit")
+                @if (Request.IsAuthenticated)
+                {
+                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("Edit", "Home")' ">Edit Text</button>
+                }
             </div>
         </div>
 

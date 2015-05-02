@@ -9,8 +9,11 @@
 
 <div id="aboutpage">
     <div id="about">
-        <div class="editlink" id="abouteditlnk">
-            @Html.ActionLinkAuthorized("Edit", "Edit")
+        <div id="abouteditlnk">
+            @if (Request.IsAuthenticated)
+            {
+                <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "About")'">Edit Text</button>
+            }
         </div>
         <div class="linehorizontal" id="about"></div>
         <div class="aboutfield">

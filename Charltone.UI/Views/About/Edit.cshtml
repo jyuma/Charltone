@@ -12,11 +12,10 @@
             @Html.ValidationSummary(true)
             <div id="abouteditinfo">
                 <div id="abouteditbuttons">
-                    <input class="savebutton" type="submit" value="Save" name="Command" />
-                    &nbsp
-                    @Html.ActionLink("Cancel", "Index", "About")
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "About")'">Cancel</button>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Name)
                 </div>
                 <div class="editor-field">
@@ -25,7 +24,7 @@
                         @Html.ValidationMessageFor(model => model.Name)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.CompanyName)
                 </div>
                 <div class="editor-field">
@@ -34,7 +33,7 @@
                         @Html.ValidationMessageFor(model => model.CompanyName)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Origins)
                 </div>
                 <div class="editor-field">
@@ -43,7 +42,7 @@
                         @Html.ValidationMessageFor(model => model.Origins)
                     </div>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Materials)
                 </div>
                 <div class="editor-field">

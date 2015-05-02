@@ -12,16 +12,17 @@
         $("#orderinglistheader").accordion();
         position.set();
     });
-
 </script>
 
 <div id="orderinglist">
     <div id="orderinglistcontent">
-        <div class="editlink" id="orderingheadereditlnk">
-            @Html.ActionLinkAuthorized("Add", "Create")
-            &nbsp
-            @Html.ActionLinkAuthorized("Edit", "EditHeader")
-        </div>
+        @if (Request.IsAuthenticated)
+        {
+            <div class="editlink" id="orderingheadereditlnk">
+                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Ordering")' ">Add</button>
+                <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("EditHeader", "Ordering")' ">Edit Text</button>
+            </div>
+        }
         <div id="orderinglistheader">
             <h3>Ordering</h3>
             <div>
@@ -88,7 +89,10 @@
                     </tr>
                     <tr>
                         <td class="orderingtablecelllink">
-                            @Html.ActionLinkAuthorized("Edit", "Edit", new { id = orderingInfo.Id })
+                            @if (Request.IsAuthenticated)
+                            {
+                                <button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})' ">Edit</button>
+                            }
                         </td>
                     </tr>
                 </table>

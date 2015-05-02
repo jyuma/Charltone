@@ -1,68 +1,77 @@
 ﻿@model Charltone.UI.ViewModels.Ordering.OrderingEditViewModel
 
 @{
-    ViewBag.Title = "Delete Order";
+    ViewBag.Title = "Edit Ordering";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        ordering.edit.init({ orderingId: parseInt(@Model.Id) });
+    $(document).ready(function () {
+        ordering.edit.init(
+        {
+            orderingId: parseInt(@Model.Id),
+            maxImageWidth: parseInt(@Model.MaxImageWidth),
+            maxImageHeight: parseInt(@Model.MaxImageHeight)
+        });
     });
 </script>
 
 <div id="orderingedit">
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(true)
         <div id="orderingeditcontainer">
-            <div id="deleteconfirm">
+            <div id="orderingdeleteconfirm">
                 Delete ordering for model @Model.Model?
             </div>
-            
-            <div id="orderinfeditinfo">
-                <div id="orderingeditphotocontainer">
-                    <img id="orderingeditphoto" alt="" />
-                </div>
+            <div id="orderingeditphotocontainer">
+                <img id="orderingeditphoto" src=@Url.Action("GetPhoto", "Ordering", new { id = Model.Id }) alt="" />
+            </div>
+            <div id="orderingeditinfo">
                 <div id="orderingeditbuttons">
-                    <input class="savebutton" type="submit" value="Delete" name="Command" />
-                    &nbsp
-                    @Html.ActionLink("Cancel", "Edit", "Ordering")
+                    <button class="btn btn-primary" type="submit">Yes</button>
+                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Edit", "Ordering")'">Cancel</button>
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.InstrumentTypes)
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes, new { @disabled = true })
+                    @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Model)
                 </div>
                 <div class="editor-field">
-                    @Html.EditorFor(model => model.Model, new { @disabled = true })
+                    @Html.EditorFor(model => model.Model)
+                    @Html.ValidationMessageFor(model => model.Model)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.ClassificationTypes)
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes, new { @disabled = true })
+                    @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.SubClassificationTypes)
                 </div>
                 <div class="editor-field">
-                    @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes, new { @disabled = true })
+                    @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.TypicalPrice)
                 </div>
                 <div class="editor-field">
-                    @Html.TextAreaFor(model => model.TypicalPrice, new { @disabled = true })
+                    @Html.TextAreaFor(model => model.TypicalPrice)
                 </div>
-                <div class="editor-label">
+                <div>
+                    @Html.ValidationMessageFor(model => model.TypicalPrice)
+                </div>
+                <div class="label label-default">
                     @Html.LabelFor(model => model.Comments)
                 </div>
                 <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Comments, new { @disabled = true })
+                    @Html.TextAreaFor(model => model.Comments)
+                    @Html.ValidationMessageFor(model => model.Comments)
                 </div>
             </div>
         </div>

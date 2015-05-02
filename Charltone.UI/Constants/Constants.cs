@@ -13,6 +13,11 @@
         public const int InProgress = 4;
     }
 
+    public static class ProductTypeId
+    {
+        public const int Instrument = 1;
+    }
+
     public static class InstrumentTypeId
     {
         public const int Guitar = 1;
@@ -36,25 +41,19 @@
         public const int Height = 1024;
     }
 
-    public static class InstrumentListImageSize
+    public static class InstrumentImageSizeList
     {
         public const int Width = 246;
         public const int Height = 320;
     }
 
-    public static class InstrumentZoomImageSize
-    {
-        public const int Width = 520;
-        public const int Height = 676;
-    }
-
-    public static class InstrumentDetailImageSize
+    public static class InstrumentImageSizeDetail
     {
         public const int Width = 346;
         public const int Height = 450;
     }
 
-    public static class InstrumentEditImageSize
+    public static class InstrumentImageSizeEdit
     {
         public const int Width = 215;
         public const int Height = 280;
@@ -64,6 +63,18 @@
     {
         public const int Width = 92;
         public const int Height = 120;
+    }
+
+    public static class InstrumentImageSizeZoom
+    {
+        public const int Width = 520;
+        public const int Height = 676;
+    }
+
+    public static class InstrumentImageSizeCarousel
+    {
+        public const int Width = 520;
+        public const int Height = 676;
     }
 
     public static class OrderingImageSize

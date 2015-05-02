@@ -1,0 +1,59 @@
+﻿@using Charltone.UI.ViewModels.Instrument;
+
+@model InstrumentCarouselViewModel
+
+@{
+    ViewBag.Title = "Carousel";
+}
+
+<div>
+    <div id="instrCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <!-- Close Button -->
+        <div id="carouselclose">
+            <a class="carouselcloselink">Close</a>
+        </div>
+        
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            @{
+                for (var indicator = 0; indicator < @Model.Photos.Count(); indicator++)
+                {
+                    var indicatorClass = (indicator == 0) ? "active" : null;
+                    <li data-target="#instrCarousel" data-slide-to="@indicator" class="@indicatorClass"></li>
+                }
+            }
+        </ol>
+
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            @{
+                var item = 0;
+                foreach (var photo in @Model.Photos)
+                {
+                    var itemClass = (item == 0) ? "active item" : "item";
+                    <div class="@itemClass">
+                        <div id="carouselimagecontainer"><img class="carousel-image" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
+                                                                                                                               {
+                                                                                                                                   PhotoId = Convert.ToInt32(photo.PhotoId),
+                                                                                                                                   Width = Convert.ToInt32(@Model.MaxImageWidth),
+                                                                                                                                   Height = Convert.ToInt32(@Model.MaxImageHeight)
+                                                                                                                               }) alt="" /></div>
+                        <div class="carousel-caption">
+                            <h4>@photo.Caption</h4>
+                            <h5>@photo.Price</h5>
+                        </div>
+                    </div>
+                    item++;
+                }
+            }
+        </div>
+       
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#instrCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#instrCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>

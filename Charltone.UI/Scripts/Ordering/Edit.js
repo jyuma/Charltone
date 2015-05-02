@@ -1,4 +1,10 @@
-﻿;(function ($) {
+﻿/*!
+* Charltone ordering.edit
+* Author: John Charlton
+* Date: 2015-04
+*/
+
+; (function ($) {
 
     window.ordering = {};
 

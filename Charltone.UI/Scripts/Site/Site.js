@@ -1,4 +1,10 @@
-﻿var site = (function () {
+﻿/*!
+* Charltone site.getUrl
+* Author: John Charlton
+* Date: 2015-04
+*/
+
+var site = (function () {
     var self = {
         getUrl: function () {
             var baseUrl = location.href;

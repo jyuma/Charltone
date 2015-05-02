@@ -31,6 +31,9 @@ body {
   margin-right: auto;
   width: 900px;
 }
+label {
+  margin: 0;
+}
 a:link {
   color: #0385f3;
   text-decoration: none;
@@ -41,12 +44,6 @@ a:visited {
 a:hover {
   color: #91ccfe;
   text-decoration: none;
-}
-button {
-  width: 75px;
-  height: 30px;
-  font-size: 8pt;
-  font-weight: 200;
 }
 .ui-dialog-titlebar-close {
   visibility: hidden;
@@ -169,8 +166,47 @@ div#title {
   position: relative;
   padding: 8px 0 8px 0;
 }
+#txtPassword {
+  width: 300px;
+}
+#admin-password-container {
+  padding-left: 20px;
+}
 /* Zoom */
 .dialogimg {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+}
+/* Carousel */
+.carousel-inner {
+  height: 785px;
+}
+.carousel-inner h3,
+.carousel-inner .h3,
+.carousel-inner h4,
+.carousel-inner .h4 {
+  line-height: 0;
+  font-family: "trebuchet ms", sans-serif;
+}
+#carouselclose {
+  padding-top: 10px;
+}
+#carouselclose a {
+  font-size: 14pt;
+}
+#carouselclose a:hover {
+  cursor: pointer;
+}
+#carouselimagecontainer {
+  padding-top: 10px;
+}
+.item {
+  background: #333;
+  text-align: center;
+  height: 790px !important;
+}
+.carousel-image {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
@@ -218,7 +254,7 @@ div#title {
 #homeintroduction {
   font-size: 16pt;
   color: #cea96d;
-  padding: 0 0 15px 0;
+  padding: 15px 0 15px 0;
   clear: both;
 }
 #homegreeting {
@@ -263,7 +299,6 @@ div#title {
 /* About */
 #aboutpage {
   width: 900px;
-  height: 560px;
   background: url(images/tools_large_2_dark.jpg) repeat;
   overflow: hidden;
 }
@@ -277,7 +312,7 @@ div#title {
 }
 #about {
   position: relative;
-  padding: 5px 0 0 0;
+  padding: 10px 15px 0 0;
   margin: 0 30px 0 30px;
   clear: both;
 }
@@ -290,7 +325,8 @@ div#title {
 #aboutedit {
   background: url(images/tools_large.jpg);
   width: 900px;
-  height: 640px;
+  padding-bottom: 20px;
+  overflow: hidden;
 }
 #abouteditcontainer {
   position: relative;
@@ -328,14 +364,13 @@ div#title {
   padding-bottom: 30px;
 }
 #instrlistcontent {
-  top: 20px;
+  top: 10px;
   position: relative;
   margin-left: 33px;
 }
 #instrlistheader {
+  margin-top: 10px;
   position: relative;
-  margin-bottom: 10px;
-  clear: both;
   font-size: 12pt;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
@@ -343,20 +378,23 @@ div#title {
   float: left;
 }
 #instrlistaddnew {
-  margin-top: 5px;
-  margin-bottom: 10px;
+  padding-right: 5px;
   float: right;
-  margin: 0 33px 0 0;
+}
+#instrlistshowcarousel {
+  float: right;
+  margin: 0 33px 10px 0;
 }
 #instrlistinfomodel {
   position: relative;
   color: #cea96d;
   padding: 0;
   font-size: 12pt;
+  width: 260px;
 }
 #instrlistitem {
   float: left;
-  padding: 0 20px 10px 0;
+  padding: 0 27px 10px 0;
 }
 #instrlistinfodetail {
   color: #ffffff;
@@ -376,8 +414,7 @@ div#title {
   height: 320px;
 }
 .instrlistviewdetailslink {
-  font-size: 1em;
-  color: #7da5d8;
+  padding-top: 5px;
 }
 /* Horizontal Line */
 .linehorizontal {
@@ -439,33 +476,24 @@ div#title {
   height: 448px;
 }
 /* Instrument Edit */
-#instradd {
-  background: url(images/tools_large.jpg);
-  clear: both;
-  width: 900px;
-  height: 2380px;
-}
-#instrdelete {
-  background: url(images/tools_large_3.jpg);
-  clear: both;
-  width: 900px;
-  height: 2380px;
-}
 #deleteconfirm {
-  position: relative;
-  clear: both;
-  top: 10px;
-  font-size: 16pt;
   color: #ac3219;
+  position: relative;
+  font-size: 16pt;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: left;
 }
 #instrdeletebuttons {
   position: relative;
   font-size: 12pt;
+  margin-bottom: 10px;
+  clear: both;
 }
 #instredit {
   background: url(images/tools_large.jpg);
   width: 900px;
-  height: 2380px;
+  overflow: hidden;
 }
 .instreditcontainer {
   position: relative;
@@ -484,11 +512,11 @@ div#title {
 .instreditinfo {
   position: relative;
   margin-top: 20px;
-  color: #ffffff;
   float: left;
 }
 .instreditphotoimg {
-  border-style: solid;
+  border: solid;
+  border-width: 2px;
   border-color: #cea96d;
   margin: 20px 0 0 18px;
   width: 215px;
@@ -522,9 +550,30 @@ div#title {
 /* Instrument Detail */
 #instrdetailcontent {
   background: url(images/tools_large_2_dark.jpg);
-  padding: 0 0 10px 30px;
+  padding: 0 0 0 30px;
+}
+#instrdetaillinks {
+  position: relative;
+  font-size: 11pt;
+  padding: 5px 34px 5px 0;
+  width: 380px;
+  float: right;
 }
 #instrdetailbacktolist {
+  float: right;
+}
+#instrdetailshowcarousel {
+  float: right;
+  padding-right: 5px;
+}
+#commentshint {
+  /*color: @colourHint;*/
+  margin-right: 5px;
+  float: right;
+}
+#funfactshint {
+  /*color: @colourHint;*/
+  margin-right: 5px;
   float: right;
 }
 #instrdetailheader {
@@ -537,27 +586,6 @@ div#title {
   width: 180px;
   padding-bottom: 5px;
   float: left;
-}
-#instrdetaillinks {
-  position: relative;
-  font-size: 11pt;
-  padding: 18px 30px 5px 0;
-  width: 280px;
-  float: right;
-}
-.hint {
-  cursor: pointer;
-  padding-right: 10px;
-}
-#commentshint {
-  color: #fbd934;
-  text-decoration: underline;
-  float: right;
-}
-#funfactshint {
-  color: #fbd934;
-  text-decoration: underline;
-  float: right;
 }
 .instrdetailthumbnail {
   width: 101px;
@@ -583,10 +611,11 @@ div#title {
   width: 900px;
   float: left;
 }
-#instrdetailinfoheader {
+label#instrdetailinfoheader {
   position: relative;
   padding: 0 0 0 14px;
   font-size: 12pt;
+  padding-bottom: 5px;
   color: #cea96d;
 }
 #instrdetailmainphotolink {
@@ -657,11 +686,12 @@ div#title {
   clear: both;
 }
 #orderingheadereditlnk {
-  margin: 2px 0 2px 0;
+  margin: 2px 0 8px 0;
 }
 #orderinglistcontent {
   position: relative;
   margin-left: 33px;
+  padding-top: 10px;
   color: #ffffff;
 }
 #orderinglistheader {
@@ -757,7 +787,8 @@ div#title {
   float: right;
 }
 #orderingeditphoto {
-  border-style: solid;
+  border: solid;
+  border-width: 2px;
   border-color: #cea96d;
   height: 220px;
   width: 175px;
@@ -771,6 +802,18 @@ div#title {
   border-color: #cea96d;
   height: 450px;
   width: 346px;
+}
+#orderingdeletebuttons {
+  position: relative;
+  font-size: 12pt;
+  margin-bottom: 10px;
+  float: left;
+}
+#orderingdeleteconfirm {
+  clear: both;
+  color: #ac3219;
+  font-size: large;
+  margin: 15px 0 20px 0;
 }
 /* Contact */
 #contactcontent {
@@ -857,7 +900,8 @@ div#title {
   border: 2px;
   border-style: solid;
   border-color: #cea96d;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
+  padding: 0;
 }
 .savebutton {
   font-size: 12pt;
@@ -898,10 +942,12 @@ div#title {
 .display-label,
 .editor-label {
   margin: 0 0 2px 0;
+  color: #000000;
 }
 .display-field,
 .editor-field {
   margin-bottom: 8px;
+  color: #000000;
 }
 textarea {
   position: relative;

@@ -1,4 +1,10 @@
-﻿;(function($) {
+﻿/*!
+ * Charltone instrument.detail
+ * Author: John Charlton
+ * Date: 2015-04
+ */
+
+; (function ($) {
 
     window.instrument = {};
 

@@ -1,4 +1,10 @@
-﻿;(function($) {
+﻿/*!
+ * Charltone file.upload
+ * Author: John Charlton
+ * Date: 2015-04
+ */
+
+; (function ($) {
 
     window.file = {};
 
@@ -10,7 +16,7 @@
                 maxImageHeight: 0,
             };
 
-            jQuery.extend(config, options);
+            $.extend(config, options);
 
             var fileIndex = 1;
             var totalFiles = 0;

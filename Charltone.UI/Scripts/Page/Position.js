@@ -1,4 +1,10 @@
-﻿var position = function() {
+﻿/*!
+* Charltone page.position
+* Author: John Charlton
+* Date: 2015-04
+*/
+
+var position = function () {
     var self = {
         set: function() {
             $(document).scroll(function() {

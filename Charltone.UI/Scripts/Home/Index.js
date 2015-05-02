@@ -1,4 +1,10 @@
-﻿; (function ($) {
+﻿/*!
+ * Charltone home.index
+ * Author: John Charlton
+ * Date: 2015-04
+ */
+
+; (function ($) {
 
     window.home = {};
 

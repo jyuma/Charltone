@@ -14,27 +14,27 @@
             </div>
             <div class="linehorizontal" id="contact"></div>
             <div id="contactinfo">
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.ContactName)
                 </div>
                 <div class="editor-field">
                     @Html.EditorFor(model => model.ContactName)
                     @Html.ValidationMessageFor(model => model.ContactName)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.ContactEmail)
                 </div>
                 <div class="editor-field">
                     @Html.EditorFor(model => model.ContactEmail)
                     @Html.ValidationMessageFor(model => model.ContactEmail)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.ContactPhone)
                 </div>
                 <div class="editor-field">
                     @Html.EditorFor(model => model.ContactPhone)
                 </div>
-                <div class="editor-label">
+                <div class="label label-default">
                     @Html.LabelFor(model => model.ContactMessage)
                 </div>
                 <div class="editor-field">
@@ -44,13 +44,13 @@
                     @{
                         if (Model.ContactName == null)
                         {
-                            <input class="savebutton" type="submit" value="Send" name="Command" />
+                            <input class="btn btn-primary active" type="submit" value="Send" name="Command" />
                         }
                         else
                         {
-                            <input class="savebutton" type="submit" value="Send" name="Command" disabled="disabled" />
+                            <input class="btn btn-primary disabled" type="submit" value="Send" name="Command" />
                         }
-                    }
+}
                 </div>
             </div>
             <div class="linevertical" id="contact"></div>
