@@ -233,7 +233,7 @@ div#title {
 }
 #homeeditlink {
   font-size: 12pt;
-  padding-right: 10px;
+  padding-right: 13px;
   float: right;
 }
 #homeuploadcontainer {
@@ -300,6 +300,7 @@ div#title {
 #aboutpage {
   width: 900px;
   background: url(images/tools_large_2_dark.jpg) repeat;
+  padding-bottom: 10px;
   overflow: hidden;
 }
 #aboutbanner {
@@ -348,12 +349,14 @@ div#title {
   clear: both;
   font-size: 16pt;
   color: #cea96d;
+  padding-bottom: 5px;
 }
 .aboutfieldcontent {
   position: relative;
   clear: both;
   font-size: 10pt;
   color: #ffffff;
+  padding-bottom: 18px;
 }
 /* Instruments */
 #instrlist {
@@ -369,7 +372,7 @@ div#title {
   margin-left: 33px;
 }
 #instrlistheader {
-  margin-top: 10px;
+  margin-top: 5px;
   position: relative;
   font-size: 12pt;
   font-weight: bold;
@@ -388,7 +391,8 @@ div#title {
 #instrlistinfomodel {
   position: relative;
   color: #cea96d;
-  padding: 0;
+  padding: 10px 0 0 0;
+  line-height: 0;
   font-size: 12pt;
   width: 260px;
 }
@@ -414,7 +418,7 @@ div#title {
   height: 320px;
 }
 .instrlistviewdetailslink {
-  padding-top: 5px;
+  padding-top: 2px;
 }
 /* Horizontal Line */
 .linehorizontal {
@@ -427,7 +431,11 @@ div#title {
 }
 .linehorizontal#about {
   width: 835px;
-  margin: 20px 0 15px 0;
+  margin: 25px 0 15px 0;
+}
+.linehorizontal#aboutbottom {
+  width: 835px;
+  margin: 0 0 15px 0;
 }
 .linehorizontal#contact {
   margin-bottom: 10px;
@@ -443,7 +451,7 @@ div#title {
 }
 .linehorizontal#instrument {
   width: 835px;
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
   border-top-style: dotted;
 }
 .linehorizontal#instrdetailtop {
@@ -716,11 +724,13 @@ label#instrdetailinfoheader {
   padding: 0 0 0 0;
   padding-bottom: 5px;
   width: 95px;
+  height: 25px;
 }
 .orderingtablecelllink {
   font-size: 9pt;
   border-style: none;
   padding: 0;
+  vertical-align: bottom;
   width: 150px;
 }
 #orderingtablecellphoto {

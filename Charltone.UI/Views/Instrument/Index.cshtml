@@ -21,12 +21,12 @@
             @Model.Banner
         </div>
         <div id="instrlistshowcarousel">
-            <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show();'>View Slides</button>
+            <button class="btn btn-info btn-sm" type="button" onclick='javascript:instrument.carousel.show();'>View Slides</button>
         </div>
         @if (Request.IsAuthenticated)
         {
             <div id="instrlistaddnew">
-                <button class="btn btn-success" type="button" onclick="location.href = '@Url.Action("Create", "Instrument")' ">Add</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Instrument")'">Add</button>
             </div>
         }
         <div class="linehorizontal" id="instrument"></div>
@@ -68,7 +68,7 @@
                                 }
                                 else
                                 {
-                                    <button class="btn btn-primary btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">View Details</button>
+                                    <button class="btn btn-info btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">Details</button>
                                 }
 
                             </div>

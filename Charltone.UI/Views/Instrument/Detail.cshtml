@@ -48,7 +48,7 @@
                 <button class="btn btn-default btn-sm" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
             </div>
             <div id="instrdetailshowcarousel">
-                <button class="btn btn-primary btn-sm" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>Slides</button>
+                <button class="btn btn-info btn-sm" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
             </div>
             @if (!@Model.IsAuthenticated)
             {

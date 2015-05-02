@@ -19,8 +19,8 @@
         @if (Request.IsAuthenticated)
         {
             <div class="editlink" id="orderingheadereditlnk">
-                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Ordering")' ">Add</button>
-                <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("EditHeader", "Ordering")' ">Edit Text</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Ordering")'">Add</button>
+                <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("EditHeader", "Ordering")'">Edit Text</button>
             </div>
         }
         <div id="orderinglistheader">
@@ -83,20 +83,19 @@
                         <td class="orderingtablecelllabel">
                             Description:
                         </td>
-                        <td class="orderingtablecell">
+                        <td rowspan="2" class="orderingtablecell">
                             @orderingInfo.Comments
                         </td>
                     </tr>
                     <tr>
-                        <td class="orderingtablecelllink">
+                        <td rowspan="2" class="orderingtablecelllink">
                             @if (Request.IsAuthenticated)
                             {
-                                <button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})' ">Edit</button>
+                                <button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button>
                             }
                         </td>
                     </tr>
                 </table>
-
                 <div class="linehorizontal" id="ordering"></div>
             }
         }
