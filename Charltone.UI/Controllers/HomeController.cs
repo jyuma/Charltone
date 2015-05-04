@@ -59,7 +59,6 @@ namespace Charltone.UI.Controllers
                      {
                          Introduction = content.Introduction, 
                          Greeting = content.Greeting,
-                         IsAuthenticated = Request.IsAuthenticated,
                          MaxImageWidth = Constants.HomePageImageSize.Width,
                          MaxImageHeight = Constants.HomePageImageSize.Height
                      };

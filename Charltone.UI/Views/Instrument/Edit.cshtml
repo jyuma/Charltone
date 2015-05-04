@@ -8,240 +8,168 @@
 <script>
     $(document).ready(function () {
         instrument.edit.init(
-            {
-                photoId: parseInt(@Model.DefaultPhotoId),
-                maxImageWidth: parseInt(@Model.MaxImageWidth),
-                maxImageHeight: parseInt(@Model.MaxImageHeight)
-            });
+        {
+            photoId: parseInt(@Model.DefaultPhotoId),
+            maxImageWidth: parseInt(@Model.MaxImageWidth),
+            maxImageHeight: parseInt(@Model.MaxImageHeight)
+        });
     });
 </script>
 
-<div id="instredit">
     @using (Html.BeginForm())
     {
-        <div class="instreditcontainer">
-            @Html.ValidationSummary(true)
-            <div class="instreditinfo">
-                <div class="instreditbuttons">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Cancel</button>
-                    <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = Model.ProductId })'">Photos</button>
-                    <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete", "Instrument", new { id = Model.ProductId })'">Delete</button>
-                    <div class="instreditisposted">
-                        @Html.LabelFor(model => Model.IsPosted)
-                        @Html.CheckBoxFor(model => Model.IsPosted)
+    <div id="instredit">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Edit Instrument @Model.Model @Model.Sn</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Cancel</button>
+                        <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = Model.ProductId })'">Photos</button>
+                        <button class="btn btn-danger" type="button" onclick="location.href='@Url.Action("Delete", "Instrument", new { id = Model.ProductId })'">Delete</button>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.InstrumentTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.Label("Model", new { @class = "label label-default" })
+                        @Html.TextBoxFor(model => model.Model, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div>
+                        @Html.Label("Serial Number", new { @class = "label label-default" })
+                        @Html.TextBoxFor(model => model.Sn, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.ClassificationTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.SubClassificationTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.StatusTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.StatusId, Model.StatusTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.DisplayPrice, new { @class = "label label-default" })
+                        @Html.TextBoxFor(model => model.DisplayPrice, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.Price, new { @class = "label label-default" })
+                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control", required = "required" })
                     </div>
                 </div>
-
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.InstrumentTypes)
+                <div class="col-md-1 pull-left col-md-push-0">
+                    @Html.LabelFor(model => Model.IsPosted, new { @class = "label label-success" })
+                    @Html.CheckBoxFor(model => Model.IsPosted, new { @class = "form-control" })
                 </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes)
+                <div class="col-md-1 pull-left">
+                    <img class="img-rounded" id="instreditphoto" alt="" />
                 </div>
-                <div class="label label-default">
-                    @Html.Label("Model/SN")
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Top, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Top, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.Model)
-                    @Html.ValidationMessageFor(model => model.Model)
-                    @Html.EditorFor(model => model.Sn)
-                    @Html.ValidationMessageFor(model => model.Sn)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.BackAndSides, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.BackAndSides, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ClassificationTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Body, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Body, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Binding, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Binding, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.SubClassificationTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Bridge, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Bridge, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.CaseDetail, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.CaseDetail, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.StatusTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Dimensions, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Dimensions, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.StatusId, Model.StatusTypes)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.EdgeDots, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.EdgeDots, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.DisplayPrice)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Faceplate, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Faceplate, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.DisplayPrice)
-                    @Html.ValidationMessageFor(model => model.DisplayPrice)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Finish, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Finish, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Price)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Fingerboard, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Fingerboard, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.Price)
-                    @Html.ValidationMessageFor(model => model.Price)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.FretMarkers, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.FretMarkers, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Top)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.FretWire, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.FretWire, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Top)
-                    @Html.ValidationMessageFor(model => model.Top)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Neck, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Neck, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.BackAndSides)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.NutWidth, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.NutWidth, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.BackAndSides)
-                    @Html.ValidationMessageFor(model => model.BackAndSides)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.PickGuard, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.PickGuard, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Body)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Pickup, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Pickup, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Body)
-                    @Html.ValidationMessageFor(model => model.Body)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.ScaleLength, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.ScaleLength, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Binding)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Strings, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Strings, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Binding)
-                    @Html.ValidationMessageFor(model => model.Binding)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Tailpiece, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Tailpiece, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Bridge)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Tuners, new { @class = "label label-default" })
+                    @Html.TextBoxFor(model => model.Tuners, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Bridge)
-                    @Html.ValidationMessageFor(model => model.Bridge)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Comments, new { @class = "label label-default" })
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", @maxlength = 200 })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.CaseDetail)
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.FunFacts, new { @class = "label label-default" })
+                    @Html.TextAreaFor(model => model.FunFacts, new { @class = "form-control", @maxlength = 200 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.CaseDetail)
-                    @Html.ValidationMessageFor(model => model.CaseDetail)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Dimensions)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Dimensions)
-                    @Html.ValidationMessageFor(model => model.Dimensions)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.EdgeDots)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.EdgeDots)
-                    @Html.ValidationMessageFor(model => model.EdgeDots)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Faceplate)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Faceplate)
-                    @Html.ValidationMessageFor(model => model.Faceplate)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Finish)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Finish)
-                    @Html.ValidationMessageFor(model => model.Finish)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Fingerboard)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Fingerboard)
-                    @Html.ValidationMessageFor(model => model.Fingerboard)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.FretMarkers)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.FretMarkers)
-                    @Html.ValidationMessageFor(model => model.FretMarkers)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.FretWire)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.FretWire)
-                    @Html.ValidationMessageFor(model => model.FretWire)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Neck)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Neck)
-                    @Html.ValidationMessageFor(model => model.Neck)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.NutWidth)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.NutWidth)
-                    @Html.ValidationMessageFor(model => model.NutWidth)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.PickGuard)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.PickGuard)
-                    @Html.ValidationMessageFor(model => model.PickGuard)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Pickup)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Pickup)
-                    @Html.ValidationMessageFor(model => model.Pickup)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ScaleLength)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.ScaleLength)
-                    @Html.ValidationMessageFor(model => model.ScaleLength)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Strings)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Strings)
-                    @Html.ValidationMessageFor(model => model.Strings)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Tailpiece)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Tailpiece)
-                    @Html.ValidationMessageFor(model => model.Tailpiece)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Tuners)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Tuners)
-                    @Html.ValidationMessageFor(model => model.Tuners)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Comments)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Comments)
-                    @Html.ValidationMessageFor(model => model.Comments)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.FunFacts)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.FunFacts)
-                    @Html.ValidationMessageFor(model => model.FunFacts)
-                </div>
-                <div class="instreditbuttons">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <button class="btn btn-primary" type="submit">Save</button>
                     <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Cancel</button>
                     <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = Model.ProductId })'">Photos</button>
@@ -249,9 +177,5 @@
                 </div>
             </div>
         </div>
-        <div>
-            <img class="instreditphotoimg" id="instreditphoto" alt="" />
-        </div>
+    </div>
     }
-
-</div>

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Charltone.Data.Repositories;
+﻿using Charltone.Data.Repositories;
 using Charltone.Domain.Entities;
 using Charltone.UI.Constants;
 using Charltone.UI.Extensions;
@@ -8,7 +7,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
@@ -303,7 +301,7 @@ namespace Charltone.UI.Controllers
                                         SubClassification = product.Instrument.SubClassification.SubClassificationDesc,
                                         ModelSn = string.Format("{0} {1}", product.Instrument.Model, product.Instrument.Sn),
                                         Status = product.ProductStatus.StatusDesc,
-                                        StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
+                                        StatusCssClass = GetStatusCssClass(product.ProductStatus.Id),
                                         Price = product.DisplayPrice,
                                         ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                                         NotPostedMessage = product.IsPosted ? string.Empty : Messages.NotPostedText,
@@ -318,6 +316,24 @@ namespace Charltone.UI.Controllers
                      };
 
             return vm;
+        }
+
+        private string GetStatusCssClass(int producstStatusTypeId)
+        {
+            var result = "default";
+            switch (producstStatusTypeId)
+            {
+                case ProductStatusTypeId.InProgress:
+                    result = "success";
+                    break;
+                case ProductStatusTypeId.NotForSale:
+                    result = "warning";
+                    break;
+                case ProductStatusTypeId.Sold:
+                    result = "danger";
+                    break;
+            }
+            return result;
         }
 
         private InstrumentDetailViewModel LoadInstrumentDetailViewModel(int productId)
@@ -336,7 +352,7 @@ namespace Charltone.UI.Controllers
                          ModelSn = string.Format("{0} {1}", instrument.Model, instrument.Sn),
                          Price = product.DisplayPrice,
                          Status = product.ProductStatus.StatusDesc,
-                         StatusCssClassId = Regex.Replace(product.ProductStatus.StatusDesc, @"\s", "").ToLower(),
+                         StatusCssClass = GetStatusCssClass(product.ProductStatus.Id),
                          ShowPrice = product.ProductStatus.Id == ProductStatusTypeId.Available,
                          DefaultPhotoId = product.GetDefaultPhotoId(),
                          MaxSaveImageWidth = InstrumentSaveImageSize.Width,

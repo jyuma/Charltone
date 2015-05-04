@@ -1,5 +1,4 @@
 ﻿@using Charltone.UI.ViewModels.Home;
-@using Charltone.UI.Helpers;
 
 @model HomeViewModel
 @{
@@ -18,31 +17,34 @@
 </script>
 
 <div id="home">
-    <div id="homecontent">
-        <div id="homeuploadeditcontainer" class="@(Model.IsAuthenticated ? "admin" : "hidden")">
-            <div id="homeupload">
-                <div class="label label-primary">
-                    <label>Change Picture</label>
+    <div class="container-fluid">
+        @if (Request.IsAuthenticated)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="fileupload" class="label label-success">Change Picture</label>
+                    <input id="fileupload" type="file" class="form-control" name="files[]" data-url="Home/Upload">
+                    <div class="progress-bar-success" id="progressbar"></div>
                 </div>
-                <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Home/Upload">
+                <div class="col-md-8">
+                    <span class="pull-right"><button class="btn btn-primary" type="button" onclick="location.href = '@Url.Action("Edit", "Home")'">Edit Text</button></span>
+                </div>
             </div>
-            <div id="progressbar"></div>
-            <div id="homeeditlink">
-                @if (Request.IsAuthenticated)
-                {
-                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("Edit", "Home")'">Edit Text</button>
-                }
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@Model.Introduction</h3>
             </div>
         </div>
-
-        <div id="homeintroduction">
-            @Model.Introduction
+        <div class="row">
+            <div class="col-md-12">
+                <span>@Model.Greeting</span>
+            </div>
         </div>
-        <div id="homegreeting">
-            @Model.Greeting
-        </div>
-        <div id="homeimage">
-            <img src='~/Content/images/homepage.jpg' alt='' />
+        <div class="row">
+            <div class="col-md-12">
+                <img class="img-rounded" id="homeimage" src='~/Content/images/homepage.jpg' alt='' />
+            </div>
         </div>
     </div>
 </div> 

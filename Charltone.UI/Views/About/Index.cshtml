@@ -6,40 +6,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="aboutpage">
-    <div id="abouteditlnk">
+<div id="about">
+    <div class="container-fluid">
         @if (Request.IsAuthenticated)
         {
-            <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "About")'">Edit Text</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="pull-right"><button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit", "About")'">Edit Text</button></span>
+                </div>
+            </div>
         }
-    </div>
-
-    <div id="about">
-        <div class="linehorizontal" id="about"></div>
-        <div class="aboutfield">
-            The Name
+        <div class="row">
+            <div class="col-md-12">
+                <h3>The Name</h3>
+            </div>
         </div>
-        <div class="aboutfieldcontent">
-            @Model.Name
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.Name</p>
+            </div>
         </div>
-        <div class="aboutfield">
-            The Company Name
+        <div class="row">
+            <div class="col-md-12">
+                <h3>The Company Name</h3>
+            </div>
         </div>
-        <div class="aboutfieldcontent">
-            @Model.CompanyName
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.CompanyName</p>
+            </div>
         </div>
-        <div class="aboutfield">
-            Origins
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Origins</h3>
+            </div>
         </div>
-        <div class="aboutfieldcontent">
-            @Model.Origins
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.Origins</p>
+            </div>
         </div>
-        <div class="aboutfield">
-            Materials
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Materials</h3>
+            </div>
         </div>
-        <div class="aboutfieldcontent">
-            @Model.Materials
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.Materials</p>
+            </div>
         </div>
-        <div class="linehorizontal" id="aboutbottom"></div>
     </div>
 </div>

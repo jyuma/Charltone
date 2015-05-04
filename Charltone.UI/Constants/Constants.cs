@@ -55,8 +55,8 @@
 
     public static class InstrumentImageSizeEdit
     {
-        public const int Width = 215;
-        public const int Height = 280;
+        public const int Width = 260;
+        public const int Height = 338;
     }
 
     public static class InstrumentThumbnailSize

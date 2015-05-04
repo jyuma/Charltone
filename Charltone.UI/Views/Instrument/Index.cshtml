@@ -1,5 +1,4 @@
 ﻿@using Charltone.UI.ViewModels.Instrument;
-@using Charltone.UI.Helpers;
 
 @model InstrumentListViewModel
 
@@ -16,68 +15,75 @@
 
 <div id="carousel-container"></div>
 <div id="instrlist">
-    <div id="instrlistcontent">
-        <div id="instrlistheader">
-            @Model.Banner
-        </div>
-        <div id="instrlistshowcarousel">
-            <button class="btn btn-info btn-sm" type="button" onclick='javascript:instrument.carousel.show();'>View Slides</button>
-        </div>
-        @if (Request.IsAuthenticated)
-        {
-            <div id="instrlistaddnew">
-                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Instrument")'">Add</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="instrlist-banner" class="col-md-8">
+                <h4>@Model.Banner</h4>
             </div>
-        }
-        <div class="linehorizontal" id="instrument"></div>
+
+            <div class="col-md-4">
+                <span class="pull-right">
+                    <button class="btn btn-info btn-sm" type="button" onclick='javascript:instrument.carousel.show();'>View Slides</button>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Instrument")'">Add</button>
+                    }
+                </span>
+            </div>
+        </div>
         @{
             var row = 1;
             var totalrows = Model.Instruments.Count();
+            var detailsLabel = Request.IsAuthenticated ? "Photos" : "Details";
+
             foreach (var inst in Model.Instruments)
             {
-                <div id="instrlistdetail">
-                    <div id="instrlistitem">
-                        <div>
-                            <div>
-                                <label class="@inst.StatusCssClassId">
-                                    @(inst.ShowPrice ? inst.Price : inst.Status)
-                                </label>
-                            </div>
-                            <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="@Url.Action("Detail", "Instrument", new { id = @inst.ProductId })">
-                                <img id="@inst.DefaultPhotoId" class="instrlistdefaultphoto" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
-                                                                                                                                       {
-                                                                                                                                           PhotoId = inst.DefaultPhotoId,
-                                                                                                                                           Width = Convert.ToInt32(@Model.MaxImageWidth),
-                                                                                                                                           Height = Convert.ToInt32(@Model.MaxImageHeight)
-                                                                                                                                       }) alt="" />
-                            </a>
-                            <div id="instrlistinfomodel">
-                                @inst.ModelSn
-                                <label id="instrlistinfonotposted">
-                                    @inst.NotPostedMessage
-                                </label>
-                            </div>
-                            <div id="instrlistinfodetail">
-                                @inst.Classification / @inst.SubClassification
-                            </div>
-                            <div class="instrlistviewdetailslink">
-                                @if (Request.IsAuthenticated)
-                                {
-                                    <button class="btn btn-primary btn-xs" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = inst.ProductId })'">Edit</button>
-                                    <button class="btn btn-info btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">Photos</button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-info btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">Details</button>
-                                }
-
-                            </div>
+                if (row == 1)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="linehorizontal"></div>
                         </div>
                     </div>
+                }
+
+                var rowClass = (0 == (row % 3) || row == totalrows) ? "row" : null;
+                <div class="@rowClass">
+                    <div id="instrlist-item" class="col-md-4">
+                        <div>
+                            <label class="label label-@inst.StatusCssClass">
+                                @(inst.ShowPrice ? inst.Price : inst.Status)
+                            </label>
+                        </div>
+                        <a id="@string.Format("img_{0}", @inst.DefaultPhotoId)" href="@Url.Action("Detail", "Instrument", new { id = @inst.ProductId })">
+                            <img class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel {
+                                                                                                                                        PhotoId = inst.DefaultPhotoId,
+                                                                                                                                        Width = Convert.ToInt32(@Model.MaxImageWidth),
+                                                                                                                                        Height = Convert.ToInt32(@Model.MaxImageHeight)}) alt="" />
+                        </a>
+                        <h4>@inst.ModelSn</h4>
+                        <span>@inst.Classification / @inst.SubClassification</span>
+                        <div>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <button class="btn btn-primary btn-xs" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = inst.ProductId })'">Edit</button>
+
+                            }
+                            <button class="btn btn-info btn-xs" type="button" onclick="location.href='@Url.Action("Detail", "Instrument", new { id = inst.ProductId })'">@detailsLabel</button>
+                            <label class="label label-danger">@inst.NotPostedMessage</label>
+                        </div>
+
+                    </div>
                 </div>
-                if (0 == (row % 3) || totalrows == row)
+
+                if ("row" == @rowClass)
                 {
-                    <div class="linehorizontal" id="instrument"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="linehorizontal"></div>
+                        </div>
+                    </div>
                 }
                 row++;
             }

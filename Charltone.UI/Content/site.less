@@ -17,8 +17,12 @@
 @colourHint: #fbd934;
 @colourDarkBrown: #63411D;
 @colourProgressBar: #0db239;
+@colourHeader: #cea96d;
 
 @widthBody: 900px;
+@widthContainer: 850px;
+@widthLine: 835px;
+
 .mainBorder {
     border: solid;
     border-width: 2px;
@@ -32,14 +36,24 @@
   background:         linear-gradient(180deg, #090806 10%, #3b2713 100%); /* W3C */
   }
 
+/* Bootstrap grid */
+.row {
+    padding: 0 15px 5px 5px;
+    margin-left: -5px;
+}
+.mainPadding {
+    padding: 10px 2px 20px 0;
+}
+
 /* Primary Layout */
 html {
   overflow-y: scroll;
 }
 body{
     background-color: @colourBody;
+    color: @colourWhite;
     font-size: 10pt;
-    font-family: Verdana, Helvetica, Sans-Serif;
+    font-family: "trebuchet ms", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -50,6 +64,10 @@ body{
 }
 label {
     margin: 0;
+}
+h2, h3, h4, h5 {
+    color: @colourHeader;
+    padding: 0;
 }
 a {
     &:link {
@@ -64,6 +82,7 @@ a {
     text-decoration: none;
     }
 }
+
 .ui-dialog-titlebar-close {
   visibility: hidden;
 }
@@ -202,20 +221,11 @@ div#title {
 }
 
 /* Carousel */
-.carousel-inner {
+/*.carousel-inner {
     height: 785px;
     h3, .h3, h4, .h4 {
         line-height: 0;
         font-family: "trebuchet ms", sans-serif;    
-    }
-}
-#carouselclose {
-    padding-top: 10px;
-    a {
-        font-size: 14pt;
-        &:hover {
-            cursor: pointer;
-        }
     }
 }
 #carouselimagecontainer {
@@ -228,213 +238,134 @@ div#title {
 }
 .carousel-image {
     .mainBorder;
+}*/
+
+/* Tool Tips*/
+.funfactstooltip {
+    position: absolute;
+	margin:8px;
+	padding:1px;
+	border:1px solid @colourBrown;
+    color: @colourDarkBrown;
+	background-color: @colourWhite;
+    font-size: 8pt;
+	z-index: 2;
+}
+.commentstooltip {
+    position: absolute;
+	margin:8px;
+	padding:1px;
+	border:1px solid @colourBrown;
+    color: @colourDarkBrown;
+	background-color: @colourWhite;
+    font-size: 8pt;
+	z-index: 2;
 }
 
 /* Home */
 #home {
     .gradients;
-    position: relative;
-    width: @widthBody;
-    padding-bottom: 20px;
-    overflow: hidden;
-}
-#homecontent {
-    margin: 0 20px 0 35px;
-}
-#homeeditlink {
-    font-size: 12pt;
-    padding-right: 13px;
-    float: right;
-}
-#homeuploadcontainer {
-    color: @colourWhite;
-    float: left;
-}
-#homeuploadeditcontainer {
-    padding-top: 10px;
-}
-#homeupload {
-    color: @colourWhite;
-    float: left;
-}
-#homeprogressbar {
-    color: @colourWhite;
-    float: left;
+    .mainPadding;
+    h3 {
+        padding: 0;
+        margin: 5px 0 5px 0;
+    }
+    img {
+        margin-top: 8px;
+    }
 }
 
-#homeintroduction {
-    font-size: 16pt;
-    color: @colourBrown;
-    padding: 15px 0 15px 0;
-    clear: both;
-}
-#homegreeting {
-    font-size: 11pt;
-    color: @colourWhite;
-    clear: both;
-}
 #homeimage {
-    margin: 25px 0 0 0;
-    width: 830px;
+    .mainBorder;
+    width: 840px;
     height: 530px;
-    border: 1px solid @colourBrown;
 }
 
 /* Home Edit */
-#homeeditcontent {
-    background-image: url(images/tools_large.jpg);
-    width: @widthBody;
-    padding-bottom: 20px;
-    overflow: hidden;
-}
-#homeeditcontainer {
-    position: relative;
-    left: 25px;
-}
-#homeeditinfo {
-    margin-top: 20px;
-    padding-bottom: 15px;
-    color: @colourWhite;
-    float: left;
-}
-#homeeditbuttons {
-    margin-bottom: 20px;
-    font-size: 12pt;
-}
-#homeeditimage {
-    margin: 0 0 0 25px;
-    width: 830px;
-    height: 530px;
-    border: 1px solid @colourBrown;
-    clear: both;
+#homeedit {
+   background-image: url(images/tools_large.jpg);
+   .mainPadding;
+       h3 {
+        margin: 0;
+        padding: 0;
+    }
+     textarea#Greeting {
+        height: 120px;
+    }
 }
 
 /* About */
-#aboutpage {
-    width: @widthBody;
-    background: url(images/tools_large_2_dark.jpg) repeat;
-    padding-bottom: 10px;
-    overflow: hidden;
-}
-#aboutbanner {
-    position: relative;
-    font-size: 2.2em;
-    margin-left: 30px;
-    margin-bottom: 40px;
-    top: 50px;
-    color: @colourBrown;
-}
 #about {
-    position: relative;
-    padding: 0 10px 0 0;
-    margin: 0 30px 0 30px;    
-    clear: both;
-}
-#abouteditlnk {
-    margin: 0;
-    padding: 10px 33px 5px 0;
-    float: right;
+    background: url(images/tools_large_2_dark.jpg) repeat;
+    .mainPadding;
+    h3 {
+        margin: 5px 0 5px 0;
+    }
 }
 
 /* About Edit */
 #aboutedit {
     background: url(images/tools_large.jpg);
-    width: @widthBody;
-    padding-bottom: 20px;
-    overflow: hidden;
-}
-#abouteditcontainer {
-    position: relative;
-    left: 25px;
-}
-#abouteditinfo {
-    position: relative;
-    margin-top: 20px;
-    color: @colourWhite;
-    float: left;
-}
-#abouteditbuttons {
-    position: relative;
-    margin-bottom: 20px;
-    font-size: 12pt;
-}
-.aboutfield {
-    position: relative;
-    clear: both;
-    font-size: 16pt;
-    color: @colourBrown;
-    padding-bottom: 5px;
-}
-.aboutfieldcontent {
-    position: relative;
-    clear: both;
-    font-size: 10pt;
-    color: @colourWhite;
-    padding-bottom: 18px;
+    .mainPadding;
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
+    textarea {
+        height: 150px;
+    }
 }
 
 /* Instruments */
 #instrlist {
-    /*background-color: darken(@colourDarkBrown, 20%);*/
     background: url(images/tools_large_2_dark.jpg);
-    width: @widthBody;
-    overflow: hidden;
-    padding-bottom: 30px;
-}
-#instrlistcontent {
-    top: 10px;
-    position: relative;
-    margin-left: 33px;
+    .mainPadding;
+    line-height: 1.5em;
+    #instrlist-banner {
+        margin-bottom: -10px;
+        h4 {
+            color: @colourIvory;
+        }
+        button {
+            padding-top: 50px;
+        }
+    }
+    #instrlist-item {
+        padding-bottom: 3px;
+        h4 {
+            margin: 2px 0 -3px 0;
+            padding: 0;
+        }
+    }
+    img {
+        .mainBorder;
+        width: 260px;
+        height: 320px;
+    }
 }
 
-#instrlistheader {
-    margin-top: 5px;
-    position: relative;
-    font-size: 12pt;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif, "Palatino Linotype";
-    color: @colourWhite;
-    float: left;
-}
-#instrlistaddnew {
-    padding-right: 5px;
-    float: right;
-}
-#instrlistshowcarousel {
-    float: right;
-    margin: 0 33px 10px 0;
-}
-#instrlistinfomodel {
-    position: relative;
-    color: @colourBrown;
-    padding: 10px 0 0 0;
-    line-height: 0;
-    font-size: 12pt;
-    width: 260px;
-}
-#instrlistitem {
-    float: left;
-    padding: 0 27px 10px 0;
-}
-#instrlistinfodetail {
-    color: @colourWhite;
-    font-size: 1em;
-}
-#instrlistinfonotposted {
-    color: @colourNotPosted;
-}
-#instrlistdetail {
-    width: 875px;
-}
-.instrlistdefaultphoto {
-    border: solid;
-    border-width: 2px;
-    border-color: @colourBrown;
-    width: 260px;
-    height: 320px;
-}
-.instrlistviewdetailslink {
-    padding-top: 2px;
+/* Instrument Edit */
+#instredit {
+    .mainPadding;
+    padding-top: 0;
+    background: url(images/tools_large.jpg);
+    button {
+        margin: 0 0 10px 0;
+    }
+    img { 
+	    .mainBorder;
+        width: 260px;
+        height: 338px;
+    }
+    input[type=checkbox][id=IsPosted] {
+        padding: 0;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+    }
+    textarea {
+        height: 100px;
+    }
 }
 
 /* Horizontal Line */
@@ -444,40 +375,9 @@ div#title {
     border-bottom: none;
     border-left: none;
     border-right: none;
+    width: @widthLine;
+    padding: 0;
     clear: both;
-    &#about {
-        width: 835px;
-        margin: 25px 0 15px 0;
-    }
-    &#aboutbottom {
-        width: 835px;
-        margin: 0 0 15px 0;
-    }
-    &#contact {
-        margin-bottom: 10px;
-        width: 650px;
-    }
-    &#orderingtop {
-        width: 835px;
-        margin: 10px 0 10px 0
-    }
-    &#ordering {
-        width: 835px;
-        margin: 8px 0 8px 0
-    }
-    &#instrument {
-       width: 835px;
-       margin: 0 0 5px 0;
-       border-top-style: dotted;
-    }
-    &#instrdetailtop {
-       width: 835px;
-       height: 1px;
-    }
-    &#instrdetailbottom {
-       width: 830px;
-       height: 1px;
-    }
 }
 
 /* Vertical Line */
@@ -502,343 +402,164 @@ div#title {
     }
 }
 
-/* Instrument Edit */
-#deleteconfirm {
+/* Delete Confirm */
+.delete-confirm {
     color: @colourDeleteConfirm;
-    position: relative;
-    font-size: 16pt;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    float: left;
-}
-#instrdeletebuttons {
-    position: relative;
-    font-size: 12pt;
-    margin-bottom: 10px;
-    clear: both;
-}
-#instredit {
-    background: url(images/tools_large.jpg);
-    width: @widthBody;
-    overflow: hidden;
-}
-.instreditcontainer {
-    position: relative;
-    margin-left: 30px;
-    color: @colourWhite;
-}
-.instreditbuttons {
-    position: relative;
-    margin-bottom: 15px;
-    font-size: 12pt;
-}
-.instreditisposted {
-    position: relative;
-    float: right;
-}
-.instreditinfo {
-    position: relative;
-    margin-top: 20px;
-    float: left;
-}
-.instreditphotoimg {
-	.mainBorder;
-    margin: 20px 0 0 18px;
-    width: 215px;
-    height: 280px;
-}
-
-/* Product Status */
-.available {
-    position: relative;
-    color: @colourAvailable;
-    padding: 0;
-    font-size: 10pt;
-}
-.sold {
-    position: relative;
-    color: @colourSold;
-    padding: 0;
-    width: 250px;
-    font-size: 10pt;
-}
-.notforsale {
-    position: relative;
-    color: @colourNotForSale;
-    padding: 0;
-    font-size: 10pt;
-}
-.inprogress {
-    position: relative;
-    color: @colourInProgress;
-    font-size: 10pt;
 }
 
 /* Instrument Detail */
-#instrdetailcontent {
+#instrdetail {
+    .mainPadding;
+    padding-top: 8px;
+    padding-bottom: 10px;
     background: url(images/tools_large_2_dark.jpg);
-    padding: 0 0 0 30px;
-}
-#instrdetaillinks {
-    position: relative;
-    font-size: 11pt;
-    padding: 5px 34px 5px 0;
-    width: 380px;
-    float: right;
-}
-#instrdetailbacktolist {
-    float: right;
-}
-#instrdetailshowcarousel {
-    float: right;
-    padding-right: 5px;
-}
-#commentshint {
-    margin-right: 5px;
-    float: right;
-}
-#funfactshint {
-    margin-right: 5px;
-    float: right;
-}
-#instrdetailheader {
-    color: @colourWhite;
-    padding: 10px 0 10px 0;
-}
-#instrdetailmodelstatus {
-    font-size: 13pt;
-    color: @colourBrown;
-    width: 180px;
-    padding-bottom: 5px;
-    float: left;
-}
-.instrdetailthumbnail {
-    width: 101px;
-    padding-right: 3px;
-    float: left;
-}
-#instrdetailthumbnailcontainer {
-    padding-top: 10px;
-    overflow: hidden;
-}
-.thumbnailbutton {
-    width: 20px;
-    height: 20px;
-    padding: 2px;
-}
-#instrdetaileditbutton {
-    padding-right: 5px;
-	float: right;
-}
-#instrdetailininfo {
-    position: relative;
-    margin-bottom: 10px;
-    width: @widthBody;
-    float: left;
-}
-label#instrdetailinfoheader {
-    position: relative;
-    padding: 0 0 0 14px;
-    font-size: 12pt;
-    padding-bottom: 5px;
-    color: @colourBrown;
-}
-#instrdetailmainphotolink {
-    margin: 12px 0 0 0;
-    float: left;
-}
-.instrdetailmainphoto {
-    .mainBorder;
-    width: 346px;
-    height: 450px;
-}
-#instrdetailinfo {
-    float: left;
-    padding-top: 10px;
-	color: @colourWhite;
-}
-#instrdetailupload {
-    width: 300px;
-    float: left;
-}
-#instrdetailuploadphoto {
-    position: relative;
-    width: 300px;
-    padding-bottom: 15px;
-    color: @colourWhite;
-}
-#instrdetailinfolist {
-    list-style: none;
-    font-size: 10pt;
-    font-family: Arial;
-    padding-left: 15px;
+    .row {
+        padding-bottom: 0;
+    }
+    h4 {
+        padding: 0;
+        margin: -2px 0 0 0;
+    }
+    h5 {
+        margin: 3px 0 5px 15px;
+        font-size: 14pt;
+    }
+    img {
+        .mainBorder;
+        margin-bottom: 5px;
+        width: 346px;
+        height: 450px;
+    }
+    ul {
+        padding: 0;
+        margin: 0 0 0 15px;
+        label {
+            color: @colourIvory;
+            font-style: italic;
+        }
+    }
     li {
         width: 455px;
         white-space: nowrap;
         overflow: hidden;
     }
-    label {
-        color: @colourIvory;
-        font-style: italic;
+    div.linehorizontal {
+        margin: 5px 0 10px 0;
     }
-}
-.funfactstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color: @colourWhite;
-    font-size: 8pt;
-	z-index: 2;
-}
-.commentstooltip {
-    position: absolute;
-	margin:8px;
-	padding:1px;
-	border:1px solid #cea96d;
-	background-color: @colourWhite;
-    font-size: 8pt;
-	z-index: 2;
+    div.linevertical {
+       margin: 0;
+       height: 445px;
+    }
+    div#instrdetailthumbnailcontainer {
+        padding-left: 15px;
+        .instrdetailthumbnail {
+            padding-right: 14px;
+            float: left;
+            img {
+                width: 92px;
+                height: 120px;
+                .mainBorder;
+            }
+            .thumbnailbutton {
+                width: 23px;
+                height: 23px;
+                padding: 2px;
+            }
+        }
+    }
 }
 
 /* Ordering */
-#orderinglist {
-    position: relative;
+#ordering {
     background: url(images/tools_large_2_dark.jpg);
-    width: @widthBody;
-    padding-bottom: 10px;
-    clear: both;
-}
-#orderingheadereditlnk {
-    margin: 2px 0 8px 0;
-}
-#orderinglistcontent {
-    position: relative;
-    margin-left: 33px;
-    padding-top: 10px;
-    color: @colourWhite;
-}
-#orderinglistheader {
-    width: 833px;
-}
-.orderingitemtable {
-    width: 840px;
-    height: 150px;
-    border-style:none;
-    padding-bottom: 3px;
-}
-#orderingphoto {
-    border: solid;
-    border-width: 1px;
-    border-color: @colourBrown;
-    width: 115px;        /*   width & height: H = W * 1.3 */
-    height: 150px;
-}
-.orderingtablecelllabel {
-    border-style:none;
-    font-style: italic;
-    vertical-align: text-top;
-    padding: 0 0 0 0;
-    padding-bottom: 5px;
-    width: 95px;
-    height: 25px;
-}
-.orderingtablecelllink {
-    font-size: 9pt;
-    border-style:none;
-    padding: 0;
-    vertical-align:bottom;
-    width: 150px;
-}
-#orderingtablecellphoto {
-    border-style:none;
-    padding: 0 0 0 0;
-    width: 125px;
-}
-.orderingtablecell {
-    border-style:none;
-    padding: 0;
-    vertical-align: text-top;
-    font-size: 9pt;
-}
-#orderingphotouploadlabel {
-    position: relative;
-    margin-left: 30px;
-    color: @colourWhite;
-    clear:both;
-}
-
-/* Ordering Edit Header */
-#orderingeditheader {
-    background: url(images/tools_large.jpg);
-    width: @widthBody;
-    padding-bottom: 10px;
-    overflow: hidden;
+    .mainPadding;
+    padding-top: 0;
+    .panel-group {
+        color: @colourBlack;
+        margin: 10px 0 0 0;
+        .panel-default > .panel-heading {
+            a:link {
+                color: @colourIvory;
+            }
+            a:hover {
+                color: @colourMenuHover;
+            }
+            background-color: @colourDarkBrown;
+            background-image: none;
+        }
+        div.panel-body {
+            background-color: @colourBrown;
+            color: @colourBlack;
+        }
+    }
+    button {
+        margin: 10px 0 -5px 0;
+    }
+    p {
+        margin: 5px 0 0 0;
+    }
+    img {
+        .mainBorder;
+        width: 115px;        /*   width & height: H = W * 1.3 */
+        height: 150px;
+        }
+    div#labels {
+        font-style: italic;
+        height: 150px;
+        div#buttons {
+            padding-top: 26px;
+            font-style: normal;
+        }
+    }
+    .linehorizontal {
+        padding: 0;
+        margin: 5px 0 5px 0;
+    }
+    h4 {
+        padding: 0;
+        font-size: 13pt;
+    }
 }
 
 /* Ordering Edit */
-#orderingedit {
-    background: url(images/tools_large.jpg) repeat;
-    width: @widthBody;
-    padding-bottom: 10px;
-    overflow: hidden;
-}
-#orderingeditinfo {
-    color: @colourWhite;
-}
-#orderingphotomodel {
-    float: left;
-    margin-right: 10px;
-}
-#orderingphotomodeldesc {
-    font-style:italic;
-}
-#orderingphotoheader {
-    clear: both;
-    color: @colourBrown;
-    font-size: large;
-    margin: 15px 0 20px 0;
-}
-#orderingeditcontainer {
-    position: relative;
-    color: @colourWhite;
-    margin-left: 25px;
-}
-#orderingeditbuttons {
-    position: relative;
-    margin: 20px 0 10px 0;
-    font-size: 12pt;
-}
-#orderingeditphotocontainer {
-    margin: 0 267px 0 0;
-    float: right;
-}
-#orderingeditphoto {
-	.mainBorder;
-    height: 220px;
-    width: 175px;
-}
-#orderingeditphotoupload {
-    color: @colourWhite;
+#orderingredit {
+    background: url(images/tools_large.jpg);
+    .mainPadding;
+    padding-top: 0;
+    button {
+        margin: 0 0 10px 0;
+    }
+    img { 
+	    .mainBorder;
+        width: 215px;
+        height: 280px;
+    }
+    input[type=checkbox][id=IsPosted] {
+        padding: 0;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+    }
 }
 
-.orderingmainphoto {
-	.mainBorder;
-    height: 450px;
-    width: 346px;
+/* Ordering Summary Edit */
+#orderingsummaryedit {
+    background: url(images/tools_large.jpg);
+    .mainPadding;
+    textarea {
+        height: 150px;
+    }
+    img {
+        .mainBorder;
+        height: 220px;
+        width: 175px;
+    }
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
 }
-#orderingdeletebuttons {
-   position: relative;
-   font-size: 12pt;
-   margin-bottom: 10px;
-   float: left;
-}
-#orderingdeleteconfirm {
-    clear: both;
-    color: @colourDeleteConfirm;
-    font-size: large;
-    margin: 15px 0 20px 0;
-}
+
 /* Contact */
 #contactcontent {
     position: relative;
@@ -915,24 +636,6 @@ label#instrdetailinfoheader {
     color: @colourWhite;
 }
 
-.editlink {
-   font-size: 12pt;
-}
-.thumbnail {
-    width: 92px;
-    height: 120px;
-    border: 2px;
-    border-style: solid;
-    border-color: @colourBrown;
-    margin-bottom: 6px;
-    padding: 0;
-}
-.savebutton {
-    font-size: 12pt;
-    width: 100px;
-    height: 30px;
-}
-
 /* Styles for validation */
 #validation-container { 
    position: relative;
@@ -986,62 +689,10 @@ textarea {
     font-family: Arial, sans-serif;
     font-size: 10pt;
     resize: none;
-
-    &#Summary,
-    &#Pricing,
-    &#PaymentOptions,
-    &#PaymentPolicy,
-    &#Shipping {
-        width: 830px;
-        height: 75px;
-    }
-    &#Top,
-    &#BackAndSides,
-    &#Binding,
-    &#Body,
-    &#Bridge,
-    &#CaseDetail,
-    &#Dimensions,
-    &#EdgeDots,
-    &#Faceplate,
-    &#Finish,
-    &#Fingerboard,
-    &#FretMarkers,
-    &#FretWire,
-    &#Neck,
-    &#NutWidth,
-    &#PickGuard,
-    &#Pickup,
-    &#ScaleLength,
-    &#Strings,
-    &#Tuners,
-    &#Tailpiece,
     &#TypicalPrice {
-        width: 600px;
         height: 40px;
     }
-    &#Comments, 
-    &#FunFacts {
-        width: 600px;
-        height: 100px;
-        }
-    &#Name,
-    &#CompanyName,
-    &#Origins,
-    &#Materials {
-        width: 800px;
-        height: 100px;
-    }
-    &#Introduction {
-        width: 825px;
-        height: 50px;
-    }
-    &#Greeting {
-        width: 825px;
-        height: 100px;
-    }
     &#ContactMessage {
-        width: 350px;
         height: 80px;
     }
 }

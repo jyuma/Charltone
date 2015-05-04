@@ -226,7 +226,7 @@
     <Compile Include="ViewModels\Ordering\OrderingEditViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\Ordering\OrderingHeaderEditViewModel.cs" />
+    <Compile Include="ViewModels\Ordering\OrderingSummaryEditViewModel.cs" />
     <Compile Include="ViewModels\Ordering\OrderingListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +369,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Ordering\Delete.cshtml" />
-    <Content Include="Views\Ordering\EditHeader.cshtml" />
+    <Content Include="Views\Ordering\EditSummary.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />

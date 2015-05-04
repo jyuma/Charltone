@@ -13,8 +13,6 @@
             var config = {
                 productId: 0,
                 defaultPhotoId: 0,
-                comments: "",
-                funfacts: "",
                 isAuthenticated: false,
                 maxSaveImageWidth: 0,
                 maxSaveImageHeight: 0,
@@ -36,7 +34,6 @@
                 function (data) {
                     photos = data;
                     totalPhotos = photos.length;
-                    bindTooltips();
                     createThumbnails();
                     bindZoom(currentPhotoId);
                     file.upload.init(
@@ -68,7 +65,7 @@
                 $(divThumbnail).attr('id', 'instrdetailthumbnail_' + id);
                 $(divThumbnail).addClass('instrdetailthumbnail');
 
-                var image = '<a id=' + "img_" + id + ' href="javascript:;"><img class="thumbnail" src=' + site.url + 'Instrument/GetThumbnail/' + id + ' alt="" /></a>';
+                var image = '<a id=' + "img_" + id + ' href="javascript:;"><img class="img-rounded" src=' + site.url + 'Instrument/GetThumbnail/' + id + ' alt="" /></a>';
                 $(divThumbnail).append(image);
 
                 if (config.isAuthenticated) {
@@ -222,57 +219,6 @@
 
                 $(inputCurrentDelete).attr('disabled', 'disabled').css(cssInputDisabled);
                 $(inputDefaultDelete).attr('disabled', 'disabled').css(cssInputDisabled);
-            };
-
-            // Tool Tips
-            function bindTooltips() {
-                $("a#commentshint").bind(
-                {
-                    mousemove: changeCommentsToolTipPos,
-                    mouseenter: showCommentsToolTip,
-                    mouseleave: hideCommentsToolTip
-                });
-
-                $("a#funfactshint").bind(
-                {
-                    mousemove: changeFunFactsToolTipPos,
-                    mouseenter: showFunFactsToolTip,
-                    mouseleave: hideFunFactsToolTip
-                });
-            };
-
-            function changeFunFactsToolTipPos(event) {
-                var tooltipX = event.pageX - 8;
-                var tooltipY = event.pageY + 8;
-                $('div.funfactstooltip').css({ top: tooltipY, left: tooltipX });
-            };
-
-            function showFunFactsToolTip(event) {
-                $('div.funfactstooltip').remove();
-                $('<div class="funfactstooltip">' + config.funfacts + '</div>')
-                    .appendTo('body');
-                changeFunFactsToolTipPos(event);
-            };
-
-            function hideFunFactsToolTip() {
-                $('div.funfactstooltip').remove();
-            };
-
-            function changeCommentsToolTipPos(event) {
-                var tooltipX = event.pageX - 8;
-                var tooltipY = event.pageY + 8;
-                $('div.commentstooltip').css({ top: tooltipY, left: tooltipX });
-            };
-
-            function showCommentsToolTip(event) {
-                $('div.commentstooltip').remove();
-                $('<div class="commentstooltip">' + config.comments + '</div>')
-                    .appendTo('body');
-                changeCommentsToolTipPos(event);
-            };
-
-            function hideCommentsToolTip() {
-                $('div.commentstooltip').remove();
             };
         }
     }

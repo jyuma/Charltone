@@ -26,7 +26,7 @@ namespace Charltone.UI.ViewModels.Instrument
         public string SubClassification { get; set; }
         public string ModelSn { get; set; }
         public string Status { get; set; }
-        public string StatusCssClassId { get; set; }
+        public string StatusCssClass { get; set; }
         public string Price { get; set; }
         public bool ShowPrice { get; set; }
         public int DefaultPhotoId { get; set; }

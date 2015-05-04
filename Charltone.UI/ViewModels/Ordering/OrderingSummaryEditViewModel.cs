@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Charltone.UI.ViewModels.Ordering
 {
-    public class OrderingHeaderEditViewModel
+    public class OrderingSummaryEditViewModel
     {
         [Required(ErrorMessage = "Summary is required")]
         [StringLength(1000, ErrorMessage = "Summary cannot exceed 1000 characters")]

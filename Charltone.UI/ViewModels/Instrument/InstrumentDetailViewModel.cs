@@ -11,7 +11,7 @@ namespace Charltone.UI.ViewModels.Instrument
         public int ProductId { get; set; }
         public bool IsAuthenticated { get; set; }
         public string Status { get; set; }
-        public string StatusCssClassId { get; set; }
+        public string StatusCssClass { get; set; }
         public string Price { get; set; }
         public bool ShowPrice { get; set; }
         public int DefaultPhotoId { get; set; }

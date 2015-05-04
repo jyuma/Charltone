@@ -119,14 +119,14 @@ namespace Charltone.UI.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult EditHeader()
+        public ActionResult EditSummary()
         {
-            return View(LoadOrderingHeaderEditViewModel());
+            return View(LoadOrderingSummaryEditViewModel());
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult EditHeader(OrderingHeaderEditViewModel viewModel)
+        public ActionResult EditHeader(OrderingSummaryEditViewModel viewModel)
         {
             UpdateOrderingHeaderContent(viewModel);
 
@@ -244,11 +244,11 @@ namespace Charltone.UI.Controllers
             return vm;
         }
 
-        private OrderingHeaderEditViewModel LoadOrderingHeaderEditViewModel()
+        private OrderingSummaryEditViewModel LoadOrderingSummaryEditViewModel()
         {
             var headerContent = _headerContent.GetAll().Single();
 
-            var vm = new OrderingHeaderEditViewModel
+            var vm = new OrderingSummaryEditViewModel
             {
                 Summary = headerContent.Summary,
                 Pricing = headerContent.Pricing,
@@ -280,7 +280,7 @@ namespace Charltone.UI.Controllers
             _orderings.Update(ordering);
         }
 
-        private void UpdateOrderingHeaderContent(OrderingHeaderEditViewModel viewModel)
+        private void UpdateOrderingHeaderContent(OrderingSummaryEditViewModel viewModel)
         {
             var headerContent = _headerContent.GetAll().Single();
 

@@ -8,48 +8,48 @@
 <div id="aboutedit">
     @using (Html.BeginForm())
     {
-        <div id="abouteditcontainer">
-            @Html.ValidationSummary(true)
-            <div id="abouteditinfo">
-                <div id="abouteditbuttons">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "About")'">Cancel</button>
+        <div class="container-fluid">
+            <div class="row">                
+                <div class="col-md-4">
+                    <h3>Edit About Text</h3>
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Name)
+                <div class="col-md-8 ">
+                    <span class="pull-right">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "About")'">Cancel</button>
+                    </span>
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Name)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Name)
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Name, new { @class = "label label-default" })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.CompanyName)
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Name, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.CompanyName)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.CompanyName)
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.CompanyName, new { @class = "label label-default" })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Origins)
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.CompanyName, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Origins)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Origins)
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Origins, new { @class = "label label-default" })
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Materials)
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Origins, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Materials)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Materials)
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Materials, new { @class = "label label-default" })
+                </div>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Materials, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
             </div>
         </div>

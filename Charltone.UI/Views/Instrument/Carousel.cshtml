@@ -6,6 +6,41 @@
     ViewBag.Title = "Carousel";
 }
 
+<style>
+    .carousel-inner {
+        height: 785px;
+    }
+    .carousel-inner h3,
+    .carousel-inner .h3,
+    .carousel-inner h4,
+    .carousel-inner .h4 {
+        line-height: 0;
+        font-family: "trebuchet ms", sans-serif;
+    }
+    #carouselclose {
+        padding-top: 10px;
+    }
+    #carouselclose a {
+        font-size: 14pt;
+    }
+    #carouselclose a:hover {
+        cursor: pointer;
+    }
+    #carouselimagecontainer {
+        padding-top: 10px;
+    }
+    .item {
+        background: #333;
+        text-align: center;
+        height: 790px !important;
+    }
+    .carousel-image {
+        border: solid;
+        border-width: 2px;
+        border-color: #cea96d;
+    }
+</style>
+
 <div>
     <div id="instrCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
         <!-- Close Button -->

@@ -1,8 +1,7 @@
-﻿@using Charltone.UI.Helpers
-@using Charltone.UI.ViewModels.Instrument;
+﻿@using Charltone.UI.ViewModels.Instrument;
 
 @model InstrumentDetailViewModel
-           
+
 @{
     ViewBag.Title = "Instrument Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,8 +13,6 @@
         instrument.detail.init({
             productId: parseInt(@Model.ProductId),
             defaultPhotoId: parseInt(@Model.DefaultPhotoId),
-            comments: "@Model.Comments",
-            funfacts: "@Model.FunFacts",
             isAuthenticated: '@(Model.IsAuthenticated)' == 'True',
             maxSaveImageWidth: parseInt(@Model.MaxSaveImageWidth),
             maxSaveImageHeight: parseInt(@Model.MaxSaveImageHeight),
@@ -24,70 +21,76 @@
             maxZoomImageWidth: parseInt(@Model.MaxZoomImageWidth),
             maxZoomImageHeight: parseInt(@Model.MaxZoomImageHeight)
         });
+        $("a#comments").tooltip();
+        $("a#funfacts").tooltip();
     });
 </script>
 
-<div id="instrdetailcontent">
-    <div id='carousel-container'></div>
-    <div id='dialog-image-container'></div>
-    <div id="instrdetailheader">
-        <div id="instrdetailmodelstatus">
-            @Model.ModelSn
-            <div class="@Model.StatusCssClassId">
-                @(Model.ShowPrice ? Model.Price : Model.Status)
-            </div>
-        </div>
-        <div id ="instrdetailupload">
-            <div id="instrdetailuploadphoto" class="@(Request.IsAuthenticated ? "admin" : "hidden")">
-                <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple>
-            </div>
-        </div>
+<div id='carousel-container'></div>
+<div id='dialog-image-container'></div>
 
-        <div id="instrdetaillinks">
-            <div id ="instrdetailbacktolist">
-                <button class="btn btn-default btn-sm" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
+<div id="instrdetail">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <h4>@Model.ModelSn</h4>
+                <label class="label label-@Model.StatusCssClass">
+                    @(@Model.ShowPrice ? @Model.Price : @Model.Status)
+                </label>
             </div>
-            <div id="instrdetailshowcarousel">
-                <button class="btn btn-info btn-sm" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
+            <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+                {
+                    <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple />
+                }
             </div>
-            @if (!@Model.IsAuthenticated)
-            {
-                if (!@Model.Comments.IsEmpty())
-                {
-                    <div>
-                        <a id="commentshint" class="btn btn-success btn-sm">Comments</a>
-                    </div>
-                }
-                if (!@Model.FunFacts.IsEmpty())
-                {
-                    <div>
-                        <a id="funfactshint" class="btn btn-success btn-sm">Fun Facts</a>
-                    </div>
-                }
-            }
-            else
-            {
-                <div id="instrdetaileditbutton">
-                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
+
+            <div class="col-md-7">
+                <div class="pull-right">
+                    @if (!@Model.IsAuthenticated)
+                    {
+                        if (!@Model.Comments.IsEmpty())
+                        {
+                            <a id="comments" class="btn btn-success" data-original-title="@Model.Comments">Comments</a>
+                        }
+                        if (!@Model.FunFacts.IsEmpty())
+                        {
+                            <a id="funfacts" class="btn btn-success" data-original-title="@Model.FunFacts">Fun Facts</a>
+                        }
+                    }
+                    else
+                    {
+                        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
+                    }
+                    <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
+                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
                 </div>
-            }
+            </div>
         </div>
-        
-        <div class="linehorizontal" id="instrdetailtop"></div>
-
-        <div id="instrdetailininfo">
-            <a id="instrdetailmainphotolink" href="javascript:;">
-                <img id="currentphoto" class="instrdetailmainphoto" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
-                                                                                                              {
-                                                                                                                  PhotoId = Convert.ToInt32(@Model.DefaultPhotoId),
-                                                                                                                  Width = Convert.ToInt32(@Model.MaxDisplayImageWidth),
-                                                                                                                  Height = Convert.ToInt32(@Model.MaxDisplayImageHeight)
-                                                                                                              }) alt="" />
-            </a>
-            <div class="linevertical" id="instrdetail"></div>
-            <div id="instrdetailinfo">
-                <label id="instrdetailinfoheader">@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</label>
-                <ul id="instrdetailinfolist">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="linehorizontal"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="pull-left">
+                    <a id="instrdetailmainphotolink" href="javascript:;">
+                        <img id="currentphoto" class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
+                                                                                                             {
+                                                                                                                 PhotoId = Convert.ToInt32(@Model.DefaultPhotoId),
+                                                                                                                 Width = Convert.ToInt32(@Model.MaxDisplayImageWidth),
+                                                                                                                 Height = Convert.ToInt32(@Model.MaxDisplayImageHeight)
+                                                                                                             }) alt="" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="linevertical" id="instrdetail"></div>
+            </div>
+            <div class="col-md-6 col-md-pull-1">
+                <h5>@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</h5>
+                <ul>
                     @if (!@Model.Top.IsEmpty())
                     {
                         <li>
@@ -219,7 +222,11 @@
                 </ul>
             </div>
         </div>
-        <div class="linehorizontal" id="instrdetailbottom"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="linehorizontal"></div>
+            </div>
+        </div>
         <div id="instrdetailthumbnailcontainer"></div>
     </div>
 </div>

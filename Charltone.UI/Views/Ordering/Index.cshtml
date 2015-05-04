@@ -1,5 +1,4 @@
 ﻿@using Charltone.UI.ViewModels.Ordering;
-@using Charltone.UI.Helpers;
 
 @model OrderingListViewModel
 @{
@@ -9,94 +8,111 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#orderinglistheader").accordion();
         position.set();
     });
 </script>
 
-<div id="orderinglist">
-    <div id="orderinglistcontent">
+<div id="ordering">
+    <div class="container-fluid">
         @if (Request.IsAuthenticated)
         {
-            <div class="editlink" id="orderingheadereditlnk">
-                <button class="btn btn-success btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Ordering")'">Add</button>
-                <button class="btn btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("EditHeader", "Ordering")'">Edit Text</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "Ordering")'">Add</button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("EditSummary", "Ordering")'">Edit Text</button>
+                    </div>
+                </div>
             </div>
         }
-        <div id="orderinglistheader">
-            <h3>Ordering</h3>
-            <div>
-                @Model.HeaderInfo.Summary
-            </div>
-            <h3>Pricing</h3>
-            <div>
-                @Model.HeaderInfo.Pricing
-            </div>
-            <h3>Payment Options</h3>
-            <div>
-                @Model.HeaderInfo.PaymentOptions
-            </div>
-            <h3>Payment Policy</h3>
-            <div>
-                @Model.HeaderInfo.PaymentPolicy
-            </div>
-            <h3>Shipping</h3>
-            <div>
-                @Model.HeaderInfo.Shipping
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Ordering</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @Model.HeaderInfo.Summary
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Pricing</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @Model.HeaderInfo.Pricing
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Payment Policy</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @Model.HeaderInfo.PaymentPolicy
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Shipping</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @Model.HeaderInfo.Shipping
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="linehorizontal" id="orderingtop"></div>
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="linehorizontal"></div>
+            </div>
+        </div>
         @{
             foreach (var orderingInfo in Model.OrderingInfo)
             {
-                <table class="orderingitemtable">
-                    <tr>
-                        <td rowspan="5" id="orderingtablecellphoto">
-                            <img id="orderingphoto" src=@Url.Action("GetThumbnail", "Ordering", new { id = orderingInfo.Id }) alt="" />
-                        </td>
-                        <td class="orderingtablecelllabel">
-                            Model:
-                        </td>
-                        <td class="orderingtablecell">
-                            @orderingInfo.Model
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="orderingtablecelllabel">
-                            Style:
-                        </td>
-                        <td class="orderingtablecell">
-                            @orderingInfo.Style
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="orderingtablecelllabel">
-                            Typical Price:
-                        </td>
-                        <td class="orderingtablecell">
-                            @orderingInfo.TypicalPrice
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="orderingtablecelllabel">
-                            Description:
-                        </td>
-                        <td rowspan="2" class="orderingtablecell">
-                            @orderingInfo.Comments
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2" class="orderingtablecelllink">
-                            @if (Request.IsAuthenticated)
-                            {
-                                <button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button>
-                            }
-                        </td>
-                    </tr>
-                </table>
-                <div class="linehorizontal" id="ordering"></div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <img class="img-rounded" src=@Url.Action("GetThumbnail", "Ordering", new { id = orderingInfo.Id }) alt="" />
+                    </div>
+                    <div class="col-md-2" id="labels">
+                        <div><p>Model:</p></div>
+                        <div><p>Style:</p></div>
+                        <div><p>Typical Price:</p></div>
+                        <div><p>Description:</p></div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div id="buttons"><button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button></div>
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        <div><p>@orderingInfo.Model</p></div>
+                        <div><p>@orderingInfo.Style</p></div>
+                        <div><p>@orderingInfo.TypicalPrice</p></div>
+                        <div><p>@orderingInfo.Comments</p></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="linehorizontal" id="ordering"></div>
+                    </div>
+                </div>
             }
         }
     </div>

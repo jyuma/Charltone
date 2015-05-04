@@ -6,68 +6,55 @@
 }
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         ordering.edit.init({ orderingId: parseInt(@Model.Id) });
     });
 </script>
 
-<div id="orderingedit">
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true)
-        <div id="orderingeditcontainer">
-            <div id="orderingeditinfo">
-                <div id="orderingeditphotocontainer">
-                    <img id="orderingeditphoto" alt="" />
+@using (Html.BeginForm())
+{
+    <div id="orderingredit">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Create a new Ordering</h3>
                 </div>
-                <div id="orderingeditbuttons">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Ordering")'">Cancel</button>
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.InstrumentTypes)
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Model)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.Model)
-                    @Html.ValidationMessageFor(model => model.Model)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ClassificationTypes)
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.SubClassificationTypes)
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.TypicalPrice)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.TypicalPrice)
+            </div>
+            <div class="row">
+                <div class="col-md-8">
                     <div>
-                        @Html.ValidationMessageFor(model => model.TypicalPrice)
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Ordering")'">Cancel</button>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.InstrumentTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.InstrumentTypeId, Model.InstrumentTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.Label("Model", new { @class = "label label-default" })
+                        @Html.TextBoxFor(model => model.Model, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.ClassificationTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.ClassificationId, Model.ClassificationTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.SubClassificationTypes, new { @class = "label label-default" })
+                        @Html.DropDownListFor(x => x.SubClassificationId, Model.SubClassificationTypes, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.TypicalPrice, new { @class = "label label-default" })
+                        @Html.TextAreaFor(model => model.TypicalPrice, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.Comments, new { @class = "label label-default" })
+                        @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", required = "required" })
                     </div>
                 </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.Comments)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.Comments)
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Comments)
-                    </div>
+                <div class="col-md-4">
+                    <img class="img-rounded" id="orderingeditphoto" alt="" />
                 </div>
             </div>
         </div>
-    }
-</div>
+    </div>
+}
