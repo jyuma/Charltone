@@ -6,7 +6,17 @@
     ViewBag.Title = "Instrument Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .entry {
+    position: relative;
+    right: -200px;
+    width: 500px;
+}
+.entry-tooltip-positioner {
+    position: fixed !important;
+    left: -130px !important;
+}
+</style>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -21,212 +31,223 @@
             maxZoomImageWidth: parseInt(@Model.MaxZoomImageWidth),
             maxZoomImageHeight: parseInt(@Model.MaxZoomImageHeight)
         });
-        $("a#comments").tooltip();
-        $("a#funfacts").tooltip();
+        $("#comments").tooltip({ content: "@Model.Comments" });
+        $("#funfacts").tooltip({ content: "@Model.FunFacts" });
     });
 </script>
 
-<div id='carousel-container'></div>
-<div id='dialog-image-container'></div>
+<!-- for some reason this needs to be included again for the tooltips to work -->
+<script src="~/Scripts/js/jquery-ui.min.js"></script>
+<!-- for some reason this needs to be included again for the tooltips to work -->
 
-<div id="instrdetail">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <h4>@Model.ModelSn</h4>
-                <label class="label label-@Model.StatusCssClass">
-                    @(@Model.ShowPrice ? @Model.Price : @Model.Status)
-                </label>
-            </div>
-            <div class="col-md-3">
-                @if (Request.IsAuthenticated)
-                {
-                    <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple />
-                }
-            </div>
+<style>
+    label {
+        display: inline-block;
+        width: 5em;
+    }
+</style>
 
-            <div class="col-md-7">
-                <div class="pull-right">
-                    @if (!@Model.IsAuthenticated)
+    <div id='carousel-container'></div>
+    <div id='zoom-dialog-container'></div>
+
+    <div id="instrdetail">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>@Model.ModelSn</h4>
+                    <label class="label label-@Model.StatusCssClass">
+                        @(@Model.ShowPrice ? @Model.Price : @Model.Status)
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    @if (Request.IsAuthenticated)
                     {
-                        if (!@Model.Comments.IsEmpty())
-                        {
-                            <a id="comments" class="btn btn-success" data-original-title="@Model.Comments">Comments</a>
-                        }
-                        if (!@Model.FunFacts.IsEmpty())
-                        {
-                            <a id="funfacts" class="btn btn-success" data-original-title="@Model.FunFacts">Fun Facts</a>
-                        }
+                        <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple />
                     }
-                    else
-                    {
-                        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
-                    }
-                    <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
-                    <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="pull-right">
+                        @if (!@Model.IsAuthenticated)
+                        {
+                            if (!@Model.Comments.IsEmpty())
+                            {
+                                <a id="comments" class="btn btn-success" title="">Comments</a>
+                            }
+                            if (!@Model.FunFacts.IsEmpty())
+                            {
+                                <a id="funfacts" class="btn btn-success" title="">Fun Facts</a>
+                            }
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
+                        }
+                        <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
+                        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="linehorizontal"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="linehorizontal"></div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <div class="pull-left">
-                    <a id="instrdetailmainphotolink" href="javascript:;">
-                        <img id="currentphoto" class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="pull-left">
+                        <a id="instrdetailmainphotolink" href="javascript:;">
+                            <img id="currentphoto" class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
                                                                                                              {
                                                                                                                  PhotoId = Convert.ToInt32(@Model.DefaultPhotoId),
                                                                                                                  Width = Convert.ToInt32(@Model.MaxDisplayImageWidth),
                                                                                                                  Height = Convert.ToInt32(@Model.MaxDisplayImageHeight)
                                                                                                              }) alt="" />
-                    </a>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="linevertical"></div>
+                </div>
+                <div class="col-md-6 col-md-pull-1">
+                    <h5>@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</h5>
+                    <ul>
+                        @if (!@Model.Top.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Top) - @Html.DisplayFor(model => model.Top)
+                            </li>
+                        }
+                        @if (!@Model.BackAndSides.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.BackAndSides) - @Html.DisplayFor(model => model.BackAndSides)
+                            </li>
+                        }
+                        @if (!@Model.Body.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Body) - @Html.DisplayFor(model => model.Body)
+                            </li>
+                        }
+                        @if (!@Model.Binding.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Binding) - @Html.DisplayFor(model => model.Binding)
+                            </li>
+                        }
+                        @if (!@Model.Bridge.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Bridge) - @Html.DisplayFor(model => model.Bridge)
+                            </li>
+                        }
+                        @if (!@Model.CaseDetail.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.CaseDetail) - @Html.DisplayFor(model => model.CaseDetail)
+                            </li>
+                        }
+                        @if (!@Model.Dimensions.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Dimensions) - @Html.DisplayFor(model => model.Dimensions)
+                            </li>
+                        }
+                        @if (!@Model.EdgeDots.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.EdgeDots) - @Html.DisplayFor(model => model.EdgeDots)
+                            </li>
+                        }
+                        @if (!@Model.Faceplate.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Faceplate) - @Html.DisplayFor(model => model.Faceplate)
+                            </li>
+                        }
+                        @if (!@Model.Finish.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Finish) - @Html.DisplayFor(model => model.Finish)
+                            </li>
+                        }
+                        @if (!@Model.Fingerboard.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Fingerboard) - @Html.DisplayFor(model => model.Fingerboard)
+                            </li>
+                        }
+                        @if (!@Model.FretMarkers.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.FretMarkers) - @Html.DisplayFor(model => model.FretMarkers)
+                            </li>
+                        }
+                        @if (!@Model.FretWire.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.FretWire) - @Html.DisplayFor(model => model.FretWire)
+                            </li>
+                        }
+                        @if (!@Model.Neck.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Neck) - @Html.DisplayFor(model => model.Neck)
+                            </li>
+                        }
+                        @if (!@Model.NutWidth.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.NutWidth) - @Html.DisplayFor(model => model.NutWidth)
+                            </li>
+                        }
+
+                        @if (!@Model.PickGuard.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.PickGuard) - @Html.DisplayFor(model => model.PickGuard)
+                            </li>
+                        }
+
+                        @if (!@Model.Pickup.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Pickup) - @Html.DisplayFor(model => model.Pickup)
+                            </li>
+                        }
+                        @if (!@Model.ScaleLength.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.ScaleLength) - @Html.DisplayFor(model => model.ScaleLength)
+                            </li>
+                        }
+                        @if (!@Model.Strings.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Strings) - @Html.DisplayFor(model => model.Strings)
+                            </li>
+                        }
+                        @if (!@Model.Tailpiece.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Tailpiece) - @Html.DisplayFor(model => model.Tailpiece)
+                            </li>
+                        }
+                        @if (!@Model.Tuners.IsEmpty())
+                        {
+                            <li>
+                                @Html.LabelFor(model => model.Tuners) - @Html.DisplayFor(model => model.Tuners)
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-1">
-                <div class="linevertical" id="instrdetail"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="linehorizontal"></div>
+                </div>
             </div>
-            <div class="col-md-6 col-md-pull-1">
-                <h5>@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</h5>
-                <ul>
-                    @if (!@Model.Top.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Top) - @Html.DisplayFor(model => model.Top)
-                        </li>
-                    }
-                    @if (!@Model.BackAndSides.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.BackAndSides) - @Html.DisplayFor(model => model.BackAndSides)
-                        </li>
-                    }
-                    @if (!@Model.Body.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Body) - @Html.DisplayFor(model => model.Body)
-                        </li>
-                    }
-                    @if (!@Model.Binding.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Binding) - @Html.DisplayFor(model => model.Binding)
-                        </li>
-                    }
-                    @if (!@Model.Bridge.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Bridge) - @Html.DisplayFor(model => model.Bridge)
-                        </li>
-                    }
-                    @if (!@Model.CaseDetail.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.CaseDetail) - @Html.DisplayFor(model => model.CaseDetail)
-                        </li>
-                    }
-                    @if (!@Model.Dimensions.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Dimensions) - @Html.DisplayFor(model => model.Dimensions)
-                        </li>
-                    }
-                    @if (!@Model.EdgeDots.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.EdgeDots) - @Html.DisplayFor(model => model.EdgeDots)
-                        </li>
-                    }
-                    @if (!@Model.Faceplate.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Faceplate) - @Html.DisplayFor(model => model.Faceplate)
-                        </li>
-                    }
-                    @if (!@Model.Finish.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Finish) - @Html.DisplayFor(model => model.Finish)
-                        </li>
-                    }
-                    @if (!@Model.Fingerboard.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Fingerboard) - @Html.DisplayFor(model => model.Fingerboard)
-                        </li>
-                    }
-                    @if (!@Model.FretMarkers.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.FretMarkers) - @Html.DisplayFor(model => model.FretMarkers)
-                        </li>
-                    }
-                    @if (!@Model.FretWire.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.FretWire) - @Html.DisplayFor(model => model.FretWire)
-                        </li>
-                    }
-                    @if (!@Model.Neck.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Neck) - @Html.DisplayFor(model => model.Neck)
-                        </li>
-                    }
-                    @if (!@Model.NutWidth.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.NutWidth) - @Html.DisplayFor(model => model.NutWidth)
-                        </li>
-                    }
-
-                    @if (!@Model.PickGuard.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.PickGuard) - @Html.DisplayFor(model => model.PickGuard)
-                        </li>
-                    }
-
-                    @if (!@Model.Pickup.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Pickup) - @Html.DisplayFor(model => model.Pickup)
-                        </li>
-                    }
-                    @if (!@Model.ScaleLength.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.ScaleLength) - @Html.DisplayFor(model => model.ScaleLength)
-                        </li>
-                    }
-                    @if (!@Model.Strings.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Strings) - @Html.DisplayFor(model => model.Strings)
-                        </li>
-                    }
-                    @if (!@Model.Tailpiece.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Tailpiece) - @Html.DisplayFor(model => model.Tailpiece)
-                        </li>
-                    }
-                    @if (!@Model.Tuners.IsEmpty())
-                    {
-                        <li>
-                            @Html.LabelFor(model => model.Tuners) - @Html.DisplayFor(model => model.Tuners)
-                        </li>
-                    }
-                </ul>
-            </div>
+            <div id="instrdetailthumbnailcontainer"></div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="linehorizontal"></div>
-            </div>
-        </div>
-        <div id="instrdetailthumbnailcontainer"></div>
     </div>
-</div>

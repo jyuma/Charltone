@@ -21,15 +21,16 @@
             $.getJSON(site.url + "Instrument/GetPhotoJson", { 'PhotoId': config.photoId, "Width": config.maxImageWidth, "Height": config.maxImageHeight },
                 function (data) {
                     var id = config.photoId;
-                    $("#dialog-image-container").append("<a id='lnk-dlgimage_" + id + "' href='javascript:;'><img id='img_" + id + "' class='dialogimg' src='data:image/jpg;base64," + data + "' /></a>");
+
+                    $("#zoom-dialog-container").append("<a id='lnk-dlgimage_" + id + "' href='javascript:;'><img class='img-rounded' id='img_" + id + "' class='dialogimg' src='data:image/jpg;base64," + data + "' /></a>");
 
                     $("#lnk-dlgimage_" + id).click(function () {
-                        $("#dialog-image-container").html('');
+                        $("#zoom-dialog-container").html('');
                         $.unblockUI();
                     });
 
                     $.blockUI({
-                        message: $("#dialog-image-container"),
+                        message: $("#zoom-dialog-container"),
                         css: {
                                 width: config.maxImageWidth,
                                 height: config.maxImageHeight,

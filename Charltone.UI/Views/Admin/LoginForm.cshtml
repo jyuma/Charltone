@@ -1,15 +1,17 @@
-﻿<div id='admin-login-form' hidden>
-    <div id='admin-login-title'><h3>Admin User</h3></div>
-    <div id="admin-password-container">
-        <input class='form-control' type='password' id='txtPassword' maxlength=20 />
-    </div>
-    <div id='admin-login-cancel-button-container'>
-        <span id='login-button'>
-            <button class='btn btn-primary btn-sm' id='btnLogInAdmin' type='button'>Log In</button>
-        </span>
-        <span id='cancel-button'>
-            <button class='btn btn-default btn-sm' id='btnCancelAdminLogin' type='button'>Cancel</button>
-        </span>
-    </div>
-    <div id='validation-container'></div>
-</div>
+﻿<div id="admin-login-form" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Administrator Login</h4>
+            </div>
+            <div class="modal-body">
+                <input class='form-control' type='password' id='txtPassword' maxlength=20 />
+            </div>
+            <div class="modal-footer">
+                <button class='btn btn-default btn-sm' id='btnCancelAdminLogin' type='button'>Cancel</button>
+                <button class='btn btn-primary btn-sm' id='btnLogInAdmin' type='button'>Log In</button>
+            </div>
+            <div class="" id='validation-container'></div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

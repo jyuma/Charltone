@@ -21,7 +21,7 @@
                     if ($(carousel.children()).length === 0) {
                         $(carousel).html(data);
                         $('.carousel').carousel('cycle');
-                        $(".carouselcloselink").click(function () {
+                        $(".carousel-close-link").click(function () {
                             $(carousel).html('');
                             $.unblockUI();
                         });

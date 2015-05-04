@@ -3,81 +3,64 @@
     ViewBag.Title = "Charltone Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div id="contactcontent">
     @using (Html.BeginForm())
     {
-        <div id="contactmain">
-            @Html.ValidationSummary(true)
-            <div id="contactheader">
-                @Model.HeaderMessage
+        <div id="contact">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>@Model.HeaderMessage</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="linehorizontal"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="pull-left">
+                            <div>
+                                @Html.LabelFor(model => model.ContactName, new { @class = "label label-default" })
+                                @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control", required = "required", @maxlength = 150 })
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.ContactEmail, new { @class = "label label-default" })
+                                @Html.TextBoxFor(model => model.ContactEmail, new { @class = "form-control", required = "required", @maxlength = 150 })
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.ContactPhone, new { @class = "label label-default" })
+                                @Html.TextBoxFor(model => model.ContactPhone, new { @class = "form-control", required = "required", @maxlength = 150 })
+                            </div>
+                            <div>
+                                @Html.LabelFor(model => model.ContactMessage, new { @class = "label label-default" })
+                                @Html.TextAreaFor(model => model.ContactMessage, new { @class = "form-control", required = "required", @maxlength = 1000 })
+                            </div>
+                            @if (Model.ContactName == null)
+                            {
+                                <button class="btn btn-primary btn-lg active" type="submit">Send</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary btn-lg disabled" type="submit">Send</button>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="linevertical"></div>
+                    </div>
+                    <div class="col-md-5">
+                        <div>
+                            <h4>Get in touch</h4>
+                        </div>
+                        <div>
+                            <p>You can also contact us at:</p>
+                        </div>
+                        <div>
+                            <p>Email: kevin@charltone.com</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="linehorizontal" id="contact"></div>
-            <div id="contactinfo">
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ContactName)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.ContactName)
-                    @Html.ValidationMessageFor(model => model.ContactName)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ContactEmail)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.ContactEmail)
-                    @Html.ValidationMessageFor(model => model.ContactEmail)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ContactPhone)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.ContactPhone)
-                </div>
-                <div class="label label-default">
-                    @Html.LabelFor(model => model.ContactMessage)
-                </div>
-                <div class="editor-field">
-                    @Html.TextAreaFor(model => model.ContactMessage)
-                </div>
-                <div id="contactsend">
-                    @{
-                        if (Model.ContactName == null)
-                        {
-                            <input class="btn btn-primary btn-lg active" type="submit" value="Send" name="Command" />
-                        }
-                        else
-                        {
-                            <input class="btn btn-primary btn-lg disabled" type="submit" value="Send" name="Command" />
-                        }
-}
-                </div>
-            </div>
-            <div class="linevertical" id="contact"></div>
-            <div id="getintouch">
-                <div id="getintouchheader">
-                    Get in touch
-                </div>
-                <div>
-                    You can also contact us at:
-                </div>
-                <div id="getintouchemail">
-                    Email: kevin@charltone.com
-                </div>
-                <!--
-                <div class="getintouchaddress">
-                    Address Line 1
-                </div>
-                <div class="getintouchaddress">
-                    Address Line 2
-                </div>
-                <div id="getintouchcountry">
-                    Canada
-                </div>
-                -->
-            </div>
-        </div>
-        <div id="contactguitarimg">
         </div>
     }
-</div>

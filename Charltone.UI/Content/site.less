@@ -23,6 +23,14 @@
 @widthContainer: 850px;
 @widthLine: 835px;
 
+.modal-open {
+    padding-right: 0 !important;
+}
+.modal-dialog {
+    width: 300px;
+    height: 200px;
+}
+
 .mainBorder {
     border: solid;
     border-width: 2px;
@@ -83,6 +91,16 @@ a {
     }
 }
 
+textarea {
+    position: relative;
+    border: 2px solid @colourBrown;
+    padding: 2px;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    font-size: 10pt;
+    resize: none;
+}
+
 .ui-dialog-titlebar-close {
   visibility: hidden;
 }
@@ -131,6 +149,7 @@ ul#menu {
         }
     }
 }
+
 #menucontainer {
     position:relative;
     float: right;
@@ -191,12 +210,6 @@ div#title {
     text-decoration: none;
     top: 2px;
 }
-#admin-login-form {
-    overflow: auto;
-    color: @colourIvory;
-    font-size: 10pt;
-    font-family: Helvetica;
-}
 #admin-login-title {
     h3 {
         margin: 0;
@@ -205,40 +218,46 @@ div#title {
         color: @colourBrown;
     }
 }
-#admin-login-cancel-button-container {
-    position: relative;
-    padding: 8px 0 8px 0;
-}
-#txtPassword {
-    width: 300px;
-}
-#admin-password-container {
-    padding-left: 20px;
-}
 /* Zoom */
 .dialogimg {
     .mainBorder;
 }
 
 /* Carousel */
-/*.carousel-inner {
+#instrCarousel {
+    div#carousel-close {
+        padding-top: 10px;
+        left: 420px;
+        a {
+            font-size: 14pt;
+        }
+    }
+    .carousel-inner {
     height: 785px;
     h3, .h3, h4, .h4 {
         line-height: 0;
         font-family: "trebuchet ms", sans-serif;    
+        }
+    }
+    div#carousel-image-container {
+        padding-top: 10px;
+    }
+    .item {
+        background: #333;
+        text-align: center;
+        height: 790px !important;
+    }
+    img {
+        .mainBorder;
     }
 }
-#carouselimagecontainer {
-    padding-top: 10px;
+
+/* Zoom */
+#zoom-dialog-container {
+    img {
+        .mainBorder;
+    }
 }
-.item {
-    background: #333;
-    text-align: center;
-    height: 790px !important;
-}
-.carousel-image {
-    .mainBorder;
-}*/
 
 /* Tool Tips*/
 .funfactstooltip {
@@ -260,6 +279,19 @@ div#title {
 	background-color: @colourWhite;
     font-size: 8pt;
 	z-index: 2;
+}
+
+/* Upload Progresss */
+.bar {
+    height: 18px;
+    background: @colourProgressBar;
+}
+#progress{
+    .mainBorder;
+}
+#progressmsg {
+    background-color: darken(@colourDarkBrown, 10%);
+    color: @colourWhite;
 }
 
 /* Home */
@@ -368,40 +400,6 @@ div#title {
     }
 }
 
-/* Horizontal Line */
-.linehorizontal {
-    color: @colourBrown;
-    border-top-style:dotted;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    width: @widthLine;
-    padding: 0;
-    clear: both;
-}
-
-/* Vertical Line */
-.linevertical {
-    color: @colourBrown;
-    border-top: none;
-    border-bottom: none;
-    border-left: dotted;
-    border-right: none;
-    &#contact {
-        position: relative;
-        width: 10px;
-        height: 300px;
-        margin-bottom: 10px;
-        float: left;
-    }
-    &#instrdetail {
-       position: relative;
-       margin: 15px 0 0 15px;
-       float: left;
-       height: 448px;
-    }
-}
-
 /* Delete Confirm */
 .delete-confirm {
     color: @colourDeleteConfirm;
@@ -466,6 +464,40 @@ div#title {
                 padding: 2px;
             }
         }
+    }
+}
+
+/* Horizontal Line */
+.linehorizontal {
+    color: @colourBrown;
+    border-top-style:dotted;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    width: @widthLine;
+    padding: 0;
+    clear: both;
+}
+
+/* Vertical Line */
+.linevertical {
+    color: @colourBrown;
+    border-top: none;
+    border-bottom: none;
+    border-left: dotted;
+    border-right: none;
+    &#contact {
+        position: relative;
+        width: 10px;
+        height: 300px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    &#instrdetail {
+       position: relative;
+       margin: 15px 0 0 15px;
+       float: left;
+       height: 448px;
     }
 }
 
@@ -540,6 +572,14 @@ div#title {
         width: 30px;
         height: 30px;
     }
+    textarea {
+        &#TypicalPrice {
+            height: 50px;
+        }
+        &#Comments {
+            height: 120px;
+        }
+    }
 }
 
 /* Ordering Summary Edit */
@@ -561,138 +601,43 @@ div#title {
 }
 
 /* Contact */
-#contactcontent {
-    position: relative;
+#contact {
     background: url(images/faceplates_gradient.jpg) right no-repeat;
-    width: @widthBody;
-    height: 500px;
-}
-#contactguitarimg {
-    position: relative;
-    top: 80px;
-    height: 350px;
-    width: 170px;
-    float: left;
-    margin-left: 20px;
-    background: url(images/torres_small.png) right no-repeat;
-}
-#contactmain {
-    margin-top: 40px;
-    margin-left: 30px;
-    clear: both;
-    float: left;
-    width: 650px;
-    color: @colourWhite;
-}
-#contactinfo {
-    position:relative;
-    top: 10px;
-    float:left;
-    width: 400px;
-}
-#contactheader {
-    position: relative;
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-#getintouchheader {
-    position: relative;
-    font-size: 1.4em;
-    bottom: 20px;
-    margin-top: 30px;   
-}
-#contactemailconfirm {
-    font-size: 12pt;
-}
-#contactsend {
-    margin-top: 10px;
-    position: relative;
-    float: left;
-}
-#getintouch {
-    margin-left: 40px;
-    color: @colourWhite;
-    width: 180px;
-    float: left;
-}
-#getintouchemail {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-#getintouchcountry {
-    margin-top: 20px;
+    .mainPadding;
+    div.linevertical {
+       margin: 0;
+       height: 345px;
+    }
+    div.linehorizontal {
+        margin: 0;
+        padding: 0 0 8px 0;
+    }
+    input[type=textbox] {
+        width: 400px;
+    }
+    button {
+        margin-top: 10px;
+    }
+    img {
+        top: 80px;
+        height: 350px;
+        width: 170px;
+        float: left;
+        margin-left: 20px;
+        background: url(images/torres_small.png) right no-repeat;
+    }
+    textarea {
+        width: 400px;
+        height: 80px;
+    }
 }
 
-/* Upload Progresss */
-.bar {
-    height: 18px;
-    background: @colourProgressBar;
-}
-#progress{
-    .mainBorder;
-}
-#progressmsg {
-    background-color: darken(@colourDarkBrown, 10%);
-    color: @colourWhite;
-}
-
-/* Styles for validation */
+/* Admin Login Validation */
 #validation-container { 
-   position: relative;
-    color: red;
     border-style: none;
     clear: both;
     li {
         display:list-item;
         list-style-type: none;
-        padding: 0 0 0 80px;
-        text-align: left;
-    }
-}
-
-.field-validation-error {
-    color: @colourRed;
-}
-.field-validation-valid {
-    display: none;
-}
-.input-validation-error {
-    border: 1px solid @colourRed;
-    background-color: @colourIvory;
-}
-.validation-summary-errors {
-    font-weight: bold;
-    color: @colourRed;
-}
-.validation-summary-valid {
-    display: none;
-}
-
-/* Styles for editor and display helpers */
-.display-label,
-.editor-label {
-    margin: 0 0 2px 0;
-    color: @colourBlack;
-}
-.display-field,
-.editor-field {
-    margin-bottom: 8px;
-    color: @colourBlack;
-}
-textarea {
-    position: relative;
-    clear:both;
-    border: 2px solid #cccccc;
-    padding: 2px;
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
-    font-size: 10pt;
-    resize: none;
-    &#TypicalPrice {
-        height: 40px;
-    }
-    &#ContactMessage {
-        height: 80px;
     }
 }

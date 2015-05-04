@@ -1,4 +1,11 @@
-﻿.mainBorder {
+﻿.modal-open {
+  padding-right: 0 !important;
+}
+.modal-dialog {
+  width: 300px;
+  height: 200px;
+}
+.mainBorder {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
@@ -60,6 +67,15 @@ a:visited {
 a:hover {
   color: #91ccfe;
   text-decoration: none;
+}
+textarea {
+  position: relative;
+  border: 2px solid #cea96d;
+  padding: 2px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  font-size: 10pt;
+  resize: none;
 }
 .ui-dialog-titlebar-close {
   visibility: hidden;
@@ -166,27 +182,11 @@ div#title {
   text-decoration: none;
   top: 2px;
 }
-#admin-login-form {
-  overflow: auto;
-  color: #f0f0f0;
-  font-size: 10pt;
-  font-family: Helvetica;
-}
 #admin-login-title h3 {
   margin: 0;
   padding: 10px 0 10px 0;
   font-size: 14pt;
   color: #cea96d;
-}
-#admin-login-cancel-button-container {
-  position: relative;
-  padding: 8px 0 8px 0;
-}
-#txtPassword {
-  width: 300px;
-}
-#admin-password-container {
-  padding-left: 20px;
 }
 /* Zoom */
 .dialogimg {
@@ -195,24 +195,42 @@ div#title {
   border-color: #cea96d;
 }
 /* Carousel */
-/*.carousel-inner {
-    height: 785px;
-    h3, .h3, h4, .h4 {
-        line-height: 0;
-        font-family: "trebuchet ms", sans-serif;    
-    }
+#instrCarousel div#carousel-close {
+  padding-top: 10px;
+  left: 420px;
 }
-#carouselimagecontainer {
-    padding-top: 10px;
+#instrCarousel div#carousel-close a {
+  font-size: 14pt;
 }
-.item {
-    background: #333;
-    text-align: center;
-    height: 790px !important;
+#instrCarousel .carousel-inner {
+  height: 785px;
 }
-.carousel-image {
-    .mainBorder;
-}*/
+#instrCarousel .carousel-inner h3,
+#instrCarousel .carousel-inner .h3,
+#instrCarousel .carousel-inner h4,
+#instrCarousel .carousel-inner .h4 {
+  line-height: 0;
+  font-family: "trebuchet ms", sans-serif;
+}
+#instrCarousel div#carousel-image-container {
+  padding-top: 10px;
+}
+#instrCarousel .item {
+  background: #333;
+  text-align: center;
+  height: 790px !important;
+}
+#instrCarousel img {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+}
+/* Zoom */
+#zoom-dialog-container img {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+}
 /* Tool Tips*/
 .funfactstooltip {
   position: absolute;
@@ -233,6 +251,20 @@ div#title {
   background-color: #ffffff;
   font-size: 8pt;
   z-index: 2;
+}
+/* Upload Progresss */
+.bar {
+  height: 18px;
+  background: #0db239;
+}
+#progress {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+}
+#progressmsg {
+  background-color: #3c2711;
+  color: #ffffff;
 }
 /* Home */
 #home {
@@ -348,38 +380,6 @@ div#title {
 #instredit textarea {
   height: 100px;
 }
-/* Horizontal Line */
-.linehorizontal {
-  color: #cea96d;
-  border-top-style: dotted;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  width: 835px;
-  padding: 0;
-  clear: both;
-}
-/* Vertical Line */
-.linevertical {
-  color: #cea96d;
-  border-top: none;
-  border-bottom: none;
-  border-left: dotted;
-  border-right: none;
-}
-.linevertical#contact {
-  position: relative;
-  width: 10px;
-  height: 300px;
-  margin-bottom: 10px;
-  float: left;
-}
-.linevertical#instrdetail {
-  position: relative;
-  margin: 15px 0 0 15px;
-  float: left;
-  height: 448px;
-}
 /* Delete Confirm */
 .delete-confirm {
   color: #ac3219;
@@ -448,6 +448,38 @@ div#title {
   width: 23px;
   height: 23px;
   padding: 2px;
+}
+/* Horizontal Line */
+.linehorizontal {
+  color: #cea96d;
+  border-top-style: dotted;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  width: 835px;
+  padding: 0;
+  clear: both;
+}
+/* Vertical Line */
+.linevertical {
+  color: #cea96d;
+  border-top: none;
+  border-bottom: none;
+  border-left: dotted;
+  border-right: none;
+}
+.linevertical#contact {
+  position: relative;
+  width: 10px;
+  height: 300px;
+  margin-bottom: 10px;
+  float: left;
+}
+.linevertical#instrdetail {
+  position: relative;
+  margin: 15px 0 0 15px;
+  float: left;
+  height: 448px;
 }
 /* Ordering */
 #ordering {
@@ -525,6 +557,12 @@ div#title {
   width: 30px;
   height: 30px;
 }
+#orderingredit textarea#TypicalPrice {
+  height: 50px;
+}
+#orderingredit textarea#Comments {
+  height: 120px;
+}
 /* Ordering Summary Edit */
 #orderingsummaryedit {
   background: url(images/tools_large.jpg);
@@ -545,14 +583,25 @@ div#title {
   padding: 0;
 }
 /* Contact */
-#contactcontent {
-  position: relative;
+#contact {
   background: url(images/faceplates_gradient.jpg) right no-repeat;
-  width: 900px;
-  height: 500px;
+  padding: 10px 2px 20px 0;
 }
-#contactguitarimg {
-  position: relative;
+#contact div.linevertical {
+  margin: 0;
+  height: 345px;
+}
+#contact div.linehorizontal {
+  margin: 0;
+  padding: 0 0 8px 0;
+}
+#contact input[type=textbox] {
+  width: 400px;
+}
+#contact button {
+  margin-top: 10px;
+}
+#contact img {
   top: 80px;
   height: 350px;
   width: 170px;
@@ -560,122 +609,17 @@ div#title {
   margin-left: 20px;
   background: url(images/torres_small.png) right no-repeat;
 }
-#contactmain {
-  margin-top: 40px;
-  margin-left: 30px;
-  clear: both;
-  float: left;
-  width: 650px;
-  color: #ffffff;
-}
-#contactinfo {
-  position: relative;
-  top: 10px;
-  float: left;
+#contact textarea {
   width: 400px;
+  height: 80px;
 }
-#contactheader {
-  position: relative;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-#getintouchheader {
-  position: relative;
-  font-size: 1.4em;
-  bottom: 20px;
-  margin-top: 30px;
-}
-#contactemailconfirm {
-  font-size: 12pt;
-}
-#contactsend {
-  margin-top: 10px;
-  position: relative;
-  float: left;
-}
-#getintouch {
-  margin-left: 40px;
-  color: #ffffff;
-  width: 180px;
-  float: left;
-}
-#getintouchemail {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#getintouchcountry {
-  margin-top: 20px;
-}
-/* Upload Progresss */
-.bar {
-  height: 18px;
-  background: #0db239;
-}
-#progress {
-  border: solid;
-  border-width: 2px;
-  border-color: #cea96d;
-}
-#progressmsg {
-  background-color: #3c2711;
-  color: #ffffff;
-}
-/* Styles for validation */
+/* Admin Login Validation */
 #validation-container {
-  position: relative;
-  color: red;
   border-style: none;
   clear: both;
 }
 #validation-container li {
   display: list-item;
   list-style-type: none;
-  padding: 0 0 0 80px;
-  text-align: left;
-}
-.field-validation-error {
-  color: #ff0000;
-}
-.field-validation-valid {
-  display: none;
-}
-.input-validation-error {
-  border: 1px solid #ff0000;
-  background-color: #f0f0f0;
-}
-.validation-summary-errors {
-  font-weight: bold;
-  color: #ff0000;
-}
-.validation-summary-valid {
-  display: none;
-}
-/* Styles for editor and display helpers */
-.display-label,
-.editor-label {
-  margin: 0 0 2px 0;
-  color: #000000;
-}
-.display-field,
-.editor-field {
-  margin-bottom: 8px;
-  color: #000000;
-}
-textarea {
-  position: relative;
-  clear: both;
-  border: 2px solid #cccccc;
-  padding: 2px;
-  background-position: bottom right;
-  background-repeat: no-repeat;
-  font-family: Arial, sans-serif;
-  font-size: 10pt;
-  resize: none;
-}
-textarea#TypicalPrice {
-  height: 40px;
-}
-textarea#ContactMessage {
-  height: 80px;
 }
 /*# sourceMappingURL=site.css.map */
