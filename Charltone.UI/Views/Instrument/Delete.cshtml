@@ -24,12 +24,12 @@
     <div id="instredit">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <h3 class="delete-confirm">Delete instrument @Model.Model @Model.Sn?</h3>
+                <div class="col-sm-12">
+                    <h3 class="text-danger">Delete instrument @Model.Model @Model.Sn?</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-sm-7">
                     <div>
                         <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Edit", "Instrument")'">Cancel</button>
                         <button class="btn btn-primary" type="submit">Yes</button>
@@ -67,104 +67,104 @@
                         @Html.TextBoxFor(model => model.Price, new { @class = "form-control", required = "required" })
                     </div>
                 </div>
-                <div class="col-md-1 pull-left col-md-push-0">
+                <div class="col-sm-1 pull-left col-sm-push-0">
                     @Html.LabelFor(model => Model.IsPosted, new { @class = "label label-success" })
                     @Html.CheckBoxFor(model => Model.IsPosted, new { @class = "form-control" })
                 </div>
-                <div class="col-md-1 pull-left">
+                <div class="col-sm-1 pull-left">
                     <img class="img-rounded" id="instreditphoto" alt="" />
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Top, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Top, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.BackAndSides, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.BackAndSides, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Body, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Body, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Binding, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Binding, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Bridge, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Bridge, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.CaseDetail, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.CaseDetail, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Dimensions, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Dimensions, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.EdgeDots, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.EdgeDots, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Faceplate, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Faceplate, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Finish, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Finish, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Fingerboard, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Fingerboard, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.FretMarkers, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.FretMarkers, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.FretWire, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.FretWire, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Neck, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Neck, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.NutWidth, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.NutWidth, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.PickGuard, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.PickGuard, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Pickup, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Pickup, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.ScaleLength, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.ScaleLength, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Strings, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Strings, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Tailpiece, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Tailpiece, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Tuners, new { @class = "label label-default" })
                     @Html.TextBoxFor(model => model.Tuners, new { @class = "form-control", @maxlength = 50 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Comments, new { @class = "label label-default" })
                     @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", @maxlength = 200 })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.FunFacts, new { @class = "label label-default" })
                     @Html.TextAreaFor(model => model.FunFacts, new { @class = "form-control", @maxlength = 200 })
                 </div>

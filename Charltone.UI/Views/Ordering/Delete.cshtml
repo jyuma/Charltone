@@ -19,12 +19,12 @@
     <div id="orderingredit">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <h3 class="delete-confirm">Delete ordering for model @Model.Model?</h3>
+                <div class="col-sm-12">
+                    <h3 class="text-danger">Delete ordering for model @Model.Model?</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-sm-8">
                     <div>
                         <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Edit", "Ordering")'">Cancel</button>
                         <button class="btn btn-primary" type="submit">Yes</button>
@@ -54,7 +54,7 @@
                         @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", required = "required" })
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <img class="img-rounded" id="orderingeditphoto" alt="" />
                 </div>
             </div>

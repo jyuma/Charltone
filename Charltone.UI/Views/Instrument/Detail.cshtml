@@ -53,48 +53,48 @@
     <div id="instrdetail">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     <h4>@Model.ModelSn</h4>
                     <label class="label label-@Model.StatusCssClass">
                         @(@Model.ShowPrice ? @Model.Price : @Model.Status)
                     </label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     @if (Request.IsAuthenticated)
                     {
                         <input class="form-control" id="fileupload" type="file" name="files[]" data-url="Upload" multiple />
                     }
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-sm-7">
                     <div class="pull-right">
                         @if (!@Model.IsAuthenticated)
                         {
                             if (!@Model.Comments.IsEmpty())
                             {
-                                <a id="comments" class="btn btn-success" title="">Comments</a>
+                                <a id="comments" class="btn btn-success btn-sm" title="">Comments</a>
                             }
                             if (!@Model.FunFacts.IsEmpty())
                             {
-                                <a id="funfacts" class="btn btn-success" title="">Fun Facts</a>
+                                <a id="funfacts" class="btn btn-success btn-sm" title="">Fun Facts</a>
                             }
+                            <button class="btn btn-primary btn-sm" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>Slide View</button>
                         }
                         else
                         {
-                            <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
+                            <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "Instrument", new { id = Model.ProductId })'">Edit</button>
                         }
-                        <button class="btn btn-info" type="button" onclick='javascript:instrument.carousel.show( { productId: @Convert.ToInt32(Model.ProductId) } );'>View Slides</button>
-                        <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
+                        <button class="btn btn-default btn-sm" type="button" onclick="location.href='@Url.Action("Index", "Instrument")'">Main List</button>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="linehorizontal"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-sm-5">
                     <div class="pull-left">
                         <a id="instrdetailmainphotolink" href="javascript:;">
                             <img id="currentphoto" class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
@@ -106,10 +106,10 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <div class="linevertical"></div>
                 </div>
-                <div class="col-md-6 col-md-pull-1">
+                <div class="col-sm-6 col-sm-pull-1">
                     <h5>@Html.DisplayFor(model => model.Classification) / @Html.DisplayFor(model => model.SubClassification)</h5>
                     <ul>
                         @if (!@Model.Top.IsEmpty())
@@ -244,7 +244,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="linehorizontal"></div>
                 </div>
             </div>

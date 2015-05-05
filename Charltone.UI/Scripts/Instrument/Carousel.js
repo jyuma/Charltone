@@ -21,7 +21,7 @@
                     if ($(carousel.children()).length === 0) {
                         $(carousel).html(data);
                         $('.carousel').carousel('cycle');
-                        $(".carousel-close-link").click(function () {
+                        $("#carousel-close-link").click(function () {
                             $(carousel).html('');
                             $.unblockUI();
                         });
@@ -29,16 +29,14 @@
                     $.blockUI({
                         message: $(carousel),
                         css: {
-                            top: 30,
+                            top: 70,
                             left: ($(window).width() - 860) / 2 + 'px',
                             width: 860,
-                            height: 810,
-                            padding: 0,
+                            height: 800,
                             cursor: 'default',
                             background: '#333',
-                            overflow: 'hidden',
                             border: 0
-                }
+                        }
                     });
             });
          }

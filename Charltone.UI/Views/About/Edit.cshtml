@@ -10,10 +10,10 @@
     {
         <div class="container-fluid">
             <div class="row">                
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <h3>Edit About Text</h3>
                 </div>
-                <div class="col-md-8 ">
+                <div class="col-sm-8 ">
                     <span class="pull-right">
                         <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "About")'">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -21,34 +21,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Name, new { @class = "label label-default" })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.TextAreaFor(model => model.Name, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.CompanyName, new { @class = "label label-default" })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.TextAreaFor(model => model.CompanyName, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Origins, new { @class = "label label-default" })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.TextAreaFor(model => model.Origins, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.LabelFor(model => model.Materials, new { @class = "label label-default" })
                 </div>
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     @Html.TextAreaFor(model => model.Materials, new { @class = "form-control", required = "required", @maxlength = 1000 })
                 </div>
             </div>

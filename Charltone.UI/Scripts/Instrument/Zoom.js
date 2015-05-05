@@ -34,7 +34,7 @@
                         css: {
                                 width: config.maxImageWidth,
                                 height: config.maxImageHeight,
-                                top:  '50px', 
+                                top: '50px', 
                                 left: ($(window).width() - 550) / 2 + 'px', 
                                 border: 'none',
                                 cursor: 'not-allowed'

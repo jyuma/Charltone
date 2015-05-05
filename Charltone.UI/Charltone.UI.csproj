@@ -187,17 +187,18 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\OrderingController.cs" />
+    <Compile Include="Helpers\ActionExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Extensions\ContactExtensions.cs" />
     <Compile Include="Extensions\FileNameExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\InstrumentExtensions.cs" />
     <Compile Include="Extensions\ProductExtensions.cs" />
-    <Compile Include="Helpers\ActionExtension.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Helpers\AuthorizedActionLink.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\HtmlActiveMenu.cs" />
     <Compile Include="Helpers\HtmlAuthorizedActionLink.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -271,6 +272,8 @@
     <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\images\workshop2_cropped.jpg" />
     <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\logo_sm.png" />
+    <Content Include="Content\logo_xs.png" />
     <Content Include="Scripts\Admin\Login.js" />
     <Content Include="Scripts\Error\Error.js" />
     <Content Include="Scripts\File\Upload.js" />

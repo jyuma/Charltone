@@ -63,12 +63,11 @@
                             window.location.reload(true);
                         } else {
                             if (data.messages.length > 0) {
-                                $("#validation-container").addClass("alert-danger");
                                 $("#validation-container").show();
                                 $("#validation-container").html('');
                                 var html = '<ul>';
                                 for (var i = 0; i < data.messages.length; i++) {
-                                    html = html + '<li>' + data.messages[i] + '</li>';
+                                    html = html + '<li class="text-danger">' + data.messages[i] + '</li>';
                                 }
                                 html = html + '</ul>';
                                 $("#validation-container").append(html);

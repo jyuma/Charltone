@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using Charltone.UI.Helpers
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -14,29 +15,28 @@
         @Scripts.Render("~/bundles/Jquery")
         @Scripts.Render("~/bundles/CommonScripts")
         @Scripts.Render("~/bundles/CustomScripts")
+        
     </head>
 
-<body>
-    <div class="page">
-        <div id="menubackground">
-            <div id="logo">
-                <a id="lnk-admin-login" href='javascript:admin.login.init( { isAuthenticated: @Request.IsAuthenticated.ToString().ToLower() })' >.</a>
-            </div>
-            <div id="menucontainer">
-                <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About Us", "Index", "About")</li>
-                    <li>@Html.ActionLink("Instruments", "Index", "Instrument")</li>
-                    <li>@Html.ActionLink("Ordering", "Index", "Ordering")</li>
-                    <li>@Html.ActionLink("Contact", "Index", "Contact")</li>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+                <div id="logo"><a id="admin-login-link" href='javascript:admin.login.init( { isAuthenticated: @Request.IsAuthenticated.ToString().ToLower() })'>.</a></div>
+                <ul class="nav navbar-nav">
+                    <li @Html.IsActive("Index", "Home", "class=\"active\"")>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li @Html.IsActive("Index", "About", "class=\"active\"")>@Html.ActionLink("About Us", "Index", "About")</li>
+                    <li @Html.IsActive("Index", "Instrument", "class=\"active\"")>@Html.ActionLink("Instruments", "Index", "Instrument")</li>
+                    <li @Html.IsActive("Index", "Ordering", "class=\"active\"")>@Html.ActionLink("Ordering", "Index", "Ordering")</li>
+                    <li @Html.IsActive("Index", "Contact", "class=\"active\"")>@Html.ActionLink("Contact", "Index", "Contact")</li>
                 </ul>
             </div>
+        </nav>
+        <div class="page">
+            <div id="main">
+                @RenderBody()
+            </div>
         </div>
-        <div id="main">
-            @RenderBody()
-        </div>
-    </div>
-    <div id="error"></div>
-</body>
+        <div id="error"></div>
+    </body>
 
 </html>

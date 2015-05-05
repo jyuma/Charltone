@@ -17,7 +17,7 @@
         @if (Request.IsAuthenticated)
         {
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="pull-right">
                         <button class="btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "Ordering")'">Add</button>
                         <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("EditSummary", "Ordering")'">Edit Text</button>
@@ -25,62 +25,64 @@
                 </div>
             </div>
         }
+        <!-- accordion -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Ordering</a>
+                                <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#collapseOne">Ordering</a>
                             </h4>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                @Model.HeaderInfo.Summary
+                                <p>@Model.HeaderInfo.Summary</p>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Pricing</a>
+                                <a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#collapseTwo">Pricing</a>
                             </h4>
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
-                                @Model.HeaderInfo.Pricing
+                                <p>@Model.HeaderInfo.Pricing</p>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Payment Policy</a>
+                                <a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#collapseThree">Payment Policy</a>
                             </h4>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
-                                @Model.HeaderInfo.PaymentPolicy
+                                <p>@Model.HeaderInfo.PaymentPolicy</p>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Shipping</a>
+                                <a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#collapseFour">Shipping</a>
                             </h4>
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse">
                             <div class="panel-body">
-                                @Model.HeaderInfo.Shipping
+                                <p>@Model.HeaderInfo.Shipping</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <div class="linehorizontal"></div>
             </div>
         </div>
@@ -88,10 +90,10 @@
             foreach (var orderingInfo in Model.OrderingInfo)
             {
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-sm-2">
                         <img class="img-rounded" src=@Url.Action("GetThumbnail", "Ordering", new { id = orderingInfo.Id }) alt="" />
                     </div>
-                    <div class="col-md-2" id="labels">
+                    <div class="col-sm-2" id="label">
                         <div><p>Model:</p></div>
                         <div><p>Style:</p></div>
                         <div><p>Typical Price:</p></div>
@@ -101,7 +103,7 @@
                             <div id="buttons"><button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button></div>
                         }
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-sm-8" id="text">
                         <div><p>@orderingInfo.Model</p></div>
                         <div><p>@orderingInfo.Style</p></div>
                         <div><p>@orderingInfo.TypicalPrice</p></div>
@@ -109,7 +111,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-sm-12">
                         <div class="linehorizontal"></div>
                     </div>
                 </div>

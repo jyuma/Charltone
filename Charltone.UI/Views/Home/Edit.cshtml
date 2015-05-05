@@ -10,10 +10,10 @@
         <div id="homeedit">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <h3>Edit Home Content</h3>
                     </div>
-                    <div class="col-md-8 ">
+                    <div class="col-sm-8 ">
                         <span class="pull-right">
                             <button class="btn btn-default" type="button" onclick="location.href = '@Url.Action("Index", "Home")' ">Cancel</button>
                             <button class="btn btn-primary" type="submit">Save</button>
@@ -21,19 +21,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.Introduction, new {@class = "label label-default"})
                         @Html.TextBoxFor(model => model.Introduction, new {@class = "form-control", required = "required", @maxlength = 150})
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.Greeting, new {@class = "label label-default"})
                         @Html.TextAreaFor(model => model.Greeting, new {@class = "form-control", required = "required", @maxlength = 1000})
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <img class="img-rounded" id="homeimage" src='~/Content/images/homepage.jpg' alt='' />
                     </div>
                 </div>

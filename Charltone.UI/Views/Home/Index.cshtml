@@ -21,28 +21,28 @@
         @if (Request.IsAuthenticated)
         {
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <label for="fileupload" class="label label-success">Change Picture</label>
                     <input id="fileupload" type="file" class="form-control" name="files[]" data-url="Home/Upload">
                     <div class="progress-bar-success" id="progressbar"></div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-sm-8">
                     <span class="pull-right"><button class="btn btn-primary" type="button" onclick="location.href = '@Url.Action("Edit", "Home")'">Edit Text</button></span>
                 </div>
             </div>
         }
         <div class="row">
-            <div class="col-md-12">
-                <h3>@Model.Introduction</h3>
+            <div class="col-sm-12">
+                <h4>@Model.Introduction</h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <span>@Model.Greeting</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <img class="img-rounded" id="homeimage" src='~/Content/images/homepage.jpg' alt='' />
             </div>
         </div>

@@ -10,10 +10,10 @@
         <div id="orderingsummaryedit">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-sm-5">
                         <h3>Edit Ordering Summary Info</h3>
                     </div>
-                    <div class="col-md-7 ">
+                    <div class="col-sm-7 ">
                         <span class="pull-right">
                             <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index", "Ordering")'">Cancel</button>
                             <button class="btn btn-primary" type="submit">Save</button>
@@ -21,34 +21,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.Summary, new { @class = "label label-default" })
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.TextAreaFor(model => model.Summary, new { @class = "form-control", required = "required", @maxlength = 1000 })
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.Pricing, new { @class = "label label-default" })
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.TextAreaFor(model => model.Pricing, new { @class = "form-control", required = "required", @maxlength = 1000 })
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.PaymentOptions, new { @class = "label label-default" })
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.TextAreaFor(model => model.PaymentOptions, new { @class = "form-control", required = "required", @maxlength = 1000 })
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.LabelFor(model => model.PaymentPolicy, new { @class = "label label-default" })
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         @Html.TextAreaFor(model => model.PaymentPolicy, new { @class = "form-control", required = "required", @maxlength = 1000 })
                     </div>
                 </div>
