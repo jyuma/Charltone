@@ -8,7 +8,7 @@
 @colourMenuHover: #7DA5D8;
 @colourLink: #0385f3;
 @colourHint: #fbd934;
-@colourProgressBar: #0db239;
+@colourProgressBar: #3ddc67;
 @colourHeader: #cea96d;
 @colourMenu: #9d9d9d;
 @widthPage: 900px;
@@ -256,11 +256,6 @@ div#progress {
         height: 18px;
         background: @colourProgressBar;
     }
-
-    div#progressmsg {
-        background-color: darken(@colourDarkBrown, 10%);
-        color: @colourWhite;
-    }
 }
 
 /* Horizontal Line */
@@ -307,6 +302,7 @@ div#home {
 
     img {
         .mainBorder;
+        margin-top: 8px;
         width: 840px;
         height: 530px;
     }
@@ -316,10 +312,6 @@ div#home {
         padding: 0;
         margin: 5px 0 5px 0;
     }
-
-    img {
-        margin-top: 8px;
-    }
 }
 
 /* Home Edit */
@@ -327,6 +319,13 @@ div#homeedit {
     background-image: url(images/tools_large.jpg);
     .paddingContent;
     padding-top: 10px;
+
+    img {
+        .mainBorder;
+        margin-top: 8px;
+        width: 840px;
+        height: 530px;
+    }
 
     h3 {
         margin: 0;
@@ -384,7 +383,8 @@ div#instrlist {
     div#instrlist-item {
         button {
             float: right;
-            margin: 3px;
+            font-size: 8pt;
+            margin-left: 3px;
         }
 
         a {
@@ -420,6 +420,9 @@ div#instredit {
 
     button {
         margin: 0 0 10px 0;
+        &.btn.btn-primary {
+            margin-right: 10px;
+        }
     }
 
     img {
@@ -441,18 +444,21 @@ div#instredit {
 }
 
 /* Instrument Detail */
-#instrdetail {
+div#instrdetail {
     .paddingContent;
     padding-top: 8px;
     padding-bottom: 10px;
     background: url(images/tools_large_2_dark.jpg);
-
+    input#fileupload {
+        width: 250px;
+    }
     .row {
         padding-bottom: 0;
     }
     button {
         margin-top: 1px;
     }
+
     label {
         width: auto;
     }
@@ -593,10 +599,10 @@ div#ordering {
         font-style: italic;
         margin-left: -15px;
         height: 150px;
-
-        div#buttons {
-            padding-top: 26px;
+        button {
+            font-size: 8pt;
             font-style: normal;
+            margin-top: 37px;
         }
     }
 
@@ -624,6 +630,9 @@ div#orderingredit {
 
     button {
         margin: 0 0 10px 0;
+        &.btn.btn-primary {
+            margin-right: 10px;
+        }
     }
 
     img {

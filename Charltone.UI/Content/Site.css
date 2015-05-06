@@ -211,11 +211,7 @@ div#progress {
 }
 div#progress .bar {
   height: 18px;
-  background: #0db239;
-}
-div#progress div#progressmsg {
-  background-color: #3c2711;
-  color: #ffffff;
+  background: #3ddc67;
 }
 /* Horizontal Line */
 div.linehorizontal {
@@ -268,6 +264,7 @@ div#home img {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
+  margin-top: 8px;
   width: 840px;
   height: 530px;
 }
@@ -276,14 +273,19 @@ div#home h4 {
   padding: 0;
   margin: 5px 0 5px 0;
 }
-div#home img {
-  margin-top: 8px;
-}
 /* Home Edit */
 div#homeedit {
   background-image: url(images/tools_large.jpg);
   padding: 5px 2px 20px 0;
   padding-top: 10px;
+}
+div#homeedit img {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  margin-top: 8px;
+  width: 840px;
+  height: 530px;
 }
 div#homeedit h3 {
   margin: 0;
@@ -330,7 +332,8 @@ div#instrlist div#instrlist-banner h4 {
 }
 div#instrlist div#instrlist-item button {
   float: right;
-  margin: 3px;
+  font-size: 8pt;
+  margin-left: 3px;
 }
 div#instrlist div#instrlist-item a.link {
   float: right;
@@ -360,6 +363,9 @@ div#instredit {
 div#instredit button {
   margin: 0 0 10px 0;
 }
+div#instredit button.btn.btn-primary {
+  margin-right: 10px;
+}
 div#instredit img {
   border: solid;
   border-width: 2px;
@@ -377,30 +383,33 @@ div#instredit textarea {
   height: 100px;
 }
 /* Instrument Detail */
-#instrdetail {
+div#instrdetail {
   padding: 5px 2px 20px 0;
   padding-top: 8px;
   padding-bottom: 10px;
   background: url(images/tools_large_2_dark.jpg);
 }
-#instrdetail .row {
+div#instrdetail input#fileupload {
+  width: 250px;
+}
+div#instrdetail .row {
   padding-bottom: 0;
 }
-#instrdetail button {
+div#instrdetail button {
   margin-top: 1px;
 }
-#instrdetail label {
+div#instrdetail label {
   width: auto;
 }
-#instrdetail h4 {
+div#instrdetail h4 {
   padding: 0;
   margin: -2px 0 0 0;
 }
-#instrdetail h5 {
+div#instrdetail h5 {
   margin: 3px 0 5px 10px;
   font-size: 14pt;
 }
-#instrdetail img {
+div#instrdetail img {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
@@ -408,43 +417,43 @@ div#instredit textarea {
   width: 346px;
   height: 450px;
 }
-#instrdetail ul {
+div#instrdetail ul {
   padding: 0;
   margin: 0 0 0 15px;
 }
-#instrdetail ul label {
+div#instrdetail ul label {
   color: #f0f0f0;
   font-style: italic;
 }
-#instrdetail li {
+div#instrdetail li {
   margin-left: -5px;
   width: 455px;
   white-space: nowrap;
   overflow: hidden;
   text-align: left;
 }
-#instrdetail div.linehorizontal {
+div#instrdetail div.linehorizontal {
   margin: 5px 0 10px 0;
 }
-#instrdetail div.linevertical {
+div#instrdetail div.linevertical {
   margin: 0 0 0 -5px;
   height: 445px;
 }
-#instrdetail div#instrdetailthumbnailcontainer {
+div#instrdetail div#instrdetailthumbnailcontainer {
   padding-left: 15px;
 }
-#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail {
+div#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail {
   padding-right: 14px;
   float: left;
 }
-#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail img {
+div#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail img {
   width: 92px;
   height: 120px;
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
 }
-#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail .thumbnailbutton {
+div#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail .thumbnailbutton {
   width: 23px;
   height: 23px;
   padding: 2px;
@@ -507,9 +516,10 @@ div#ordering div#label {
   margin-left: -15px;
   height: 150px;
 }
-div#ordering div#label div#buttons {
-  padding-top: 26px;
+div#ordering div#label button {
+  font-size: 8pt;
   font-style: normal;
+  margin-top: 37px;
 }
 div#ordering div#text {
   margin-left: -50px;
@@ -531,6 +541,9 @@ div#orderingredit {
 }
 div#orderingredit button {
   margin: 0 0 10px 0;
+}
+div#orderingredit button.btn.btn-primary {
+  margin-right: 10px;
 }
 div#orderingredit img {
   border: solid;

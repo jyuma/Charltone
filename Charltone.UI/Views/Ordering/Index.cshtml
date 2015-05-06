@@ -100,7 +100,7 @@
                         <div><p>Description:</p></div>
                         @if (Request.IsAuthenticated)
                         {
-                            <div id="buttons"><button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button></div>
+                            <button class="btn btn-primary btn-xs" type="button" onclick="location.href = '@Url.Action("Edit", "Ordering", new {id = orderingInfo.Id})'">Edit</button>
                         }
                     </div>
                     <div class="col-sm-8" id="text">

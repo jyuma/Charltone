@@ -140,15 +140,16 @@
             };
 
             function deletePhoto(id) {
-                var divDialog = $("<div id='dialog-confirm-delete'>Delete photo?</div>");
+                if ($("body").find("#dialog-confirm-delete").length === 0) {
+                    $("#instrdetail").append("<div id='dialog-confirm-delete'>Delete photo?</div>");
+                }
 
-                $("#instrdetailcontent").append(divDialog);
                 $("#dialog-confirm-delete").dialog(
                 {
                     resizable: false,
                     modal: true,
                     title: "Confirm Delete",
-                    height: 140,
+                    height: 160,
                     width: 200,
                     buttons: {
                         "Yes": function() {

@@ -49,8 +49,8 @@
 
     public static class InstrumentImageSizeDetail
     {
-        public const int Width = 346;
-        public const int Height = 450;
+        public const int Width = 520;  //346;
+        public const int Height = 676;  //450;
     }
 
     public static class InstrumentImageSizeEdit

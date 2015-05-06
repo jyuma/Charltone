@@ -46,7 +46,7 @@
             })
             .on('fileuploaddone', function () {
                 if (fileIndex == totalFiles) {
-                    $.unblockUI();
+                    $("#progress").dialog('close');
                 } else {
                     fileIndex++;
                     $("#progressmsg").text("Uploading file " + fileIndex + " of " + totalFiles + "...");
@@ -56,10 +56,19 @@
                 fileIndex = 1;
                 totalFiles = data.files.length;
 
-                $.blockUI({
-                    css: { width: '350px', border: 'none' },
-                    message: $('<div id="progress"><div id="progressmsg"></div><div class="bar" style="width: 0; color: #fff"></div></div>')
+                if ($("body").find("#progress").length === 0) {
+                    $("body").append('<div id="progress"><div id="progressmsg"></div><div class="bar" style="width: 0; color: #fff;"></div></div>');
+                }
+
+                $("#progress").dialog(
+                {
+                    resizable: false,
+                    modal: true,
+                    title: "Photo Uploader",
+                    height: 160,
+                    width: 350,
                 });
+
                 $("#progressmsg").text("Uploading file 1 of " + totalFiles + "...");
                 $('#progress .bar').css('width', '0');
             });
