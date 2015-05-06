@@ -245,7 +245,6 @@
     <Content Include="Content\images\Previous.ico" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\progressbar.gif" />
-    <Content Include="Content\logo.png" />
     <Content Include="Content\images\faceplates_gradient.jpg" />
     <Content Include="Content\images\tools.jpg" />
     <Content Include="Content\images\tools_large.jpg" />
@@ -272,7 +271,6 @@
     <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\images\workshop2_cropped.jpg" />
     <Content Include="Content\css\jquery-ui.css" />
-    <Content Include="Content\logo_sm.png" />
     <Content Include="Content\logo_xs.png" />
     <Content Include="Scripts\Admin\Login.js" />
     <Content Include="Scripts\Error\Error.js" />

@@ -7,11 +7,10 @@
 }
 
 <div>
-    <div id="carousel-close">
-        <a id="carousel-close-link"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-    </div>
-
     <div id="instrCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div id="carousel-close">
+            <a id="carousel-close-link"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+        </div>
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
             @{
@@ -33,11 +32,11 @@
                     <div class="@itemClass">
                         <div id="carousel-image-container">
                             <img id="carousel-image" class="img-rounded" src=@Url.Action("GetPhoto", "Instrument", new InstrumentPhotoModel
-                                                                                                                                                  {
-                                                                                                                                                      PhotoId = Convert.ToInt32(photo.PhotoId),
-                                                                                                                                                      Width = Convert.ToInt32(@Model.MaxImageWidth),
-                                                                                                                                                      Height = Convert.ToInt32(@Model.MaxImageHeight)
-                                                                                                                                                  }) alt="" />
+                                                                                                                   {
+                                                                                                                       PhotoId = Convert.ToInt32(photo.PhotoId),
+                                                                                                                       Width = Convert.ToInt32(@Model.MaxImageWidth),
+                                                                                                                       Height = Convert.ToInt32(@Model.MaxImageHeight)
+                                                                                                                   }) alt="" />
                         </div>
                         <div class="carousel-caption">
                             <h4>@photo.Caption</h4>

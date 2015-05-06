@@ -26,13 +26,13 @@
                             $.unblockUI();
                         });
                     }
+
                     $.blockUI({
                         message: $(carousel),
                         css: {
-                            top: 70,
-                            left: ($(window).width() - 860) / 2 + 'px',
-                            width: 860,
-                            height: 800,
+                            top: 60,
+                            left: ($(window).width() - 700) / 2 + 'px',
+                            width: 700,
                             cursor: 'default',
                             background: '#333',
                             border: 0

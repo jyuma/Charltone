@@ -186,6 +186,17 @@ a#admin-login-link {
     top: -2px;
 }
 
+/* Admin Login Validation */
+div#validation-container {
+    border-style: none;
+    clear: both;
+
+    li {
+        display: list-item;
+        list-style-type: none;
+    }
+}
+
 /* Zoom */
 div.dialogimg {
     .mainBorder;
@@ -208,10 +219,7 @@ div#carousel-container {
     }
 
     div#instrCarousel {
-        height: 785px;
-
         .carousel-inner {
-            /*height: 785px;*/
             h4, h5 {
                 margin: 0 0 5px 0;
                 font-family: "trebuchet ms", sans-serif;
@@ -220,7 +228,6 @@ div#carousel-container {
 
         .item {
             height: 785px !important;
-            margin-bottom: -15px;
             background: #333;
             text-align: center;
 
@@ -412,37 +419,6 @@ div#instrlist {
     }
 }
 
-/* Instrument Edit */
-div#instredit {
-    .paddingContent;
-    padding-top: 0;
-    background: url(images/tools_large.jpg);
-
-    button {
-        margin: 0 0 10px 0;
-        &.btn.btn-primary {
-            margin-right: 10px;
-        }
-    }
-
-    img {
-        .mainBorder;
-        width: 260px;
-        height: 338px;
-    }
-
-    input[type=checkbox][id=IsPosted] {
-        padding: 0;
-        margin: 0;
-        width: 30px;
-        height: 30px;
-    }
-
-    textarea {
-        height: 100px;
-    }
-}
-
 /* Instrument Detail */
 div#instrdetail {
     .paddingContent;
@@ -503,7 +479,7 @@ div#instrdetail {
     }
 
     div.linevertical {
-        margin: 0 0 0 -5px;
+        margin: 3px 0 0 -5px;
         height: 445px;
     }
 
@@ -526,6 +502,37 @@ div#instrdetail {
                 padding: 2px;
             }
         }
+    }
+}
+
+/* Instrument Edit */
+div#instredit {
+    .paddingContent;
+    padding-top: 0;
+    background: url(images/tools_large.jpg);
+
+    button {
+        margin: 0 0 10px 0;
+        &.btn.btn-primary {
+            margin-right: 10px;
+        }
+    }
+
+    img {
+        .mainBorder;
+        width: 260px;
+        height: 338px;
+    }
+
+    input[type=checkbox][id=IsPosted] {
+        padding: 0;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+    }
+
+    textarea {
+        height: 100px;
     }
 }
 
@@ -724,16 +731,5 @@ div#contact {
     textarea {
         width: 400px;
         height: 80px;
-    }
-}
-
-/* Admin Login Validation */
-div#validation-container {
-    border-style: none;
-    clear: both;
-
-    li {
-        display: list-item;
-        list-style-type: none;
     }
 }

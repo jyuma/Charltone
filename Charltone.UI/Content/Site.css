@@ -151,6 +151,15 @@ a#admin-login-link {
   text-decoration: none;
   top: -2px;
 }
+/* Admin Login Validation */
+div#validation-container {
+  border-style: none;
+  clear: both;
+}
+div#validation-container li {
+  display: list-item;
+  list-style-type: none;
+}
 /* Zoom */
 div.dialogimg {
   border: solid;
@@ -169,12 +178,6 @@ div#carousel-container div#carousel-close a:hover {
   cursor: pointer;
   color: #f0f0f0;
 }
-div#carousel-container div#instrCarousel {
-  height: 785px;
-}
-div#carousel-container div#instrCarousel .carousel-inner {
-  /*height: 785px;*/
-}
 div#carousel-container div#instrCarousel .carousel-inner h4,
 div#carousel-container div#instrCarousel .carousel-inner h5 {
   margin: 0 0 5px 0;
@@ -182,7 +185,6 @@ div#carousel-container div#instrCarousel .carousel-inner h5 {
 }
 div#carousel-container div#instrCarousel .item {
   height: 785px !important;
-  margin-bottom: -15px;
   background: #333;
   text-align: center;
 }
@@ -354,34 +356,6 @@ div#instrlist img {
   width: 260px;
   height: 320px;
 }
-/* Instrument Edit */
-div#instredit {
-  padding: 5px 2px 20px 0;
-  padding-top: 0;
-  background: url(images/tools_large.jpg);
-}
-div#instredit button {
-  margin: 0 0 10px 0;
-}
-div#instredit button.btn.btn-primary {
-  margin-right: 10px;
-}
-div#instredit img {
-  border: solid;
-  border-width: 2px;
-  border-color: #cea96d;
-  width: 260px;
-  height: 338px;
-}
-div#instredit input[type=checkbox][id=IsPosted] {
-  padding: 0;
-  margin: 0;
-  width: 30px;
-  height: 30px;
-}
-div#instredit textarea {
-  height: 100px;
-}
 /* Instrument Detail */
 div#instrdetail {
   padding: 5px 2px 20px 0;
@@ -436,7 +410,7 @@ div#instrdetail div.linehorizontal {
   margin: 5px 0 10px 0;
 }
 div#instrdetail div.linevertical {
-  margin: 0 0 0 -5px;
+  margin: 3px 0 0 -5px;
   height: 445px;
 }
 div#instrdetail div#instrdetailthumbnailcontainer {
@@ -457,6 +431,34 @@ div#instrdetail div#instrdetailthumbnailcontainer .instrdetailthumbnail .thumbna
   width: 23px;
   height: 23px;
   padding: 2px;
+}
+/* Instrument Edit */
+div#instredit {
+  padding: 5px 2px 20px 0;
+  padding-top: 0;
+  background: url(images/tools_large.jpg);
+}
+div#instredit button {
+  margin: 0 0 10px 0;
+}
+div#instredit button.btn.btn-primary {
+  margin-right: 10px;
+}
+div#instredit img {
+  border: solid;
+  border-width: 2px;
+  border-color: #cea96d;
+  width: 260px;
+  height: 338px;
+}
+div#instredit input[type=checkbox][id=IsPosted] {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+}
+div#instredit textarea {
+  height: 100px;
 }
 /* Ordering */
 div#ordering {
@@ -620,14 +622,5 @@ div#contact img {
 div#contact textarea {
   width: 400px;
   height: 80px;
-}
-/* Admin Login Validation */
-div#validation-container {
-  border-style: none;
-  clear: both;
-}
-div#validation-container li {
-  display: list-item;
-  list-style-type: none;
 }
 /*# sourceMappingURL=site.css.map */
