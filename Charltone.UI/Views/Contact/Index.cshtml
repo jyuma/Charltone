@@ -7,9 +7,10 @@
     $(document).ready( function() {
         contact.index.init();
     });
+
 </script>
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @class="form-group", id = "contact-form" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class="form-group", id="contact-form" }))
     {
         <div id="contact">
             <div class="container-fluid">
@@ -26,30 +27,30 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="pull-left">
-                            <button class="btn btn-primary @(Model.ContactName != null ? "disabled" : null)" type="submit">Send</button>
+                            <button class="btn btn-primary" type="submit">Send</button>
                         </div>
                         <div class="pull-left">
                             <div class="control-group">
                                 @Html.LabelFor(model => model.ContactName, new { @class = "label label-default" })
-                                <div class="controls @(Model.ContactName != null ? "disabled" : null)">
+                                <div class="controls">
                                     @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control", @maxlength = 150, @placeholder = "Enter your name" })
                                 </div>
                             </div>
                             <div class="control-group">
                                 @Html.LabelFor(model => model.ContactEmail, new { @class = "label label-default" })
-                                <div class="controls @(Model.ContactName != null ? "disabled" : null)">
+                                <div class="controls">
                                     @Html.TextBoxFor(model => model.ContactEmail, new { @class = "form-control", @maxlength = 150, @placeholder = "Enter your email address" })
                                 </div>
                             </div>
                             <div class="control-group">
                                 @Html.LabelFor(model => model.ContactPhone, new { @class = "label label-default" })
-                                <div class="controls @(Model.ContactName != null ? "disabled" : null)">
+                                <div class="controls">
                                     @Html.TextBoxFor(model => model.ContactPhone, new { @class = "form-control", @maxlength = 150, @placeholder = "Enter your phone number" })
                                 </div>
                             </div>
                             <div class="control-group">
                                 @Html.LabelFor(model => model.ContactMessage, new { @class = "label label-default" })
-                                <div class="controls @(Model.ContactName != null ? "disabled" : null)">
+                                <div class="controls">
                                     @Html.TextAreaFor(model => model.ContactMessage, new { @class = "form-control", @maxlength = 1000, @placeholder = "Compose your message..." })
                                 </div>
                             </div>

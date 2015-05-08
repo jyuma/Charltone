@@ -33,7 +33,7 @@
                 imageCrop: true,
                 sequentialUploads: true,
                 processfail: function(e, data) {
-                    $.unblockUI();
+                    $("#progress").dialog('close');
                     error.show.dialog(data.files[data.index].error);
                 },
                 done: function(e, data) {

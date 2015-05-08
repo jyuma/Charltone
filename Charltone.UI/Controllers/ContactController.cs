@@ -26,11 +26,11 @@ namespace Charltone.UI.Controllers
                               Phone = contactPhone,
                               Email = contactEmail
                           };
-            contact.SendEmail(contactMessage);
+            var result = contact.SendEmail(contactMessage);
 
-            viewModel.HeaderMessage = "Thank you, we received your message.";
+            if (result != null) return Json(new {success = false, message = result});
 
-            return View(viewModel);
+            return Json(new { success = true });
         }
     }
 }
