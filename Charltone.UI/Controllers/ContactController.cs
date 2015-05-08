@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using Charltone.UI.Extensions;
-using Charltone.UI.ViewModels.Contact;
+﻿using Charltone.UI.Extensions;
 using Charltone.UI.Models;
+using Charltone.UI.ViewModels.Contact;
+using System.Web.Mvc;
 
 namespace Charltone.UI.Controllers
 {

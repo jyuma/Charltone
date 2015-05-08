@@ -74,6 +74,7 @@ namespace Charltone.UI
                 "~/Scripts/Instrument/Carousel.js",
                 "~/Scripts/Ordering/Edit.js",
                 "~/Scripts/Admin/Login.js",
+                "~/Scripts/Contact/Index.js",
                 "~/Scripts/Metrics/GoogleAnalytics.js");
             customScriptsBundle.Builder = nullBuilder;
             customScriptsBundle.Transforms.Add(scriptTransformer);

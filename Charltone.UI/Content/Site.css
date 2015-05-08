@@ -20,17 +20,16 @@
   padding: 5px 2px 20px 0;
 }
 .padingBody {
-  padding: 51px 0 0 0;
+  padding: 64px 0 0 0;
 }
 /* Menu Logo */
 #logo {
-  background: url(logo_xs.png) no-repeat;
-  width: 120px;
+  background: url(logo_sm.png) no-repeat;
+  width: 160px;
   /*214*/
-  height: 41px;
+  height: 55px;
   /*74*/
-  margin: 4px 0 4px 0;
-  margin-left: 35px;
+  margin: 4px 0 4px 35px;
   float: left;
 }
 /* Bootstrap */
@@ -45,6 +44,7 @@
   width: 300px;
   height: 200px;
 }
+/* Navbar Menu */
 .navbar-header {
   background: url(images/tools.jpg) right no-repeat;
   width: 900px;
@@ -52,9 +52,13 @@
   margin-right: auto;
   float: none;
 }
+.navbar-header ul a {
+  padding-top: 23px;
+  height: 63px;
+}
 .navbar-header ul.nav.navbar-nav {
-  font-size: 12pt;
-  padding-right: 20px;
+  font-size: 15pt;
+  padding: 0 25px 0 0;
   float: right;
 }
 /* Primary Layout */
@@ -62,7 +66,7 @@ html {
   overflow-y: scroll;
 }
 body {
-  padding: 51px 0 0 0;
+  padding: 64px 0 0 0;
   background-color: #272722;
   color: #ffffff;
   font-size: 10pt;
@@ -111,39 +115,44 @@ textarea {
 .ui-tooltip {
   font-size: 10pt;
 }
+/* Main Panel */
 div#main {
   width: 100%;
   _height: 1px;
   /* only IE6 applies CSS properties starting with an underscore */
 }
-/* Main Menu */
-div#menucontainer {
-  float: right;
-  margin: 40px 15px 0 0;
-  display: inline;
-  padding: 0 15px 0 0;
-  text-transform: uppercase;
-  font-weight: bold;
-  line-height: 1.4em;
-  font-size: 14pt;
-}
-div#menucontainer ul {
-  text-align: right;
-}
-div#menucontainer ul li {
-  display: inline;
-  list-style: none;
-}
-div#menucontainer ul li a {
-  padding: 10px 10px;
-  text-decoration: none;
-  color: #f0f0f0;
-}
-div#menucontainer ul li a:hover {
-  text-decoration: none;
-  color: #7da5d8;
-}
-/* The little dot above the "c" in "charltone" */
+/* Main Menu (old) */
+/*div#menucontainer {
+    float: right;
+    margin: 40px 15px 0 0;
+    display: inline;
+    padding: 0 15px 0 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1.4em;
+    font-size: 14pt;
+
+    ul {
+        text-align: right;
+
+        li {
+            display: inline;
+            list-style: none;
+
+            a {
+                padding: 10px 10px;
+                text-decoration: none;
+                color: @colourIvory;
+
+                &:hover {
+                    text-decoration: none;
+                    color: @colourMenuHover;
+                }
+            }
+        }
+    }
+}*/
+/* The tiny circular anchor above the "c" in the logo */
 a#admin-login-link {
   position: absolute;
   color: #262626;
@@ -159,6 +168,23 @@ div#validation-container {
 div#validation-container li {
   display: list-item;
   list-style-type: none;
+}
+/* Form Validation */
+div.control-group {
+  min-height: 70px;
+}
+div.control-group label.error {
+  font-weight: bold;
+  color: #ff4d4d;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+div.control-group:not(.has-error) div.controls.disabled .form-control {
+  pointer-events: none;
+}
+div.control-group.has-error div.controls .form-control {
+  pointer-events: all;
+  background-color: #ffcccc;
 }
 /* Zoom */
 div.dialogimg {
@@ -178,15 +204,22 @@ div#carousel-container div#carousel-close a:hover {
   cursor: pointer;
   color: #f0f0f0;
 }
+div#carousel-container div#instrCarousel .carousel-indicators {
+  bottom: 0;
+}
 div#carousel-container div#instrCarousel .carousel-inner h4,
 div#carousel-container div#instrCarousel .carousel-inner h5 {
   margin: 0 0 5px 0;
   font-family: "trebuchet ms", sans-serif;
 }
 div#carousel-container div#instrCarousel .item {
-  height: 785px !important;
+  height: 757px !important;
   background: #333;
   text-align: center;
+  margin-bottom: 0;
+}
+div#carousel-container div#instrCarousel .item .carousel-caption {
+  bottom: 0;
 }
 div#carousel-container div#instrCarousel .item .carousel-caption h4 {
   color: #cea96d;
@@ -270,8 +303,8 @@ div#home img {
   width: 840px;
   height: 530px;
 }
-div#home h4 {
-  font-size: 16pt;
+div#home h3 {
+  /*font-size: 16pt;*/
   padding: 0;
   margin: 5px 0 5px 0;
 }
@@ -303,7 +336,6 @@ div#about {
   padding-top: 10px;
 }
 div#about h3 {
-  font-size: 14pt;
   margin: 5px 0 5px 0;
 }
 /* About Edit */
@@ -479,7 +511,7 @@ div#ordering .panel-group .panel-default .panel-heading {
   background-image: none;
 }
 div#ordering .panel-group .panel-default .panel-heading h4 {
-  font-size: 10pt;
+  font-size: 11pt;
 }
 div#ordering .panel-group .panel-default .panel-heading h4.panel-title a:link.collapsed {
   color: #9d9d9d;
@@ -592,11 +624,14 @@ div#contact {
   padding: 5px 2px 20px 0;
 }
 div#contact div#get-in-touch {
-  margin-left: -40px;
+  margin-left: -50px;
+}
+div#contact div#get-in-touch h4 {
+  font-size: 16pt;
 }
 div#contact div.linevertical {
   margin: 0;
-  height: 315px;
+  height: 420px;
 }
 div#contact div.linehorizontal {
   margin: 0;
@@ -605,11 +640,13 @@ div#contact div.linehorizontal {
 div#contact input[type=textbox] {
   width: 400px;
 }
-div#contact h4 {
+div#contact h3 {
+  margin-top: 10px;
   color: #f0f0f0;
 }
 div#contact button {
   width: 80px;
+  margin-bottom: 10px;
 }
 div#contact img {
   top: 80px;
@@ -620,7 +657,7 @@ div#contact img {
   background: url(images/torres_small.png) right no-repeat;
 }
 div#contact textarea {
-  width: 400px;
-  height: 80px;
+  width: 480px;
+  height: 150px;
 }
 /*# sourceMappingURL=site.css.map */

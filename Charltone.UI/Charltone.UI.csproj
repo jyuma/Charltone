@@ -77,10 +77,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-    </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core">
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.4\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
     </Reference>
@@ -271,8 +267,10 @@
     <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\images\workshop2_cropped.jpg" />
     <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\logo_sm.png" />
     <Content Include="Content\logo_xs.png" />
     <Content Include="Scripts\Admin\Login.js" />
+    <Content Include="Scripts\Contact\Index.js" />
     <Content Include="Scripts\Error\Error.js" />
     <Content Include="Scripts\File\Upload.js" />
     <Content Include="Scripts\Home\Index.js" />

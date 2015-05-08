@@ -4,7 +4,7 @@
 * Date: 2015-04
 */
 
-; (function ($) {
+;(function ($) {
 
     window.ordering = {};
 

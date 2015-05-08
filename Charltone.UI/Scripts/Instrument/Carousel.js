@@ -20,7 +20,6 @@
 
                     if ($(carousel.children()).length === 0) {
                         $(carousel).html(data);
-                        $('.carousel').carousel('cycle');
                         $("#carousel-close-link").click(function () {
                             $(carousel).html('');
                             $.unblockUI();
@@ -33,12 +32,14 @@
                             top: 60,
                             left: ($(window).width() - 700) / 2 + 'px',
                             width: 700,
+                            height: 790,
                             cursor: 'default',
                             background: '#333',
                             border: 0
                         }
                     });
-            });
+                    $('.carousel').carousel('cycle');
+                });
          }
     }
 })(jQuery);

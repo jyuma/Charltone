@@ -4,7 +4,8 @@
 @colourWhite: #fff;
 @colourIvory: #f0f0f0;
 @colourBlack: #000;
-@colourRed: #ff0000;
+@colourError: #ff0000;
+@colourSuccess: #21cf2a;
 @colourMenuHover: #7DA5D8;
 @colourLink: #0385f3;
 @colourHint: #fbd934;
@@ -34,16 +35,15 @@
 }
 
 .padingBody {
-    padding: 51px 0 0 0;
+    padding: 64px 0 0 0;
 }
 
 /* Menu Logo */
 #logo {
-    background: url(logo_xs.png) no-repeat;
-    width: 120px; /*214*/
-    height: 41px; /*74*/
-    margin: 4px 0 4px 0;
-    margin-left: 35px;
+    background: url(logo_sm.png) no-repeat;
+    width: 160px; /*214*/
+    height: 55px; /*74*/
+    margin: 4px 0 4px 35px;
     float: left;
 }
 
@@ -62,18 +62,24 @@
     height: 200px;
 }
 
+/* Navbar Menu */
 .navbar-header {
-    ul.nav.navbar-nav {
-        font-size: 12pt;
-        padding-right: 20px;
-        float: right;
-    }
-
     background: url(images/tools.jpg) right no-repeat;
     width: @widthPage;
     margin-left: auto;
     margin-right: auto;
     float: none;
+    ul {
+        a {
+            padding-top: 23px;
+            height: 63px;
+        }
+        &.nav.navbar-nav {
+            font-size: 15pt;
+            padding: 0 25px 0 0;
+            float: right;
+        }
+    }
 }
 
 /* Primary Layout */
@@ -140,13 +146,15 @@ textarea {
     font-size: 10pt;
 }
 
+/* Main Panel */
 div#main {
     width: 100%;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
-/* Main Menu */
-div#menucontainer {
+//TODO: Descard when we are happy with the bootstrap nav bar
+/* Main Menu (old) */
+/*div#menucontainer {
     float: right;
     margin: 40px 15px 0 0;
     display: inline;
@@ -175,9 +183,9 @@ div#menucontainer {
             }
         }
     }
-}
+}*/
 
-/* The little dot above the "c" in "charltone" */
+/* The tiny circular anchor above the "c" in the logo */
 a#admin-login-link {
     position: absolute;
     color: lighten(@colourBlack, 15%);
@@ -194,6 +202,35 @@ div#validation-container {
     li {
         display: list-item;
         list-style-type: none;
+    }
+}
+
+/* Form Validation */
+div.control-group {
+    min-height: 70px;
+
+    label.error {
+        font-weight: bold;
+        color: lighten(@colourError, 15%);
+        padding: 2px 8px;
+        margin-top: 2px;
+    }
+
+    &:not(.has-error) {
+       div.controls.disabled {
+            .form-control {
+                pointer-events: none;
+            }
+        }
+    }
+
+    &.has-error {
+        div.controls {
+            .form-control {
+                pointer-events: all;
+                background-color: lighten(@colourError, 40%);
+            }
+        }
     }
 }
 
@@ -219,6 +256,9 @@ div#carousel-container {
     }
 
     div#instrCarousel {
+        .carousel-indicators {
+            bottom: 0;
+        }
         .carousel-inner {
             h4, h5 {
                 margin: 0 0 5px 0;
@@ -227,11 +267,12 @@ div#carousel-container {
         }
 
         .item {
-            height: 785px !important;
+            height: 757px !important;
             background: #333;
             text-align: center;
-
+            margin-bottom: 0;
             .carousel-caption {
+                bottom: 0;
                 h4 {
                     color: @colourBrown;
                 }
@@ -314,8 +355,8 @@ div#home {
         height: 530px;
     }
 
-    h4 {
-        font-size: 16pt;
+    h3 {
+        /*font-size: 16pt;*/
         padding: 0;
         margin: 5px 0 5px 0;
     }
@@ -349,9 +390,7 @@ div#about {
     background: url(images/tools_large_2_dark.jpg) repeat;
     .paddingContent;
     padding-top: 10px;
-
     h3 {
-        font-size: 14pt;
         margin: 5px 0 5px 0;
     }
 }
@@ -555,7 +594,7 @@ div#ordering {
                 background-image: none;
 
                 h4 {
-                    font-size: 10pt;
+                    font-size: 11pt;
 
                     &.panel-title {
                         a:link {
@@ -694,12 +733,15 @@ div#contact {
     .paddingContent;
 
     div#get-in-touch {
-        margin-left: -40px;
+        margin-left: -50px;
+        h4 {
+            font-size: 16pt;
+        }
     }
 
     div.linevertical {
         margin: 0;
-        height: 315px;
+        height: 420px;
     }
 
     div.linehorizontal {
@@ -711,12 +753,14 @@ div#contact {
         width: 400px;
     }
 
-    h4 {
+    h3 {
+        margin-top: 10px;
         color: @colourIvory;
     }
 
     button {
         width: 80px;
+        margin-bottom: 10px;
     }
 
     img {
@@ -729,7 +773,7 @@ div#contact {
     }
 
     textarea {
-        width: 400px;
-        height: 80px;
+        width: 480px;
+        height: 150px;
     }
 }
