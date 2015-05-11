@@ -34,7 +34,11 @@
                 sequentialUploads: true,
                 processfail: function(e, data) {
                     $("#progress").dialog('close');
-                    error.show.dialog(data.files[data.index].error);
+                    error.show.dialog(
+                    {
+                        title: "Invalid File Type",
+                        message: data.files[data.index].error
+                    });
                 },
                 done: function(e, data) {
                     callback(data.result);

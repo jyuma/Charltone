@@ -75,9 +75,9 @@
             height: 63px;
         }
         &.nav.navbar-nav {
-            font-size: 15pt;
-            padding: 0 25px 0 0;
-            float: right;
+            font-size: 13pt;
+            padding: 0 0 0 180px;
+            /*float: right;*/
         }
     }
 }
@@ -138,8 +138,14 @@ textarea {
 }
 
 /* jQuery ui */
-.ui-dialog-titlebar-close {
-    visibility: hidden;
+
+
+.ui-dialog-titlebar {
+  background-color: @colourHeader;
+  background-image: none;
+  .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
 }
 
 .ui-tooltip {

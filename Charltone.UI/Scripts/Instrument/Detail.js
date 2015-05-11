@@ -142,8 +142,9 @@
             function deletePhoto(id) {
                 if ($("body").find("#dialog-confirm-delete").length === 0) {
                     $("#instrdetail").append("<div id='dialog-confirm-delete'>Delete photo?</div>");
+                    $("#dialog-confirm-delete").addClass("text-danger");
                 }
-
+                
                 $("#dialog-confirm-delete").dialog(
                 {
                     resizable: false,
