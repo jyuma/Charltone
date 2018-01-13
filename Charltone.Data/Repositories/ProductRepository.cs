@@ -11,9 +11,23 @@ namespace Charltone.Data.Repositories
 
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
+        private readonly IPhotoRepository _photoRepository;
+
         public ProductRepository(ISession session)
             : base(session)
         {
+            _photoRepository = new PhotoRepository(session);
+        }
+
+        public override void Delete(int id)
+        {
+            var photos = _photoRepository.GetListByProductId(id);
+            foreach (var photo in photos)
+            {
+                _photoRepository.Delete(photo.Id);
+            }
+
+            base.Delete(id);
         }
 
         public IList<Product> GetInstrumentList(bool includeUnposted)

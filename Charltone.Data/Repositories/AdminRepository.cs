@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Charltone.Domain.Entities;
+﻿using Charltone.Domain.Entities;
 using NHibernate;
 
 namespace Charltone.Data.Repositories

@@ -10,6 +10,7 @@ namespace Charltone.Data.Repositories
         byte[] GetNoPhotoImage();
 
         void SetProductDefault(int id, int newid);
+        IEnumerable<Photo> GetListByProductId(int productId);
     }
 
     public class PhotoRepository : RepositoryBase<Photo>, IPhotoRepository
@@ -40,7 +41,7 @@ namespace Charltone.Data.Repositories
             }
         }
 
-        private IEnumerable<Photo> GetListByProductId(int productId)
+        public IEnumerable<Photo> GetListByProductId(int productId)
         {
             return Session.QueryOver<Photo>()
                 .Where(x => x.Product.Id == productId)
