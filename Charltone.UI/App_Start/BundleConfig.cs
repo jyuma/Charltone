@@ -8,18 +8,19 @@ namespace Charltone.UI
         {
             bundles.Add(new StyleBundle("~/bundles/CommonStyles").Include(
                 "~/Content/css/*.css",
-                "~/Content/site.css"));
+                "~/Content/site.css"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/Modernizr").Include(
                 "~/Scripts/modernizr-2.*"
-                ));
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/Jquery").Include(
                 "~/Scripts/js/jquery-{version}.js",
                 "~/Scripts/js/jquery-ui.js",
                 "~/Scripts/js/jquery.unobtrusive*",
                 "~/Scripts/js/jquery.validate*"
-                ));
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/CommonScripts").Include(
                 "~/Scripts/js/jquery.blockUI.js",
@@ -36,7 +37,7 @@ namespace Charltone.UI
                 "~/Scripts/js/bootstrap.js",
                 "~/Scripts/js/cors/*.js",
                 "~/Scripts/js/vendor/*.js"
-                ));
+             ));
 
             bundles.Add(new Bundle("~/bundles/CustomScripts").Include(
                 "~/Scripts/Site/Site.js",
@@ -52,7 +53,7 @@ namespace Charltone.UI
                 "~/Scripts/Admin/Login.js",
                 "~/Scripts/Contact/Index.js",
                 "~/Scripts/Metrics/GoogleAnalytics.js"
-                ));
+            ));
 
             //BundleTable.EnableOptimizations = false;
         }

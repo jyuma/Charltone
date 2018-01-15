@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Charltone.Data.Repositories;
+using Ninject;
+using Ninject.Web.Common.WebHost;
+using System;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Charltone.Data.Repositories;
-using Ninject;
-using Ninject.Web.Common;
 
 namespace Charltone.UI
 {
