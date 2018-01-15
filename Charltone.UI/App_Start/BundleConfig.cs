@@ -12,34 +12,34 @@ namespace Charltone.UI
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/Modernizr").Include(
-                "~/Scripts/modernizr-2.*"
+                "~/Scripts/modernizr-{version}"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/Jquery").Include(
-                "~/Scripts/js/jquery-{version}.js",
-                "~/Scripts/js/jquery-ui.js",
-                "~/Scripts/js/jquery.unobtrusive*",
-                "~/Scripts/js/jquery.validate*"
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery-ui-{version}.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js",
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.blockUI.js",
+                "~/Scripts/jquery.fileupload.js",
+                "~/Scripts/jquery.fileupload-ui.js",
+                "~/Scripts/jquery.fileupload-process.js",
+                "~/Scripts/jquery.fileupload-validate.js",
+                "~/Scripts/jquery.fileupload-image.js",
+                "~/Scripts/canvas-to-blob.js",
+                "~/Scripts/jquery.fileupload-video.js",
+                "~/Scripts/jquery.fileupload-audio.js",
+                "~/Scripts/jquery.jquery.iframe-transport.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/CommonScripts").Include(
-                "~/Scripts/js/jquery.blockUI.js",
-                "~/Scripts/js/load-image.all.min.js",
-                "~/Scripts/js/jquery.fileupload.js",
-                "~/Scripts/js/jquery.fileupload-ui.js",
-                "~/Scripts/js/jquery.fileupload-process.js",
-                "~/Scripts/js/jquery.fileupload-validate.js",
-                "~/Scripts/js/jquery.fileupload-image.js",
-                "~/Scripts/js/canvas-to-blob.js",
-                "~/Scripts/js/jquery.fileupload-video.js",
-                "~/Scripts/js/jquery.fileupload-audio.js",
-                "~/Scripts/js/jquery.jquery.iframe-transport.js",
-                "~/Scripts/js/bootstrap.js",
-                "~/Scripts/js/cors/*.js",
-                "~/Scripts/js/vendor/*.js"
+                "~/Scripts/load-image.all.min.js",
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/cors/*.js",
+                "~/Scripts/vendor/*.js"
              ));
 
-            bundles.Add(new Bundle("~/bundles/CustomScripts").Include(
+            bundles.Add(new ScriptBundle("~/bundles/CustomScripts").Include(
                 "~/Scripts/Site/Site.js",
                 "~/Scripts/File/Upload.js",
                 "~/Scripts/Error/Error.js",
