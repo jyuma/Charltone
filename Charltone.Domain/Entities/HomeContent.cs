@@ -4,5 +4,6 @@
     {
         public virtual string Introduction { get; set; }
         public virtual string Greeting { get; set; }
+        public virtual byte[] Photo { get; set; }
     }
 }

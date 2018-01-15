@@ -62,12 +62,12 @@ namespace Charltone.UI.Controllers
             var data = reader.ReadBytes(file.ContentLength);
 
             var photo = new Photo
-                        {
-                            IsDefault = (count == 0),
-                            Data = data,
-                            SortOrder = count + 1,
-                            Product = product
-                        };
+            {
+                IsDefault = (count == 0),
+                Data = data,
+                SortOrder = count + 1,
+                Product = product
+            };
 
             product.Photos.Add(photo);
             var newId = _photos.Add(photo);
@@ -318,7 +318,7 @@ namespace Charltone.UI.Controllers
             return vm;
         }
 
-        private string GetStatusCssClass(int producstStatusTypeId)
+        private static string GetStatusCssClass(int producstStatusTypeId)
         {
             var result = "default";
             switch (producstStatusTypeId)

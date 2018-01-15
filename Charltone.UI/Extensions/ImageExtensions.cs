@@ -38,20 +38,5 @@ namespace Charltone.UI.Extensions
 
             return result;
         }
-
-        // Save
-        public static void SaveHomePageImage(this byte[] data, string path)
-        {
-            //var cropped = data.ByteArrayToImage().CropHomePageImage().ImageToByteArray();
-
-            using (var stream = new MemoryStream(data))
-            {
-                using (var img = Image.FromStream(stream))
-                {
-                    img.Save(path, ImageFormat.Jpeg);
-                    img.Dispose();
-                }
-            }
-        }
     }
 }

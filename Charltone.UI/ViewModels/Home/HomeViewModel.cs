@@ -10,6 +10,7 @@ namespace Charltone.UI.ViewModels.Home
         public string Greeting { get; set; }
         public int MaxImageWidth { get; set; }
         public int MaxImageHeight { get; set; }
+        public string Photo { get; set; }
 
         [FileTypes("jpg,jpeg", ErrorMessage = "Only jpg/jpeg image formats are supported")]
         [DataType(DataType.Upload)]
