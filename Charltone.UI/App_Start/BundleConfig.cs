@@ -1,7 +1,4 @@
-﻿using BundleTransformer.Core.Builders;
-using BundleTransformer.Core.Resolvers;
-using BundleTransformer.Core.Transformers;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Charltone.UI
 {
@@ -9,40 +6,22 @@ namespace Charltone.UI
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            var nullBuilder = new NullBuilder();
-            var styleTransformer = new StyleTransformer();
-            var scriptTransformer = new ScriptTransformer();
-            
-            // Replace a default bundle resolver in order to the debugging HTTP-handler
-            // can use transformations of the corresponding bundle
-            BundleResolver.Current = new CustomBundleResolver();
-
-            var commonStylesBundle = new Bundle("~/bundles/CommonStyles");
-            commonStylesBundle.Include(
+            bundles.Add(new StyleBundle("~/bundles/CommonStyles").Include(
                 "~/Content/css/*.css",
-                "~/Content/site.less");
-            commonStylesBundle.Builder = nullBuilder;
-            commonStylesBundle.Transforms.Add(styleTransformer);
-            bundles.Add(commonStylesBundle);
+                "~/Content/site.css"));
 
-            var modernizrBundle = new Bundle("~/bundles/Modernizr");
-            modernizrBundle.Include("~/Scripts/modernizr-2.*");
-            modernizrBundle.Builder = nullBuilder;
-            modernizrBundle.Transforms.Add(scriptTransformer);
-            bundles.Add(modernizrBundle);
+            bundles.Add(new ScriptBundle("~/bundles/Modernizr").Include(
+                "~/Scripts/modernizr-2.*"
+                ));
 
-            var jQueryBundle = new Bundle("~/bundles/Jquery");
-            jQueryBundle.Include(
+            bundles.Add(new ScriptBundle("~/bundles/Jquery").Include(
                 "~/Scripts/js/jquery-{version}.js",
                 "~/Scripts/js/jquery-ui.js",
-                "~/Scripts/js/jquery.unobtrusive*", 
-                "~/Scripts/js/jquery.validate*");
-            jQueryBundle.Builder = nullBuilder;
-            jQueryBundle.Transforms.Add(scriptTransformer);
-            bundles.Add(jQueryBundle);
+                "~/Scripts/js/jquery.unobtrusive*",
+                "~/Scripts/js/jquery.validate*"
+                ));
 
-            var commonScriptsBundle = new Bundle("~/bundles/CommonScripts");
-            commonScriptsBundle.Include(
+            bundles.Add(new ScriptBundle("~/bundles/CommonScripts").Include(
                 "~/Scripts/js/jquery.blockUI.js",
                 "~/Scripts/js/load-image.all.min.js",
                 "~/Scripts/js/jquery.fileupload.js",
@@ -56,13 +35,10 @@ namespace Charltone.UI
                 "~/Scripts/js/jquery.jquery.iframe-transport.js",
                 "~/Scripts/js/bootstrap.js",
                 "~/Scripts/js/cors/*.js",
-                "~/Scripts/js/vendor/*.js");
-            commonScriptsBundle.Builder = nullBuilder;
-            commonScriptsBundle.Transforms.Add(scriptTransformer);
-            bundles.Add(commonScriptsBundle);
+                "~/Scripts/js/vendor/*.js"
+                ));
 
-            var customScriptsBundle = new Bundle("~/bundles/CustomScripts");
-            customScriptsBundle.Include(
+            bundles.Add(new Bundle("~/bundles/CustomScripts").Include(
                 "~/Scripts/Site/Site.js",
                 "~/Scripts/File/Upload.js",
                 "~/Scripts/Error/Error.js",
@@ -75,10 +51,8 @@ namespace Charltone.UI
                 "~/Scripts/Ordering/Edit.js",
                 "~/Scripts/Admin/Login.js",
                 "~/Scripts/Contact/Index.js",
-                "~/Scripts/Metrics/GoogleAnalytics.js");
-            customScriptsBundle.Builder = nullBuilder;
-            customScriptsBundle.Transforms.Add(scriptTransformer);
-            bundles.Add(customScriptsBundle);
+                "~/Scripts/Metrics/GoogleAnalytics.js"
+                ));
 
             //BundleTable.EnableOptimizations = false;
         }
