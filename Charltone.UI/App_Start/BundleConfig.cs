@@ -21,6 +21,7 @@ namespace Charltone.UI
                 "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.blockUI.js",
+                "~/Scripts/load-image.all.min.js",
                 "~/Scripts/jquery.fileupload.js",
                 "~/Scripts/jquery.fileupload-ui.js",
                 "~/Scripts/jquery.fileupload-process.js",
@@ -33,7 +34,6 @@ namespace Charltone.UI
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/CommonScripts").Include(
-                "~/Scripts/load-image.all.min.js",
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/cors/*.js",
                 "~/Scripts/vendor/*.js"

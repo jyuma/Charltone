@@ -25,8 +25,8 @@
             $.extend(config, options);
 
             var photos;
-            var cssInputDisabled = { opacity: 0.5, cursor: 'default' };
-            var cssInputEnabled = { opacity: 1, cursor: 'pointer' };
+            var cssInputDisabled = { opacity: 0.5, cursor: "default" };
+            var cssInputEnabled = { opacity: 1, cursor: "pointer" };
             var totalPhotos = 0;
             var currentPhotoId = config.defaultPhotoId;
 
@@ -61,11 +61,11 @@
             };
 
             function appendThumbnail(id) {
-                var divThumbnail = document.createElement('div');
-                $(divThumbnail).attr('id', 'instrdetailthumbnail_' + id);
-                $(divThumbnail).addClass('instrdetailthumbnail');
+                var divThumbnail = document.createElement("div");
+                $(divThumbnail).attr("id", "instrdetailthumbnail_" + id);
+                $(divThumbnail).addClass("instrdetailthumbnail");
 
-                var image = '<a id=' + "img_" + id + ' href="javascript:;"><img class="img-rounded" src=' + site.url + 'Instrument/GetThumbnail/' + id + ' alt="" /></a>';
+                var image = "<a id=" + "img_" + id + ' href="javascript:;"><img class="img-rounded" src=' + site.url + "Instrument/GetThumbnail/" + id + ' alt="" /></a>';
                 $(divThumbnail).append(image);
 
                 if (config.isAuthenticated) {
@@ -123,7 +123,7 @@
             function displayPhoto(id) {
                 $.getJSON(site.url + "Instrument/GetPhotoJson", { "PhotoId": id, "Width": config.maxDisplayImageWidth, "Height": config.maxDisplayImageHeight },
                     function(data) {
-                        $("#currentphoto").attr('src', 'data:image/jpg;base64,' + data + '');
+                        $("#currentphoto").attr("src", "data:image/jpg;base64," + data + "");
                         currentPhotoId = id;
                         enableInputDelete();
                     });
@@ -154,7 +154,7 @@
                     width: 200,
                     buttons: {
                         "Yes": function() {
-                            $(this).dialog('close');
+                            $(this).dialog("close");
                             $.post(site.url + "Instrument/DeletePhoto", { "id": config.productId, "photoId": id }, function() {
                                 $("#instrdetailthumbnail_" + id).remove();
                                 totalPhotos--;
@@ -162,7 +162,7 @@
                             });
                         },
                         "No": function() {
-                            $(this).dialog('close');
+                            $(this).dialog("close");
                         }
                     }
                 });
@@ -179,8 +179,8 @@
                     adjacent = $(thumbnail).prev("div");
                 }
 
-                var thumbnailId = parseInt(thumbnail.attr('id').substring(thumbnail.attr('id').indexOf("_") + 1, thumbnail.attr('id').length));
-                var adjacentId = parseInt(adjacent.attr('id').substring(adjacent.attr('id').indexOf("_") + 1, adjacent.attr('id').length));
+                var thumbnailId = parseInt(thumbnail.attr("id").substring(thumbnail.attr("id").indexOf("_") + 1, thumbnail.attr("id").length));
+                var adjacentId = parseInt(adjacent.attr("id").substring(adjacent.attr("id").indexOf("_") + 1, adjacent.attr("id").length));
 
                 $.post(site.url + "Instrument/MovePhoto", { "id": thumbnailId, "adjacentId": adjacentId, "sortOrder": index + increment }, function() {
                     if (increment > 0) {
@@ -195,11 +195,11 @@
             function enableInputMove() {
                 var firsttMovelLeft = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='moveleft']").first();
                 var lastMoveRight = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='moveright']").last();
-                var allOthertMoves = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail']").not(':first').not(':last').find("[id^=move]");
+                var allOthertMoves = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail']").not(":first").not(":last").find("[id^=move]");
 
-                $(allOthertMoves).removeAttr('disabled').css(cssInputEnabled);
-                $(firsttMovelLeft).attr('disabled', 'disabled').css(cssInputDisabled);
-                $(lastMoveRight).attr('disabled', 'disabled').css(cssInputDisabled);
+                $(allOthertMoves).removeAttr("disabled").css(cssInputEnabled);
+                $(firsttMovelLeft).attr("disabled", "disabled").css(cssInputDisabled);
+                $(lastMoveRight).attr("disabled", "disabled").css(cssInputDisabled);
             };
 
             function enableInputDefault() {
@@ -208,8 +208,8 @@
                 var inputDefault = $("#instrdetailthumbnailcontainer div[id='instrdetailthumbnail_" + id + "'] input[id='default_" + id + "']");
                 var allOtherDefaults = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='default']").not(inputDefault);
 
-                $(allOtherDefaults).removeAttr('disabled').css(cssInputEnabled);
-                $(inputDefault).attr('disabled', 'disabled').css(cssInputDisabled);
+                $(allOtherDefaults).removeAttr("disabled").css(cssInputEnabled);
+                $(inputDefault).attr("disabled", "disabled").css(cssInputDisabled);
             };
 
             function enableInputDelete() {
@@ -217,10 +217,10 @@
                 var inputCurrentDelete = $("#instrdetailthumbnailcontainer div[id='instrdetailthumbnail_" + currentPhotoId + "'] input[id='delete_" + currentPhotoId + "']");
                 var allOtherDeletes = $("#instrdetailthumbnailcontainer div[id^='instrdetailthumbnail'] input[id^='delete']").not(inputDefaultDelete);
 
-                $(allOtherDeletes).removeAttr('disabled').css(cssInputEnabled);
+                $(allOtherDeletes).removeAttr("disabled").css(cssInputEnabled);
 
-                $(inputCurrentDelete).attr('disabled', 'disabled').css(cssInputDisabled);
-                $(inputDefaultDelete).attr('disabled', 'disabled').css(cssInputDisabled);
+                $(inputCurrentDelete).attr("disabled", "disabled").css(cssInputDisabled);
+                $(inputDefaultDelete).attr("disabled", "disabled").css(cssInputDisabled);
             };
         }
     }
