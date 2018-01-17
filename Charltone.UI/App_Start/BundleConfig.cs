@@ -6,11 +6,6 @@ namespace Charltone.UI
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/bundles/CommonStyles").Include(
-                "~/Content/css/*.css",
-                "~/Content/site.css"
-            ));
-
             bundles.Add(new ScriptBundle("~/bundles/Modernizr").Include(
                 "~/Scripts/modernizr-{version}"
             ));
@@ -54,6 +49,15 @@ namespace Charltone.UI
                 "~/Scripts/Contact/Index.js",
                 "~/Scripts/Metrics/GoogleAnalytics.js"
             ));
+
+            bundles.Add(new StyleBundle("~/Content/CommonStyles").Include(
+                "~/Content/css/bootstrap.css",
+                "~/Content/css/bootstrap-theme.css",
+                "~/Content/css/jquery-ui.css",
+                "~/Content/css/jquery.fileupload-ui.css",
+                "~/Content/Site.css"
+            ));
+
 
             //BundleTable.EnableOptimizations = false;
         }

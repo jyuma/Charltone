@@ -23,7 +23,7 @@
         instrument.detail.init({
             productId: parseInt(@Model.ProductId),
             defaultPhotoId: parseInt(@Model.DefaultPhotoId),
-            isAuthenticated: '@(Model.IsAuthenticated)' == 'True',
+            isAuthenticated: '@(Model.IsAuthenticated)' === 'True',
             maxSaveImageWidth: parseInt(@Model.MaxSaveImageWidth),
             maxSaveImageHeight: parseInt(@Model.MaxSaveImageHeight),
             maxDisplayImageWidth: parseInt(@Model.MaxDisplayImageWidth),
@@ -31,8 +31,8 @@
             maxZoomImageWidth: parseInt(@Model.MaxZoomImageWidth),
             maxZoomImageHeight: parseInt(@Model.MaxZoomImageHeight)
         });
-        $("#comments").tooltip({ content: "@Model.Comments" });
-        $("#funfacts").tooltip({ content: "@Model.FunFacts" });
+        $("#comments").tooltip({ content: "@Model.Comments", classes: { "ui-tooltip": "cust-tooltip" }});
+        $("#funfacts").tooltip({ content: "@Model.FunFacts", classes: { "ui-tooltip": "cust-tooltip" }});
     });
 </script>
 

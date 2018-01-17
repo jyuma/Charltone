@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charltone.Data", "Charltone.Data\Charltone.Data.csproj", "{E17ACB77-42C8-4398-B542-9C5869AD2A3A}"
 EndProject
@@ -58,5 +58,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		LessCompiler = 4a4b3729-8d04-4f3b-a562-449696a62c51
+		SolutionGuid = {5155E06A-9FB4-4569-A576-24B194F4253B}
 	EndGlobalSection
 EndGlobal

@@ -1,17 +1,13 @@
-﻿/* Mixins */
+/* Mixins */
 .mainBorder {
   border: solid;
   border-width: 2px;
   border-color: #cea96d;
 }
 .gradients {
-  background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* FF3.6+ */
-  background: -ms-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* IE10 */
-  background: -o-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Opera 11.10+ */
   background: linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* W3C */
@@ -68,7 +64,7 @@ html {
 body {
   padding: 64px 0 0 0;
   background-color: #272722;
-  color: #ffffff;
+  color: #fff;
   font-size: 10pt;
   font-family: "trebuchet ms", sans-serif;
   margin: 0;
@@ -117,7 +113,45 @@ textarea {
   visibility: hidden;
 }
 .ui-tooltip {
-  font-size: 10pt;
+  background: #666;
+  color: white;
+  border: none;
+  padding: 0;
+  opacity: 1;
+}
+.ui-tooltip-content {
+  position: relative;
+  padding: 1em;
+}
+.ui-tooltip-content::after {
+  position: absolute;
+  border-style: solid;
+  display: block;
+  width: 0;
+}
+.right .ui-tooltip-content::after {
+  top: 18px;
+  left: -10px;
+  border-color: transparent #666;
+  border-width: 10px 10px 10px 0;
+}
+.left .ui-tooltip-content::after {
+  top: 18px;
+  right: -10px;
+  border-color: transparent #666;
+  border-width: 10px 0 10px 10px;
+}
+.top .ui-tooltip-content::after {
+  bottom: -10px;
+  left: 72px;
+  border-color: #666 transparent;
+  border-width: 10px 10px 0;
+}
+.bottom .ui-tooltip-content::after {
+  top: -10px;
+  left: 72px;
+  border-color: #666 transparent;
+  border-width: 0 10px 10px;
 }
 /* Main Panel */
 div#main {
@@ -286,13 +320,9 @@ div.linevertical#instrdetail {
 }
 /* Home */
 div#home {
-  background: -webkit-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* FF3.6+ */
-  background: -ms-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* IE10 */
-  background: -o-linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* Opera 11.10+ */
   background: linear-gradient(180deg, #090806 10%, #3b2713 100%);
   /* W3C */
@@ -503,7 +533,7 @@ div#ordering {
   padding-top: 0;
 }
 div#ordering .panel-group {
-  color: #000000;
+  color: #000;
   margin: 10px 0 0 0;
 }
 div#ordering .panel-group .panel-default {
@@ -511,7 +541,7 @@ div#ordering .panel-group .panel-default {
 }
 div#ordering .panel-group .panel-default .panel-heading {
   padding: 10px;
-  background-color: #63411d;
+  background-color: #63411D;
   background-image: none;
 }
 div#ordering .panel-group .panel-default .panel-heading h4 {
@@ -521,15 +551,15 @@ div#ordering .panel-group .panel-default .panel-heading h4.panel-title a:link.co
   color: #9d9d9d;
 }
 div#ordering .panel-group .panel-default .panel-heading h4.panel-title a:link:not(.collapsed) {
-  color: #ffffff;
+  color: #fff;
 }
 div#ordering .panel-group .panel-default .panel-heading h4.panel-title a:link:hover {
-  color: #ffffff;
+  color: #fff;
 }
 div#ordering .panel-group div.panel-body {
   padding: 0;
   background-color: #cea96d;
-  color: #000000;
+  color: #000;
 }
 div#ordering .panel-group div.panel-body p {
   margin: 10px 15px 10px 15px;
@@ -664,4 +694,3 @@ div#contact textarea {
   width: 480px;
   height: 150px;
 }
-/*# sourceMappingURL=site.css.map */

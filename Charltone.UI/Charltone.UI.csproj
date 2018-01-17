@@ -223,7 +223,7 @@
     <Content Include="Content\css\jquery.fileupload-ui.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\favicon.png" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\Check.ico" />
     <Content Include="Content\images\Delete.ico" />
     <Content Include="Content\images\Next.ico" />
@@ -258,6 +258,9 @@
     <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\logo_sm.png" />
     <Content Include="Content\logo_xs.png" />
+    <Content Include="Content\site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -367,10 +370,10 @@
     <Content Include="Content\css\jquery-ui.css.map" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
